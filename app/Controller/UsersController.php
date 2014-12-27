@@ -27,7 +27,7 @@ class UsersController extends AppController
                         'model' => 'Slide',
                         'limit' => 12,
                         'recursive' => 2,
-                        'conditions' => 'Slide.user_id = ' .$user_id . " and Slide.convert_status = 100",
+                        'conditions' => 'Slide.user_id = ' .$user_id,
                         'order' => array('id' => 'desc'),
                     )
             );
