@@ -2,7 +2,7 @@
 
 This is simple open source slidesharing application. You can see the working demo at http://slide.meguro.ryuzee.com/
 
-![Sample](https://gist.github.com/ryuzee/7b02a2a1026b57614835/raw/31d991a88532331bf7e55af4ba05ba8b6fad9dc8/openslideshare.png")
+![Sample](http://www.ryuzee.com/images/work/openslideshare.png)
 
 ## Requirements
 
