@@ -212,7 +212,9 @@
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'php'
+		'defaults' => 'database',
+		'cookie' => 'SID',
+		'timeout' => 86400,
 	));
 
 /**
