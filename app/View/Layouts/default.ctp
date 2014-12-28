@@ -58,8 +58,17 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                     <?php if (AuthComponent::user('username')): ?>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/slides/add"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Upload!!</a></li>
-                        <li><a href="/users/edit/<?php echo AuthComponent::user('id'); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Account</a></li>
-                        <li><a href="/users/logout">Logout: <?php echo AuthComponent::user('username') ?>&nbsp;</a></li>
+
+
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<?php echo h(AuthComponent::user('username')); ?><span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/users/index"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;My Slides</a></li>
+                                <li><a href="/users/edit/<?php echo AuthComponent::user('id'); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;My Account</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/users/logout">Logout&nbsp;</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <?php else: ?>
                     <form class="navbar-form navbar-right" action="/users/login" role="form" method="post">
