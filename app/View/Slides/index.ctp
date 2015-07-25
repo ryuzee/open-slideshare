@@ -4,6 +4,3 @@
     <?php echo $this->element('slide_mine', array('slides' => $slides, 'title' => __('Slides'))); ?>
     </div>
 </div>
-
-</script>
-
