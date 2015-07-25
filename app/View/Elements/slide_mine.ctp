@@ -4,13 +4,13 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-    $('.col-md-3').equalHeight();
+    $('.slide_block').equalHeight();
 });
 </script>
 
 <div class="row" style="max-width:1024px; margin:0 auto;">
 <?php foreach ($slides as $slide): ?>
-    <div class="col-md-3">
+    <div class="slide_block col-md-3 col-sm-6">
         <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
         <?php if($slide["Slide"]["convert_status"] < 0): ?>
             <?php $image_url = "/img/failed_to_convert_small.jpg"; ?>
