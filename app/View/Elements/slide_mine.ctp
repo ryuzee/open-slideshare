@@ -1,16 +1,17 @@
-<!-- bootstrapのクラス使うとうまく折り返されないのでやり方検討 -->
-<?php $w = 216; ?>
 <h3><?php echo $title; ?></h3>
 
 <script type="text/javascript">
 $(document).ready(function () {
-    $('.slide_block').equalHeight();
+    $('.col-md-3').equalHeight();
 });
 </script>
 
 <div class="row" style="max-width:1024px; margin:0 auto;">
+<!--
+<div class="row">
+-->
 <?php foreach ($slides as $slide): ?>
-    <div class="slide_block col-md-3 col-sm-6">
+    <div class="col-md-3 col-sm-6">
         <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
         <?php if($slide["Slide"]["convert_status"] < 0): ?>
             <?php $image_url = "/img/failed_to_convert_small.jpg"; ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 $url = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $slide["key"] . "/list.json";
 
 $context = stream_context_create(array(
