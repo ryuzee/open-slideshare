@@ -19,6 +19,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         <?php echo $this->Html->css('bootstrap.min.css'); ?>
         <?php echo $this->Html->css('jquery-ui.min.css'); ?>
         <?php echo $this->Html->css('sticky-footer-navbar.css'); ?>
+        <?php echo $this->Html->css('openslideshare.css'); ?>
         <?php echo $this->Html->css('jquery.mentionsInput.css'); ?>
         <?php echo $this->Html->css('jquery.bxslider.css'); ?>
         <?php echo $this->Html->css('custom-theme/jquery-ui-1.10.0.custom.css'); ?>
