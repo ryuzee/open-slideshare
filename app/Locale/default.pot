@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-26 20:47+0900\n"
+"POT-Creation-Date: 2015-07-27 04:29+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -140,6 +140,27 @@ msgstr ""
 msgid "Speaker Details"
 msgstr ""
 
+#: View/Layouts/default.ctp:59
+msgid "Search"
+msgstr ""
+
+#: View/Layouts/default.ctp:63
+msgid "Upload"
+msgstr ""
+
+#: View/Layouts/default.ctp:69
+#: View/Users/index.ctp:3
+msgid "My Slides"
+msgstr ""
+
+#: View/Layouts/default.ctp:70
+msgid "My Account"
+msgstr ""
+
+#: View/Layouts/default.ctp:72
+msgid "Logout"
+msgstr ""
+
 #: View/Slides/add.ctp:79
 msgid "Upload slide"
 msgstr ""
@@ -232,8 +253,16 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: View/Users/index.ctp:3
-msgid "My Slides"
+#: View/Users/edit.ctp:30;33
+msgid "Delete User"
+msgstr ""
+
+#: View/Users/edit.ctp:30
+msgid "Danger"
+msgstr ""
+
+#: View/Users/login.ctp:4
+msgid "Signin here"
 msgstr ""
 
 #: View/Users/login.ctp:5

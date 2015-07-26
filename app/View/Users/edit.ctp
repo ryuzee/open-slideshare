@@ -27,10 +27,10 @@
 
     <div class="panel panel-danger">
         <!-- Default panel contents -->
-        <div class="panel-heading">Delete User (Danger)</div>
+        <div class="panel-heading"><?php echo __('Delete User');?> (<?php echo __('Danger'); ?>)</div>
         <div class="panel-body">
         <form method="get" action="/users/delete">
-        <button type="submit" class="btn btn-danger">Delete User</button>
+        <button type="submit" class="btn btn-danger"><?php echo __('Delete User'); ?></button>
         </form>
         </div>
     </div>

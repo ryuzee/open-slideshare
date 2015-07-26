@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-26 20:47+0900\n"
-"PO-Revision-Date: 2015-07-27 04:21+0900\n"
+"POT-Creation-Date: 2015-07-27 04:29+0900\n"
+"PO-Revision-Date: 2015-07-27 04:30+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -140,6 +140,26 @@ msgstr "ユーザーを削除できませんでした。もう一度試してく
 msgid "Speaker Details"
 msgstr "スピーカーについて"
 
+#: View/Layouts/default.ctp:59
+msgid "Search"
+msgstr "検索"
+
+#: View/Layouts/default.ctp:63
+msgid "Upload"
+msgstr "アップロード"
+
+#: View/Layouts/default.ctp:69 View/Users/index.ctp:3
+msgid "My Slides"
+msgstr "自分のスライド"
+
+#: View/Layouts/default.ctp:70
+msgid "My Account"
+msgstr "アカウント"
+
+#: View/Layouts/default.ctp:72
+msgid "Logout"
+msgstr "ログアウト"
+
 #: View/Slides/add.ctp:79
 msgid "Upload slide"
 msgstr "スライドのアップロード"
@@ -221,9 +241,17 @@ msgstr "ユーザーの編集"
 msgid "Update"
 msgstr "更新"
 
-#: View/Users/index.ctp:3
-msgid "My Slides"
-msgstr "自分のスライド"
+#: View/Users/edit.ctp:30;33
+msgid "Delete User"
+msgstr "ユーザーの削除"
+
+#: View/Users/edit.ctp:30
+msgid "Danger"
+msgstr "危険"
+
+#: View/Users/login.ctp:4
+msgid "Signin here"
+msgstr "サインイン"
 
 #: View/Users/login.ctp:5
 msgid "Username"
