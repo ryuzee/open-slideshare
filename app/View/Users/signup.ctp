@@ -14,8 +14,8 @@
             <?php
          echo $this->Form->input('username', array('class' => 'form-control'));
          echo $this->Form->input('password', array('class' => 'form-control'));
-         echo $this->Form->input('display_name', array('class' => 'form-control'));
-         echo $this->Form->input('biography', array('class' => 'form-control'));
+         echo $this->Form->input('display_name', array('label' => __('Display Name'), 'class' => 'form-control'));
+         echo $this->Form->input('biography', array('label' => __('Biography'), 'class' => 'form-control'));
          ?>
         </fieldset>
     </div>

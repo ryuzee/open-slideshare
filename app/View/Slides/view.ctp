@@ -51,7 +51,7 @@
          echo $this->Form->hidden('user_id', array('value' => $user_id));
          echo $this->Form->hidden('slide_id', array('value' => $slide["Slide"]["id"]));
          echo $this->Form->hidden('return_url', array('value' => '/slides/view/' . $slide["Slide"]["id"]));
-         echo $this->Form->input('content', array('class' => 'form-control mention'));
+         echo $this->Form->input('content', array('label' => __('Content'), 'class' => 'form-control mention'));
          ?>
         </fieldset>
         <?php echo $this->Form->end(__('Submit')); ?>

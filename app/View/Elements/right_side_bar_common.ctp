@@ -1,6 +1,7 @@
-<div class="panel panel-default">
-  <div class="panel-heading"><?php echo __('Speaker Details'); ?></div>
-  <div class="panel-body"><?php echo h($user["User"]["display_name"]); ?></div>
-  <div class="panel-body"><?php echo h($user["User"]["biography"]); ?></div>
+<h3><?php echo __('Speaker Details'); ?></h3>
+<div class="row2" style="border:1px solid #ccc; background-color:#fff;padding:8px;">
+<h4><?php echo h($user["User"]["display_name"]); ?></h4>
+<?php echo h($user["User"]["biography"]); ?>
 </div>
+<br clear="all" />
 

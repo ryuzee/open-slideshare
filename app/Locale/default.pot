@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-26 06:21+0000\n"
+"POT-Creation-Date: 2015-07-26 20:26+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -39,7 +39,7 @@ msgid "Invalid comment"
 msgstr ""
 
 #: Controller/CommentsController.php:62
-msgid "You can node delete comments posted by others."
+msgid "You can not delete comments posted by others."
 msgstr ""
 
 #: Controller/CommentsController.php:65
@@ -136,12 +136,16 @@ msgstr ""
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
+#: View/Elements/right_side_bar_common.ctp:1
+msgid "Speaker Details"
+msgstr ""
+
 #: View/Slides/add.ctp:131
 msgid "Upload a file to save"
 msgstr ""
 
 #: View/Slides/edit.ctp:125
-#: View/Slides/view.ctp:50
+#: View/Slides/view.ctp:57
 #: View/Helper/FormHelper.php:1889
 #: View/Scaffolds/form.ctp:21
 msgid "Submit"
@@ -156,7 +160,7 @@ msgid "Actions"
 msgstr ""
 
 #: View/Slides/edit.ctp:135
-#: View/Slides/view.ctp:22
+#: View/Slides/view.ctp:29
 #: View/Scaffolds/form.ctp:29
 #: View/Scaffolds/index.ctp:49
 #: View/Scaffolds/view.ctp:173
@@ -164,7 +168,7 @@ msgid "Delete"
 msgstr ""
 
 #: View/Slides/edit.ctp:135
-#: View/Slides/view.ctp:22;72
+#: View/Slides/view.ctp:29;72
 #: View/Scaffolds/form.ctp:32
 #: View/Scaffolds/index.ctp:52
 #: View/Scaffolds/view.ctp:55;176
@@ -175,16 +179,16 @@ msgstr ""
 msgid "Slides"
 msgstr ""
 
-#: View/Slides/view.ctp:16
+#: View/Slides/view.ctp:23
 msgid "Comments"
 msgstr ""
 
-#: View/Slides/view.ctp:42
+#: View/Slides/view.ctp:49
 msgid "Add Comment"
 msgstr ""
 
-#: View/Slides/view.ctp:59
-msgid "Page View"
+#: View/Slides/view.ctp:54
+msgid "Content"
 msgstr ""
 
 #: View/Slides/view.ctp:71
@@ -195,7 +199,7 @@ msgstr ""
 msgid "Delete Slide"
 msgstr ""
 
-#: View/Slides/view.ctp:80
+#: View/Slides/view.ctp:79
 msgid "Related Slides"
 msgstr ""
 
@@ -225,6 +229,14 @@ msgstr ""
 
 #: View/Users/signup.ctp:13
 msgid "Add User"
+msgstr ""
+
+#: View/Users/signup.ctp:17
+msgid "Display Name"
+msgstr ""
+
+#: View/Users/signup.ctp:18
+msgid "Biography"
 msgstr ""
 
 #: View/Users/signup.ctp:22

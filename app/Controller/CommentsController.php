@@ -59,7 +59,7 @@ class CommentsController extends AppController
         $user_id = $user["id"];
 
         if ($artifact_owner != $user_id) {
-            $this->Session->warning(__('You can node delete comments posted by others.'));
+            $this->Session->warning(__('You can not delete comments posted by others.'));
         } else {
             if ($this->Comment->delete()) {
                 $this->Session->success(__('The comment has been deleted.'));

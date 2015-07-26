@@ -6,11 +6,7 @@ body {
   background-image: url(/img/background.png);
 }
 
-/**
-div.row {
-  background-image: url(/img/background.png);
-}
-**/
+
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, "Arial", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
@@ -63,4 +59,8 @@ div#prev, div#next, div#pager { display: inline; font-weight:bold; font-color:#f
 .slide_control_link a, .slide_control_link a:hover, .slide_control_link a:visited, .slide_control_link a:active  {
     text-decoration: none;
     color: #eee !important;
+}
+div.row a, div.row a:hover, div.row a:visited, div.row a:active {
+    text-decoration: none;
+    color: #cd4939;
 }
