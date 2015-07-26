@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-26 20:26+0900\n"
+"POT-Creation-Date: 2015-07-26 20:47+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -140,7 +140,28 @@ msgstr ""
 msgid "Speaker Details"
 msgstr ""
 
-#: View/Slides/add.ctp:131
+#: View/Slides/add.ctp:79
+msgid "Upload slide"
+msgstr ""
+
+#: View/Slides/add.ctp:84
+#: View/Errors/fatal_error.ctp:24
+msgid "File"
+msgstr ""
+
+#: View/Slides/add.ctp:120
+msgid "Name"
+msgstr ""
+
+#: View/Slides/add.ctp:121
+msgid "Description"
+msgstr ""
+
+#: View/Slides/add.ctp:122
+msgid "Category"
+msgstr ""
+
+#: View/Slides/add.ctp:127
 msgid "Upload a file to save"
 msgstr ""
 
@@ -152,7 +173,7 @@ msgid "Submit"
 msgstr ""
 
 #: View/Slides/edit.ctp:132
-#: View/Slides/view.ctp:68
+#: View/Slides/view.ctp:67
 #: View/Scaffolds/form.ctp:25
 #: View/Scaffolds/index.ctp:24;75
 #: View/Scaffolds/view.ctp:47
@@ -168,7 +189,7 @@ msgid "Delete"
 msgstr ""
 
 #: View/Slides/edit.ctp:135
-#: View/Slides/view.ctp:29;72
+#: View/Slides/view.ctp:29;71
 #: View/Scaffolds/form.ctp:32
 #: View/Scaffolds/index.ctp:52
 #: View/Scaffolds/view.ctp:55;176
@@ -191,15 +212,15 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: View/Slides/view.ctp:71
+#: View/Slides/view.ctp:70
 msgid "Edit Slide"
 msgstr ""
 
-#: View/Slides/view.ctp:72
+#: View/Slides/view.ctp:71
 msgid "Delete Slide"
 msgstr ""
 
-#: View/Slides/view.ctp:79
+#: View/Slides/view.ctp:78
 msgid "Related Slides"
 msgstr ""
 
@@ -1592,10 +1613,6 @@ msgstr ""
 
 #: View/Errors/fatal_error.ctp:18
 msgid "Fatal Error"
-msgstr ""
-
-#: View/Errors/fatal_error.ctp:24
-msgid "File"
 msgstr ""
 
 #: View/Errors/fatal_error.ctp:28

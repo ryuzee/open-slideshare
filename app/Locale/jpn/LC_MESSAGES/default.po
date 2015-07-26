@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-26 20:26+0900\n"
-"PO-Revision-Date: 2015-07-26 20:27+0900\n"
+"POT-Creation-Date: 2015-07-26 20:47+0900\n"
+"PO-Revision-Date: 2015-07-26 20:48+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -140,7 +140,27 @@ msgstr "ユーザーを削除できませんでした。もう一度試してく
 msgid "Speaker Details"
 msgstr "スピーカーについて"
 
-#: View/Slides/add.ctp:131
+#: View/Slides/add.ctp:79
+msgid "Upload slide"
+msgstr "スライドのアップロード"
+
+#: View/Slides/add.ctp:84 View/Errors/fatal_error.ctp:24
+msgid "File"
+msgstr "ファイル"
+
+#: View/Slides/add.ctp:120
+msgid "Name"
+msgstr "名前"
+
+#: View/Slides/add.ctp:121
+msgid "Description"
+msgstr "詳細"
+
+#: View/Slides/add.ctp:122
+msgid "Category"
+msgstr "カテゴリ"
+
+#: View/Slides/add.ctp:127
 msgid "Upload a file to save"
 msgstr "ファイルのアップロード"
 
@@ -149,7 +169,7 @@ msgstr "ファイルのアップロード"
 msgid "Submit"
 msgstr "送信"
 
-#: View/Slides/edit.ctp:132 View/Slides/view.ctp:68 View/Scaffolds/form.ctp:25
+#: View/Slides/edit.ctp:132 View/Slides/view.ctp:67 View/Scaffolds/form.ctp:25
 #: View/Scaffolds/index.ctp:24;75 View/Scaffolds/view.ctp:47
 msgid "Actions"
 msgstr "操作"
@@ -159,7 +179,7 @@ msgstr "操作"
 msgid "Delete"
 msgstr "削除"
 
-#: View/Slides/edit.ctp:135 View/Slides/view.ctp:29;72
+#: View/Slides/edit.ctp:135 View/Slides/view.ctp:29;71
 #: View/Scaffolds/form.ctp:32 View/Scaffolds/index.ctp:52
 #: View/Scaffolds/view.ctp:55;176
 msgid "Are you sure you want to delete # %s?"
@@ -181,15 +201,15 @@ msgstr "コメントを追加"
 msgid "Content"
 msgstr "本文"
 
-#: View/Slides/view.ctp:71
+#: View/Slides/view.ctp:70
 msgid "Edit Slide"
 msgstr "スライドの編集"
 
-#: View/Slides/view.ctp:72
+#: View/Slides/view.ctp:71
 msgid "Delete Slide"
 msgstr "スライドの削除"
 
-#: View/Slides/view.ctp:79
+#: View/Slides/view.ctp:78
 msgid "Related Slides"
 msgstr "関連するスライド"
 
@@ -223,7 +243,7 @@ msgstr "ユーザーの追加"
 
 #: View/Users/signup.ctp:17
 msgid "Display Name"
-msgstr "表示名"
+msgstr "氏名"
 
 #: View/Users/signup.ctp:18
 msgid "Biography"
@@ -1627,10 +1647,6 @@ msgstr ""
 
 #: View/Errors/fatal_error.ctp:18
 msgid "Fatal Error"
-msgstr ""
-
-#: View/Errors/fatal_error.ctp:24
-msgid "File"
 msgstr ""
 
 #: View/Errors/fatal_error.ctp:28

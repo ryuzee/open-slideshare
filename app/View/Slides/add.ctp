@@ -75,13 +75,13 @@ $(document).ready(function(){
 </script>
 
 <div class="row">
-    <div class="col-md-9">
-    <h3>Upload slide</h3>
+    <div class="col-md-8">
+    <h3><?php echo __('Upload slide'); ?></h3>
 
     <form id="upload-form" class="well" method="post" enctype="multipart/form-data">
 <?php $rand_name = md5(uniqid() . date('Ymdhis')); ?>
     <div class="form-group">
-    <label>File</label>
+        <label><?php echo __('File'); ?></label>
     <input type="file" name="file" id="file" class="form-control" />
     </div>
 
@@ -105,10 +105,6 @@ $(document).ready(function(){
     <input class="fval" type="hidden" id="x-amz-meta-title"  name="x-amz-meta-title" value="" class="form-control"/>
     <input class="fval" type="hidden" id="x-amz-meta-tag" name="x-amz-meta-tag" value="open-slideshare" class="form-control"/>
 
-    <!--
-    <button class="btn btn-primary">Submit</button>
-    -->
-
 </form>
 
     <?php echo $this->Form->create('Slide', array(
@@ -121,9 +117,9 @@ $(document).ready(function(){
     )); ?>
     <fieldset>
         <?php
-     echo $this->Form->input('name');
-     echo $this->Form->input('description');
-     echo $this->Form->input('category_id');
+     echo $this->Form->input('name', array('label' => __('Name')));
+     echo $this->Form->input('description', array('label' => __('Description')));
+     echo $this->Form->input('category_id', array('label' => __('Category')));
      echo $this->Form->hidden('key');
      // echo $this->Form->input('tags', array('type' => 'text'));
      ?>
@@ -133,7 +129,7 @@ $(document).ready(function(){
     </div>
 
 
-    <div class="col-md-3">
+    <div class="col-md-4">
     <?php echo $this->element("right_side_bar_common"); ?>
     </div>
 

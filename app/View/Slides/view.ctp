@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-md-8" style="background-color:#fff !important; border:1px solid #ccc; padding-top:20px">
+<div class="col-md-8" style="background-color:#fff !important; border:1px solid #ccc; padding-top:20px; margin-bottom:20px">
     <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
 
     <div class="row" style="padding-top:8px; background-color:#fff !important;">
@@ -57,7 +57,6 @@
         <?php echo $this->Form->end(__('Submit')); ?>
     </div>
 </div>
-
 
 <div class="col-md-4">
     <?php echo $this->element("right_side_bar_common"); ?>
