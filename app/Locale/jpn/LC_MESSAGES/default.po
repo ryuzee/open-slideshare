@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2015-07-26 20:47+0900\n"
-"PO-Revision-Date: 2015-07-26 20:48+0900\n"
+"PO-Revision-Date: 2015-07-27 04:09+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -1676,6 +1676,7 @@ msgstr ""
 #: View/Errors/private_action.ctp:24 View/Errors/scaffold_error.ctp:24
 msgid "If you want to customize this error message, create %s"
 msgstr ""
+"このエラーメッセージをカスタマイズしたい場合は、%s を作成してください。"
 
 #: View/Errors/missing_action.ctp:18
 msgid "Missing Method in %s"
@@ -1788,11 +1789,11 @@ msgstr ""
 
 #: View/Errors/missing_table.ctp:17
 msgid "Missing Database Table"
-msgstr ""
+msgstr "データベースのテーブルが見つかりません"
 
 #: View/Errors/missing_table.ctp:20
 msgid "Table %1$s for model %2$s was not found in datasource %3$s."
-msgstr ""
+msgstr "%2$s モデル用のテーブル %1$s がデータソース %3$s に見つかりません。"
 
 #: View/Errors/missing_view.ctp:17
 msgid "Missing View"

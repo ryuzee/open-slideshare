@@ -29,8 +29,8 @@ class CommentsController extends AppController
             }
         }
         $users = $this->Comment->User->find('list');
-        $artifacts = $this->Comment->Artifact->find('list');
-        $this->set(compact('users', 'artifacts'));
+        $slides = $this->Comment->Slide->find('list');
+        $this->set(compact('users', 'slides'));
     }
 
     /**
@@ -51,14 +51,14 @@ class CommentsController extends AppController
             throw new NotFoundException(__('Invalid comment'));
         }
 
-        $options = array('conditions' => array('Artifact.' . $this->Comment->primaryKey => $id), 'recursive' => 0);
-        $artifact = $this->Artifact->find('first', $options);
-        $artifact_owner = $artifact["Artifact"]["user_id"];
+        $options = array('conditions' => array('Comment.' . $this->Comment->primaryKey => $id), 'recursive' => 0);
+        $comment = $this->Comment->find('first', $options);
+        $comment_owner = $comment["Comment"]["user_id"];
 
         $user = $this->Auth->User();
         $user_id = $user["id"];
 
-        if ($artifact_owner != $user_id) {
+        if ($comment_owner != $user_id) {
             $this->Session->warning(__('You can not delete comments posted by others.'));
         } else {
             if ($this->Comment->delete()) {
