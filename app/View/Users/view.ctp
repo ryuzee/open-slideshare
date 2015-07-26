@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-9">
-    <?php echo $this->element('slide_mine', array('slides' => $slides, 'title' => $title)); ?>
+    <?php echo $this->element('slide_mine', array('slides' => $slides, 'title' => $title, 'column_class' => 'col-md-4 col-md-6', 'column_class_primary' => 'col-md-4')); ?>
     </div>
 
     <div class="col-md-3">
