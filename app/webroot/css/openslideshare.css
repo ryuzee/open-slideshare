@@ -51,3 +51,8 @@ div#prev, div#next, div#pager { display: inline; font-weight:bold; font-color:#f
     -moz-border-radius-bottomright: 10px;
     -moz-border-radius-bottomleft: 10px;
 }
+
+.slide_control_link a, .slide_control_link a:hover, .slide_control_link a:visited, .slide_control_link a:active  {
+    text-decoration: none;
+    color: #eee !important;
+}

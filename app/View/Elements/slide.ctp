@@ -16,29 +16,27 @@ $file_list = array();
 <div class="slider">
 
     <ul class="bxslider_<?php echo $slide["key"]; ?>" data-count="<?php echo count($file_list); ?>">
-        <?php if (count($file_list) > 0): ?>
-        <?php $count = 0; ?>
-        <?php foreach ($file_list as $file): ?>
-        <?php $u = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $file; ?>
-        <li>
-            <?php if($count >= 2): ?>
-            <img class="lazy image-<?php echo $count; ?>" src="/img/spacer.gif" data-src="<?php echo $u; ?>" />
-            <?php else: ?>
-            <img src="<?php echo $u; ?>" />
-            <?php endif; ?>
-        </li>
-        <?php $count++; ?>
-        <?php endforeach; ?>
-        <?php elseif($slide["convert_status"] < 0): ?>
+<?php if (count($file_list) > 0): ?>
+<?php $count = 0; ?>
+<?php foreach ($file_list as $file): ?>
+<?php $u = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $file; ?>
+<?php if($count >= 2): ?>
+        <li><img class="lazy image-<?php echo $count; ?>" src="/img/spacer.gif" data-src="<?php echo $u; ?>" /></li>
+<?php else: ?>
+        <li><img src="<?php echo $u; ?>" /></li>
+<?php endif; ?>
+<?php $count++; ?>
+<?php endforeach; ?>
+<?php elseif($slide["convert_status"] < 0): ?>
         <li><img class="lazy image-0" src="/img/failed_to_convert.jpg" /></li>
-        <?php else: ?>
+<?php else: ?>
         <li><img class="lazy image-0" src="/img/converting.jpg" /></li>
-        <?php endif; ?>
+<?php endif; ?>
     </ul>
 </div>
 
 <div class="slide_control">
-    <button id="prev" /></button>&nbsp;&nbsp;<div id="pager"></div>&nbsp;&nbsp;<button id="next"></button>
+    <span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;<span id="pager" class="small"></span>&nbsp;&nbsp;<span id="next" class="slide_control_link"></span>
 </div>
 
 <script type="text/javascript">
@@ -59,8 +57,8 @@ $(document).ready(function(){
             responsive:true,
             pager:true,
             pagerType:'short',
-            prevText: 'Prev',
-            nextText: 'Next',
+            prevText: '◀',
+            nextText: '▶',
             prevSelector: "#prev",
             nextSelector: "#next",
             pagerSelector: "#pager",
