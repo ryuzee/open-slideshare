@@ -2,11 +2,17 @@
 <div class="col-md-9">
     <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
 
-    <div style="padding-top:8px;">
-    <span class="h3"><?php echo h($slide['Slide']['name']); ?></span> by <?php echo $this->Html->link($slide['User']['display_name'], array('controller' => 'users', 'action' => 'view', $slide['User']['id'])); ?>
+    <div class="row" style="padding-top:8px;">
+    <div class="col-md-9">
+    <span class="h3"><?php echo h($slide['Slide']['name']); ?></span></div>
+    <div class="col-md-3" style="text-align:right">
+        <strong><?php echo $slide["Slide"]["page_view"]; ?></strong> views
     </div>
+    </div>
+
     <div>
-    Published: <?php echo h($slide['Slide']['created']); ?> in <a href="/categories/view/<?php echo $slide["Category"]["id"]; ?>"><?php echo h($slide['Category']['name']); ?></a>
+    By <?php echo $this->Html->link($slide['User']['display_name'], array('controller' => 'users', 'action' => 'view', $slide['User']['id'])); ?>&nbsp;
+    Published: <?php echo h(strftime("%Y/%m/%d",strtotime($slide['Slide']['created']))); ?> in <a href="/categories/view/<?php echo $slide["Category"]["id"]; ?>"><?php echo h($slide['Category']['name']); ?></a>
     </div>
     <div style="border:1px solid #ccc; background-color:#eee; padding:0.8em; margin-top:0.8em;">
     <p><?php echo h($slide['Slide']['description']); ?></p>
@@ -54,13 +60,6 @@
 
 <div class="col-md-3">
     <?php echo $this->element("right_side_bar_common"); ?>
-
-    <div class="panel panel-default">
-        <div class="panel-heading"><?php echo __('Page View'); ?></div>
-        <div class="panel-body">
-        <?php echo $slide["Slide"]["page_view"]; ?>
-        </div>
-    </div>
 
     <?php if(isset($user_id) && $user_id == $slide["Slide"]["user_id"]): ?>
     <div class="panel panel-default">
