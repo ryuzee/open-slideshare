@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-27 04:29+0900\n"
-"PO-Revision-Date: 2015-07-27 04:30+0900\n"
+"POT-Creation-Date: 2015-07-27 04:43+0900\n"
+"PO-Revision-Date: 2015-07-27 04:44+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -164,7 +164,8 @@ msgstr "ログアウト"
 msgid "Upload slide"
 msgstr "スライドのアップロード"
 
-#: View/Slides/add.ctp:84 View/Errors/fatal_error.ctp:24
+#: View/Slides/add.ctp:84 View/Slides/edit.ctp:80
+#: View/Errors/fatal_error.ctp:24
 msgid "File"
 msgstr "ファイル"
 
@@ -183,6 +184,14 @@ msgstr "カテゴリ"
 #: View/Slides/add.ctp:127
 msgid "Upload a file to save"
 msgstr "ファイルのアップロード"
+
+#: View/Slides/edit.ctp:76
+msgid "Edit slide"
+msgstr "スライドの編集"
+
+#: View/Slides/edit.ctp:104
+msgid "Re-upload"
+msgstr "再アップロード"
 
 #: View/Slides/edit.ctp:125 View/Slides/view.ctp:57
 #: View/Helper/FormHelper.php:1889 View/Scaffolds/form.ctp:21

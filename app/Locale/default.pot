@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-27 04:29+0900\n"
+"POT-Creation-Date: 2015-07-27 04:43+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -166,6 +166,7 @@ msgid "Upload slide"
 msgstr ""
 
 #: View/Slides/add.ctp:84
+#: View/Slides/edit.ctp:80
 #: View/Errors/fatal_error.ctp:24
 msgid "File"
 msgstr ""
@@ -184,6 +185,14 @@ msgstr ""
 
 #: View/Slides/add.ctp:127
 msgid "Upload a file to save"
+msgstr ""
+
+#: View/Slides/edit.ctp:76
+msgid "Edit slide"
+msgstr ""
+
+#: View/Slides/edit.ctp:104
+msgid "Re-upload"
 msgstr ""
 
 #: View/Slides/edit.ctp:125

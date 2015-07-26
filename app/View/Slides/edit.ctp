@@ -51,7 +51,7 @@ $(document).ready(function(){
             statusCode: {
                 201: function(){
                     console.log("200");
-                }, 
+                },
                 404: function(){
                     console.log("404");
                 }
@@ -72,12 +72,12 @@ $(document).ready(function(){
 </script>
 
 <div class="row">
-    <div class="col-md-9">
-    <h3>Edit slide</h3>
+    <div class="col-md-8">
+    <h3><?php echo __('Edit slide'); ?></h3>
 
     <form id="upload-form" class="well" method="post" enctype="multipart/form-data" action="javascript:void(0); return false;">
     <div class="form-group">
-    <label>File</label>
+    <label><?php echo __('File'); ?></label>
     <input type="file" name="file" id="file" class="form-control" />
     </div>
 
@@ -101,7 +101,7 @@ $(document).ready(function(){
     <input class="fval" type="hidden" id="x-amz-meta-title"  name="x-amz-meta-title" value="" class="form-control"/>
     <input class="fval" type="hidden" id="x-amz-meta-tag" name="x-amz-meta-tag" value="open-slideshare" class="form-control"/>
 
-    <input type="submit" id="re-upload" class="btn btn-primary" value="Re-upload" />
+    <input type="submit" id="re-upload" class="btn btn-primary" value="<?php echo __('Re-upload'); ?>" />
 
 </form>
 
@@ -125,7 +125,7 @@ $(document).ready(function(){
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-4">
     <?php echo $this->element("right_side_bar_common"); ?>
     <div class="panel panel-default">
     <!-- Default panel contents -->
