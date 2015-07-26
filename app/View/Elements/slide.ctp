@@ -15,7 +15,7 @@ $file_list = array();
 
 <div class="slider" style="border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;">
 
-    <ul class="bxslider_<?php echo $slide["key"]; ?>" data-count="<?php echo count($file_list); ?>">
+    <ul class="bxslider_<?php echo $slide["key"]; ?>" data-count="<?php echo count($file_list); ?>" style="display:none">
 <?php if (count($file_list) > 0): ?>
 <?php $count = 0; ?>
 <?php foreach ($file_list as $file): ?>
@@ -35,7 +35,7 @@ $file_list = array();
     </ul>
 </div>
 
-<div class="slide_control">
+<div class="slide_control" style="display:none">
     <span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;<span id="pager" class="small"></span>&nbsp;&nbsp;<span id="next" class="slide_control_link"></span>
 </div>
 
@@ -50,6 +50,8 @@ $(function() {
 
 <script type="text/javascript">
 $(document).ready(function(){
+    $(".bxslider_<?php echo $slide["key"]; ?>").show();
+    $(".slide_control").show();
 
     function bxslider_init() {
         var slider_config = {
@@ -99,5 +101,6 @@ $(document).ready(function(){
             }
         });
     }
+
 });
 </script>
