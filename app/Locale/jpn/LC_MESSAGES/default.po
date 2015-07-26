@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2015-07-26 20:47+0900\n"
-"PO-Revision-Date: 2015-07-27 04:09+0900\n"
+"PO-Revision-Date: 2015-07-27 04:21+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -81,7 +81,7 @@ msgstr "他の人のスライドを削除することはできません。"
 
 #: Controller/SlidesController.php:213
 msgid "The slide has been deleted."
-msgstr "コメントを削除しました。"
+msgstr "スライドを削除しました。"
 
 #: Controller/SlidesController.php:215
 msgid "The slide could not be deleted. Please, try again."
@@ -370,36 +370,36 @@ msgstr ""
 
 #: Error/ExceptionRenderer.php:222
 msgid "Not Found"
-msgstr ""
+msgstr "見つかりません"
 
 #: Model/Validator/CakeValidationSet.php:286
 msgid "This field cannot be left blank"
-msgstr ""
+msgstr "この項目は空白ではいけません"
 
 #: Network/CakeResponse.php:1352
 msgid "The requested file was not found"
-msgstr ""
+msgstr "ファイルが見つかりません"
 
 #: Utility/CakeNumber.php:119
 msgid "%s KB"
-msgstr "%s KB"
+msgstr "%s キロバイト"
 
 #: Utility/CakeNumber.php:121
 msgid "%s MB"
-msgstr "%s MB"
+msgstr "%s メガバイト"
 
 #: Utility/CakeNumber.php:123
 msgid "%s GB"
-msgstr "%s GB"
+msgstr "%s ギガバイト"
 
 #: Utility/CakeNumber.php:125
 msgid "%s TB"
-msgstr "%s TB"
+msgstr "%s テラバイト"
 
 #: Utility/CakeNumber.php:117
 msgid "%d Byte"
 msgid_plural "%d Bytes"
-msgstr[0] ""
+msgstr[0] "%d バイト"
 
 #: Utility/CakeTime.php:397
 msgid "Today, %s"
@@ -455,31 +455,31 @@ msgstr ""
 
 #: Utility/CakeTime.php:794
 msgid "just now"
-msgstr ""
+msgstr "たった今"
 
 #: Utility/CakeTime.php:910
 msgid "about a second ago"
-msgstr ""
+msgstr "数秒前"
 
 #: Utility/CakeTime.php:911
 msgid "about a minute ago"
-msgstr ""
+msgstr "一分前"
 
 #: Utility/CakeTime.php:912
 msgid "about an hour ago"
-msgstr ""
+msgstr "一時間前"
 
 #: Utility/CakeTime.php:913
 msgid "about a day ago"
-msgstr ""
+msgstr "一日前"
 
 #: Utility/CakeTime.php:914
 msgid "about a week ago"
-msgstr ""
+msgstr "一週間前"
 
 #: Utility/CakeTime.php:915
 msgid "about a year ago"
-msgstr ""
+msgstr "一年前"
 
 #: Utility/CakeTime.php:924
 msgid "in about a second"
@@ -1647,11 +1647,11 @@ msgstr ""
 
 #: View/Errors/fatal_error.ctp:18
 msgid "Fatal Error"
-msgstr ""
+msgstr "致命的なエラー"
 
 #: View/Errors/fatal_error.ctp:28
 msgid "Line"
-msgstr ""
+msgstr "行"
 
 #: View/Errors/fatal_error.ctp:32 View/Errors/missing_action.ctp:38
 #: View/Errors/missing_behavior.ctp:35 View/Errors/missing_component.ctp:35
@@ -1680,7 +1680,7 @@ msgstr ""
 
 #: View/Errors/missing_action.ctp:18
 msgid "Missing Method in %s"
-msgstr ""
+msgstr "%s にメソッドがありません"
 
 #: View/Errors/missing_action.ctp:20
 msgid "The action %1$s is not defined in controller %2$s"
@@ -1692,7 +1692,7 @@ msgstr ""
 
 #: View/Errors/missing_behavior.ctp:19
 msgid "Missing Behavior"
-msgstr ""
+msgstr "ビヘイビアが見つかりません"
 
 #: View/Errors/missing_behavior.ctp:22 View/Errors/missing_component.ctp:22
 #: View/Errors/missing_controller.ctp:22 View/Errors/missing_helper.ctp:22
@@ -1706,7 +1706,7 @@ msgstr ""
 
 #: View/Errors/missing_component.ctp:19
 msgid "Missing Component"
-msgstr ""
+msgstr "コンポーネントが見つかりません"
 
 #: View/Errors/missing_connection.ctp:17 View/Errors/missing_database.ctp:17
 msgid "Missing Database Connection"
@@ -1726,7 +1726,7 @@ msgstr ""
 
 #: View/Errors/missing_controller.ctp:19
 msgid "Missing Controller"
-msgstr ""
+msgstr "コントローラーが見つかりません"
 
 #: View/Errors/missing_database.ctp:20
 msgid "Scaffold requires a database connection"
@@ -1739,7 +1739,7 @@ msgstr ""
 
 #: View/Errors/missing_datasource.ctp:19
 msgid "Missing Datasource"
-msgstr ""
+msgstr "データソースが見つかりません"
 
 #: View/Errors/missing_datasource.ctp:22
 msgid "Datasource class %s could not be found."
@@ -1747,7 +1747,7 @@ msgstr ""
 
 #: View/Errors/missing_datasource_config.ctp:17
 msgid "Missing Datasource Configuration"
-msgstr ""
+msgstr "データソースの設定が見つかりません"
 
 #: View/Errors/missing_datasource_config.ctp:20
 msgid "The datasource configuration %1$s was not found in database.php."
@@ -1755,11 +1755,11 @@ msgstr ""
 
 #: View/Errors/missing_helper.ctp:19
 msgid "Missing Helper"
-msgstr ""
+msgstr "ヘルパーが見つかりません"
 
 #: View/Errors/missing_layout.ctp:17
 msgid "Missing Layout"
-msgstr ""
+msgstr "レイアウトが見つかりません"
 
 #: View/Errors/missing_layout.ctp:20
 msgid "The layout file %s can not be found or does not exist."
@@ -1767,7 +1767,7 @@ msgstr ""
 
 #: View/Errors/missing_plugin.ctp:17
 msgid "Missing Plugin"
-msgstr ""
+msgstr "プラグインが見つかりません"
 
 #: View/Errors/missing_plugin.ctp:20
 msgid "The application is trying to load a file from the %s plugin"
@@ -1779,7 +1779,7 @@ msgstr ""
 
 #: View/Errors/missing_plugin.ctp:32
 msgid "Loading all plugins"
-msgstr ""
+msgstr "全てのプラグインをロード中"
 
 #: View/Errors/missing_plugin.ctp:33
 msgid ""
@@ -1805,15 +1805,15 @@ msgstr ""
 
 #: View/Errors/pdo_error.ctp:17
 msgid "Database Error"
-msgstr ""
+msgstr "データベースエラー"
 
 #: View/Errors/pdo_error.ctp:24
 msgid "SQL Query"
-msgstr ""
+msgstr "SQLクエリー"
 
 #: View/Errors/pdo_error.ctp:29
 msgid "SQL Query Params"
-msgstr ""
+msgstr "SQLクエリーパラメーター"
 
 #: View/Errors/private_action.ctp:17
 msgid "Private Method in %s"
