@@ -2,7 +2,7 @@
 <div class="col-md-9">
     <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
 
-    <div>
+    <div style="padding-top:8px;">
     <span class="h3"><?php echo h($slide['Slide']['name']); ?></span> by <?php echo $this->Html->link($slide['User']['display_name'], array('controller' => 'users', 'action' => 'view', $slide['User']['id'])); ?>
     </div>
     <div>

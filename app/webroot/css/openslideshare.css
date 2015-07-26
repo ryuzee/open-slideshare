@@ -36,9 +36,18 @@ div#prev, div#next, div#pager { display: inline; font-weight:bold; font-color:#f
 
 .slide_control {
     text-align:center;
-    background-color:#222;
     border:1px solid #000;
     padding-top:4px;
     padding-bottom:4px;
     margin-top: -60px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #656565), color-stop(1.00, #1f1f1f));
+    background: -webkit-linear-gradient(#656565, #1f1f1f);
+    background: -moz-linear-gradient(#656565, #1f1f1f);
+    background: -o-linear-gradient(#656565, #1f1f1f);
+    background: -ms-linear-gradient(#656565, #1f1f1f);
+    background: linear-gradient(#656565, #1f1f1f);
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
 }
