@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-md-9">
+<div class="col-md-8">
     <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
 
     <div class="row" style="padding-top:8px;">
@@ -58,7 +58,7 @@
 </div>
 
 
-<div class="col-md-3">
+<div class="col-md-4">
     <?php echo $this->element("right_side_bar_common"); ?>
 
     <?php if(isset($user_id) && $user_id == $slide["Slide"]["user_id"]): ?>

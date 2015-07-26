@@ -13,7 +13,7 @@ $file_list = array();
 ?>
 
 
-<div class="slider">
+<div class="slider" style="border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;">
 
     <ul class="bxslider_<?php echo $slide["key"]; ?>" data-count="<?php echo count($file_list); ?>">
 <?php if (count($file_list) > 0): ?>
