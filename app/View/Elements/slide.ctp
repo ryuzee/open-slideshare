@@ -35,19 +35,11 @@ if (strpos($http_response_header[0], '200')) {
     <li><img class="lazy image-0" src="/img/converting.jpg" /></li>
 <?php endif; ?>
 </ul>
-<div style="text-align:center;">
+</div>
+
+<div class="slide_control">
 <button id="prev" /></button>&nbsp;&nbsp;<div id="pager"></div>&nbsp;&nbsp;<button id="next"></button>
 </div>
-</div>
-
-<style type="text/css">
-<!--
-div#prev, div#next, div#pager { display: inline; font-weight:bold }
-.bx-wrapper{ margin: 1em auto !important;}
-.bx-default-pager { display: inline }
--->
-</style>
-
 
 <script type="text/javascript">
 $(function() {

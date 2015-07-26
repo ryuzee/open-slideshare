@@ -1,9 +1,4 @@
         <h3><?php echo $title; ?></h3>
-        <script type="text/javascript">
-        $(document).ready(function () {
-            $('.<?php echo $column_class_primary; ?>').equalHeight();
-        });
-        </script>
 
         <div class="row" style="max-width:1024px; margin:0 auto;">
             <?php foreach ($slides as $slide): ?>
@@ -20,7 +15,7 @@
                 <img src="<?php echo $image_url; ?>" class="img-responsive slide_thumbnail" style="border:1px solid #999; margin-bottom:4px;" />
                 </a>
                 <span class="h4"><?php echo h($slide['Slide']['name']); ?></span><br />
-                <?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo h($slide["User"]["display_name"]); ?></a>
+                <span class="small"><?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo h($slide["User"]["display_name"]); ?></a></span>
             </div>
             <?php endforeach; ?>
         </div>
@@ -32,3 +27,8 @@
             )); ?>
         </div>
 
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('.<?php echo $column_class_primary; ?>').equalHeight();
+        });
+        </script>
