@@ -1,13 +1,14 @@
 <div class="row">
-<div class="col-md-8">
+<div class="col-md-8" style="background-color:#fff !important; border:1px solid #ccc; padding-top:20px">
     <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
 
-    <div class="row" style="padding-top:8px;">
-    <div class="col-md-9">
-    <span class="h3"><?php echo h($slide['Slide']['name']); ?></span></div>
-    <div class="col-md-3" style="text-align:right">
-        <strong><?php echo $slide["Slide"]["page_view"]; ?></strong> views
-    </div>
+    <div class="row" style="padding-top:8px; background-color:#fff !important;">
+        <div class="col-md-9">
+            <span class="h3"><?php echo h($slide['Slide']['name']); ?></span>
+        </div>
+        <div class="col-md-3" style="text-align:right">
+            <strong><?php echo $slide["Slide"]["page_view"]; ?></strong> views
+        </div>
     </div>
 
     <div>
@@ -74,20 +75,46 @@
     <?php endif; ?>
 
     <?php if($other_slides_in_category): ?>
-    <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading"><?php echo __('Related Slides'); ?></div>
+        <h3><?php echo __('Related Slides'); ?></h3>
+        <div class="row2" style="border:1px solid #ccc; background-color:#fff;padding:8px;">
         <?php foreach($other_slides_in_category as $slide): ?>
-        <div class="panel-body">
+        <div class="col-md-12 col-sm-6" style="padding:8px;">
             <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
-            <img width="192px" src="<?php echo $this->Common->endpoint_s3(Configure::read('image_bucket_name')); ?>/<?php echo $slide["Slide"]["key"]; ?>/thumbnail.jpg" style="border:1px solid #999; margin-bottom:4px;" />
-            </a><br />
-            <span class="h4"><?php echo h($slide['Slide']['name']); ?></span><br />
-            <?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo $slide["User"]["display_name"]; ?></a>
+            <img width="120px" src="<?php echo $this->Common->endpoint_s3(Configure::read('image_bucket_name')); ?>/<?php echo $slide["Slide"]["key"]; ?>/thumbnail.jpg" style="border:1px solid #999; margin-right:4px; margin-bottom:4px; float:left" />
+            </a>
+            <span class="h6"><?php echo h($slide['Slide']['name']); ?></span><br />
+            <span class="h6"><?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo $slide["User"]["display_name"]; ?></a></span>
         </div>
+        <br clear="all" />
         <?php endforeach; ?>
-    </div>
+        </div>
+        <br clear="all" />
     <?php endif; ?>
+</div>
+
+</div><!-- end of row -->
+
+<script type="text/javascript">
+$(function () {
+  $('textarea.mention').mentionsInput({
+    showAvatars:false,
+    onDataRequest:function (mode, query, callback) {
+      var myquery = 'query='+query;
+      $.getJSON('/users/json_list', myquery, function(responseData) {
+        responseData = _.filter(responseData, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+        callback.call(this, responseData);
+      });
+    }
+  });
+
+  $('form#CommentAddForm input').click(function() {
+    $('textarea.mention').mentionsInput('val', function(text) {
+      $("#CommentContent").val(text);
+    });
+  });
+});
+</script>
 </div>
 
 </div><!-- end of row -->
