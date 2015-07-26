@@ -20,7 +20,7 @@
     </div>
 
     <a name="comment"></a>
-    <h3><?php echo __('Comments'); ?></h3>
+    <h3 class="h4"><?php echo __('Comments'); ?></h3>
     <?php if (!empty($slide['Comment'])): ?>
     <?php foreach ($slide['Comment'] as $comment): ?>
     <div class="panel panel-default">
@@ -46,7 +46,7 @@
         'class' => 'well'
         )); ?>
         <fieldset>
-            <legend><?php echo __('Add Comment'); ?></legend>
+            <legend class="h4"><?php echo __('Add Comment'); ?></legend>
             <?php
          echo $this->Form->hidden('user_id', array('value' => $user_id));
          echo $this->Form->hidden('slide_id', array('value' => $slide["Slide"]["id"]));
@@ -75,7 +75,7 @@
 
     <?php if($other_slides_in_category): ?>
         <!-- Default panel contents -->
-        <h3><?php echo __('Related Slides'); ?></h3>
+        <h3 class="h4"><?php echo __('Related Slides'); ?></h3>
         <div class="row2" style="border:1px solid #ccc; background-color:#fff;padding:8px;">
         <?php foreach($other_slides_in_category as $slide): ?>
         <div class="col-md-12 col-sm-6" style="padding:8px;">
