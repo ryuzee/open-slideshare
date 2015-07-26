@@ -18,10 +18,10 @@
                 <?php $image_url =  $this->Common->endpoint_s3(Configure::read('image_bucket_name')) . "/" . $slide["Slide"]["key"] . "/thumbnail.jpg"; ?>
                 <?php endif; ?>
 
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6" style="margin-bottom:4px;">
                 <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
                 <img src="<?php echo $image_url; ?>" class="img-responsive slide_thumbnail" style="border:1px solid #999; margin-bottom:4px;" />
-                </a><br />
+                </a>
                 <span class="h4"><?php echo h($slide['Slide']['name']); ?></span><br />
                 <?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo h($slide["User"]["display_name"]); ?></a>
             </div>
