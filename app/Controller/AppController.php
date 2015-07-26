@@ -25,7 +25,7 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 class AppController extends Controller
 {
     public $helpers = array(
-        'Session', 
+        'Session',
         'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
         'Form' => array('className' => 'BoostCake.BoostCakeForm'),
         'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
@@ -34,10 +34,11 @@ class AppController extends Controller
         'Tags.TagCloud',
     );
     public $components = array(
-        'Auth', 
+        'Auth',
         'Paginator',
         'Session' => array('className' => 'SessionEx'),
         'S3',
+        'DebugKit.Toolbar',
         'Search.Prg' => array(
             'commonProcess' => array('paramType' => 'named'),
             'presetForm' => array('paramType' => 'named'),

@@ -87,17 +87,18 @@ CakePlugin::load('Tags');
 CakePlugin::load('Search');
 CakePlugin::load('BoostCake');
 CakePlugin::load('SQS');
+CakePlugin::load('DebugKit');
 
 if (isset($_SERVER["AWS_ACCESS_ID"]) && isset($_SERVER['AWS_SECRET_KEY'])) {
-	$connection = array(
-		'key' => $_SERVER["AWS_ACCESS_ID"],
-		'secret' => $_SERVER['AWS_SECRET_KEY'],
-		'region' => Configure::read('region'),
-	);
+    $connection = array(
+        'key' => $_SERVER["AWS_ACCESS_ID"],
+        'secret' => $_SERVER['AWS_SECRET_KEY'],
+        'region' => Configure::read('region'),
+    );
 } else {
-	$connection = array(
-		'region' => Configure::read('region'),
-	);
+    $connection = array(
+        'region' => Configure::read('region'),
+    );
 }
 
 Configure::write('SQS', array(
@@ -116,16 +117,16 @@ Configure::write('SQS', array(
  * Feel free to remove or add filters as you see fit for your application. A few examples:
  *
  * Configure::write('Dispatcher.filters', array(
- *		'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.
- *		'MyPlugin.MyFilter', // will use MyFilter class from the Routing/Filter package in MyPlugin plugin.
- * 		array('callable' => $aFunction, 'on' => 'before', 'priority' => 9), // A valid PHP callback type to be called on beforeDispatch
- *		array('callable' => $anotherMethod, 'on' => 'after'), // A valid PHP callback type to be called on afterDispatch
+ *     'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.
+ *     'MyPlugin.MyFilter', // will use MyFilter class from the Routing/Filter package in MyPlugin plugin.
+ *     array('callable' => $aFunction, 'on' => 'before', 'priority' => 9), // A valid PHP callback type to be called on beforeDispatch
+ *     array('callable' => $anotherMethod, 'on' => 'after'), // A valid PHP callback type to be called on afterDispatch
  *
  * ));
  */
 Configure::write('Dispatcher.filters', array(
-	'AssetDispatcher',
-	'CacheDispatcher'
+    'AssetDispatcher',
+    'CacheDispatcher'
 ));
 
 /**
@@ -133,14 +134,14 @@ Configure::write('Dispatcher.filters', array(
  */
 App::uses('CakeLog', 'Log');
 CakeLog::config('debug', array(
-	'engine' => 'File',
-	'types' => array('notice', 'info', 'debug'),
-	'file' => 'debug',
+    'engine' => 'File',
+    'types' => array('notice', 'info', 'debug'),
+    'file' => 'debug',
 ));
 CakeLog::config('error', array(
-	'engine' => 'File',
-	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
-	'file' => 'error',
+    'engine' => 'File',
+    'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
+    'file' => 'error',
 ));
 
 

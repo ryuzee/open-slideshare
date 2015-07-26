@@ -23,6 +23,7 @@
         "cakedc/tags": "~1.6",
         "cakedc/search": "*",
         "slywalker/boost_cake": "*",
-        "lorenzo/cakephp-sqs": "dev-master"
+        "lorenzo/cakephp-sqs": "dev-master",
+        "cakephp/debug_kit": "2.2.5"
     }
 }

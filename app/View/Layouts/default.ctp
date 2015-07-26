@@ -98,14 +98,6 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
             <!-- end contents -->
         </div>
 
-        <?php if(Configure::read('debug') >= 2): ?>
-        <div class="container">
-            <div class="panel panel-default" style="padding:10px;">
-                <?php echo $this->element('sql_dump'); ?>
-            </div>
-        </div>
-        <?php endif; ?>
-
         <div class="footer">
             <div class="container">
                 <p class="text-muted">
