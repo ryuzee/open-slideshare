@@ -122,7 +122,8 @@ $(document).ready(function(){
         echo $this->Form->input('description');
     ?>
     </fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+    <input type="submit" id="re-upload" class="btn btn-primary" value="<?php echo __('Submit'); ?>" />
+</form>
 </div>
 
 <div class="col-md-4">

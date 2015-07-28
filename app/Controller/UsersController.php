@@ -66,7 +66,7 @@ class UsersController extends AppController
         $userinfo = $this->User->read(null, $id);
         $this->set('user', $userinfo);
 
-        $title = 'Slides by ' . $userinfo["User"]["display_name"];
+        $title = sprintf(__('Slides by %s'), $userinfo["User"]["display_name"]);
         $this->set('title', $title);
     }
 

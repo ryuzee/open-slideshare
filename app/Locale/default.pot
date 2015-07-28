@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-28 21:10+0900\n"
+"POT-Creation-Date: 2015-07-29 06:13+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -24,6 +24,10 @@ msgstr ""
 
 #: Controller/CategoriesController.php:30
 msgid "Invalid category"
+msgstr ""
+
+#: Controller/CategoriesController.php:34
+msgid "Slides in %s"
 msgstr ""
 
 #: Controller/CommentsController.php:25
@@ -92,6 +96,10 @@ msgstr ""
 
 #: Controller/UsersController.php:50;136;175
 msgid "Invalid user"
+msgstr ""
+
+#: Controller/UsersController.php:69
+msgid "Slides by %s"
 msgstr ""
 
 #: Controller/UsersController.php:75

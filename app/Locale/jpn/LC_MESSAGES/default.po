@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-28 21:11+0900\n"
-"PO-Revision-Date: 2015-07-28 21:11+0900\n"
+"POT-Creation-Date: 2015-07-29 06:13+0900\n"
+"PO-Revision-Date: 2015-07-29 06:14+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -26,6 +26,10 @@ msgstr "権限がありません。"
 #: Controller/CategoriesController.php:30
 msgid "Invalid category"
 msgstr "無効なカテゴリです。"
+
+#: Controller/CategoriesController.php:34
+msgid "Slides in %s"
+msgstr "カテゴリ”%s”のスライド"
 
 #: Controller/CommentsController.php:25
 msgid "The comment has been saved."
@@ -94,6 +98,10 @@ msgstr "ダッシュボード"
 #: Controller/UsersController.php:50;136;175
 msgid "Invalid user"
 msgstr "無効なユーザー"
+
+#: Controller/UsersController.php:69
+msgid "Slides by %s"
+msgstr "“%s”投稿のスライド"
 
 #: Controller/UsersController.php:75
 msgid "Login"

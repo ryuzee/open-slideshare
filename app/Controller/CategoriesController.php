@@ -31,7 +31,7 @@ class CategoriesController extends AppController
         }
         $this->paginate = $this->Slide->get_conditions_to_get_slides_in_category($id);
         $this->set('slides', $this->Paginator->paginate('Slide'));
-        $title = 'Slides in ' . h($this->Category->get_category_name($id));
+        $title = sprintf(__('Slides in %s'), h($this->Category->get_category_name($id)));
         $this->set('title', $title);
         $this->set('title_for_layout', $title);
     }
