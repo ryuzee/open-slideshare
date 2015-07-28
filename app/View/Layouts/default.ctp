@@ -81,10 +81,10 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                         <div class="form-group">
                             <input type="password" name="data[User][password]" placeholder="Password" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-success">Sign in</button>
+                        <button type="submit" class="btn btn-success"><?php echo __('Sign in'); ?></button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/users/signup">Signup</a></li>
+                    <li><a href="/users/signup"><?php echo __('Signup'); ?></a></li>
                     </ul>
                     <?php endif; ?>
                 </div><!--/.navbar-collapse -->
