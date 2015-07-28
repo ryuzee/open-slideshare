@@ -2,6 +2,15 @@
 
 *This is simple open source slidesharing application.*
 
+## Feature
+
+- Uploading slides (pptx, pdf)
+- Listing slides by category, user and so on
+- Showing slide without Flash Player
+- Storing all slides in Amazon S3. Thus terribly scalabale
+- Searching slides
+- i18n
+
 You can see the working demo at http://slide.meguro.ryuzee.com/
 
 ![Sample1](http://www.ryuzee.com/images/work/OpenSlideshare01_small.png)
@@ -16,7 +25,7 @@ This application depends on following technologies.
 
 ## Install
 
-- Create two Amazon S3 buckets (cf. open-slideshare-slides, open-slideshare-images)	
+- Create two Amazon S3 buckets (cf. open-slideshare-slides, open-slideshare-images)
 - Set CORS policy for bucket that will store the slide decks as follows
 
 ```
