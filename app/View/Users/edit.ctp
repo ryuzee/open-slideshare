@@ -1,6 +1,6 @@
 <div class="row">
 
-<div class="col-md-9">
+<div class="col-md-8">
     <?php echo $this->Form->create('User', array(
     'inputDefaults' => array(
     'div' => 'form-group',
@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-4">
     <?php echo $this->element("right_side_bar_common"); ?>
 </div>
 

@@ -1,8 +1,10 @@
 # Open Slideshare
 
-This is simple open source slidesharing application. You can see the working demo at http://slide.meguro.ryuzee.com/
+*This is simple open source slidesharing application.*
 
-![Sample](http://www.ryuzee.com/images/work/openslideshare.png)
+You can see the working demo at http://slide.meguro.ryuzee.com/
+
+![Sample1](http://www.ryuzee.com/images/work/OpenSlideshare01_small.png)
 
 ## Requirements
 
