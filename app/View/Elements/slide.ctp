@@ -1,17 +1,22 @@
 <?php
 $url = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $slide["key"] . "/list.json";
 
-$context = stream_context_create(array(
-'http' => array('ignore_errors' => true)
-));
+$context = stream_context_create(
+    array(
+        'http' => array(
+            'ignore_errors' => true)
+    )
+);
 $contents = file_get_contents($url, false, $context);
-if (strpos($http_response_header[0], '200')) {
-$file_list = json_decode($contents);
-} else {
-$file_list = array();
+if (strpos($http_response_header[0], '200'))
+{
+    $file_list = json_decode($contents);
+}
+else
+{
+    $file_list = array();
 }
 ?>
-
 
 <div class="slider" style="border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;">
 
@@ -42,9 +47,13 @@ $file_list = array();
 <script type="text/javascript">
 $(function() {
     $("img.lazy").lazyload({
-        threshold : 10000,
+        threshold : 200,
         effect: "fadeIn"
     });
+    // $("a.bx-prev, a.bx-next").bind("click", function() {
+        // setTimeout(function(e) { $(window).trigger("scroll"); }, 10); //handle the lazy load
+        // e.preventDefault();
+    // });
 });
 </script>
 
@@ -64,7 +73,7 @@ $(document).ready(function(){
             prevSelector: "#prev",
             nextSelector: "#next",
             pagerSelector: "#pager",
-            adaptiveHeight: true,
+            adaptiveHeight: false,
             infiniteLoop: false,
             onSlideBefore: function($slideElement, oldIndex, newIndex){
                 var $lazy_next2 = $("ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex + 1));
@@ -74,13 +83,19 @@ $(document).ready(function(){
                 var $lazy_next = $("ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex));
                 var $load_next = $lazy_next.attr("data-src");
                 $lazy_next.attr("src",$load_next).removeClass("lazy");
+                $lazy_next.each(function(){
+                    // @TODO: 画像のローディングをここに入れる
+                    // while (!this.complete) {
+                    // ;
+                    // }
+                });
             }
         }
         $('.bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
     }
     bxslider_init();
+    var timer = setInterval( updateDiv, 10 * 100);
 
-    var timer = setInterval( updateDiv, 10 * 1000);
     function updateDiv() {
         var messageDiv = $('.slider');
         if ($('div.slider ul').attr("data-count") > 0) {
