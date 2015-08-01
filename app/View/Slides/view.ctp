@@ -86,7 +86,7 @@
         <?php foreach($other_slides_in_category as $slide): ?>
         <div class="col-md-12 col-sm-6" style="padding:8px;">
             <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
-            <img width="120px" src="<?php echo $this->Common->endpoint_s3(Configure::read('image_bucket_name')); ?>/<?php echo $slide["Slide"]["key"]; ?>/thumbnail.jpg" style="border:1px solid #999; margin-right:4px; margin-bottom:4px; float:left" />
+            <img width="120px" src="<?php echo $this->Common->thumbnail_url($slide["Slide"]["key"]); ?>" style="border:1px solid #999; margin-right:4px; margin-bottom:4px; float:left" />
             </a>
             <span class="h6"><?php echo h($slide['Slide']['name']); ?></span><br />
             <span class="h6"><?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo $slide["User"]["display_name"]; ?></a></span>

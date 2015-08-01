@@ -17,7 +17,7 @@ $(document).ready(function(){
         event.preventDefault();
 
         var formData = new FormData();
-        var url = "https://<?php echo Configure::read('bucket_name'); ?>.s3-<?php echo Configure::read('region'); ?>.amazonaws.com/";
+        var url = "<?php echo $this->Common->endpoint_s3(Configure::read('bucket_name')); ?>/";
 
         var form = $('#upload-form');
         $(form.serializeArray()).each(function(i, v) {

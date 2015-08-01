@@ -17,11 +17,4 @@ class S3ImageHelper extends AppHelper
 
         return $url;
     }
-
-    public function thumbnail($key)
-    {
-        $bucket_name = Configure::read('thumbnail_bucket_name');
-
-        return "https://s3-". Configure::read('region').".amazonaws.com/". $bucket_name . "/" . $key;
-    }
 }

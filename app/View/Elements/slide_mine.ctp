@@ -7,7 +7,7 @@
                 <?php elseif($slide["Slide"]["convert_status"] < SUCCESS_CONVERT_COMPLETED): ?>
                 <?php $image_url = "/img/converting_small.jpg"; ?>
                 <?php else: ?>
-                <?php $image_url =  $this->Common->endpoint_s3(Configure::read('image_bucket_name')) . "/" . $slide["Slide"]["key"] . "/thumbnail.jpg"; ?>
+                <?php $image_url =  $this->Common->thumbnail_url($slide["Slide"]["key"]); ?>
                 <?php endif; ?>
 
         <div class="<?php echo $column_class; ?>" style="margin-bottom:4px;">
