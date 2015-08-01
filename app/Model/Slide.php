@@ -1,8 +1,9 @@
 <?php
+
 App::uses('AppModel', 'Model');
 
 /**
- * Slide Model
+ * Slide Model.
  *
  * @property User $User
  * @property Category $Category
@@ -10,18 +11,18 @@ App::uses('AppModel', 'Model');
 class Slide extends AppModel
 {
     /**
-     * Display field
+     * Display field.
      *
      * @var string
      */
     public $displayField = 'name';
 
     public $actsAs = array(
-        'Search.Searchable'
+        'Search.Searchable',
     );
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -56,7 +57,7 @@ class Slide extends AppModel
     );
 
     /**
-     * belongsTo associations
+     * belongsTo associations.
      *
      * @var array
      */
@@ -67,15 +68,15 @@ class Slide extends AppModel
             'conditions' => '',
             'fields' => '',
             'counterCache' => 'slides_count',
-            'order' => ''
+            'order' => '',
         ),
         'Category' => array(
             'className' => 'Category',
             'foreignKey' => 'category_id',
             'conditions' => '',
             'fields' => '',
-            'order' => ''
-        )
+            'order' => '',
+        ),
     );
 
     public $hasMany = array(
@@ -90,7 +91,7 @@ class Slide extends AppModel
             'offset' => '',
             'exclusive' => '',
             'finderQuery' => '',
-            'counterQuery' => ''
+            'counterQuery' => '',
         ),
     );
 
@@ -102,10 +103,9 @@ class Slide extends AppModel
     );
 
     /**
-     * Count up the page view for specific slide
+     * Count up the page view for specific slide.
      *
-     * @param integer $id Slide ID
-     *
+     * @param int $id Slide ID
      */
     public function countup($id = null)
     {
@@ -118,11 +118,11 @@ class Slide extends AppModel
     }
 
     /**
-     * Get Single Slide
+     * Get Single Slide.
      *
-     * @param  integer $id Slide ID
+     * @param int $id Slide ID
+     *
      * @return Model
-     *
      */
     public function get_slide($id)
     {
@@ -132,26 +132,26 @@ class Slide extends AppModel
     }
 
     /**
-     * Retrieve slides in the specific category
+     * Retrieve slides in the specific category.
      *
-     * @param  integer $category_id
-     *                              integer $exclude_slide_id
+     * @param int $category_id
+     *                         integer $exclude_slide_id
+     *
      * @return array
-     *
      */
     public function get_recent_slides_in_category($category_id, $exclude_slide_id = null)
     {
-        $conditions = array("Slide.convert_status = ". SUCCESS_CONVERT_COMPLETED . " and Slide.category_id =" . $category_id);
+        $conditions = array('Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.category_id ='.$category_id);
         if ($exclude_slide_id) {
-            $conditions[] = "Slide.id != " . $exclude_slide_id;
+            $conditions[] = 'Slide.id != '.$exclude_slide_id;
         }
 
         $result = $this->find('all',
             array(
                 'recursive' => 1,
                 'limit' => 10,
-                'order' => array("Slide.created desc"),
-                'conditions' => $conditions
+                'order' => array('Slide.created desc'),
+                'conditions' => $conditions,
             )
         );
 
@@ -159,11 +159,11 @@ class Slide extends AppModel
     }
 
     /**
-     * Get paginate condition for retrieving slides in specific category
+     * Get paginate condition for retrieving slides in specific category.
      *
-     * @param  integer $id category ID
-     * @return array   search conditions
+     * @param int $id category ID
      *
+     * @return array search conditions
      */
     public function get_conditions_to_get_slides_in_category($id)
     {
@@ -172,7 +172,7 @@ class Slide extends AppModel
                 'model' => 'Slide',
                 'limit' => 20,
                 'recursive' => 2,
-                'conditions' => 'Slide.convert_status = '. SUCCESS_CONVERT_COMPLETED . ' and Slide.category_id = ' .$id,
+                'conditions' => 'Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.category_id = '.$id,
                 'order' => array('id' => 'desc'),
             ),
         );
@@ -181,16 +181,16 @@ class Slide extends AppModel
     }
 
     /**
-     * Get category name by id
+     * Get category name by id.
      *
-     * @param  integer $id Category ID
-     * @return string  category name
+     * @param int $id Category ID
      *
+     * @return string category name
      */
     public function get_category_name($id)
     {
         $category = $this->read(null, $id);
 
-        return $category["Category"]["name"];
+        return $category['Category']['name'];
     }
 }

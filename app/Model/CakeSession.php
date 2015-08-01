@@ -1,9 +1,9 @@
 <?php
+
 App::uses('AppModel', 'Model');
 /**
- * CakeSession Model
- *
+ * CakeSession Model.
  */
-class CakeSession extends AppModel {
-
+class CakeSession extends AppModel
+{
 }

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * This file is loaded automatically by the app/webroot/index.php file after core.php
+ * This file is loaded automatically by the app/webroot/index.php file after core.php.
  *
  * This file should load/create any application wide configuration settings, such as
  * Caching, Logging, loading additional configuration files.
@@ -9,11 +10,9 @@
  * that your application uses.
  *
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Config
  * @since         CakePHP(tm) v 0.10.8.2117
  */
-
-require_once dirname(dirname(dirname(__FILE__))) . DS . 'Vendor' . DS . 'autoload.php';
+require_once dirname(dirname(dirname(__FILE__))).DS.'Vendor'.DS.'autoload.php';
 
 // https://github.com/composer/composer/commit/c80cb76b9b5082ecc3e5b53b1050f76bb27b127b
 spl_autoload_unregister(array('App', 'load'));
@@ -22,7 +21,7 @@ spl_autoload_register(array('App', 'load'), true, true);
 // http://qiita.com/maccotsan/items/37d706bf978e80687d4c
 App::build(array(
     'Plugin' => array(
-      ROOT . '/Plugin/',
+      ROOT.'/Plugin/',
     ),
   )
 );
@@ -30,10 +29,10 @@ App::build(array(
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array(
         'engine' => 'File',
-        'mask' => 0666
+        'mask' => 0666,
 ));
 
-/**
+/*
  * The settings below can be used to set additional paths to models, views and controllers.
  *
  * App::build(array(
@@ -59,7 +58,7 @@ Cache::config('default', array(
  *
  */
 
-/**
+/*
  * Custom Inflector rules can be set to correctly pluralize or singularize table, model, controller names or whatever other
  * string is passed to the inflection functions
  *
@@ -68,7 +67,7 @@ Cache::config('default', array(
  *
  */
 
-/**
+/*
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
  * Uncomment one of the lines below, as you need. Make sure you read the documentation on CakePlugin to use more
  * advanced ways of loading plugins
@@ -89,9 +88,9 @@ CakePlugin::load('BoostCake');
 CakePlugin::load('SQS');
 CakePlugin::load('DebugKit');
 
-if (isset($_SERVER["AWS_ACCESS_ID"]) && isset($_SERVER['AWS_SECRET_KEY'])) {
+if (isset($_SERVER['AWS_ACCESS_ID']) && isset($_SERVER['AWS_SECRET_KEY'])) {
     $connection = array(
-        'key' => $_SERVER["AWS_ACCESS_ID"],
+        'key' => $_SERVER['AWS_ACCESS_ID'],
         'secret' => $_SERVER['AWS_SECRET_KEY'],
         'region' => Configure::read('region'),
     );
@@ -105,10 +104,10 @@ Configure::write('SQS', array(
     'connection' => $connection,
     'queues' => array(
         'extract' => Configure::read('sqs_url'),
-    )
+    ),
 ));
 
-/**
+/*
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By default CakePHP bundles two filters:
  *
  * - AssetDispatcher filter will serve your asset files (css, images, js, etc) from your themes and plugins
@@ -126,10 +125,10 @@ Configure::write('SQS', array(
  */
 Configure::write('Dispatcher.filters', array(
     'AssetDispatcher',
-    'CacheDispatcher'
+    'CacheDispatcher',
 ));
 
-/**
+/*
  * Configures default file logging options
  */
 App::uses('CakeLog', 'Log');
@@ -143,5 +142,3 @@ CakeLog::config('error', array(
     'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
     'file' => 'error',
 ));
-
-

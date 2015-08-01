@@ -1,21 +1,22 @@
 <?php
+
 App::uses('AppModel', 'Model');
 /**
- * Category Model
+ * Category Model.
  *
  * @property Slide $Slide
  */
 class Category extends AppModel
 {
     /**
-     * Display field
+     * Display field.
      *
      * @var string
      */
     public $displayField = 'name';
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -28,7 +29,7 @@ class Category extends AppModel
     );
 
     /**
-     * hasMany associations
+     * hasMany associations.
      *
      * @var array
      */
@@ -44,21 +45,21 @@ class Category extends AppModel
             'offset' => '',
             'exclusive' => '',
             'finderQuery' => '',
-            'counterQuery' => ''
-        )
+            'counterQuery' => '',
+        ),
     );
 
     /**
-     * Get category name by id
+     * Get category name by id.
      *
-     * @param  integer $id Category ID
-     * @return string  category name
+     * @param int $id Category ID
      *
+     * @return string category name
      */
     public function get_category_name($id)
     {
         $category = $this->read(null, $id);
 
-        return $category["Category"]["name"];
+        return $category['Category']['name'];
     }
 }

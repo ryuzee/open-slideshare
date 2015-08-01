@@ -1,4 +1,5 @@
 <?php
+
 App::uses('ComponentCollection', 'Controller');
 App::uses('S3Component', 'Controller/Component');
 
@@ -16,8 +17,8 @@ class BatchExtractShell extends AppShell
     {
         $slides = $this->Slide->find('all');
         foreach ($slides as $slide) {
-            echo "----" . $slide["Slide"]["key"] . "----\n";
-            $this->S3->extract_images($slide["Slide"]);
+            echo '----'.$slide['Slide']['key']."----\n";
+            $this->S3->extract_images($slide['Slide']);
         }
     }
 }

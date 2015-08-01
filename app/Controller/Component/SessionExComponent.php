@@ -9,7 +9,7 @@ class SessionExComponent extends SessionComponent
         if (empty($params)) {
             $params = array(
                 'plugin' => 'BoostCake',
-                'class' => 'alert-success'
+                'class' => 'alert-success',
             );
         }
         parent::setFlash($message, $element, $params, $key);
@@ -42,5 +42,4 @@ class SessionExComponent extends SessionComponent
         $params['class'] = 'alert-warning';
         $this->setFlash($message, $element, $params, $key);
     }
-
 }

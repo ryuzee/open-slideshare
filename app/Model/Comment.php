@@ -1,7 +1,8 @@
 <?php
+
 App::uses('AppModel', 'Model');
 /**
- * Comment Model
+ * Comment Model.
  *
  * @property User $User
  * @property Artifact $Artifact
@@ -9,14 +10,14 @@ App::uses('AppModel', 'Model');
 class Comment extends AppModel
 {
     /**
-     * Display field
+     * Display field.
      *
      * @var string
      */
     public $displayField = 'content';
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -29,7 +30,7 @@ class Comment extends AppModel
     );
 
     /**
-     * belongsTo associations
+     * belongsTo associations.
      *
      * @var array
      */
@@ -39,15 +40,15 @@ class Comment extends AppModel
             'foreignKey' => 'user_id',
             'conditions' => '',
             'fields' => '',
-            'order' => ''
+            'order' => '',
         ),
         'Slide' => array(
             'className' => 'Slide',
             'foreignKey' => 'slide_id',
             'conditions' => '',
             'fields' => '',
-            'order' => ''
-        )
+            'order' => '',
+        ),
     );
 
     public function get_recent_comment()
@@ -56,7 +57,7 @@ class Comment extends AppModel
             'fields' => array('Slide.id', 'Slide.name', 'User.display_name', 'Comment.created'),
             'order' => 'Comment.created desc',
             'recursive' => 2,
-            'limit' => 10
+            'limit' => 10,
         ));
 
         return $recent_comment;

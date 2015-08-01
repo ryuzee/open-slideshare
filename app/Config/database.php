@@ -1,9 +1,7 @@
 <?php
+
 /**
- *
- *
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Config
  * @since         CakePHP(tm) v 0.2.9
  */
 
@@ -52,16 +50,16 @@
  * A key/value array of driver specific connection options.
  */
 if (!defined('DB_HOSTNAME')) {
-    $db_hostname = isset($_SERVER['RDS_HOSTNAME']) ? $_SERVER['RDS_HOSTNAME'] : "localhost";
+    $db_hostname = isset($_SERVER['RDS_HOSTNAME']) ? $_SERVER['RDS_HOSTNAME'] : 'localhost';
     define('DB_HOSTNAME', $db_hostname);
 
-    $db_username = isset($_SERVER['RDS_USERNAME']) ? $_SERVER['RDS_USERNAME'] : "webapp";
+    $db_username = isset($_SERVER['RDS_USERNAME']) ? $_SERVER['RDS_USERNAME'] : 'webapp';
     define('DB_USERNAME', $db_username);
 
-    $db_password = isset($_SERVER['RDS_PASSWORD']) ? $_SERVER['RDS_PASSWORD'] : "passw0rd";
+    $db_password = isset($_SERVER['RDS_PASSWORD']) ? $_SERVER['RDS_PASSWORD'] : 'passw0rd';
     define('DB_PASSWORD', $db_password);
 
-    $db_name = isset($_SERVER['RDS_DB_NAME']) ? $_SERVER['RDS_DB_NAME'] : "openslideshare";
+    $db_name = isset($_SERVER['RDS_DB_NAME']) ? $_SERVER['RDS_DB_NAME'] : 'openslideshare';
     define('DB_NAME', $db_name);
 }
 

@@ -1,15 +1,15 @@
 <?php
+
 App::uses('AppModel', 'Model');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth', 'AppModel', 'Model');
 
 /**
- * User Model
- *
+ * User Model.
  */
 class User extends AppModel
 {
     /**
-     * Display field
+     * Display field.
      *
      * @var string
      */
@@ -30,7 +30,7 @@ class User extends AppModel
             ),
             'Email' => array(
                 'rule' => array('email'),
-                'message' => 'username must be your email address'
+                'message' => 'username must be your email address',
             ),
         ),
         'password' => array(

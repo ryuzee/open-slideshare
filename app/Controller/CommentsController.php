@@ -1,7 +1,8 @@
 <?php
+
 App::uses('AppController', 'Controller');
 /**
- * Comments Controller
+ * Comments Controller.
  *
  * @property Comment $Comment
  * @property PaginatorComponent $Paginator
@@ -10,20 +11,19 @@ App::uses('AppController', 'Controller');
 class CommentsController extends AppController
 {
     /**
-     * add method
-     *
-     * @return void
+     * add method.
      */
     public function add()
     {
         $user = $this->Auth->User();
-        $user_id = $user["id"];
+        $user_id = $user['id'];
         $this->set('user_id', $user_id);
         if ($this->request->is('post')) {
             $this->Comment->create();
             if ($this->Comment->save($this->request->data)) {
                 $this->Session->success(__('The comment has been saved.'));
-                return $this->redirect($this->request->data["Comment"]["return_url"]);
+
+                return $this->redirect($this->request->data['Comment']['return_url']);
             } else {
                 $this->Session->warning(__('The comment could not be saved. Please, try again.'));
             }
@@ -34,29 +34,28 @@ class CommentsController extends AppController
     }
 
     /**
-    /**
-     * delete method
+     * delete method.
      *
      * @throws NotFoundException
+     *
      * @param string $id
-     * @return void
      */
     public function delete($id = null)
     {
         $this->request->allowMethod('post', 'delete');
 
-        $return_url = $this->request->query["return_url"];
+        $return_url = $this->request->query['return_url'];
         $this->Comment->id = $id;
         if (!$this->Comment->exists()) {
             throw new NotFoundException(__('Invalid comment'));
         }
 
-        $options = array('conditions' => array('Comment.' . $this->Comment->primaryKey => $id), 'recursive' => 0);
+        $options = array('conditions' => array('Comment.'.$this->Comment->primaryKey => $id), 'recursive' => 0);
         $comment = $this->Comment->find('first', $options);
-        $comment_owner = $comment["Comment"]["user_id"];
+        $comment_owner = $comment['Comment']['user_id'];
 
         $user = $this->Auth->User();
-        $user_id = $user["id"];
+        $user_id = $user['id'];
 
         if ($comment_owner != $user_id) {
             $this->Session->warning(__('You can not delete comments posted by others.'));

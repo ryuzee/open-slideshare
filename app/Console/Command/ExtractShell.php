@@ -1,4 +1,5 @@
 <?php
+
 App::uses('ComponentCollection', 'Controller');
 App::uses('S3Component', 'Controller/Component');
 
@@ -20,7 +21,8 @@ class ExtractShell extends AppShell
 
     public function handleJob($data)
     {
-        echo "[LOG] Start extracting ". $data['key'] . "\n";
+        echo '[LOG] Start extracting '.$data['key']."\n";
+
         return $this->S3->extract_images($data);
     }
 }

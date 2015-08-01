@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application model for Cake.
  *
@@ -6,10 +7,8 @@
  * application-wide model-related methods here.
  *
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Model
  * @since         CakePHP(tm) v 0.2.9
  */
-
 App::uses('Model', 'Model');
 
 /**
@@ -17,8 +16,6 @@ App::uses('Model', 'Model');
  *
  * Add your application-wide methods in the class below, your models
  * will inherit them.
- *
- * @package       app.Model
  */
 class AppModel extends Model
 {

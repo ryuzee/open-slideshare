@@ -1,7 +1,8 @@
 <?php
+
 App::uses('AppController', 'Controller');
 /**
- * Categories Controller
+ * Categories Controller.
  *
  * @property Category $Category
  * @property PaginatorComponent $Paginator
@@ -18,11 +19,11 @@ class CategoriesController extends AppController
     }
 
     /**
-     * view method
+     * view method.
      *
      * @throws NotFoundException
+     *
      * @param string $id
-     * @return void
      */
     public function view($id = null)
     {
