@@ -107,27 +107,31 @@ $(document).ready(function(){
 
 </form>
 
-    <?php echo $this->Form->create('Slide', array(
-    'inputDefaults' => array(
-    'div' => 'form-group',
-    'wrapInput' => false,
-    'class' => 'form-control'
+<?php echo $this->Form->create('Slide',
+    array(
+        'inputDefaults' => array(
+        'div' => 'form-group',
+        'wrapInput' => false,
+        'class' => 'form-control'
     ),
     'class' => 'well'
-    )); ?>
+));
+?>
     <fieldset>
-        <?php
-     echo $this->Form->input('name', array('label' => __('Name')));
-     echo $this->Form->input('description', array('label' => __('Description')));
-     echo $this->Form->input('category_id', array('label' => __('Category')));
-     echo $this->Form->hidden('key');
-     // echo $this->Form->input('tags', array('type' => 'text'));
-     ?>
+    <?php
+    echo $this->Form->input('name', array('label' => __('Name')));
+    echo $this->Form->input('description', array('label' => __('Description')));
+    echo $this->Form->input('downloadable', array(
+            'label' => __('Allow to download original slide'),
+            'class' => false
+        ));
+    echo $this->Form->input('category_id', array('label' => __('Category')));
+    echo $this->Form->hidden('key');
+    ?>
     </fieldset>
     <?php echo $this->Form->submit(__('Upload a file to save'), array('id' => 'save_button', 'disabled' => 'disabled', 'class' => "btn btn-lg btn-primary btn-block")); ?>
      </form>
     </div>
-
 
     <div class="col-md-4">
     <?php echo $this->element("right_side_bar_common"); ?>

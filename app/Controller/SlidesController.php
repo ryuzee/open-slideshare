@@ -89,6 +89,29 @@ class SlidesController extends AppController
         $this->Slide->countup($id);
     }
 
+    /**
+     * download method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function download($id = null)
+    {
+        if (!$this->Slide->exists($id)) {
+            throw new NotFoundException(__('Invalid slide'));
+        }
+        $slide = $this->Slide->get_slide($id);
+        if (!$slide["Slide"]["downloadable"]) {
+            throw new NotFoundException(__('This slide can not be downloaded'));
+        }
+        // Signed URL 生成
+        $url = $this->S3->get_original_file_download_path($slide["Slide"]["key"]);
+        // リダイレクト
+        $this->autoRender = false;
+        $this->response->header('Location', $url);
+    }
+
     public function update_view($id = null)
     {
         if (!$this->Slide->exists($id)) {

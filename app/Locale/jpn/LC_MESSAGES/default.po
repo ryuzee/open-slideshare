@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-29 06:13+0900\n"
-"PO-Revision-Date: 2015-07-29 06:14+0900\n"
+"POT-Creation-Date: 2015-08-01 21:40+0900\n"
+"PO-Revision-Date: 2015-08-01 21:41+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -59,35 +59,39 @@ msgstr "コメントを削除できませんでした。もう一度試してく
 msgid "All Slides"
 msgstr "すべてのスライド"
 
-#: Controller/SlidesController.php:78;95;145;195
+#: Controller/SlidesController.php:78;102;118;168;218
 msgid "Invalid slide"
 msgstr "無効なスライド"
 
-#: Controller/SlidesController.php:109
+#: Controller/SlidesController.php:106
+msgid "This slide can not be downloaded"
+msgstr "このスライドはダウンロードできません。"
+
+#: Controller/SlidesController.php:132
 msgid "New Slide"
 msgstr "新しいスライド"
 
-#: Controller/SlidesController.php:120;167
+#: Controller/SlidesController.php:143;190
 msgid "The slide has been saved."
 msgstr "スライドを保存しました。"
 
-#: Controller/SlidesController.php:124;169
+#: Controller/SlidesController.php:147;192
 msgid "The slide could not be saved. Please, try again."
 msgstr "スライドを保存できませんでした。もう一度試してください。"
 
-#: Controller/SlidesController.php:156
+#: Controller/SlidesController.php:179
 msgid "You do not have permission to edit the slide created by others."
 msgstr "他の人のスライドを編集することはできません。"
 
-#: Controller/SlidesController.php:203
+#: Controller/SlidesController.php:226
 msgid "You do not have permission to delete the slide created by others."
 msgstr "他の人のスライドを削除することはできません。"
 
-#: Controller/SlidesController.php:213
+#: Controller/SlidesController.php:236
 msgid "The slide has been deleted."
 msgstr "スライドを削除しました。"
 
-#: Controller/SlidesController.php:215
+#: Controller/SlidesController.php:238
 msgid "The slide could not be deleted. Please, try again."
 msgstr "スライドを削除できませんでした。もう一度試してください。"
 
@@ -179,19 +183,23 @@ msgstr "スライドのアップロード"
 msgid "File"
 msgstr "ファイル"
 
-#: View/Slides/add.ctp:120
+#: View/Slides/add.ctp:122
 msgid "Name"
 msgstr "名前"
 
-#: View/Slides/add.ctp:121
+#: View/Slides/add.ctp:123
 msgid "Description"
 msgstr "詳細"
 
-#: View/Slides/add.ctp:122
+#: View/Slides/add.ctp:125 View/Slides/edit.ctp:125
+msgid "Allow to download original slide"
+msgstr "オリジナルスライドのダウンロードを許可する"
+
+#: View/Slides/add.ctp:128
 msgid "Category"
 msgstr "カテゴリ"
 
-#: View/Slides/add.ctp:127
+#: View/Slides/add.ctp:132
 msgid "Upload a file to save"
 msgstr "ファイルのアップロード"
 
@@ -203,19 +211,19 @@ msgstr "スライドの編集"
 msgid "Re-upload"
 msgstr "再アップロード"
 
-#: View/Slides/edit.ctp:125 View/Slides/view.ctp:57
+#: View/Slides/edit.ctp:130 View/Slides/view.ctp:57
 msgid "Submit"
 msgstr "送信"
 
-#: View/Slides/edit.ctp:132 View/Slides/view.ctp:67
+#: View/Slides/edit.ctp:138 View/Slides/view.ctp:67
 msgid "Actions"
 msgstr "操作"
 
-#: View/Slides/edit.ctp:135 View/Slides/view.ctp:29
+#: View/Slides/edit.ctp:141 View/Slides/view.ctp:29
 msgid "Delete"
 msgstr "削除"
 
-#: View/Slides/edit.ctp:135 View/Slides/view.ctp:29;71
+#: View/Slides/edit.ctp:141 View/Slides/view.ctp:29;71
 msgid "Are you sure you want to delete # %s?"
 msgstr "#%s を削除してもよろしいですか？"
 
@@ -243,7 +251,11 @@ msgstr "スライドの編集"
 msgid "Delete Slide"
 msgstr "スライドの削除"
 
-#: View/Slides/view.ctp:78
+#: View/Slides/view.ctp:77
+msgid "Download Slide"
+msgstr "スライドのダウンロード"
+
+#: View/Slides/view.ctp:82
 msgid "Related Slides"
 msgstr "関連するスライド"
 
@@ -297,7 +309,7 @@ msgstr "登録"
 
 #: View/ViewBlock.php:78
 msgid "A view block with the name '%s' is already/still open."
-msgstr ""
+msgstr "%s という名前のView Blockが既に開かれています。"
 
 #: Model/Category.php:validation for field name
 msgid "notEmpty"

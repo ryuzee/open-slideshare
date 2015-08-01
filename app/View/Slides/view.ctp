@@ -73,6 +73,12 @@
     </div>
     <?php endif; ?>
 
+    <ul class="list-group">
+        <?php if($slide["Slide"]["downloadable"]): ?>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Download Slide'), array('action' => 'download', $slide['Slide']['id'])); ?> </li>
+        <?php endif; ?>
+    </ul>
+
     <?php if($other_slides_in_category): ?>
         <!-- Default panel contents -->
         <h3 class="h4"><?php echo __('Related Slides'); ?></h3>

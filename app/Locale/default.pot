@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-07-29 06:13+0900\n"
+"POT-Creation-Date: 2015-08-01 21:39+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -58,35 +58,39 @@ msgstr ""
 msgid "All Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:78;95;145;195
+#: Controller/SlidesController.php:78;102;118;168;218
 msgid "Invalid slide"
 msgstr ""
 
-#: Controller/SlidesController.php:109
+#: Controller/SlidesController.php:106
+msgid "This slide can not be downloaded"
+msgstr ""
+
+#: Controller/SlidesController.php:132
 msgid "New Slide"
 msgstr ""
 
-#: Controller/SlidesController.php:120;167
+#: Controller/SlidesController.php:143;190
 msgid "The slide has been saved."
 msgstr ""
 
-#: Controller/SlidesController.php:124;169
+#: Controller/SlidesController.php:147;192
 msgid "The slide could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/SlidesController.php:156
+#: Controller/SlidesController.php:179
 msgid "You do not have permission to edit the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:203
+#: Controller/SlidesController.php:226
 msgid "You do not have permission to delete the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:213
+#: Controller/SlidesController.php:236
 msgid "The slide has been deleted."
 msgstr ""
 
-#: Controller/SlidesController.php:215
+#: Controller/SlidesController.php:238
 msgid "The slide could not be deleted. Please, try again."
 msgstr ""
 
@@ -181,19 +185,24 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: View/Slides/add.ctp:120
+#: View/Slides/add.ctp:122
 msgid "Name"
 msgstr ""
 
-#: View/Slides/add.ctp:121
+#: View/Slides/add.ctp:123
 msgid "Description"
 msgstr ""
 
-#: View/Slides/add.ctp:122
+#: View/Slides/add.ctp:125
+#: View/Slides/edit.ctp:125
+msgid "Allow to download original slide"
+msgstr ""
+
+#: View/Slides/add.ctp:128
 msgid "Category"
 msgstr ""
 
-#: View/Slides/add.ctp:127
+#: View/Slides/add.ctp:132
 msgid "Upload a file to save"
 msgstr ""
 
@@ -205,22 +214,22 @@ msgstr ""
 msgid "Re-upload"
 msgstr ""
 
-#: View/Slides/edit.ctp:125
+#: View/Slides/edit.ctp:130
 #: View/Slides/view.ctp:57
 msgid "Submit"
 msgstr ""
 
-#: View/Slides/edit.ctp:132
+#: View/Slides/edit.ctp:138
 #: View/Slides/view.ctp:67
 msgid "Actions"
 msgstr ""
 
-#: View/Slides/edit.ctp:135
+#: View/Slides/edit.ctp:141
 #: View/Slides/view.ctp:29
 msgid "Delete"
 msgstr ""
 
-#: View/Slides/edit.ctp:135
+#: View/Slides/edit.ctp:141
 #: View/Slides/view.ctp:29;71
 msgid "Are you sure you want to delete # %s?"
 msgstr ""
@@ -249,7 +258,11 @@ msgstr ""
 msgid "Delete Slide"
 msgstr ""
 
-#: View/Slides/view.ctp:78
+#: View/Slides/view.ctp:77
+msgid "Download Slide"
+msgstr ""
+
+#: View/Slides/view.ctp:82
 msgid "Related Slides"
 msgstr ""
 

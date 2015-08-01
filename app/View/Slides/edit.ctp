@@ -121,6 +121,11 @@ $(document).ready(function(){
         echo $this->Form->hidden('key');
         echo $this->Form->input('description');
     ?>
+    <?php echo $this->Form->input('downloadable', array(
+            'label' => __('Allow to download original slide'),
+            'class' => false
+        ));
+    ?>
     </fieldset>
     <input type="submit" id="re-upload" class="btn btn-primary" value="<?php echo __('Submit'); ?>" />
 </form>

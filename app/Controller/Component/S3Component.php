@@ -536,4 +536,17 @@ class S3Component extends Component
 
         return $result;
     }
+
+    /**
+     * Download original file from bucket
+     *
+     * @param string $key filename in S3
+     *
+     */
+    function get_original_file_download_path($key)
+    {
+        $s3 = $this->getClient();
+        $url = $s3->getObjectUrl(Configure::read('bucket_name'), $key, '+15 minutes');
+        return $url;
+    }
 }
