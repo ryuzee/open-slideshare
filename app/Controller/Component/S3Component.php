@@ -4,6 +4,10 @@ use Aws\Common\InstanceMetadata\InstanceMetadataClient;
 
 class S3Component extends Component
 {
+    /**
+     * Create Amazon S3 Client instance
+     *
+     */
     public function getClient()
     {
         if (isset($_SERVER["AWS_ACCESS_ID"]) && isset($_SERVER['AWS_SECRET_KEY'])) {
@@ -18,101 +22,131 @@ class S3Component extends Component
         return $s3;
     }
 
-    public function resize($data)
+    /**
+     * Create Policy for S3 Upload
+     *
+     * @param integer $id_to_redirect
+     *
+     */
+    public function createPolicy($id_to_redirect)
     {
-        // S3 object key
-        $key = $data['key'];
-        // post record id
-        $id = $data['id'];
-        // filename to use for original one from S3
-        $file_path = tempnam(TMP, "original");
-        // filename for resized one
-        $dest_file_path = tempnam(TMP, "resized");
+        App::uses('CommonHelper', 'View/Helper');
+        $this->Common = new CommonHelper(new View());
 
-        // retrieve original file from S3
-        $s3 = $this->getClient();
-        $object = $s3->getObject(array(
-            "Bucket" => Configure::read('bucket_name'),
-            "Key" => $key,
-            'SaveAs' => $file_path
-        ));
+        date_default_timezone_set("UTC");
+        $date_ymd = gmdate("Ymd");
+        $date_gm = gmdate("Ymd\THis\Z");
+        $acl = "public-read";
+        $expires = gmdate("Y-m-d\TH:i:s\Z", time() + 60 * 120);
+        $success_action_redirect = $this->Common->base_url() . "/attachments/complete/" . $id_to_redirect;
 
-        // decide file type
-        $type = @exif_imagetype($file_path);
-        if ($type == IMAGETYPE_GIF) {
-            $func = "gif";
-        } elseif ($type == IMAGETYPE_JPEG) {
-            $func = "jpeg";
-        } elseif ($type == IMAGETYPE_PNG) {
-            $func = "png";
+        // will be replaced from Env var or IAM Role
+        if (isset($_SERVER["AWS_ACCESS_ID"]) && isset($_SERVER['AWS_SECRET_KEY'])) {
+            $access_id = $_SERVER["AWS_ACCESS_ID"];
+            $secret_key = $_SERVER["AWS_SECRET_KEY"];
+            $security_token = "";
         } else {
-            return false;
+            $meta_client = InstanceMetadataClient::factory();
+            $credentials = $meta_client->getInstanceProfileCredentials();
+            $access_id = $credentials->getAccessKeyId();
+            $secret_key = $credentials->getSecretKey();
+            $security_token = $credentials->getSecurityToken();
         }
 
-        // Specify what kind of PHP function will you use.
-        $create_func = "imagecreatefrom{$func}";
-        $out_func = "image{$func}";
-        $img = $create_func($file_path);
-
-        // get size
-        $width = ImageSx($img);
-        $height = ImageSy($img);
-
-        // get resized size
-        $dst_width = 300;
-        $dst_height = ceil(300 * $height / max($width, 1));
-
-        // generate file
-        $out = ImageCreateTrueColor($dst_width, $dst_height);
-        ImageCopyResampled($out, $img,
-            0,0,0,0, $dst_width, $dst_height, $width, $height);
-        $out_func($out, $dest_file_path);
-
-        // store thumbnail to S3
-        $s3->putObject(array(
-            'Bucket'       => Configure::read('thumbnail_bucket_name'),
-            'Key'          => $key,
-            'SourceFile'   => $dest_file_path,
-            'ContentType'  => image_type_to_mime_type($type),
-            'ACL'          => 'public-read',
-            'StorageClass' => 'REDUCED_REDUNDANCY',
-        ));
-
-        // update the db record
-        $post = ClassRegistry::init('Post');
-        if ($post->exists($id)) {
-            $post->read(null, $id);
-            $post->set('thumb_generated', true);
-            $post->save();
-        }
-
-        return true;
-    }
-
-    private function print_logs($logs)
-    {
-        foreach ($logs as $log) {
-            $this->print_log($log);
-        }
-    }
-
-    private function print_log($log)
-    {
-        echo "[LOG] " . $log . "\n";
-    }
-
-    private function list_local_images($dir)
-    {
-        $files = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($dir,
-                FilesystemIterator::CURRENT_AS_FILEINFO |
-                FilesystemIterator::KEY_AS_PATHNAME |
-                FilesystemIterator::SKIP_DOTS
-            )
+        //---------------------------------------------
+        // 1. Create a policy using UTF-8 encoding.
+        // This includes custom meta data named "x-amz-meta-title" for example
+        //---------------------------------------------
+        $p_array = array(
+          "expiration" => $expires,
+          "conditions" => array(
+            array("bucket" => Configure::read('bucket_name')),
+            array("starts-with", '$key', ""),
+            array("acl" => $acl),
+            // array("success_action_redirect" => $success_action_redirect),
+            array("success_action_status" => '201'),
+            array("starts-with", '$Content-Type', "application/octetstream"),
+            array("x-amz-meta-uuid" => "14365123651274"),
+            array("starts-with", '$x-amz-meta-tag', ""),
+            array("x-amz-credential" => $access_id."/".$date_ymd."/".Configure::read('region')."/s3/aws4_request"),
+            array("x-amz-algorithm" => "AWS4-HMAC-SHA256"),
+            array("x-amz-date" => $date_gm),
+            array("starts-with", '$x-amz-meta-title', ""),  // Custom Field
+          ),
         );
 
-        $files = new RegexIterator($files, '/^.+\.jpg$/i', RecursiveRegexIterator::MATCH);
-        return $files;
+        if ($security_token != "") {
+            $p_array["conditions"][] = array("x-amz-security-token" => $security_token);
+        }
+
+        $policy = (json_encode($p_array, JSON_UNESCAPED_SLASHES));
+
+        //---------------------------------------------
+        // 2. Convert the UTF-8-encoded policy to Base64. The result is the string to sign.
+        //---------------------------------------------
+        $base64_policy = base64_encode($policy);
+        $base64_policy = str_replace(array("\r\n", "\r", "\n", " "), "", $base64_policy);
+
+        //---------------------------------------------
+        // 3. Create the signature as an HMAC-SHA256 hash of the string to sign. You will provide the signing key as key to the hash function.
+        //---------------------------------------------
+        // https://github.com/aws/aws-sdk-php/blob/00c4d18d666d2da44814daca48deb33e20cc4d3c/src/Aws/Common/Signature/SignatureV4.php
+        $signinkey = $this->getSigningKey($date_ymd, Configure::read('region'), "s3", $secret_key);
+        $signature = hash_hmac('sha256', $base64_policy, $signinkey, false);
+
+        $result = array(
+            'access_id'     => $access_id,
+            'base64_policy' => $base64_policy,
+            'date_ymd'      => $date_ymd,
+            'date_gm'       => $date_gm,
+            'acl'           => $acl,
+            'security_token'=> $security_token,
+            'signature'     => $signature,
+            // 'success_action_redirect' => $success_action_redirect,
+            'success_action_status' => '201',
+        );
+
+        return $result;
+    }
+
+    /**
+     * Delete slide from S3
+     *
+     * @param  string $key key to remove
+     * @return void
+     */
+    public function delete_slide_from_s3($key)
+    {
+        $this->delete_master_slide($key);
+        $this->delete_generated_files($key);
+    }
+
+    /**
+     * Delete all generated files in Amazon S3
+     *
+     * @param string $key
+     *
+     */
+    public function delete_generated_files($key)
+    {
+        $s3 = $this->getClient();
+        // List files and delete them.
+        $res = $s3->listObjects(array('Bucket' => Configure::read('image_bucket_name'), 'MaxKeys' => 1000, 'Prefix' => $key . '/'));
+        $keys = $res->getPath('Contents');
+        $delete_files = array();
+        if(is_array($keys))
+        {
+            foreach ($keys as $kk) {
+                $delete_files[] = array("Key" => $kk["Key"]);
+            }
+        }
+        if(count($delete_files) > 0)
+        {
+            $res = $s3->deleteObjects(array(
+                'Bucket'  => Configure::read('image_bucket_name'),
+                'Objects' => $delete_files
+            ));
+        }
     }
 
     /**
@@ -219,13 +253,15 @@ class S3Component extends Component
         return true;
     }
 
+    ################## Private ################
+
     /**
      * Convert PPT file to PDF
      *
      * @param string $file_path source file to convert
      *
      */
-    public function convert_ppt_to_pdf($file_path)
+    private function convert_ppt_to_pdf($file_path)
     {
         $status = "";
         $command_logs = array();
@@ -247,7 +283,7 @@ class S3Component extends Component
      *        string $file_path source file to convert
      *
      */
-    public function convert_pdf_to_ppm($save_dir, $file_path)
+    private function convert_pdf_to_ppm($save_dir, $file_path)
     {
         $status = "";
         $command_logs = array();
@@ -268,7 +304,7 @@ class S3Component extends Component
      * @param string $save_dir path to store file
      *
      */
-    public function convert_ppm_to_jpg($save_dir)
+    private function convert_ppm_to_jpg($save_dir)
     {
         $status = "";
         $command_logs = array();
@@ -289,7 +325,7 @@ class S3Component extends Component
      * @param string $file_path path to file
      * @return string mime_type
      */
-    public function get_mime_type($file_path)
+    private function get_mime_type($file_path)
     {
         $mime = shell_exec('file -bi '.escapeshellcmd($file_path));
         $mime = trim($mime);
@@ -298,7 +334,15 @@ class S3Component extends Component
         return $mime;
     }
 
-    public function upload_extract_images($key, $save_dir, $files, &$first_page)
+    /**
+     * Upload all generated files to Amazon S3
+     *
+     * @param string $key
+     *        string $save_dir
+     *        array  $files
+     *
+     */
+    private function upload_extract_images($key, $save_dir, $files, &$first_page)
     {
         $s3 = $this->getClient();
         $file_array = array();
@@ -341,18 +385,12 @@ class S3Component extends Component
     }
 
     /**
-     * Delete slide from S3
+     * Delete master slide from Amazon S3
      *
-     * @param  string $key key to remove
-     * @return void
+     * @param string $key
+     *
      */
-    public function delete_slide_from_s3($key)
-    {
-        $this->delete_master_slide($key);
-        $this->delete_generated_files($key);
-    }
-
-    public function delete_master_slide($key)
+    private function delete_master_slide($key)
     {
         $s3 = $this->getClient();
         $res = $s3->deleteObject(array(
@@ -361,29 +399,13 @@ class S3Component extends Component
         ));
     }
 
-    public function delete_generated_files($key)
-    {
-        $s3 = $this->getClient();
-        // List files and delete them.
-        $res = $s3->listObjects(array('Bucket' => Configure::read('image_bucket_name'), 'MaxKeys' => 1000, 'Prefix' => $key . '/'));
-        $keys = $res->getPath('Contents');
-        $delete_files = array();
-        if(is_array($keys))
-        {
-            foreach ($keys as $kk) {
-                $delete_files[] = array("Key" => $kk["Key"]);
-            }
-        }
-        if(count($delete_files) > 0)
-        {
-            $res = $s3->deleteObjects(array(
-                'Bucket'  => Configure::read('image_bucket_name'),
-                'Objects' => $delete_files
-            ));
-        }
-    }
-
-    public function cleanup_working_dir($dir)
+    /**
+     * Clean up working directory
+     *
+     * @param string $dir
+     *
+     */
+    private function cleanup_working_dir($dir)
     {
         $files = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
@@ -397,7 +419,14 @@ class S3Component extends Component
         rmdir($dir);
     }
 
-    public function create_thumbnail($key, $filename)
+    /**
+     * Create thumbnail from specified original image file
+     *
+     * @param string $key
+     *        string $filename
+     *
+     */
+    private function create_thumbnail($key, $filename)
     {
         // Create Same Size Thumbnail
         $f = TMP . $filename;
@@ -491,7 +520,7 @@ class S3Component extends Component
      * @return tring
      *
      */
-    public function getSigningKey($shortDate, $region, $service, $secretKey)
+    private function getSigningKey($shortDate, $region, $service, $secretKey)
     {
         $dateKey = hash_hmac('sha256', $shortDate, 'AWS4' . $secretKey, true);
         $regionKey = hash_hmac('sha256', $region, $dateKey, true);
@@ -499,87 +528,6 @@ class S3Component extends Component
         $signinKey = hash_hmac('sha256', 'aws4_request', $serviceKey, true);
 
         return $signinKey;
-    }
-
-    public function createPolicy($id_to_redirect)
-    {
-        App::uses('CommonHelper', 'View/Helper');
-        $this->Common = new CommonHelper(new View());
-
-        date_default_timezone_set("UTC");
-        $date_ymd = gmdate("Ymd");
-        $date_gm = gmdate("Ymd\THis\Z");
-        $acl = "public-read";
-        $expires = gmdate("Y-m-d\TH:i:s\Z", time() + 60 * 120);
-        $success_action_redirect = $this->Common->base_url() . "/attachments/complete/" . $id_to_redirect;
-
-        // will be replaced from Env var or IAM Role
-        if (isset($_SERVER["AWS_ACCESS_ID"]) && isset($_SERVER['AWS_SECRET_KEY'])) {
-            $access_id = $_SERVER["AWS_ACCESS_ID"];
-            $secret_key = $_SERVER["AWS_SECRET_KEY"];
-            $security_token = "";
-        } else {
-            $meta_client = InstanceMetadataClient::factory();
-            $credentials = $meta_client->getInstanceProfileCredentials();
-            $access_id = $credentials->getAccessKeyId();
-            $secret_key = $credentials->getSecretKey();
-            $security_token = $credentials->getSecurityToken();
-        }
-
-        //---------------------------------------------
-        // 1. Create a policy using UTF-8 encoding.
-        // This includes custom meta data named "x-amz-meta-title" for example
-        //---------------------------------------------
-        $p_array = array(
-          "expiration" => $expires,
-          "conditions" => array(
-            array("bucket" => Configure::read('bucket_name')),
-            array("starts-with", '$key', ""),
-            array("acl" => $acl),
-            // array("success_action_redirect" => $success_action_redirect),
-            array("success_action_status" => '201'),
-            array("starts-with", '$Content-Type', "application/octetstream"),
-            array("x-amz-meta-uuid" => "14365123651274"),
-            array("starts-with", '$x-amz-meta-tag', ""),
-            array("x-amz-credential" => $access_id."/".$date_ymd."/".Configure::read('region')."/s3/aws4_request"),
-            array("x-amz-algorithm" => "AWS4-HMAC-SHA256"),
-            array("x-amz-date" => $date_gm),
-            array("starts-with", '$x-amz-meta-title', ""),  // Custom Field
-          ),
-        );
-
-        if ($security_token != "") {
-            $p_array["conditions"][] = array("x-amz-security-token" => $security_token);
-        }
-
-        $policy = (json_encode($p_array, JSON_UNESCAPED_SLASHES));
-
-        //---------------------------------------------
-        // 2. Convert the UTF-8-encoded policy to Base64. The result is the string to sign.
-        //---------------------------------------------
-        $base64_policy = base64_encode($policy);
-        $base64_policy = str_replace(array("\r\n", "\r", "\n", " "), "", $base64_policy);
-
-        //---------------------------------------------
-        // 3. Create the signature as an HMAC-SHA256 hash of the string to sign. You will provide the signing key as key to the hash function.
-        //---------------------------------------------
-        // https://github.com/aws/aws-sdk-php/blob/00c4d18d666d2da44814daca48deb33e20cc4d3c/src/Aws/Common/Signature/SignatureV4.php
-        $signinkey = $this->getSigningKey($date_ymd, Configure::read('region'), "s3", $secret_key);
-        $signature = hash_hmac('sha256', $base64_policy, $signinkey, false);
-
-        $result = array(
-            'access_id'     => $access_id,
-            'base64_policy' => $base64_policy,
-            'date_ymd'      => $date_ymd,
-            'date_gm'       => $date_gm,
-            'acl'           => $acl,
-            'security_token'=> $security_token,
-            'signature'     => $signature,
-            // 'success_action_redirect' => $success_action_redirect,
-            'success_action_status' => '201',
-        );
-
-        return $result;
     }
 
     /**
@@ -595,5 +543,38 @@ class S3Component extends Component
         $opt = array("ResponseContentDisposition" => 'attachment; filename="' . $filename . '"');
         $url = $s3->getObjectUrl(Configure::read('bucket_name'), $key, '+15 minutes', $opt);
         return $url;
+    }
+
+    /**
+     * List all files in specified directory
+     *
+     * @param string $dir
+     * @return array
+     *
+     */
+    private function list_local_images($dir)
+    {
+        $files = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($dir,
+                FilesystemIterator::CURRENT_AS_FILEINFO |
+                FilesystemIterator::KEY_AS_PATHNAME |
+                FilesystemIterator::SKIP_DOTS
+            )
+        );
+
+        $files = new RegexIterator($files, '/^.+\.jpg$/i', RecursiveRegexIterator::MATCH);
+        return $files;
+    }
+
+    private function print_logs($logs)
+    {
+        foreach ($logs as $log) {
+            $this->print_log($log);
+        }
+    }
+
+    private function print_log($log)
+    {
+        echo "[LOG] " . $log . "\n";
     }
 }
