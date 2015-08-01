@@ -1,18 +1,19 @@
 <?php
+
 class CreateCakeSessions extends CakeMigration
 {
-/**
- * Migration description
- *
- * @var string
- */
+    /**
+     * Migration description.
+     *
+     * @var string
+     */
     public $description = 'create cakesessions table';
 
-/**
- * Actions to be performed
- *
- * @var array $migration
- */
+    /**
+     * Actions to be performed.
+     *
+     * @var array
+     */
     public $migration = array(
         'up' => array(
             'create_table' => array(
@@ -25,28 +26,30 @@ class CreateCakeSessions extends CakeMigration
         ),
         'down' => array(
             'drop_table' => array(
-                'cake_sessions'
+                'cake_sessions',
             ),
         ),
     );
 
-/**
- * Before migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- */
+    /**
+     * Before migration callback.
+     *
+     * @param string $direction, up or down direction of migration process
+     *
+     * @return bool Should process continue
+     */
     public function before($direction)
     {
         return true;
     }
 
-/**
- * After migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- */
+    /**
+     * After migration callback.
+     *
+     * @param string $direction, up or down direction of migration process
+     *
+     * @return bool Should process continue
+     */
     public function after($direction)
     {
         return true;

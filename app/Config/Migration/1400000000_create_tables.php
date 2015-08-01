@@ -1,17 +1,18 @@
 <?php
+
 class CreatePosts extends CakeMigration
 {
     /**
-     * Migration description
+     * Migration description.
      *
      * @var string
      */
     public $description = '';
 
     /**
-     * Actions to be performed
+     * Actions to be performed.
      *
-     * @var array $migration
+     * @var array
      */
     public $migration = array(
         'up' => array(
@@ -39,10 +40,11 @@ class CreatePosts extends CakeMigration
     );
 
     /**
-     * Before migration callback
+     * Before migration callback.
      *
      * @param string $direction, up or down direction of migration process
-     * @return boolean Should process continue
+     *
+     * @return bool Should process continue
      */
     public function before($direction)
     {
@@ -50,10 +52,11 @@ class CreatePosts extends CakeMigration
     }
 
     /**
-     * After migration callback
+     * After migration callback.
      *
      * @param string $direction, up or down direction of migration process
-     * @return boolean Should process continue
+     *
+     * @return bool Should process continue
      */
     public function after($direction)
     {

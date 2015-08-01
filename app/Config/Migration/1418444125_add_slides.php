@@ -1,18 +1,19 @@
 <?php
+
 class AddSlide extends CakeMigration
 {
-/**
- * Migration description
- *
- * @var string
- */
+    /**
+     * Migration description.
+     *
+     * @var string
+     */
     public $description = 'add_slide';
 
-/**
- * Actions to be performed
- *
- * @var array $migration
- */
+    /**
+     * Actions to be performed.
+     *
+     * @var array
+     */
     public $migration = array(
         'up' => array(
             'create_table' => array(
@@ -39,28 +40,30 @@ class AddSlide extends CakeMigration
         ),
         'down' => array(
             'drop_table' => array(
-                'categories', 'slides'
+                'categories', 'slides',
             ),
         ),
     );
 
-/**
- * Before migration callback
- *
- * @param string $direction Direction of migration process (up or down)
- * @return bool Should process continue
- */
+    /**
+     * Before migration callback.
+     *
+     * @param string $direction Direction of migration process (up or down)
+     *
+     * @return bool Should process continue
+     */
     public function before($direction)
     {
         return true;
     }
 
-/**
- * After migration callback
- *
- * @param string $direction Direction of migration process (up or down)
- * @return bool Should process continue
- */
+    /**
+     * After migration callback.
+     *
+     * @param string $direction Direction of migration process (up or down)
+     *
+     * @return bool Should process continue
+     */
     public function after($direction)
     {
         return true;
