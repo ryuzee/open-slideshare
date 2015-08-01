@@ -106,7 +106,7 @@ class SlidesController extends AppController
             throw new NotFoundException(__('This slide can not be downloaded'));
         }
         // Signed URL 生成
-        $url = $this->S3->get_original_file_download_path($slide["Slide"]["key"]);
+        $url = $this->S3->get_original_file_download_path($slide["Slide"]["key"], $slide["Slide"]["extension"]);
         // リダイレクト
         $this->autoRender = false;
         $this->response->header('Location', $url);

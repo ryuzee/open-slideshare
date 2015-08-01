@@ -115,6 +115,11 @@ class S3Component extends Component
         return $files;
     }
 
+    /**
+     * Extract images from uploaded file.
+     *
+     * @param array $data that is retrieved from SQS
+     */
     public function extract_images($data)
     {
         // S3 object key
@@ -152,15 +157,26 @@ class S3Component extends Component
         try {
             // Convert PowerPoint to PDF
             if (in_array($mime_type, $need_to_convert_pdf)) {
+
+                if ($mime_type == "application/vnd.openxmlformats-officedocument.presentationml.presentation") {
+                    $extension = ".pptx";
+                } elseif ($mime_type == "application/vnd.ms-powerpoint") {
+                    $extension = ".ppt";
+                } else {
+                    $extension = "";
+                }
+
                 $status = $this->convert_ppt_to_pdf($file_path);
                 if (!$status) {
                     $this->update_status($key, ERROR_CONVERT_PPT_TO_PDF);
                     return false;
                 }
             } elseif (in_array($mime_type, $all_convertable)) {
+                $extension = ".pdf";
                 $this->print_log("Renaming file...");
                 rename($file_path, $file_path.".pdf");
             }
+            $this->update_extension($key, $extension);
 
             if (in_array($mime_type, $all_convertable)) {
                 // Convert PDF to ppm
@@ -446,6 +462,35 @@ class S3Component extends Component
         }
     }
 
+     /**
+     * Update status code in Slide to indicate conversion status
+     *
+     * @param string $key
+     *        string $extension
+     * @return void
+     *
+     */
+    private function update_extension($key, $extension)
+    {
+        $slide = ClassRegistry::init('Slide');
+        $slide->primaryKey = "key";
+        if ($slide->exists($key)) {
+            $slide->read(null, $key);
+            $slide->set('extension', $extension);
+            $slide->save();
+        }
+    }
+
+    /**
+     * get several key for AWS API
+     *
+     * @param string $shortDate
+     *        string $region
+     *        string $service
+     *        string $secretKey
+     * @return tring
+     *
+     */
     public function getSigningKey($shortDate, $region, $service, $secretKey)
     {
         $dateKey = hash_hmac('sha256', $shortDate, 'AWS4' . $secretKey, true);
@@ -543,10 +588,12 @@ class S3Component extends Component
      * @param string $key filename in S3
      *
      */
-    function get_original_file_download_path($key)
+    function get_original_file_download_path($key, $extension = null)
     {
         $s3 = $this->getClient();
-        $url = $s3->getObjectUrl(Configure::read('bucket_name'), $key, '+15 minutes');
+        $filename = $key . $extension;
+        $opt = array("ResponseContentDisposition" => 'attachment; filename="' . $filename . '"');
+        $url = $s3->getObjectUrl(Configure::read('bucket_name'), $key, '+15 minutes', $opt);
         return $url;
     }
 }
