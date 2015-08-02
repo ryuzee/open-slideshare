@@ -76,8 +76,18 @@ class UsersController extends AppController
         $this->set('title_for_layout', __('Login'));
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
+                // ログインフォームに戻りURLの指定があるか確認
+                $return_url = $this->request->data['return_url'];
+                // 本来の戻りURL
                 $url = $this->Auth->redirectUrl();
-                return $this->redirect($url);
+                // どっちのURLを使うか
+                if (isset($return_url) && $this->Auth->loginAction != $return_url) {
+                    $redirect_url = $return_url;
+                } else {
+                    $redirect_url = $url;
+                }
+
+                return $this->redirect($redirect_url);
             } else {
                 $this->Session->danger(__('Invalid username or password, try again'));
             }

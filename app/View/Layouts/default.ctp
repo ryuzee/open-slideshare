@@ -81,6 +81,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                         <div class="form-group">
                             <input type="password" name="data[User][password]" placeholder="Password" class="form-control">
                         </div>
+                        <input type="hidden" name="return_url" value="<?php echo $_SERVER["REQUEST_URI"]; ?>" />
                         <button type="submit" class="btn btn-success"><?php echo __('Sign in'); ?></button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
