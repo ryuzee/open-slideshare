@@ -10,7 +10,7 @@
                 <?php $image_url =  $this->Common->thumbnail_url($slide["Slide"]["key"]); ?>
                 <?php endif; ?>
 
-        <div class="<?php echo $column_class; ?>" style="margin-bottom:4px;">
+            <div class="<?php echo $column_class; ?>" style="margin-bottom:4px;">
                 <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
                 <img src="<?php echo $image_url; ?>" class="img-responsive slide_thumbnail" style="border:1px solid #999; margin-bottom:4px;" />
                 </a>
@@ -28,7 +28,7 @@
         </div>
 
         <script type="text/javascript">
-        $(document).ready(function () {
-            $('.<?php echo $column_class_primary; ?>').equalHeight();
+        $(window).load(function () {
+            $('.<?php echo $column_class_primary; ?>').equalHeights();
         });
         </script>
