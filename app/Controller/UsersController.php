@@ -76,7 +76,8 @@ class UsersController extends AppController
         $this->set('title_for_layout', __('Login'));
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                $this->redirect('/users/index');
+                $url = $this->Auth->redirectUrl();
+                return $this->redirect($url);
             } else {
                 $this->Session->danger(__('Invalid username or password, try again'));
             }
