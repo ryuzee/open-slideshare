@@ -52,7 +52,7 @@ class AppController extends Controller
     /**
      * uses
      */
-    public $uses = array('Comment');
+    public $uses = array('Comment', 'Category');
 
     /**
      * beforeFilter
@@ -70,5 +70,7 @@ class AppController extends Controller
             $this->Auth->fields = array('username' => 'username', 'password' => 'password');
             $this->Auth->autoRedirect = true;
         }
+
+        $this->set('category', $this->Category->find('all'));
     }
 }

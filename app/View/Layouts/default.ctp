@@ -56,6 +56,16 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo __('Category'); ?><span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                            <?php foreach ($category as $cat): ?>
+                            <li><a href="/categories/view/<?php echo $cat["Category"]["id"]; ?>"><?php echo $cat["Category"]["name"]; ?></a></li>
+                            <?php endforeach; ?>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-left">
                     <li><a href="#" id="open_search_form_"><?php echo __('Search'); ?></a></li>
                     </ul>
                     <?php if (AuthComponent::user('username')): ?>
