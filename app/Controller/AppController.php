@@ -22,6 +22,9 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
  */
 class AppController extends Controller
 {
+    /**
+     * helpers
+     */
     public $helpers = array(
         'Session',
         'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
@@ -30,6 +33,10 @@ class AppController extends Controller
         'Common',
         'Tags.TagCloud',
     );
+
+    /**
+     * components
+     */
     public $components = array(
         'Auth',
         'Paginator',
@@ -42,8 +49,15 @@ class AppController extends Controller
         ),
     );
 
+    /**
+     * uses
+     */
     public $uses = array('Comment');
 
+    /**
+     * beforeFilter
+     *
+     */
     public function beforeFilter()
     {
         $this->set('title_for_layout', '');

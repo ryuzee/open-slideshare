@@ -15,6 +15,11 @@ class User extends AppModel
      */
     public $displayField = 'username';
 
+    /**
+     * validate
+     *
+     * @var array
+     */
     public $validate = array(
         'username' => array(
             'notempty' => array(
@@ -60,6 +65,11 @@ class User extends AppModel
         ),
      );
 
+    /**
+     * beforeSave
+     *
+     * @param array $options
+     */
     public function beforeSave($options = array())
     {
         if (isset($this->data[$this->alias]['password'])) {

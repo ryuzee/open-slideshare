@@ -10,14 +10,25 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController
 {
+    /**
+     * uses
+     */
     public $uses = array('User', 'Slide');
 
+    /**
+     * beforeFilter
+     *
+     */
     public function beforeFilter()
     {
         $this->Auth->allow('signup', 'view', 'index');
         parent::beforeFilter();
     }
 
+    /**
+     * index
+     *
+     */
     public function index()
     {
         $this->set('title_for_layout', __('Your Dashboard'));
@@ -71,6 +82,10 @@ class UsersController extends AppController
         $this->set('title', $title);
     }
 
+    /**
+     * login
+     *
+     */
     public function login()
     {
         $this->set('title_for_layout', __('Login'));
@@ -94,6 +109,10 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * logout
+     *
+     */
     public function logout()
     {
         $this->Auth->logout();
@@ -101,6 +120,10 @@ class UsersController extends AppController
         $this->redirect(array('controller' => 'slides', 'action' => 'index'));
     }
 
+    /**
+     * signup
+     *
+     */
     public function signup()
     {
         $this->set('title_for_layout', __('Signup'));
@@ -116,6 +139,10 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * json_list
+     *
+     */
     public function json_list()
     {
         $this->layout = 'ajax';

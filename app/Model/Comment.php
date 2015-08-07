@@ -51,6 +51,10 @@ class Comment extends AppModel
         ),
     );
 
+    /**
+     * get_recent_comment
+     *
+     */
     public function get_recent_comment()
     {
         $recent_comment = $this->find('all', array(

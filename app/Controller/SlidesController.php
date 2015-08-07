@@ -10,6 +10,10 @@ App::uses('AppController', 'Controller');
  */
 class SlidesController extends AppController
 {
+    /**
+     * presetVars
+     *
+     */
     public $presetVars = array(
         array('field' => 'name', 'type' => 'value'),
         array('field' => 'display_name', 'type' => 'value'),
@@ -19,8 +23,16 @@ class SlidesController extends AppController
         array('field' => 'created_t', 'type' => 'value'),
     );
 
+    /**
+     * uses
+     *
+     */
     public $uses = array('Slide', 'User');
 
+    /**
+     * beforeFilter
+     *
+     */
     public function beforeFilter()
     {
         $this->Auth->allow('index', 'view', 'update_view', 'download');
@@ -111,6 +123,11 @@ class SlidesController extends AppController
         $this->response->header('Location', $url);
     }
 
+    /**
+     * update_view
+     *
+     * @param mixed $id
+     */
     public function update_view($id = null)
     {
         if (!$this->Slide->exists($id)) {

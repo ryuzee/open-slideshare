@@ -17,6 +17,11 @@ class Slide extends AppModel
      */
     public $displayField = 'name';
 
+    /**
+     * actsAs
+     *
+     * @var array
+     */
     public $actsAs = array(
         'Search.Searchable',
     );
@@ -79,6 +84,11 @@ class Slide extends AppModel
         ),
     );
 
+    /**
+     * hasMany
+     *
+     * @var array
+     */
     public $hasMany = array(
         'Comment' => array(
             'className' => 'Comment',
@@ -95,6 +105,11 @@ class Slide extends AppModel
         ),
     );
 
+    /**
+     * filterArgs
+     *
+     * @var array
+     */
     public $filterArgs = array(
         'name' => array('type' => 'like'),
         'description' => array('type' => 'like'),

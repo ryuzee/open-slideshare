@@ -19,6 +19,10 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model
 {
+    /**
+     * unbindFully
+     *
+     */
     public function unbindFully()
     {
         $unbind = array();

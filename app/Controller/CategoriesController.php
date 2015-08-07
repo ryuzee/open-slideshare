@@ -10,8 +10,16 @@ App::uses('AppController', 'Controller');
  */
 class CategoriesController extends AppController
 {
+    /**
+     * uses
+     *
+     */
     public $uses = array('Category', 'Slide');
 
+    /**
+     * beforeFilter
+     *
+     */
     public function beforeFilter()
     {
         $this->Auth->allow('view');
