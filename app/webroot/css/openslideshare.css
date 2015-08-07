@@ -64,3 +64,13 @@ div.row a, div.row a:hover, div.row a:visited, div.row a:active {
     text-decoration: none;
     color: #cd4939;
 }
+
+ul.share-buttons{
+  list-style: none;
+  padding: 0;
+}
+
+ul.share-buttons li{
+  display: inline;
+}
+

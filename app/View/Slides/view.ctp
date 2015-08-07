@@ -15,6 +15,11 @@
     By <?php echo $this->Html->link($slide['User']['display_name'], array('controller' => 'users', 'action' => 'view', $slide['User']['id'])); ?>&nbsp;
     Published: <?php echo h(strftime("%Y/%m/%d",strtotime($slide['Slide']['created']))); ?> in <a href="/categories/view/<?php echo $slide["Category"]["id"]; ?>"><?php echo h($slide['Category']['name']); ?></a>
     </div>
+
+    <div>
+        <?php echo $this->element("share_buttons"); ?>
+    </div>
+
     <div style="border:1px solid #ccc; background-color:#eee; padding:0.8em; margin-top:0.8em;">
     <p><?php echo nl2br(h($slide['Slide']['description'])); ?></p>
     </div>
