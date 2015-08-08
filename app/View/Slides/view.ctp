@@ -68,10 +68,6 @@
 </div>
 
 <div class="col-md-4" id="rightside">
-    <!--
-    <div class="sidebar-nav affix" role="complementary" id="rightside_inner">
-    -->
-    <nav class="affix-nav">
     <?php echo $this->element("right_side_bar_common"); ?>
 
     <?php if(isset($user_id) && $user_id == $slide["Slide"]["user_id"]): ?>
@@ -116,10 +112,6 @@
     <?php endif; ?>
     <div id="dummyspace" style="height:100px;">&nbsp;</div>
     </div>
-<!--
-</div>
--->
-</nav>
 
 </div><!-- end of row -->
 
@@ -165,24 +157,5 @@ $(function () {
       $("#CommentContent").val(text);
     });
   });
-});
-$('nav.affix-nav').width($('#rightside').width());
-
-$(window).resize(function () {
-    $('nav.affix-nav').width($('#rightside').width());
-});
-
-$(function(){
-    $('nav.affix-nav').affix({
-        offset:{
-            top: 800,
-            bottom:300
-        }
-    }).on('affix.bs.affix', function () {
-        $(this).css({
-            'top': '0'
-        });
-    });
-    $('body').scrollspy({ target: 'nav.affix-nav' })
 });
 </script>
