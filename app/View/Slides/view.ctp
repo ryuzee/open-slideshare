@@ -110,9 +110,6 @@
         </div>
         <br clear="all" />
     <?php endif; ?>
-    <div id="dummyspace" style="height:100px;">&nbsp;</div>
-    </div>
-
 </div><!-- end of row -->
 
 <script type="text/javascript">
@@ -158,4 +155,7 @@ $(function () {
     });
   });
 });
+
+// fix sidebar position
+$("#rightside").stick_in_parent();
 </script>

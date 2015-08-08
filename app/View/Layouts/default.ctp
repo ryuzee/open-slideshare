@@ -30,6 +30,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         <?php echo $this->Html->script('jquery.bxslider.js?20141218'); ?>
         <?php echo $this->Html->script('jquery.lazyload.js'); ?>
         <?php echo $this->Html->script('jquery.equalheights.min.js'); ?>
+        <?php echo $this->Html->script('jquery.sticky-kit.min.js'); ?>
 
         <title>
             <?php echo $cakeDescription ?>:
