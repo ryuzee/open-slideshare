@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-08-01 21:39+0900\n"
+"POT-Creation-Date: 2015-08-08 09:31+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,23 +14,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/AppController.php:56
+#: Controller/AppController.php:67
 msgid "Invalid username or password"
 msgstr ""
 
-#: Controller/AppController.php:57
+#: Controller/AppController.php:68
 msgid "You have no privileges"
 msgstr ""
 
-#: Controller/CategoriesController.php:30
+#: Controller/CategoriesController.php:39
 msgid "Invalid category"
 msgstr ""
 
-#: Controller/CategoriesController.php:34
+#: Controller/CategoriesController.php:43
 msgid "Slides in %s"
 msgstr ""
 
-#: Controller/CommentsController.php:25
+#: Controller/CommentsController.php:24
 msgid "The comment has been saved."
 msgstr ""
 
@@ -38,112 +38,112 @@ msgstr ""
 msgid "The comment could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/CommentsController.php:51
+#: Controller/CommentsController.php:50
 msgid "Invalid comment"
 msgstr ""
 
-#: Controller/CommentsController.php:62
+#: Controller/CommentsController.php:61
 msgid "You can not delete comments posted by others."
 msgstr ""
 
-#: Controller/CommentsController.php:65
+#: Controller/CommentsController.php:64
 msgid "The comment has been deleted."
 msgstr ""
 
-#: Controller/CommentsController.php:67
+#: Controller/CommentsController.php:66
 msgid "The comment could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/SlidesController.php:36
+#: Controller/SlidesController.php:47
 msgid "All Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:78;102;118;168;218
+#: Controller/SlidesController.php:89;113;134;183;233
 msgid "Invalid slide"
 msgstr ""
 
-#: Controller/SlidesController.php:106
+#: Controller/SlidesController.php:117
 msgid "This slide can not be downloaded"
 msgstr ""
 
-#: Controller/SlidesController.php:132
+#: Controller/SlidesController.php:146
 msgid "New Slide"
 msgstr ""
 
-#: Controller/SlidesController.php:143;190
+#: Controller/SlidesController.php:157;205
 msgid "The slide has been saved."
 msgstr ""
 
-#: Controller/SlidesController.php:147;192
+#: Controller/SlidesController.php:162;207
 msgid "The slide could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/SlidesController.php:179
+#: Controller/SlidesController.php:194
 msgid "You do not have permission to edit the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:226
+#: Controller/SlidesController.php:241
 msgid "You do not have permission to delete the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:236
+#: Controller/SlidesController.php:252
 msgid "The slide has been deleted."
 msgstr ""
 
-#: Controller/SlidesController.php:238
+#: Controller/SlidesController.php:254
 msgid "The slide could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:22
+#: Controller/UsersController.php:34
 msgid "Your Dashboard"
 msgstr ""
 
-#: Controller/UsersController.php:50;136;175
+#: Controller/UsersController.php:62;176;216
 msgid "Invalid user"
 msgstr ""
 
-#: Controller/UsersController.php:69
+#: Controller/UsersController.php:81
 msgid "Slides by %s"
 msgstr ""
 
-#: Controller/UsersController.php:75
+#: Controller/UsersController.php:91
 msgid "Login"
 msgstr ""
 
-#: Controller/UsersController.php:80
+#: Controller/UsersController.php:107
 msgid "Invalid username or password, try again"
 msgstr ""
 
-#: Controller/UsersController.php:88
+#: Controller/UsersController.php:119
 msgid "You have finished to logout."
 msgstr ""
 
-#: Controller/UsersController.php:94
-#: View/Layouts/default.ctp:87
+#: Controller/UsersController.php:129
+#: View/Layouts/default.ctp:98
 msgid "Signup"
 msgstr ""
 
-#: Controller/UsersController.php:98
+#: Controller/UsersController.php:133
 msgid "The user has been saved"
 msgstr ""
 
-#: Controller/UsersController.php:101;152
+#: Controller/UsersController.php:137;193
 msgid "The user could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:133
+#: Controller/UsersController.php:173
 msgid "Edit"
 msgstr ""
 
-#: Controller/UsersController.php:149
+#: Controller/UsersController.php:189
 msgid "The user has been saved."
 msgstr ""
 
-#: Controller/UsersController.php:179
+#: Controller/UsersController.php:220
 msgid "The user has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:182
+#: Controller/UsersController.php:223
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
@@ -151,28 +151,33 @@ msgstr ""
 msgid "Speaker Details"
 msgstr ""
 
-#: View/Layouts/default.ctp:59
-msgid "Search"
-msgstr ""
-
-#: View/Layouts/default.ctp:63
-msgid "Upload"
+#: View/Layouts/default.ctp:60
+#: View/Slides/add.ctp:128
+msgid "Category"
 msgstr ""
 
 #: View/Layouts/default.ctp:69
+msgid "Search"
+msgstr ""
+
+#: View/Layouts/default.ctp:73
+msgid "Upload"
+msgstr ""
+
+#: View/Layouts/default.ctp:79
 #: View/Users/index.ctp:3
 msgid "My Slides"
 msgstr ""
 
-#: View/Layouts/default.ctp:70
+#: View/Layouts/default.ctp:80
 msgid "My Account"
 msgstr ""
 
-#: View/Layouts/default.ctp:72
+#: View/Layouts/default.ctp:82
 msgid "Logout"
 msgstr ""
 
-#: View/Layouts/default.ctp:84
+#: View/Layouts/default.ctp:95
 msgid "Sign in"
 msgstr ""
 
@@ -198,10 +203,6 @@ msgstr ""
 msgid "Allow to download original slide"
 msgstr ""
 
-#: View/Slides/add.ctp:128
-msgid "Category"
-msgstr ""
-
 #: View/Slides/add.ctp:132
 msgid "Upload a file to save"
 msgstr ""
@@ -215,22 +216,22 @@ msgid "Re-upload"
 msgstr ""
 
 #: View/Slides/edit.ctp:130
-#: View/Slides/view.ctp:57
+#: View/Slides/view.ctp:66
 msgid "Submit"
 msgstr ""
 
 #: View/Slides/edit.ctp:138
-#: View/Slides/view.ctp:67
+#: View/Slides/view.ctp:76
 msgid "Actions"
 msgstr ""
 
 #: View/Slides/edit.ctp:141
-#: View/Slides/view.ctp:29
+#: View/Slides/view.ctp:38
 msgid "Delete"
 msgstr ""
 
 #: View/Slides/edit.ctp:141
-#: View/Slides/view.ctp:29;71
+#: View/Slides/view.ctp:38;80
 msgid "Are you sure you want to delete # %s?"
 msgstr ""
 
@@ -238,31 +239,39 @@ msgstr ""
 msgid "Slides"
 msgstr ""
 
-#: View/Slides/view.ctp:23
+#: View/Slides/view.ctp:32
 msgid "Comments"
 msgstr ""
 
-#: View/Slides/view.ctp:49
+#: View/Slides/view.ctp:58
 msgid "Add Comment"
 msgstr ""
 
-#: View/Slides/view.ctp:54
+#: View/Slides/view.ctp:63
 msgid "Content"
 msgstr ""
 
-#: View/Slides/view.ctp:70
+#: View/Slides/view.ctp:79
 msgid "Edit Slide"
 msgstr ""
 
-#: View/Slides/view.ctp:71
+#: View/Slides/view.ctp:80
 msgid "Delete Slide"
 msgstr ""
 
-#: View/Slides/view.ctp:77
+#: View/Slides/view.ctp:87
+msgid "Show Slide with Normal Mode"
+msgstr ""
+
+#: View/Slides/view.ctp:89
+msgid "Show Slide Vertically"
+msgstr ""
+
+#: View/Slides/view.ctp:92
 msgid "Download Slide"
 msgstr ""
 
-#: View/Slides/view.ctp:82
+#: View/Slides/view.ctp:98
 msgid "Related Slides"
 msgstr ""
 

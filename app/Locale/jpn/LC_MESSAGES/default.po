@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-08-01 21:40+0900\n"
-"PO-Revision-Date: 2015-08-01 21:41+0900\n"
+"POT-Creation-Date: 2015-08-08 09:31+0900\n"
+"PO-Revision-Date: 2015-08-08 09:32+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.3\n"
 
-#: Controller/AppController.php:56
+#: Controller/AppController.php:67
 msgid "Invalid username or password"
 msgstr "無効なユーザー名またはパスワードです。"
 
-#: Controller/AppController.php:57
+#: Controller/AppController.php:68
 msgid "You have no privileges"
 msgstr "権限がありません。"
 
-#: Controller/CategoriesController.php:30
+#: Controller/CategoriesController.php:39
 msgid "Invalid category"
 msgstr "無効なカテゴリです。"
 
-#: Controller/CategoriesController.php:34
+#: Controller/CategoriesController.php:43
 msgid "Slides in %s"
 msgstr "カテゴリ”%s”のスライド"
 
-#: Controller/CommentsController.php:25
+#: Controller/CommentsController.php:24
 msgid "The comment has been saved."
 msgstr "コメントを保存しました。"
 
@@ -39,111 +39,111 @@ msgstr "コメントを保存しました。"
 msgid "The comment could not be saved. Please, try again."
 msgstr "コメントを保存できませんでした。もう一度試してください。"
 
-#: Controller/CommentsController.php:51
+#: Controller/CommentsController.php:50
 msgid "Invalid comment"
 msgstr "無効なコメントです。"
 
-#: Controller/CommentsController.php:62
+#: Controller/CommentsController.php:61
 msgid "You can not delete comments posted by others."
 msgstr "他の人のコメントを削除することはできません。"
 
-#: Controller/CommentsController.php:65
+#: Controller/CommentsController.php:64
 msgid "The comment has been deleted."
 msgstr "コメントを削除しました。"
 
-#: Controller/CommentsController.php:67
+#: Controller/CommentsController.php:66
 msgid "The comment could not be deleted. Please, try again."
 msgstr "コメントを削除できませんでした。もう一度試してください。"
 
-#: Controller/SlidesController.php:36
+#: Controller/SlidesController.php:47
 msgid "All Slides"
 msgstr "すべてのスライド"
 
-#: Controller/SlidesController.php:78;102;118;168;218
+#: Controller/SlidesController.php:89;113;134;183;233
 msgid "Invalid slide"
 msgstr "無効なスライド"
 
-#: Controller/SlidesController.php:106
+#: Controller/SlidesController.php:117
 msgid "This slide can not be downloaded"
 msgstr "このスライドはダウンロードできません。"
 
-#: Controller/SlidesController.php:132
+#: Controller/SlidesController.php:146
 msgid "New Slide"
 msgstr "新しいスライド"
 
-#: Controller/SlidesController.php:143;190
+#: Controller/SlidesController.php:157;205
 msgid "The slide has been saved."
 msgstr "スライドを保存しました。"
 
-#: Controller/SlidesController.php:147;192
+#: Controller/SlidesController.php:162;207
 msgid "The slide could not be saved. Please, try again."
 msgstr "スライドを保存できませんでした。もう一度試してください。"
 
-#: Controller/SlidesController.php:179
+#: Controller/SlidesController.php:194
 msgid "You do not have permission to edit the slide created by others."
 msgstr "他の人のスライドを編集することはできません。"
 
-#: Controller/SlidesController.php:226
+#: Controller/SlidesController.php:241
 msgid "You do not have permission to delete the slide created by others."
 msgstr "他の人のスライドを削除することはできません。"
 
-#: Controller/SlidesController.php:236
+#: Controller/SlidesController.php:252
 msgid "The slide has been deleted."
 msgstr "スライドを削除しました。"
 
-#: Controller/SlidesController.php:238
+#: Controller/SlidesController.php:254
 msgid "The slide could not be deleted. Please, try again."
 msgstr "スライドを削除できませんでした。もう一度試してください。"
 
-#: Controller/UsersController.php:22
+#: Controller/UsersController.php:34
 msgid "Your Dashboard"
 msgstr "ダッシュボード"
 
-#: Controller/UsersController.php:50;136;175
+#: Controller/UsersController.php:62;176;216
 msgid "Invalid user"
 msgstr "無効なユーザー"
 
-#: Controller/UsersController.php:69
+#: Controller/UsersController.php:81
 msgid "Slides by %s"
 msgstr "“%s”投稿のスライド"
 
-#: Controller/UsersController.php:75
+#: Controller/UsersController.php:91
 msgid "Login"
 msgstr "ログイン"
 
-#: Controller/UsersController.php:80
+#: Controller/UsersController.php:107
 msgid "Invalid username or password, try again"
 msgstr "無効なユーザー名かパスワードです。やり直してください。"
 
-#: Controller/UsersController.php:88
+#: Controller/UsersController.php:119
 msgid "You have finished to logout."
 msgstr "ログアウトしました。"
 
-#: Controller/UsersController.php:94 View/Layouts/default.ctp:87
+#: Controller/UsersController.php:129 View/Layouts/default.ctp:98
 msgid "Signup"
 msgstr "サインアップ"
 
-#: Controller/UsersController.php:98
+#: Controller/UsersController.php:133
 msgid "The user has been saved"
 msgstr "ユーザーを保存しました。"
 
-#: Controller/UsersController.php:101;152
+#: Controller/UsersController.php:137;193
 msgid "The user could not be saved. Please, try again."
 msgstr "ユーザーを保存できませんでした。もう一度試してください。"
 
-#: Controller/UsersController.php:133
+#: Controller/UsersController.php:173
 msgid "Edit"
 msgstr "編集"
 
-#: Controller/UsersController.php:149
+#: Controller/UsersController.php:189
 msgid "The user has been saved."
 msgstr "ユーザーを保存しました。"
 
-#: Controller/UsersController.php:179
+#: Controller/UsersController.php:220
 msgid "The user has been deleted."
 msgstr "ユーザーを削除しました。"
 
-#: Controller/UsersController.php:182
+#: Controller/UsersController.php:223
 msgid "The user could not be deleted. Please, try again."
 msgstr "ユーザーを削除できませんでした。もう一度試してください。"
 
@@ -151,27 +151,31 @@ msgstr "ユーザーを削除できませんでした。もう一度試してく
 msgid "Speaker Details"
 msgstr "スピーカーについて"
 
-#: View/Layouts/default.ctp:59
+#: View/Layouts/default.ctp:60 View/Slides/add.ctp:128
+msgid "Category"
+msgstr "カテゴリ"
+
+#: View/Layouts/default.ctp:69
 msgid "Search"
 msgstr "検索"
 
-#: View/Layouts/default.ctp:63
+#: View/Layouts/default.ctp:73
 msgid "Upload"
 msgstr "アップロード"
 
-#: View/Layouts/default.ctp:69 View/Users/index.ctp:3
+#: View/Layouts/default.ctp:79 View/Users/index.ctp:3
 msgid "My Slides"
 msgstr "自分のスライド"
 
-#: View/Layouts/default.ctp:70
+#: View/Layouts/default.ctp:80
 msgid "My Account"
 msgstr "アカウント"
 
-#: View/Layouts/default.ctp:72
+#: View/Layouts/default.ctp:82
 msgid "Logout"
 msgstr "ログアウト"
 
-#: View/Layouts/default.ctp:84
+#: View/Layouts/default.ctp:95
 msgid "Sign in"
 msgstr "サインイン"
 
@@ -195,10 +199,6 @@ msgstr "詳細"
 msgid "Allow to download original slide"
 msgstr "オリジナルスライドのダウンロードを許可する"
 
-#: View/Slides/add.ctp:128
-msgid "Category"
-msgstr "カテゴリ"
-
 #: View/Slides/add.ctp:132
 msgid "Upload a file to save"
 msgstr "ファイルのアップロード"
@@ -211,19 +211,19 @@ msgstr "スライドの編集"
 msgid "Re-upload"
 msgstr "再アップロード"
 
-#: View/Slides/edit.ctp:130 View/Slides/view.ctp:57
+#: View/Slides/edit.ctp:130 View/Slides/view.ctp:66
 msgid "Submit"
 msgstr "送信"
 
-#: View/Slides/edit.ctp:138 View/Slides/view.ctp:67
+#: View/Slides/edit.ctp:138 View/Slides/view.ctp:76
 msgid "Actions"
 msgstr "操作"
 
-#: View/Slides/edit.ctp:141 View/Slides/view.ctp:29
+#: View/Slides/edit.ctp:141 View/Slides/view.ctp:38
 msgid "Delete"
 msgstr "削除"
 
-#: View/Slides/edit.ctp:141 View/Slides/view.ctp:29;71
+#: View/Slides/edit.ctp:141 View/Slides/view.ctp:38;80
 msgid "Are you sure you want to delete # %s?"
 msgstr "#%s を削除してもよろしいですか？"
 
@@ -231,31 +231,39 @@ msgstr "#%s を削除してもよろしいですか？"
 msgid "Slides"
 msgstr "スライド"
 
-#: View/Slides/view.ctp:23
+#: View/Slides/view.ctp:32
 msgid "Comments"
 msgstr "コメント"
 
-#: View/Slides/view.ctp:49
+#: View/Slides/view.ctp:58
 msgid "Add Comment"
 msgstr "コメントを追加"
 
-#: View/Slides/view.ctp:54
+#: View/Slides/view.ctp:63
 msgid "Content"
 msgstr "本文"
 
-#: View/Slides/view.ctp:70
+#: View/Slides/view.ctp:79
 msgid "Edit Slide"
 msgstr "スライドの編集"
 
-#: View/Slides/view.ctp:71
+#: View/Slides/view.ctp:80
 msgid "Delete Slide"
 msgstr "スライドの削除"
 
-#: View/Slides/view.ctp:77
+#: View/Slides/view.ctp:87
+msgid "Show Slide with Normal Mode"
+msgstr "スライドをノーマルモードで表示"
+
+#: View/Slides/view.ctp:89
+msgid "Show Slide Vertically"
+msgstr "スライドを縦に並べて表示"
+
+#: View/Slides/view.ctp:92
 msgid "Download Slide"
 msgstr "スライドのダウンロード"
 
-#: View/Slides/view.ctp:82
+#: View/Slides/view.ctp:98
 msgid "Related Slides"
 msgstr "関連するスライド"
 

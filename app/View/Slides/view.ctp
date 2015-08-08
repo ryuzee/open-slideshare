@@ -1,6 +1,10 @@
 <div class="row">
 <div class="col-md-8" style="background-color:#fff !important; border:1px solid #ccc; padding-top:20px; margin-bottom:20px">
+    <?php if($this->request->query('vertical') == 1): ?>
+    <?php echo $this->element("slide_vertical", array('slide' => $slide["Slide"])); ?>
+    <?php else: ?>
     <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
+    <?php endif; ?>
 
     <div class="row" style="padding-top:8px; background-color:#fff !important;">
         <div class="col-md-9">
@@ -79,6 +83,11 @@
     <?php endif; ?>
 
     <ul class="list-group">
+        <?php if($this->request->query('vertical') == 1): ?>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Show Slide with Normal Mode'), array('action' => 'view', $slide['Slide']['id'])); ?> </li>
+        <?php else: ?>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Show Slide Vertically'), array('action' => 'view', $slide['Slide']['id'], '?' => array('vertical' => 1))); ?> </li>
+        <?php endif; ?>
         <?php if($slide["Slide"]["downloadable"]): ?>
         <li class="list-group-item"><?php echo $this->Html->link(__('Download Slide'), array('action' => 'download', $slide['Slide']['id'])); ?> </li>
         <?php endif; ?>
