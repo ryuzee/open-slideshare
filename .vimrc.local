@@ -2,3 +2,6 @@
 let g:cakephp_enable_fix_mode = 1
 let g:cakephp_app = expand('<sfile>:p:h')
 
+" dbext
+let g:dbext_default_profile_mySQL = 'type=MYSQL:user=webapp:passwd=passw0rd:host=192.168.33.33:dbname=openslideshare'
+let g:dbext_default_profile = 'mySQL'
