@@ -96,6 +96,7 @@ $(document).ready(function(){
     bxslider_init();
     var timer = setInterval( updateDiv, 10 * 100);
 
+    // スライドのページ数が0の場合は定期的に確認する
     function updateDiv() {
         var messageDiv = $('.slider');
         if ($('div.slider ul').attr("data-count") > 0) {
