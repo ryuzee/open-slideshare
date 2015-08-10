@@ -107,6 +107,9 @@ $(document).ready(function(){
             url: "/slides/update_view/<?php echo $slide["id"]; ?>",
             cache: false,
             success: function(result) {
+                $('div.slide_control span#prev').empty();
+                $('div.slide_control span#next').empty();
+                $('div.slide_control span#pager').empty();
                 messageDiv.empty();
                 messageDiv.append(result);
                 bxslider_init();
