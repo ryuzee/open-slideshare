@@ -12,7 +12,7 @@ if (strpos($http_response_header[0], '200')) {
 }
 ?>
 
-<ul class="bxslider_<?php echo $slide["key"]; ?>" data-count="<?php echo count($file_list); ?>">
+<ul class="bxslider_<?php echo $slide["key"]; ?>" data-count="<?php echo count($file_list); ?>" style="display:none">
 <?php if (count($file_list) > 0): ?>
     <?php $count = 0; ?>
     <?php foreach ($file_list as $file): ?>
