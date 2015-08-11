@@ -37,6 +37,9 @@ div#prev, div#next, div#pager { display: inline; font-weight:bold; font-color:#f
     display: block;
 }
 .bx-default-pager { display: inline; color: #ccc; font-weight: normal !important;}
+.bx-pager-item {
+    display: none;
+}
 
 .slide_control {
     text-align:center;
