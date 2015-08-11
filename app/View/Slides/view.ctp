@@ -1,3 +1,4 @@
+<?php $slide_id = $slide["Slide"]["id"]; ?>
 <div class="row">
 <div class="col-md-8" style="background-color:#fff !important; border:1px solid #ccc; padding-top:20px; margin-bottom:20px" id="slide_div_box">
     <?php if($this->request->query('vertical') == 1): ?>
@@ -35,7 +36,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <strong><?php echo h($comment['User']['display_name']); ?></strong>&nbsp;<?php echo $comment['modified']; ?>
-            <?php echo $this->Form->postLink(__('Delete'), "/comments/delete/". $comment['id'] ."?return_url=/slides/view/" .$slide["Slide"]["id"] , array('escape' => false), __('Are you sure you want to delete # %s?', $comment['id'])); ?>
+            <?php echo $this->Form->postLink(__('Delete'), "/comments/delete/". $comment['id'] ."?return_url=/slides/view/" .$slide_id , array('escape' => false), __('Are you sure you want to delete # %s?', $comment['id'])); ?>
         </div>
         <div class="panel-body">
             <?php echo $this->Common->display($comment['content']); ?></td>
@@ -58,8 +59,8 @@
             <legend class="h4"><?php echo __('Add Comment'); ?></legend>
             <?php
          echo $this->Form->hidden('user_id', array('value' => $user_id));
-         echo $this->Form->hidden('slide_id', array('value' => $slide["Slide"]["id"]));
-         echo $this->Form->hidden('return_url', array('value' => '/slides/view/' . $slide["Slide"]["id"]));
+         echo $this->Form->hidden('slide_id', array('value' => $slide_id));
+         echo $this->Form->hidden('return_url', array('value' => '/slides/view/' . $slide_id));
          echo $this->Form->input('content', array('label' => __('Content'), 'class' => 'form-control mention'));
          ?>
         </fieldset>
@@ -76,20 +77,20 @@
         <div class="panel-heading"><?php echo __('Actions'); ?></div>
         <!-- List group -->
         <ul class="list-group">
-            <li class="list-group-item"><?php echo $this->Html->link(__('Edit Slide'), array('action' => 'edit', $slide['Slide']['id'])); ?> </li>
-            <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete Slide'), array('action' => 'delete', $slide['Slide']['id']), array(), __('Are you sure you want to delete # %s?', $slide['Slide']['id'])); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('Edit Slide'), array('action' => 'edit', $slide_id)); ?> </li>
+            <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete Slide'), array('action' => 'delete', $slide_id), array(), __('Are you sure you want to delete # %s?', $slide_id)); ?> </li>
         </ul>
     </div>
     <?php endif; ?>
 
     <ul class="list-group">
         <?php if($this->request->query('vertical') == 1): ?>
-        <li class="list-group-item"><?php echo $this->Html->link(__('Show Slide with Normal Mode'), array('action' => 'view', $slide['Slide']['id'])); ?> </li>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Show Slide with Normal Mode'), array('action' => 'view', $slide_id)); ?> </li>
         <?php else: ?>
-        <li class="list-group-item"><?php echo $this->Html->link(__('Show Slide Vertically'), array('action' => 'view', $slide['Slide']['id'], '?' => array('vertical' => 1))); ?> </li>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Show Slide Vertically'), array('action' => 'view', $slide_id, '?' => array('vertical' => 1))); ?> </li>
         <?php endif; ?>
         <?php if($slide["Slide"]["downloadable"]): ?>
-        <li class="list-group-item"><?php echo $this->Html->link(__('Download Slide'), array('action' => 'download', $slide['Slide']['id'])); ?> </li>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Download Slide'), array('action' => 'download', $slide_id)); ?> </li>
         <?php endif; ?>
         <li class="list-group-item"><?php echo $this->Html->link(__('Show Embedded Code'), "javascript:void(0);return false;", array("id" => "show_embedded")); ?> </li>
     </ul>
@@ -102,7 +103,7 @@
         <div class="row2" style="border:1px solid #ccc; background-color:#fff;padding:8px;">
         <?php foreach($other_slides_in_category as $slide): ?>
         <div class="col-md-12 col-sm-6" style="padding:8px;">
-            <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
+            <a href="/slides/view/<?php echo $slide_id; ?>">
             <img width="120px" src="<?php echo $this->Common->thumbnail_url($slide["Slide"]["key"]); ?>" style="border:1px solid #999; margin-right:4px; margin-bottom:4px; float:left" />
             </a>
             <span class="h6"><?php echo h($slide['Slide']['name']); ?></span><br />
@@ -167,7 +168,7 @@ $("#rightside").stick_in_parent();
 $(function(){
     $("#show_embedded").click(function(){
         var x = $("<div></div>").dialog({autoOpen:false});
-        x.html("<p><?php echo Router::url($this->Html->url(array("controller" => "slides", "action" => "embedded", $slide["Slide"]["id"])), true); ?></p>");
+        x.html("<p><?php echo h('<script src="' . Router::url($this->Html->url(array("controller" => "slides", "action" => "embedded", $slide_id)), true) . '"></script>'); ?></p>");
         x.dialog("option", {
             title: "<?php echo __('Embedded Code'); ?>",
             width:400,
