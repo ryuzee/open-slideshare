@@ -35,7 +35,7 @@ class SlidesController extends AppController
      */
     public function beforeFilter()
     {
-        $this->Auth->allow('index', 'view', 'update_view', 'download');
+        $this->Auth->allow('index', 'view', 'update_view', 'download', 'embedded');
         parent::beforeFilter();
     }
 
@@ -121,6 +121,22 @@ class SlidesController extends AppController
         // リダイレクト
         $this->autoRender = false;
         $this->response->header('Location', $url);
+    }
+
+    /**
+     * embedded
+     *
+     * @param mixed $id
+     */
+    public function embedded($id = null)
+    {
+        if (!$this->Slide->exists($id)) {
+            throw new NotFoundException(__('Invalid slide'));
+        }
+        Configure::write('debug', 0);
+        $this->response->type("javascript");
+        $this->layout = 'escaped_javascript';
+        $this->set('slide', $this->Slide->get_slide($id));
     }
 
     /**
