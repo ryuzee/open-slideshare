@@ -23,6 +23,10 @@ This application depends on following technologies.
 - Amazon SQS
 - Ubuntu 12 or higher with OpenOffice, xpdf, unoconv and so on
 
+You can use the develop environment here. https://github.com/ryuzee/open-slideshare-environment
+
+It includes Vagrantfile and Chef cookbooks to build dev environment.
+
 ## Install
 
 - Create two Amazon S3 buckets (cf. open-slideshare-slides, open-slideshare-images)
