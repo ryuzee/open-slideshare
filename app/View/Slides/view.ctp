@@ -91,7 +91,10 @@
         <?php if($slide["Slide"]["downloadable"]): ?>
         <li class="list-group-item"><?php echo $this->Html->link(__('Download Slide'), array('action' => 'download', $slide['Slide']['id'])); ?> </li>
         <?php endif; ?>
+        <li class="list-group-item"><?php echo $this->Html->link(__('Show Embedded Code'), "javascript:void(0);return false;", array("id" => "show_embedded")); ?> </li>
     </ul>
+
+
 
     <?php if($other_slides_in_category): ?>
         <!-- Default panel contents -->
@@ -158,4 +161,22 @@ $(function () {
 
 // fix sidebar position
 $("#rightside").stick_in_parent();
+</script>
+
+<script type="text/javascript">
+$(function(){
+    $("#show_embedded").click(function(){
+        var x = $("<div></div>").dialog({autoOpen:false});
+        x.html("<p><?php echo Router::url($this->Html->url(array("controller" => "slides", "action" => "embedded", $slide["Slide"]["id"])), true); ?></p>");
+        x.dialog("option", {
+            title: "<?php echo __('Embedded Code'); ?>",
+            width:400,
+            height:200,
+            buttons: {
+                "OK": function() { $(this).dialog("close"); }
+            }
+        });
+        x.dialog("open");
+    });
+});
 </script>
