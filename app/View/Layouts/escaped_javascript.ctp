@@ -1,12 +1,16 @@
 <?php
 $source = $this->fetch('content');
+$js_source = "";
 $lines = explode("\n", $source);
 foreach($lines as $line) {
     $line = convert_line($line);
     if($line != false) {
-        echo $line;
+        $js_source .= $line;
     }
 }
+$packer = new Packer($js_source, 'Normal', true, true);
+$packed_js = $packer->pack();
+echo $packed_js;
 
 function convert_line($line) {
     $line = trim($line);
@@ -17,4 +21,5 @@ function convert_line($line) {
     $line = 'document.write("' .$line .'\n");';
     return $line;
 }
+
 ?>
