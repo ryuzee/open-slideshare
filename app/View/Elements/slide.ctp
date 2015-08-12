@@ -1,7 +1,5 @@
-<div class="slider" style="border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;">
-
+<div class="slider">
 <?php echo $this->element("slide_div", array("slide" => $slide)); ?>
-
 </div>
 
 <div class="slide_control" style="display:none">
