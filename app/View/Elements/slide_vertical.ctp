@@ -39,8 +39,8 @@ else
 
 
 <script type="text/javascript">
-$(function() {
-    $("img.lazy").lazyload({
+$1102(function() {
+    $1102(".openslideshare_body img.lazy").lazyload({
         threshold : 200,
         effect: "fadeIn"
     });
