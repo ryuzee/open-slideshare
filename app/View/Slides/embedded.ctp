@@ -12,10 +12,11 @@ $1102= jQuery.noConflict(true);
 .openslideshare_body div#slide_div_box {
     max-width: 768px !important;
     padding-top: 0px;
+    border: 0px;
 }
 </style>
 <div class="openslideshare_body">
-<div id="slide_div_box" style="border:0px;">
+<div id="slide_div_box">
 <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
 </div>
 </div>
