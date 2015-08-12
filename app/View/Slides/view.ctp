@@ -117,67 +117,32 @@
 </div><!-- end of row -->
 
 <script type="text/javascript">
-$(function () {
-  $('textarea.mention').mentionsInput({
-    showAvatars:false,
-    onDataRequest:function (mode, query, callback) {
-      var myquery = 'query='+query;
-      $.getJSON('/users/json_list', myquery, function(responseData) {
-        responseData = _.filter(responseData, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
-        callback.call(this, responseData);
-      });
-    }
-  });
-
-  $('form#CommentAddForm input').click(function() {
-    $('textarea.mention').mentionsInput('val', function(text) {
-      $("#CommentContent").val(text);
-    });
-  });
-});
-</script>
-</div>
-
-</div><!-- end of row -->
-
-<script type="text/javascript">
-$(function () {
-  $('textarea.mention').mentionsInput({
-    showAvatars:false,
-    onDataRequest:function (mode, query, callback) {
-      var myquery = 'query='+query;
-      $.getJSON('/users/json_list', myquery, function(responseData) {
-        responseData = _.filter(responseData, function(item) { return item.name.toLowerCase().indexOf(query.toLowerCase()) > -1 });
-        callback.call(this, responseData);
-      });
-    }
-  });
-
-  $('form#CommentAddForm input').click(function() {
-    $('textarea.mention').mentionsInput('val', function(text) {
-      $("#CommentContent").val(text);
-    });
-  });
-});
-
-// fix sidebar position
-$("#rightside").stick_in_parent();
-</script>
-
-<script type="text/javascript">
-$(function(){
-    $("#show_embedded").click(function(){
-        var x = $("<div></div>").dialog({autoOpen:false});
+$1102(document).ready(function(){
+    $1102("#show_embedded").click(function(){
+        var x = $1102("<div></div>").dialog({autoOpen:false});
         x.html("<p><?php echo h('<script src="' . Router::url($this->Html->url(array("controller" => "slides", "action" => "embedded", $slide_id)), true) . '"></script>'); ?></p>");
         x.dialog("option", {
             title: "<?php echo __('Embedded Code'); ?>",
             width:400,
             height:200,
             buttons: {
-                "OK": function() { $(this).dialog("close"); }
+                "OK": function() { $1102(this).dialog("close"); }
             }
         });
         x.dialog("open");
     });
 });
 </script>
+
+</div>
+
+</div><!-- end of row -->
+
+<script type="text/javascript">
+$1102(document).ready(function(){
+   // fix sidebar position
+   $1102("#rightside").stick_in_parent();
+});
+</script>
+
+

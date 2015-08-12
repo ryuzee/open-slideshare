@@ -5,6 +5,9 @@
 <?php echo $this->Html->css('openslideshare.css', array('fullBase' => true)); ?>
 <?php echo $this->Html->script('jquery.bxslider.js?20141218', array('fullBase' => true)); ?>
 <?php echo $this->Html->script('jquery.lazyload.js', array('fullBase' => true)); ?>
+<script type="text/javascript">
+$1102= jQuery.noConflict(true);
+</script>
 <style>
 .openslideshare_body div#slide_div_box {
     max-width: 768px !important;

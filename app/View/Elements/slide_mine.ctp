@@ -28,7 +28,7 @@
         </div>
 
         <script type="text/javascript">
-        $(window).load(function () {
-            $('.<?php echo $column_class_primary; ?>').equalHeights();
+        $1102(window).load(function () {
+            $1102('.<?php echo $column_class_primary; ?>').equalHeights();
         });
         </script>

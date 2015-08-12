@@ -19,19 +19,18 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         <?php echo $this->Html->css('bootstrap.min.css'); ?>
         <?php echo $this->Html->css('jquery-ui.min.css'); ?>
         <?php echo $this->Html->css('sticky-footer-navbar.css'); ?>
-        <?php echo $this->Html->css('jquery.mentionsInput.css'); ?>
         <?php echo $this->Html->css('jquery.bxslider.css'); ?>
         <?php echo $this->Html->css('custom-theme/jquery-ui-1.10.0.custom.css'); ?>
         <?php echo $this->Html->css('openslideshare.css'); ?>
-        <?php echo $this->Html->script('underscore-min.js'); ?>
         <?php echo $this->Html->script('jquery.elastic.js'); ?>
         <?php echo $this->Html->script('jquery.events.input.js'); ?>
-        <?php echo $this->Html->script('jquery.mentionsInput.js'); ?>
         <?php echo $this->Html->script('jquery.bxslider.js?20141218'); ?>
         <?php echo $this->Html->script('jquery.lazyload.js'); ?>
         <?php echo $this->Html->script('jquery.equalheights.min.js'); ?>
         <?php echo $this->Html->script('jquery.sticky-kit.min.js'); ?>
-
+        <script type="text/javascript">
+        $1102= jQuery.noConflict(true);
+        </script>
         <title>
             <?php echo $cakeDescription ?>:
             <?php echo $this->fetch('title'); ?>
@@ -159,20 +158,20 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
 </div>
 
 <script type="text/javascript">
-$(function(){
-    $(".datepicker_f").datepicker();
-    $(".datepicker_f").datepicker("option", "dateFormat", 'yy-mm-dd');
-    $(".datepicker_f").datepicker("setDate", '<?php echo $date_f; ?>');
-    $(".datepicker_t").datepicker();
-    $(".datepicker_t").datepicker("option", "dateFormat", 'yy-mm-dd');
-    $(".datepicker_t").datepicker("setDate", '<?php echo $date_t; ?>');
+$1102(document).ready(function(){
+    $1102(".datepicker_f").datepicker();
+    $1102(".datepicker_f").datepicker("option", "dateFormat", 'yy-mm-dd');
+    $1102(".datepicker_f").datepicker("setDate", '<?php echo $date_f; ?>');
+    $1102(".datepicker_t").datepicker();
+    $1102(".datepicker_t").datepicker("option", "dateFormat", 'yy-mm-dd');
+    $1102(".datepicker_t").datepicker("setDate", '<?php echo $date_t; ?>');
 
-    $("#search_slide_dialog_").dialog({
+    $1102("#search_slide_dialog_").dialog({
         autoOpen: false,
         width: 600
     });
-    $("#open_search_form_").on("click", function() {
-        $('#search_slide_dialog_').dialog('open');
+    $1102("#open_search_form_").on("click", function() {
+        $1102('#search_slide_dialog_').dialog('open');
     });
 });
 </script>
