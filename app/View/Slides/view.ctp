@@ -1,6 +1,6 @@
 <?php $slide_id = $slide["Slide"]["id"]; ?>
 <div class="row">
-<div class="col-md-8" style="background-color:#fff !important; border:1px solid #ccc; padding-top:20px; margin-bottom:20px" id="slide_div_box">
+<div class="col-md-8" id="slide_div_box">
     <?php if($this->request->query('vertical') == 1): ?>
     <?php echo $this->element("slide_vertical", array('slide' => $slide["Slide"])); ?>
     <?php else: ?>

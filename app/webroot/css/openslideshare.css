@@ -84,3 +84,10 @@ div.slider {
     border-left:1px solid #000;
     border-right:1px solid #000;
 }
+
+div#slide_div_box {
+    background-color:#fff !important;
+    border:1px solid #ccc;
+    padding-top:20px;
+    margin-bottom:20px
+}
