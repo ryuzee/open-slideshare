@@ -15,7 +15,7 @@ $1102= jQuery.noConflict(true);
 }
 </style>
 <div class="openslideshare_body">
-<div id="slide_div_box">
+<div id="slide_div_box" style="border:0px;">
 <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
 </div>
 </div>
