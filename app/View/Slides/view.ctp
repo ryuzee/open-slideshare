@@ -101,13 +101,13 @@
         <!-- Default panel contents -->
         <h3 class="h4"><?php echo __('Related Slides'); ?></h3>
         <div class="row2 related_slide_row">
-        <?php foreach($other_slides_in_category as $slide): ?>
+        <?php foreach($other_slides_in_category as $other_slide): ?>
         <div class="col-md-12 col-sm-6" style="padding:8px;">
-            <a href="/slides/view/<?php echo $slide_id; ?>">
-                <img width="120px" src="<?php echo $this->Common->thumbnail_url($slide["Slide"]["key"]); ?>" class="related_slide_thumbnail" />
+            <a href="/slides/view/<?php echo $other_slide["Slide"]["id"]; ?>">
+                <img width="120px" src="<?php echo $this->Common->thumbnail_url($other_slide["Slide"]["key"]); ?>" class="related_slide_thumbnail" />
             </a>
-            <span class="h6"><?php echo h($slide['Slide']['name']); ?></span><br />
-            <span class="h6"><?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo $slide["User"]["display_name"]; ?></a></span>
+            <span class="h6"><?php echo h($other_slide['Slide']['name']); ?></span><br />
+            <span class="h6"><?php echo strftime("%Y/%m/%d", strtotime($other_slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $other_slide["User"]["id"]; ?>"><?php echo $other_slide["User"]["display_name"]; ?></a></span>
         </div>
         <br clear="all" />
         <?php endforeach; ?>
