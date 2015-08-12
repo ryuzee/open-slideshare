@@ -76,3 +76,9 @@ ul.share-buttons{
 ul.share-buttons li{
   display: inline;
 }
+
+div.slider {
+    border-top:1px solid #000;
+    border-left:1px solid #000;
+    border-right:1px solid #000;
+}
