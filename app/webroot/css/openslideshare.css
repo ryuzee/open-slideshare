@@ -91,3 +91,29 @@ div#slide_div_box {
     padding-top:20px;
     margin-bottom:20px
 }
+
+div.slide_description {
+    border:1px solid #ccc;
+    background-color:#eee;
+    padding:0.8em;
+    margin-top:0.8em;
+}
+
+div.slide_detail_row {
+    padding-top:8px;
+    background-color:#fff !important;
+}
+
+div.related_slide_row {
+    border:1px solid #ccc;
+    background-color:#fff;
+    padding:8px;
+}
+
+img.related_slide_thumbnail {
+    border:1px solid #999;
+    margin-right:4px;
+    margin-bottom:4px;
+    float:left;
+}
+

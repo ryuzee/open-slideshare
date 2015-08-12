@@ -7,7 +7,7 @@
     <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
     <?php endif; ?>
 
-    <div class="row" style="padding-top:8px; background-color:#fff !important;">
+    <div class="row slide_detail_row">
         <div class="col-md-9">
             <span class="h3"><?php echo h($slide['Slide']['name']); ?></span>
         </div>
@@ -25,7 +25,7 @@
         <?php echo $this->element("share_buttons"); ?>
     </div>
 
-    <div style="border:1px solid #ccc; background-color:#eee; padding:0.8em; margin-top:0.8em;">
+    <div class="slide_description">
     <p><?php echo nl2br(h($slide['Slide']['description'])); ?></p>
     </div>
 
@@ -100,11 +100,11 @@
     <?php if($other_slides_in_category): ?>
         <!-- Default panel contents -->
         <h3 class="h4"><?php echo __('Related Slides'); ?></h3>
-        <div class="row2" style="border:1px solid #ccc; background-color:#fff;padding:8px;">
+        <div class="row2 related_slide_row">
         <?php foreach($other_slides_in_category as $slide): ?>
         <div class="col-md-12 col-sm-6" style="padding:8px;">
             <a href="/slides/view/<?php echo $slide_id; ?>">
-            <img width="120px" src="<?php echo $this->Common->thumbnail_url($slide["Slide"]["key"]); ?>" style="border:1px solid #999; margin-right:4px; margin-bottom:4px; float:left" />
+                <img width="120px" src="<?php echo $this->Common->thumbnail_url($slide["Slide"]["key"]); ?>" class="related_slide_thumbnail" />
             </a>
             <span class="h6"><?php echo h($slide['Slide']['name']); ?></span><br />
             <span class="h6"><?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo $slide["User"]["display_name"]; ?></a></span>
