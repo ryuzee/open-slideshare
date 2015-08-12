@@ -18,7 +18,7 @@ if (strpos($http_response_header[0], '200')) {
     <?php foreach ($file_list as $file): ?>
     <?php $u = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $file; ?>
     <?php if($count >= 2): ?>
-    <li><img class="lazy image-<?php echo $count; ?>" src="/img/spacer.gif" data-src="<?php echo $u; ?>" /></li>
+    <li><img class="lazy image-<?php echo $count; ?>" src="<?php echo Router::url($this->Html->url("/img/spacer.gif"), true); ?>" data-src="<?php echo $u; ?>" /></li>
     <?php else: ?>
     <li><img src="<?php echo $u; ?>" /></li>
     <?php endif; ?>

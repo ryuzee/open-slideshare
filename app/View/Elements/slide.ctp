@@ -7,8 +7,9 @@
 </div>
 
 <script type="text/javascript">
-$(function() {
-    $("img.lazy").lazyload({
+var $1102= jQuery.noConflict(true);
+$1102(function() {
+    $1102("img.lazy").lazyload({
         threshold : 200,
         effect: "fadeIn"
     });
@@ -16,9 +17,9 @@ $(function() {
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-    $(".bxslider_<?php echo $slide["key"]; ?>").show();
-    $(".slide_control").show();
+$1102(document).ready(function(){
+    $1102(".bxslider_<?php echo $slide["key"]; ?>").show();
+    $1102(".slide_control").show();
 
     function bxslider_init() {
         var slider_config = {
@@ -34,11 +35,11 @@ $(document).ready(function(){
             adaptiveHeight: false,
             infiniteLoop: false,
             onSlideBefore: function($slideElement, oldIndex, newIndex){
-                var $lazy_next2 = $("ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex + 1));
+                var $lazy_next2 = $1102("ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex + 1));
                 var $load_next2 = $lazy_next2.attr("data-src");
                 $lazy_next2.attr("src",$load_next2).removeClass("lazy");
 
-                var $lazy_next = $("ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex));
+                var $lazy_next = $1102("ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex));
                 var $load_next = $lazy_next.attr("data-src");
                 $lazy_next.attr("src",$load_next).removeClass("lazy");
                 $lazy_next.each(function(){
@@ -49,26 +50,26 @@ $(document).ready(function(){
                 });
             }
         }
-        $('.bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
+        $1102('.bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
     }
     bxslider_init();
     var timer = setInterval( updateDiv, 10 * 100);
 
     // スライドのページ数が0の場合は定期的に確認する
     function updateDiv() {
-        var messageDiv = $('.slider');
-        if ($('div.slider ul').attr("data-count") > 0) {
+        var messageDiv = $1102('.slider');
+        if ($1102('div.slider ul').attr("data-count") > 0) {
             return;
         }
-        $.ajax({
+        $1102.ajax({
             type: 'GET',
             async: false,
-            url: "/slides/update_view/<?php echo $slide["id"]; ?>",
+            url: "<?php echo Router::url($this->Html->url(array("controller" => "slides", "action" => "update_view", $slide["id"])), true); ?>",
             cache: false,
             success: function(result) {
-                $('div.slide_control span#prev').empty();
-                $('div.slide_control span#next').empty();
-                $('div.slide_control span#pager').empty();
+                $1102('div.slide_control span#prev').empty();
+                $1102('div.slide_control span#next').empty();
+                $1102('div.slide_control span#pager').empty();
                 messageDiv.empty();
                 messageDiv.append(result);
                 bxslider_init();

@@ -1,4 +1,4 @@
-body {
+body.openslideshare_body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, "Arial", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "游ゴシック", YuGothic, sans-serif;
   font-size: 16px;
   line-height: 1.42857;
@@ -6,15 +6,24 @@ body {
   background-image: url(/img/background.png);
 }
 
-
-
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+.openslideshare_body h1,
+.openslideshare_body h2,
+.openslideshare_body h3,
+.openslideshare_body h4,
+.openslideshare_body h5,
+.openslideshare_body h6,
+.openslideshare_body .h1,
+.openslideshare_body .h2,
+.openslideshare_body .h3,
+.openslideshare_body .h4,
+.openslideshare_body .h5,
+.openslideshare_body .h6 {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, "Arial", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
   font-weight: 300;
   line-height: 1.2;
 }
 
-img.slide_thumbnail {
+.openslideshare_body img.slide_thumbnail {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -22,8 +31,12 @@ img.slide_thumbnail {
     margin-bottom:4px;
 }
 
-div#prev, div#next, div#pager { display: inline; font-weight:bold; font-color:#fff !important; }
-.bx-wrapper .bx-viewport
+.openslideshare_body div#prev,
+.openslideshare_body div#next,
+.openslideshare_body div#pager {
+    display: inline; font-weight:bold; font-color:#fff !important;
+}
+.openslideshare_body .bx-wrapper .bx-viewport
 {
     -moz-box-shadow: 0;
     -webkit-box-shadow: 0;
@@ -34,16 +47,18 @@ div#prev, div#next, div#pager { display: inline; font-weight:bold; font-color:#f
     height: auto;
     display: block;
 }
-.bx-wrapper img {
+.openslideshare_body .bx-wrapper img {
     height: auto;
     display: block;
 }
-.bx-default-pager { display: inline; color: #ccc; font-weight: normal !important;}
-.bx-pager-item {
+.openslideshare_body .bx-default-pager {
+    display: inline; color: #ccc; font-weight: normal !important;
+}
+.openslideshare_body .bx-pager-item {
     display: none;
 }
 
-.slide_control {
+.openslideshare_body .slide_control {
     text-align:center;
     border:1px solid #000;
     padding-top:4px;
@@ -61,59 +76,64 @@ div#prev, div#next, div#pager { display: inline; font-weight:bold; font-color:#f
     -moz-border-radius-bottomleft: 10px;
 }
 
-.slide_control_link a, .slide_control_link a:hover, .slide_control_link a:visited, .slide_control_link a:active  {
+.openslideshare_body .slide_control_link a,
+.openslideshare_body .slide_control_link a:hover,
+.openslideshare_body .slide_control_link a:visited,
+.openslideshare_body .slide_control_link a:active  {
     text-decoration: none;
     color: #eee !important;
 }
-div.row a, div.row a:hover, div.row a:visited, div.row a:active {
+.openslideshare_body div.row a,
+.openslideshare_body div.row a:hover,
+.openslideshare_body div.row a:visited,
+.openslideshare_body div.row a:active {
     text-decoration: none;
     color: #cd4939;
 }
 
-ul.share-buttons{
+.openslideshare_body ul.share-buttons{
   list-style: none;
   padding: 0;
 }
 
-ul.share-buttons li{
+.openslideshare_body ul.share-buttons li{
   display: inline;
 }
 
-div.slider {
+.openslideshare_body div.slider {
     border-top:1px solid #000;
     border-left:1px solid #000;
     border-right:1px solid #000;
 }
 
-div#slide_div_box {
+.openslideshare_body div#slide_div_box {
     background-color:#fff !important;
     border:1px solid #ccc;
     padding-top:20px;
     margin-bottom:20px
 }
 
-div.slide_description {
+.openslideshare_body div.slide_description {
     border:1px solid #ccc;
     background-color:#eee;
     padding:0.8em;
     margin-top:0.8em;
 }
 
-div.slide_detail_row {
+.openslideshare_body div.slide_detail_row {
     padding-top:8px;
     background-color:#fff !important;
 }
 
-div.related_slide_row {
+.openslideshare_body div.related_slide_row {
     border:1px solid #ccc;
     background-color:#fff;
     padding:8px;
 }
 
-img.related_slide_thumbnail {
+.openslideshare_body img.related_slide_thumbnail {
     border:1px solid #999;
     margin-right:4px;
     margin-bottom:4px;
     float:left;
 }
-

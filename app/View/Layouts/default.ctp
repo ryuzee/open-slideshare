@@ -42,7 +42,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
              echo $this->fetch('script');
          ?>
     </head>
-    <body style="background-color:#ddd;">
+    <body style="background-color:#ddd;" class="openslideshare_body">
 
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">

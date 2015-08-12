@@ -6,11 +6,11 @@
 <?php echo $this->Html->script('jquery.bxslider.js?20141218', array('fullBase' => true)); ?>
 <?php echo $this->Html->script('jquery.lazyload.js', array('fullBase' => true)); ?>
 <style>
-div#slide_div_box {
+.openslideshare_body div#slide_div_box {
     max-width: 768px !important;
     padding-top: 0px;
 }
 </style>
-<div id="slide_div_box">
+<div id="slide_div_box" class="openslideshare_body">
 <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
 </div>
