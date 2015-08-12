@@ -14,6 +14,8 @@ $1102= jQuery.noConflict(true);
     padding-top: 0px;
 }
 </style>
-<div id="slide_div_box" class="openslideshare_body">
+<div class="openslideshare_body">
+<div id="slide_div_box">
 <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
+</div>
 </div>
