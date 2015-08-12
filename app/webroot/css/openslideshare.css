@@ -18,6 +18,8 @@ img.slide_thumbnail {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+    border:1px solid #999;
+    margin-bottom:4px;
 }
 
 div#prev, div#next, div#pager { display: inline; font-weight:bold; font-color:#fff !important; }

@@ -12,7 +12,7 @@
 
             <div class="<?php echo $column_class; ?>" style="margin-bottom:4px;">
                 <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
-                <img src="<?php echo $image_url; ?>" class="img-responsive slide_thumbnail" style="border:1px solid #999; margin-bottom:4px;" />
+                <img src="<?php echo $image_url; ?>" class="img-responsive slide_thumbnail" />
                 </a>
                 <span class="h4"><?php echo h($slide['Slide']['name']); ?></span><br />
                 <span class="small"><?php echo strftime("%Y/%m/%d", strtotime($slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $slide["User"]["id"]; ?>"><?php echo h($slide["User"]["display_name"]); ?></a></span>
