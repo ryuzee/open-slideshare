@@ -1,7 +1,7 @@
 <script type="text/javascript">
-$(document).ready(function(){
+$1102(document).ready(function(){
     // $("#upload-form").submit(function(event){
-    $('#file').on("change", function(event) {
+    $1102('#file').on("change", function(event) {
         var file = this.files[0];
         if(file != null) {
             console.log(file.name); // ファイル名をログに出力する
@@ -21,17 +21,17 @@ $(document).ready(function(){
         var formData = new FormData();
         var url = "<?php echo $this->Common->endpoint_s3(Configure::read('bucket_name')); ?>/";
 
-        var form = $('#upload-form');
-        $(form.serializeArray()).each(function(i, v) {
+        var form = $1102('#upload-form');
+        $1102(form.serializeArray()).each(function(i, v) {
             if(v.name != "file") {
                 formData.append(v.name, v.value);
             }
         });
-        formData.append("file", $("#file").prop("files")[0]);
+        formData.append("file", $1102("#file").prop("files")[0]);
         console.log("break2");
 
         // You need to set CORS options in target S3 bucket
-        $.ajax({
+        $1102.ajax({
             url: url,
             type: 'POST',
             dataType: 'xml',
@@ -39,14 +39,14 @@ $(document).ready(function(){
             async: true,
             crossDomain: true,
             xhr: function() {
-                xhr = $.ajaxSettings.xhr();
+                xhr = $1102.ajaxSettings.xhr();
                 xhr.upload.addEventListener("progress", function(evt) {
                     if (evt.lengthComputable) {
                         var percentComplete = evt.loaded / evt.total;
                         var p = Math.round(percentComplete * 100);
-                        $(".progress-bar").html(p + "%");
-                        $(".progress-bar").attr("aria-valuenow", p);
-                        $(".progress-bar").attr("style", "width: " + p + "%");
+                        $1102(".progress-bar").html(p + "%");
+                        $1102(".progress-bar").attr("aria-valuenow", p);
+                        $1102(".progress-bar").attr("style", "width: " + p + "%");
                     }
                 }, false);
                 return xhr;
@@ -54,7 +54,7 @@ $(document).ready(function(){
             statusCode: {
                 201: function(){
                     console.log("200");
-                }, 
+                },
                 404: function(){
                     console.log("404");
                 }
@@ -63,9 +63,9 @@ $(document).ready(function(){
             contentType: false,
             processData: false
         }).done(function( data, textStatus, jqXHR ) {
-            var key   = $(data).find("Key").text();
-            $("#SlideKey").val(key);
-            $("#save_button").removeAttr("disabled");
+            var key   = $1102(data).find("Key").text();
+            $1102("#SlideKey").val(key);
+            $1102("#save_button").removeAttr("disabled");
         }) .fail(function( jqXHR, textStatus, errorThrown ) {
             // ...
         });
