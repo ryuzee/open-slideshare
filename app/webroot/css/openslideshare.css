@@ -81,7 +81,7 @@ body.openslideshare_body {
 .openslideshare_body .slide_control_link a,
 .openslideshare_body .slide_control_link a:hover,
 .openslideshare_body .slide_control_link a:visited,
-.openslideshare_body .slide_control_link a:active  {
+.openslideshare_body .slide_control_link a:active {
     text-decoration: none;
     color: #eee !important;
 }
@@ -138,4 +138,11 @@ body.openslideshare_body {
     margin-right:4px;
     margin-bottom:4px;
     float:left;
+}
+
+.openslideshare_body span#slide_control_home_link {
+    float: left;
+    margin-left: 12px;
+    margin-top: 2px;
+    color: #fff;
 }

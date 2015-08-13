@@ -3,7 +3,7 @@
 </div>
 
 <div class="slide_control" style="display:none">
-    <span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;<span id="pager" class="small"></span>&nbsp;&nbsp;<span id="next" class="slide_control_link"></span>
+    <a href="<?php echo Router::url($this->Html->url(array("controller" => "slides", "action" => "view", $slide["id"]))); ?>"><span id="slide_control_home_link" class="glyphicon glyphicon-home"></span></a>&nbsp;<span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;<span id="pager" class="small"></span>&nbsp;&nbsp;<span id="next" class="slide_control_link"></span>
 </div>
 
 <script type="text/javascript">
