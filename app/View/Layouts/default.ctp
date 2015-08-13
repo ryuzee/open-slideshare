@@ -28,6 +28,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         <?php echo $this->Html->script('jquery.lazyload.js'); ?>
         <?php echo $this->Html->script('jquery.equalheights.min.js'); ?>
         <?php echo $this->Html->script('jquery.sticky-kit.min.js'); ?>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <script type="text/javascript">
         $1102= jQuery.noConflict(true);
         </script>

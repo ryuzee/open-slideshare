@@ -3,7 +3,7 @@
 </div>
 
 <div class="slide_control" style="display:none">
-    <?php echo $this->Html->link('<span id="slide_control_home_link">●</span>', array("controller" => "slides", "action" => "view", $slide["id"], "full_base" => true), array('escape' => false)); ?>">&nbsp;<span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;<span id="pager" class="small"></span>&nbsp;&nbsp;<span id="next" class="slide_control_link"></span>
+    <?php echo $this->Html->link('<i id="slide_control_home_link" class="fa fa-television"></i>', array("controller" => "slides", "action" => "view", $slide["id"], "full_base" => true), array('escape' => false)); ?>">&nbsp;<span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;<span id="pager" class="small"></span>&nbsp;&nbsp;<span id="next" class="slide_control_link"></span>
 </div>
 
 <script type="text/javascript">
