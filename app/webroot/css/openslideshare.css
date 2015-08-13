@@ -146,3 +146,15 @@ body.openslideshare_body {
     margin-top: 2px;
     color: #fff;
 }
+
+.openslideshare_body i#slide_control_fast_forward {
+    margin-left: 0px;
+    margin-top: 2px;
+    color: #fff;
+}
+
+.openslideshare_body i#slide_control_fast_backward {
+    margin-left: 12px;
+    margin-top: 2px;
+    color: #fff;
+}

@@ -3,7 +3,12 @@
 </div>
 
 <div class="slide_control" style="display:none">
-    <?php echo $this->Html->link('<i id="slide_control_home_link" class="fa fa-television"></i>', array("controller" => "slides", "action" => "view", $slide["id"], "full_base" => true), array('escape' => false)); ?>">&nbsp;<span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;<span id="pager" class="small"></span>&nbsp;&nbsp;<span id="next" class="slide_control_link"></span>
+    <?php echo $this->Html->link('<i id="slide_control_home_link" class="fa fa-television"></i>', array("controller" => "slides", "action" => "view", $slide["id"], "full_base" => true), array('escape' => false)); ?>&nbsp;
+    <a href="javascript:void(0);return false;"><i id="slide_control_fast_backward" class="fa fa-fast-backward"></i></a>&nbsp;
+    <span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;
+    <span id="pager" class="small"></span>&nbsp;&nbsp;
+    <span id="next" class="slide_control_link"></span>&nbsp;
+    <a href="javascript:void(0);return false;"><i id="slide_control_fast_forward" class="fa fa-fast-forward"></i></a>
 </div>
 
 <script type="text/javascript">
@@ -12,6 +17,7 @@ $1102(document).ready(function(){
         threshold : 200,
         effect: "fadeIn"
     });
+
 });
 </script>
 
@@ -49,20 +55,15 @@ $1102(document).ready(function(){
                 var $lazy_next = $1102(".openslideshare_body ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex));
                 var $load_next = $lazy_next.attr("data-src");
                 $lazy_next.attr("src",$load_next).removeClass("lazy");
-                $lazy_next.each(function(){
-                    // @TODO: 画像のローディングをここに入れる
-                    // while (!this.complete) {
-                    // ;
-                    // }
-                });
+                $lazy_next.each(function(){});
             }
         }
-        $1102('.openslideshare_body .bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
+        myslider = $1102('.openslideshare_body .bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
     }
     bxslider_init();
     var timer = setInterval( updateDiv, 10 * 100);
 
-    // スライドのページ数が0の場合は定期的に確認する
+    // confirm periodically
     function updateDiv() {
         var messageDiv = $1102('.openslideshare_body .slider');
         if ($1102('.openslideshare_body div.slider ul').attr("data-count") > 0) {
@@ -81,11 +82,15 @@ $1102(document).ready(function(){
                 messageDiv.append(result);
                 bxslider_init();
             },
-            error: function(xhr, ajaxOptions, thrownError) {
-                // messageDiv.empty();
-            }
+            error: function(xhr, ajaxOptions, thrownError) {}
         });
     }
 
+    $1102("#slide_control_fast_backward").click(function () {
+        myslider.goToSlide(0);
+    });
+    $1102("#slide_control_fast_forward").click(function () {
+        myslider.goToSlide(<?php echo count($file_list) -1; ?>);
+    });
 });
 </script>
