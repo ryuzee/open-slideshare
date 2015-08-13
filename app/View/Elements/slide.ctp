@@ -28,6 +28,7 @@ $1102(document).ready(function(){
     function bxslider_init() {
         var slider_config = {
             mode: 'horizontal',
+            controls: true,
             responsive:true,
             pager:true,
             pagerType:'short',
