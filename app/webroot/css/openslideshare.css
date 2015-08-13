@@ -78,6 +78,14 @@ body.openslideshare_body {
     -moz-border-radius-bottomleft: 10px;
 }
 
+.openslideshare_body a,
+.openslideshare_body a:hover,
+.openslideshare_body a:visited,
+.openslideshare_body a:active {
+    overflow: hidden;
+    outline: none;
+}
+
 .openslideshare_body .slide_control_link a,
 .openslideshare_body .slide_control_link a:hover,
 .openslideshare_body .slide_control_link a:visited,
@@ -158,3 +166,17 @@ body.openslideshare_body {
     margin-top: 2px;
     color: #fff;
 }
+
+.openslideshare_body div#slide_progress {
+    float: right;
+    width: 200px;
+    height: 6px;
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+.openslideshare_body span.ui-slider-handle {
+    height: 12px;
+    width: 6px;
+}
+

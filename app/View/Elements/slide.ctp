@@ -9,6 +9,7 @@
     <span id="pager" class="small"></span>&nbsp;&nbsp;
     <span id="next" class="slide_control_link"></span>&nbsp;
     <a href="javascript:void(0);return false;"><i id="slide_control_fast_forward" class="fa fa-fast-forward"></i></a>
+    <div id="slide_progress"></div>
 </div>
 
 <script type="text/javascript">
@@ -89,6 +90,18 @@ $1102(document).ready(function(){
     });
     $1102("#slide_control_fast_forward").click(function () {
         myslider.goToSlide(<?php echo count($file_list) -1; ?>);
+    });
+
+    $1102('#slide_progress').slider({
+        min: 1,
+        max: <?php echo count($file_list); ?>,
+        step: 1,
+        value: 1,
+        change: function(e, ui) {
+            myslider.goToSlide(ui.value -1);
+        },
+        create: function(e, ui) {
+        }
     });
 });
 </script>

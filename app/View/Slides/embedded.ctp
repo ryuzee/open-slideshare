@@ -1,6 +1,8 @@
 <?php echo $this->Html->script('jquery-1.10.2.min.js', array('fullBase' => true)); ?>
+<?php echo $this->Html->script('jquery-ui.min.js', array('fullBase' => true)); ?>
 <?php echo $this->Html->script('bootstrap.min.js', array('fullBase' => true)); ?>
 <?php echo $this->Html->css('bootstrap.min.css', array('fullBase' => true)); ?>
+<?php echo $this->Html->css('jquery-ui.min.css', array('fullBase' => true)); ?>
 <?php echo $this->Html->css('jquery.bxslider.css', array('fullBase' => true)); ?>
 <?php echo $this->Html->css('openslideshare.css', array('fullBase' => true)); ?>
 <?php echo $this->Html->css('openslideshare_embedded.css', array('fullBase' => true)); ?>
