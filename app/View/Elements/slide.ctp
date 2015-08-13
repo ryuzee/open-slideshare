@@ -17,7 +17,6 @@ $1102(document).ready(function(){
         threshold : 200,
         effect: "fadeIn"
     });
-
 });
 </script>
 
@@ -26,16 +25,8 @@ $1102(document).ready(function(){
     $1102(".openslideshare_body .bxslider_<?php echo $slide["key"]; ?>").show();
     $1102(".openslideshare_body .slide_control").show();
 
-    var slide_start_index = <?php echo $start_position; ?>;
-    if (slide_start_index > 0) {
-        var $elm = $1102(".openslideshare_body ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  slide_start_index);
-        var $img_src = $elm.attr("data-src");
-        $elm.attr("src",$img_src).removeClass("lazy");
-    }
-
     function bxslider_init() {
         var slider_config = {
-            startSlide: slide_start_index,
             mode: 'horizontal',
             responsive:true,
             pager:true,
@@ -55,7 +46,12 @@ $1102(document).ready(function(){
                 var $lazy_next = $1102(".openslideshare_body ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex));
                 var $load_next = $lazy_next.attr("data-src");
                 $lazy_next.attr("src",$load_next).removeClass("lazy");
-                $lazy_next.each(function(){});
+                $lazy_next.each(function(){
+                    // @TODO: 画像のローディングをここに入れる
+                    // while (!this.complete) {
+                    // ;
+                    // }
+                });
             }
         }
         myslider = $1102('.openslideshare_body .bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
@@ -63,7 +59,7 @@ $1102(document).ready(function(){
     bxslider_init();
     var timer = setInterval( updateDiv, 10 * 100);
 
-    // confirm periodically
+    // スライドのページ数が0の場合は定期的に確認する
     function updateDiv() {
         var messageDiv = $1102('.openslideshare_body .slider');
         if ($1102('.openslideshare_body div.slider ul').attr("data-count") > 0) {
@@ -82,10 +78,11 @@ $1102(document).ready(function(){
                 messageDiv.append(result);
                 bxslider_init();
             },
-            error: function(xhr, ajaxOptions, thrownError) {}
+            error: function(xhr, ajaxOptions, thrownError) {
+                // messageDiv.empty();
+            }
         });
     }
-
     $1102("#slide_control_fast_backward").click(function () {
         myslider.goToSlide(0);
     });
