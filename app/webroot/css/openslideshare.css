@@ -70,6 +70,8 @@ body.openslideshare_body {
     background: -o-linear-gradient(#656565, #1f1f1f);
     background: -ms-linear-gradient(#656565, #1f1f1f);
     background: linear-gradient(#656565, #1f1f1f);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     -webkit-border-bottom-right-radius: 10px;
     -webkit-border-bottom-left-radius: 10px;
     -moz-border-radius-bottomright: 10px;
