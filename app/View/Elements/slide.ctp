@@ -1,15 +1,18 @@
-<div class="slider">
+<div id="slide_player">
+<div class="slider" id="slide_body">
 <?php echo $this->element("slide_div", array("slide" => $slide)); ?>
 </div>
 
 <div class="slide_control" style="display:none">
-    <?php echo $this->Html->link('<i id="slide_control_home_link" class="fa fa-television"></i>', array("controller" => "slides", "action" => "view", $slide["id"], "full_base" => true), array('escape' => false)); ?>&nbsp;
+    <i id="slide_control_fullscreen" class="fa fa-television"></i>
+    <?php echo $this->Html->link('<i id="slide_control_home_link" class="fa fa-link"></i>', array("controller" => "slides", "action" => "view", $slide["id"], "full_base" => true), array('escape' => false)); ?>&nbsp;
     <a href="javascript:void(0);return false;"><i id="slide_control_fast_backward" class="fa fa-fast-backward"></i></a>&nbsp;
     <span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;
     <span id="pager" class="small"></span>&nbsp;&nbsp;
     <span id="next" class="slide_control_link"></span>&nbsp;
     <a href="javascript:void(0);return false;"><i id="slide_control_fast_forward" class="fa fa-fast-forward"></i></a>
     <div id="slide_progress"></div>
+</div>
 </div>
 
 <script type="text/javascript">
@@ -103,5 +106,36 @@ $1102(document).ready(function(){
         create: function(e, ui) {
         }
     });
+
+    $1102("#slide_control_fullscreen").click(function () {
+        current_width = $1102('#slide_player').width();
+        current_height = $1102('#slide_player').height();
+        if (screen.width > screen.height) {
+            h = 100;
+            w = Math.round(100 * current_height / current_width);
+        } else {
+            w = 100;
+            h = Math.round(100 * current_width / current_height);
+        }
+        requestFullscreen(document.getElementById('slide_player'));
+        var css = '<style type="text/css">.openslideshare_body div#slide_player:-webkit-full-screen { width:' + w + '%; height: ' + h + '%; }</style>';
+        $1102('head').append(css);
+    });
 });
+
+function requestFullscreen(target) {
+    if (target.webkitRequestFullscreen) {
+        //Chrome15+, Safari5.1+, Opera15+
+        target.webkitRequestFullscreen();
+    } else if (target.mozRequestFullScreen) {
+        //FF10+
+        target.mozRequestFullScreen();
+    } else if (target.msRequestFullscreen) {
+        //IE11+
+        target.msRequestFullscreen();
+    } else if (target.requestFullscreen) {
+        //HTML5 Fullscreen API
+        target.requestFullscreen();
+    }
+}
 </script>
