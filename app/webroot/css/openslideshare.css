@@ -178,5 +178,5 @@ body.openslideshare_body {
 .openslideshare_body span.ui-slider-handle {
     height: 12px;
     width: 6px;
+    outline:none;
 }
-
