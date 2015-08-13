@@ -79,11 +79,12 @@ class SlidesController extends AppController
      *
      * @param string $id
      */
-    public function view($id = null)
+     public function view($id = null, $display_position = 1)
     {
         $user = $this->Auth->User();
         $user_id = $user['id'];
         $this->set('user_id', $user_id);
+
 
         if (!$this->Slide->exists($id)) {
             throw new NotFoundException(__('Invalid slide'));
@@ -93,6 +94,18 @@ class SlidesController extends AppController
         $this->set('slide', $slide);
         $userinfo = $this->User->read(null, $slide['Slide']['user_id']);
         $this->set('user', $userinfo);
+
+        $file_list = $this->S3->get_slide_pages_list($slide["Slide"]["key"]);
+        $this->set('file_list', $file_list);
+
+        if(count($file_list) > $display_position) {
+            $start_position = 0;
+        } elseif($display_position <= 0) {
+            $start_position = 0;
+        } else {
+            $start_position = $display_position -1;
+        }
+        $this->set("start_position", $start_position);
 
         $other_slides_in_category = $this->Slide->get_recent_slides_in_category($slide['Slide']['category_id'], $id);
         $this->set('other_slides_in_category', $other_slides_in_category);
@@ -136,7 +149,10 @@ class SlidesController extends AppController
         Configure::write('debug', 0);
         $this->response->type("javascript");
         $this->layout = 'escaped_javascript';
-        $this->set('slide', $this->Slide->get_slide($id));
+        $slide = $this->Slide->get_slide($id);
+        $this->set('slide', $slide);
+        $file_list = $this->S3->get_slide_pages_list($slide["Slide"]["key"]);
+        $this->set('file_list', $file_list);
     }
 
     /**
@@ -151,7 +167,10 @@ class SlidesController extends AppController
         }
         Configure::write('debug', 0);
         $this->layout = 'ajax';
-        $this->set('slide', $this->Slide->get_slide($id));
+        $slide = $this->Slide->get_slide($id);
+        $this->set('slide', $slide);
+        $file_list = $this->S3->get_slide_pages_list($slide["Slide"]["key"]);
+        $this->set('file_list', $file_list);
     }
 
     /**

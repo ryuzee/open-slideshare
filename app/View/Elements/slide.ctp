@@ -20,8 +20,16 @@ $1102(document).ready(function(){
     $1102(".openslideshare_body .bxslider_<?php echo $slide["key"]; ?>").show();
     $1102(".openslideshare_body .slide_control").show();
 
+    var slide_start_index = <?php echo $start_position; ?>;
+    if (slide_start_index > 0) {
+        var $elm = $1102(".openslideshare_body ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  slide_start_index);
+        var $img_src = $elm.attr("data-src");
+        $elm.attr("src",$img_src).removeClass("lazy");
+    }
+
     function bxslider_init() {
         var slider_config = {
+            startSlide: slide_start_index,
             mode: 'horizontal',
             responsive:true,
             pager:true,

@@ -253,6 +253,26 @@ class S3Component extends Component
         return true;
     }
 
+    /**
+     * get_slide_pages_list
+     *
+     * @param mixed $slide_key
+     */
+    public function get_slide_pages_list($slide_key) {
+        $url = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $slide_key . "/list.json";
+
+        $context = stream_context_create(array(
+            'http' => array('ignore_errors' => true)
+        ));
+        $contents = file_get_contents($url, false, $context);
+        if (strpos($http_response_header[0], '200')) {
+            $file_list = json_decode($contents);
+        } else {
+            $file_list = array();
+        }
+        return $file_list;
+    }
+
     ################## Private ################
 
     /**

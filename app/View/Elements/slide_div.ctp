@@ -1,17 +1,3 @@
-<?php
-$url = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $slide["key"] . "/list.json";
-
-$context = stream_context_create(array(
-    'http' => array('ignore_errors' => true)
-));
-$contents = file_get_contents($url, false, $context);
-if (strpos($http_response_header[0], '200')) {
-    $file_list = json_decode($contents);
-} else {
-    $file_list = array();
-}
-?>
-
 <ul class="bxslider_<?php echo $slide["key"]; ?>" data-count="<?php echo count($file_list); ?>" style="display:none">
 <?php if (count($file_list) > 0): ?>
     <?php $count = 0; ?>
