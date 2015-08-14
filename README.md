@@ -7,9 +7,12 @@
 - Uploading slides (pptx, pdf)
 - Listing slides by category, user and so on
 - Showing slide without Flash Player
+- Showing slide vertically
 - Storing all slides in Amazon S3. Thus terribly scalabale
 - Searching slides
 - i18n
+- Responsive design
+- Embedded player
 
 You can see the working demo at http://slide.meguro.ryuzee.com/
 
