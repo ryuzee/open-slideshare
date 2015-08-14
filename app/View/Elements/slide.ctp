@@ -24,13 +24,19 @@ $1102(document).ready(function(){
         threshold : 200,
         effect: "fadeIn"
     });
-});
-</script>
 
-<script type="text/javascript">
-$1102(document).ready(function(){
     $1102(".openslideshare_body .bxslider_<?php echo $slide["key"]; ?>").show();
     $1102(".openslideshare_body .slide_control").show();
+
+    // Initialize jQuery UI slider
+    $1102('#slide_progress').slider({
+        min: 1,
+        max: <?php echo count($file_list); ?>,
+        step: 1,
+        value: 1,
+        create: function(e, ui) {
+        }
+    });
 
     function bxslider_init() {
         var slider_config = {
@@ -55,11 +61,18 @@ $1102(document).ready(function(){
                 var $load_next = $lazy_next.attr("data-src");
                 $lazy_next.attr("src",$load_next).removeClass("lazy");
                 $lazy_next.each(function(){});
+            },
+            onSlideAfter: function($slideElement, oldIndex, newIndex){
+                $1102('#slide_progress').slider("value", newIndex + 1);
             }
         }
         myslider = $1102('.openslideshare_body .bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
     }
     bxslider_init();
+    $1102('#slide_progress').slider({
+        change: function(e, ui) { myslider.goToSlide(ui.value -1); }
+    });
+
     var timer = setInterval( updateDiv, 10 * 100);
 
     // Peiodically update the div when the number of slide is zero.
@@ -89,18 +102,6 @@ $1102(document).ready(function(){
     });
     $1102("#slide_control_fast_forward").click(function () {
         myslider.goToSlide(<?php echo count($file_list) -1; ?>);
-    });
-
-    $1102('#slide_progress').slider({
-        min: 1,
-        max: <?php echo count($file_list); ?>,
-        step: 1,
-        value: 1,
-        change: function(e, ui) {
-            myslider.goToSlide(ui.value -1);
-        },
-        create: function(e, ui) {
-        }
     });
 
     $1102("#slide_control_fullscreen").click(function () {
