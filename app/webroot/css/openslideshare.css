@@ -2,7 +2,7 @@ body.openslideshare_body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, "Arial", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "游ゴシック", YuGothic, sans-serif;
   font-size: 16px;
   line-height: 1.42857;
-  background-color: transparent;
+  background-color: #ddd;
   background-image: url(/img/background.png);
 }
 
@@ -187,6 +187,31 @@ body.openslideshare_body {
     background: #000;
 }
 
+.openslideshare_body div.bordered_box {
+    border:1px solid #ccc;
+    background-color:#fff;
+    padding:8px;
+}
+
+.openslideshare_body .bottom_margin {
+    margin-bottom: 4px;
+}
+
+/** Show slide vertically **/
+.openslideshare_body div.vertical_slide_box {
+    border:1px solid #000;
+    margin-bottom:0px;
+}
+
+.openslideshare_body div.icon_right {
+    text-align: right;
+}
+
+.openslideshare_body div.icon_right span {
+    color: #bbb;
+}
+
+/** Embedded Player **/
 @media screen and (max-width: 400px) {
     .openslideshare_body div#slide_progress {
         display : none;

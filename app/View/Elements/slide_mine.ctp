@@ -10,7 +10,7 @@
                 <?php $image_url =  $this->Common->thumbnail_url($slide["Slide"]["key"]); ?>
                 <?php endif; ?>
 
-            <div class="<?php echo $column_class; ?>" style="margin-bottom:4px;">
+            <div class="<?php echo $column_class; ?> bottom_margin">
                 <a href="/slides/view/<?php echo $slide["Slide"]["id"]; ?>">
                 <img src="<?php echo $image_url; ?>" class="img-responsive slide_thumbnail" />
                 </a>
