@@ -149,6 +149,7 @@ body.openslideshare_body {
 }
 
 .openslideshare_body i#slide_control_home_link,
+.openslideshare_body i#slide_control_download_link,
 .openslideshare_body i#slide_control_fullscreen {
     float: left;
     margin-left: 12px;

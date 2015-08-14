@@ -6,6 +6,9 @@
 <div class="slide_control" style="display:none">
     <i id="slide_control_fullscreen" class="fa fa-television"></i>
     <?php echo $this->Html->link('<i id="slide_control_home_link" class="fa fa-link"></i>', array("controller" => "slides", "action" => "view", $slide["id"], "full_base" => true), array('escape' => false)); ?>&nbsp;
+    <?php if($slide["downloadable"]): ?>
+    <?php echo $this->Html->link('<i id="slide_control_download_link" class="fa fa-download"></i>', array("controller" => "slides", "action" => "download", $slide["id"], "full_base" => true), array('escape' => false)); ?>&nbsp;
+    <?php endif; ?>
     <a href="javascript:void(0);return false;"><i id="slide_control_fast_backward" class="fa fa-fast-backward"></i></a>&nbsp;
     <span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;
     <span id="pager" class="small"></span>&nbsp;&nbsp;
