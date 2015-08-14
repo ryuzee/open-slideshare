@@ -110,7 +110,7 @@ class SlidesController extends AppController
         $other_slides_in_category = $this->Slide->get_recent_slides_in_category($slide['Slide']['category_id'], $id);
         $this->set('other_slides_in_category', $other_slides_in_category);
 
-        $this->Slide->countup($id);
+        $this->Slide->countup_page_view($id);
     }
 
     /**
@@ -129,9 +129,14 @@ class SlidesController extends AppController
         if (!$slide['Slide']['downloadable']) {
             throw new NotFoundException(__('This slide can not be downloaded'));
         }
-        // Signed URL 生成
+
+        // increment download count
+        $this->Slide->countup_download_count($id);
+
+        // Generate Signed URL
         $url = $this->S3->get_original_file_download_path($slide['Slide']['key'], $slide['Slide']['extension']);
-        // リダイレクト
+
+        // Redirect
         $this->autoRender = false;
         $this->response->header('Location', $url);
     }
@@ -153,6 +158,7 @@ class SlidesController extends AppController
         $this->set('slide', $slide);
         $file_list = $this->S3->get_slide_pages_list($slide["Slide"]["key"]);
         $this->set('file_list', $file_list);
+        $this->Slide->countup_embedded_view($id);
     }
 
     /**

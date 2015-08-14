@@ -122,12 +122,42 @@ class Slide extends AppModel
      *
      * @param int $id Slide ID
      */
-    public function countup($id = null)
+    public function countup_page_view($id = null)
     {
         if (!$id) {
             return;
         }
         $fields = array('page_view' => 'page_view + 1');
+        $conditions = array('Slide.id' => $id);
+        $this->updateAll($fields, $conditions);
+    }
+
+    /**
+     * Count up the embedded view for specific slide.
+     *
+     * @param int $id Slide ID
+     */
+    public function countup_embedded_view($id = null)
+    {
+        if (!$id) {
+            return;
+        }
+        $fields = array('embedded_view' => 'embedded_view + 1');
+        $conditions = array('Slide.id' => $id);
+        $this->updateAll($fields, $conditions);
+    }
+
+    /**
+     * Count up the download count for specific slide.
+     *
+     * @param int $id Slide ID
+     */
+    public function countup_download_count($id = null)
+    {
+        if (!$id) {
+            return;
+        }
+        $fields = array('download_count' => 'download_count + 1');
         $conditions = array('Slide.id' => $id);
         $this->updateAll($fields, $conditions);
     }
