@@ -42,7 +42,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
              echo $this->fetch('script');
          ?>
     </head>
-    <body style="background-color:#ddd;" class="openslideshare_body">
+    <body class="openslideshare_body">
 
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -104,7 +104,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         </div>
 
         <div class="container" style="max-width:1024px; background-color:transparent; padding-top: 60px;; margin-top:1em; auto; border:none;" role="main">
-            <!--<header>--><?php echo $this->Session->flash(); ?><!--</header>-->
+            <?php echo $this->Session->flash(); ?>
             <!-- start contents -->
             <?php echo $this->fetch('content'); ?>
             <!-- end contents -->
