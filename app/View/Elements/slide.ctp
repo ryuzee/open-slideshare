@@ -117,25 +117,43 @@ $1102(document).ready(function(){
             w = 100;
             h = Math.round(100 * current_width / current_height);
         }
-        requestFullscreen(document.getElementById('slide_player'));
-        var css = '<style type="text/css">.openslideshare_body div#slide_player:-webkit-full-screen { width:' + w + '%; height: ' + h + '%; }</style>';
-        $1102('head').append(css);
+        var elm = document.getElementById('slide_player');
+        var css = '<style type="text/css">';
+            css = css + '.openslideshare_body div#slide_player:-webkit-full-screen { width:' + w + '%; height: ' + h + '%; }';
+            css = css + '.openslideshare_body div#slide_player:-moz-full-screen { width:' + w + '% !important; height: ' + h + '% !important; }';
+            css = css + '.openslideshare_body div#slide_player:-ms-fullscreen { width:' + w + '%; height: ' + h + '%; }';
+            css = css + '.openslideshare_body div#slide_player:fullscreen { width:' + w + '%; height: ' + h + '%; }';
+            if (elm.mozRequestFullScreen) {
+                css = css + '.bx-wrapper { width: ' + w + '% !important; height:' + h + '% !important; }';
+            }
+            css = css + '</style>';
+        $1102('#fullscreen_css_placeholder').append(css);
+        requestFullscreen(elm);
     });
-});
-
-function requestFullscreen(target) {
-    if (target.webkitRequestFullscreen) {
-        //Chrome15+, Safari5.1+, Opera15+
-        target.webkitRequestFullscreen();
-    } else if (target.mozRequestFullScreen) {
-        //FF10+
-        target.mozRequestFullScreen();
-    } else if (target.msRequestFullscreen) {
-        //IE11+
-        target.msRequestFullscreen();
-    } else if (target.requestFullscreen) {
-        //HTML5 Fullscreen API
-        target.requestFullscreen();
+    function requestFullscreen(target) {
+        if (target.webkitRequestFullscreen) {
+            target.webkitRequestFullscreen(); // Chrome15+, Safari5.1+, Opera15+
+        } else if (target.mozRequestFullScreen) {
+            target.mozRequestFullScreen();    // FF10+
+        } else if (target.msRequestFullscreen) {
+            target.msRequestFullscreen();     // IE11+
+        } else if (target.requestFullscreen) {
+            target.requestFullscreen();       //HTML5 Fullscreen API
+        }
     }
-}
+    document.addEventListener("webkitfullscreenchange", handleFSevent, false);
+    document.addEventListener("mozfullscreenchange", handleFSevent, false);
+    document.addEventListener("MSFullscreenChange", handleFSevent, false);
+    document.addEventListener("fullscreenchange", handleFSevent, false);
+    function handleFSevent() {
+        if (!((document.webkitFullscreenElement && document.webkitFullscreenElement !== null)
+            || (document.mozFullScreenElement && document.mozFullScreenElement !== null)
+            || (document.msFullscreenElement && document.msFullscreenElement !== null)
+            || (document.fullScreenElement && document.fullScreenElement !== null))) {
+            $1102('#fullscreen_css_placeholder').empty();
+        }
+        myslider.reloadSlider();
+    }
+});
 </script>
+<div id="fullscreen_css_placeholder"></div>

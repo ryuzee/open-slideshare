@@ -183,8 +183,6 @@ body.openslideshare_body {
 }
 
 .openslideshare_body div#slide_player:-webkit-full-screen {
-    width: 60%;
-    height: 60%;
     background: #000;
 }
 
