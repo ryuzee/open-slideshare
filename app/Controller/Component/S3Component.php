@@ -264,13 +264,23 @@ class S3Component extends Component
         $context = stream_context_create(array(
             'http' => array('ignore_errors' => true)
         ));
-        $contents = file_get_contents($url, false, $context);
-        if (strpos($http_response_header[0], '200')) {
-            $file_list = json_decode($contents);
-        } else {
-            $file_list = array();
+
+        set_error_handler(function($severity, $message, $file, $line) {
+            throw new ErrorException($message, 0, $severity, $file, $line);
+        });
+
+        $file_list = array();
+        try {
+            $contents = file_get_contents($url, false, $context);
+            if (strpos($http_response_header[0], '200')) {
+                $file_list = json_decode($contents);
+            }
+            return $file_list;
         }
-        return $file_list;
+        catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        restore_error_handler();
     }
 
     ################## Private ################
