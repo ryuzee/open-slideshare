@@ -18,6 +18,8 @@ You can see the working demo at http://slide.meguro.ryuzee.com/
 
 ![Sample1](http://www.ryuzee.com/images/work/OpenSlideshare01_small.png)
 
+![Embedded Player](http://www.ryuzee.com/images/work/embedded_player.png)
+
 ## Requirements
 
 This application depends on following technologies.
