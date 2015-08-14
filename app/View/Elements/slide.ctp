@@ -51,12 +51,7 @@ $1102(document).ready(function(){
                 var $lazy_next = $1102(".openslideshare_body ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (newIndex));
                 var $load_next = $lazy_next.attr("data-src");
                 $lazy_next.attr("src",$load_next).removeClass("lazy");
-                $lazy_next.each(function(){
-                    // @TODO: 画像のローディングをここに入れる
-                    // while (!this.complete) {
-                    // ;
-                    // }
-                });
+                $lazy_next.each(function(){});
             }
         }
         myslider = $1102('.openslideshare_body .bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
@@ -64,7 +59,7 @@ $1102(document).ready(function(){
     bxslider_init();
     var timer = setInterval( updateDiv, 10 * 100);
 
-    // スライドのページ数が0の場合は定期的に確認する
+    // Peiodically update the div when the number of slide is zero.
     function updateDiv() {
         var messageDiv = $1102('.openslideshare_body .slider');
         if ($1102('.openslideshare_body div.slider ul').attr("data-count") > 0) {
@@ -83,9 +78,7 @@ $1102(document).ready(function(){
                 messageDiv.append(result);
                 bxslider_init();
             },
-            error: function(xhr, ajaxOptions, thrownError) {
-                // messageDiv.empty();
-            }
+            error: function(xhr, ajaxOptions, thrownError) {}
         });
     }
     $1102("#slide_control_fast_backward").click(function () {
@@ -130,6 +123,7 @@ $1102(document).ready(function(){
         $1102('#fullscreen_css_placeholder').append(css);
         requestFullscreen(elm);
     });
+
     function requestFullscreen(target) {
         if (target.webkitRequestFullscreen) {
             target.webkitRequestFullscreen(); // Chrome15+, Safari5.1+, Opera15+
@@ -141,6 +135,7 @@ $1102(document).ready(function(){
             target.requestFullscreen();       //HTML5 Fullscreen API
         }
     }
+
     document.addEventListener("webkitfullscreenchange", handleFSevent, false);
     document.addEventListener("mozfullscreenchange", handleFSevent, false);
     document.addEventListener("MSFullscreenChange", handleFSevent, false);
