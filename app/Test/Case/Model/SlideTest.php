@@ -112,14 +112,15 @@ class SlideTest extends CakeTestCase
      */
     public function testGetRecentSlidesInCategory()
     {
-        $this->markTestIncomplete('testGetRecentSlidesInCategory not implemented.');
-    }
+        $slide_id = 1;
+        $category_id = 1;
+        $data = $this->Slide->get_recent_slides_in_category($category_id, $slide_id);
 
-    /**
-     * testGetConditionsToGetSlidesInCategory method.
-     */
-    public function testGetConditionsToGetSlidesInCategory()
-    {
-        $this->markTestIncomplete('testGetConditionsToGetSlidesInCategory not implemented.');
+        App::uses('SlideFixture', 'Test/Fixture');
+        $fixture = new SlideFixture();
+        $expected_record = $fixture->records[1]; // The second record in the fixture
+        foreach ($data[0]['Slide'] as $k => $v) {
+            $this->assertEquals($data[0]['Slide'][$k], $expected_record[$k], "The value of $k is OK?");
+        }
     }
 }
