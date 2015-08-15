@@ -110,7 +110,7 @@ class SlidesController extends AppController
         $other_slides_in_category = $this->Slide->get_recent_slides_in_category($slide['Slide']['category_id'], $id);
         $this->set('other_slides_in_category', $other_slides_in_category);
 
-        $this->Slide->countup_page_view($id);
+        $this->Slide->countup('page_view', $id);
     }
 
     /**
@@ -131,7 +131,7 @@ class SlidesController extends AppController
         }
 
         // increment download count
-        $this->Slide->countup_download_count($id);
+        $this->Slide->countup('download_count', $id);
 
         // Generate Signed URL
         $url = $this->S3->get_original_file_download_path($slide['Slide']['key'], $slide['Slide']['extension']);
@@ -158,7 +158,7 @@ class SlidesController extends AppController
         $this->set('slide', $slide);
         $file_list = $this->S3->get_slide_pages_list($slide["Slide"]["key"]);
         $this->set('file_list', $file_list);
-        $this->Slide->countup_embedded_view($id);
+        $this->Slide->countup('embedded_view', $id);
     }
 
     /**

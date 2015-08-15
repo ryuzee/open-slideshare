@@ -118,46 +118,17 @@ class Slide extends AppModel
     );
 
     /**
-     * Count up the page view for specific slide.
+     * countup
      *
-     * @param int $id Slide ID
+     * @param mixed $column
+     * @param mixed $id
      */
-    public function countup_page_view($id = null)
+    public function countup($column, $id = null)
     {
         if (!$id) {
             return;
         }
-        $fields = array('page_view' => 'page_view + 1');
-        $conditions = array('Slide.id' => $id);
-        $this->updateAll($fields, $conditions);
-    }
-
-    /**
-     * Count up the embedded view for specific slide.
-     *
-     * @param int $id Slide ID
-     */
-    public function countup_embedded_view($id = null)
-    {
-        if (!$id) {
-            return;
-        }
-        $fields = array('embedded_view' => 'embedded_view + 1');
-        $conditions = array('Slide.id' => $id);
-        $this->updateAll($fields, $conditions);
-    }
-
-    /**
-     * Count up the download count for specific slide.
-     *
-     * @param int $id Slide ID
-     */
-    public function countup_download_count($id = null)
-    {
-        if (!$id) {
-            return;
-        }
-        $fields = array('download_count' => 'download_count + 1');
+        $fields = array(sprintf('%s', $column) => sprintf('%s + 1', $column));
         $conditions = array('Slide.id' => $id);
         $this->updateAll($fields, $conditions);
     }
