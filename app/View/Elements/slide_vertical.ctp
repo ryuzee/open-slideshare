@@ -2,7 +2,7 @@
 <?php $count = 0; ?>
 <?php foreach ($file_list as $file): ?>
 <?php $count++; ?>
-<?php $u = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $file; ?>
+<?php $u = $this->Common->slide_page_url($file); ?>
 <div class="vertical_slide_box">
 <?php if ($count <= 2): ?>
         <img class="lazy img-responsive" src="<?php echo $u; ?>" />

@@ -2,7 +2,7 @@
 <?php if (count($file_list) > 0): ?>
     <?php $count = 0; ?>
     <?php foreach ($file_list as $file): ?>
-    <?php $u = "https://" . Configure::read('image_bucket_name') . ".s3-". Configure::read('region') . ".amazonaws.com/". $file; ?>
+    <?php $u = $this->Common->slide_page_url($file); ?>
     <?php if($count >= 2): ?>
     <li><img class="lazy image-<?php echo $count; ?>" src="<?php echo Router::url($this->Html->url("/img/spacer.gif"), true); ?>" data-src="<?php echo $u; ?>" /></li>
     <?php else: ?>

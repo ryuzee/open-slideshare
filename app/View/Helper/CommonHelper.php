@@ -7,11 +7,11 @@ class CommonHelper extends AppHelper
     public $helpers = array('Html');
 
     /**
-     * Generate base url
+     * Generate base url.
      *
-     * @param boolean $ssl
+     * @param bool $ssl
+     *
      * @return string
-     *
      */
     public function base_url($ssl = true)
     {
@@ -25,11 +25,11 @@ class CommonHelper extends AppHelper
     }
 
     /**
-     * Display comment
+     * Display comment.
      *
      * @param string $comment
-     * @return string
      *
+     * @return string
      */
     public function display($comment)
     {
@@ -44,11 +44,11 @@ class CommonHelper extends AppHelper
     }
 
     /**
-     * Generate S3 endpoint
+     * Generate S3 endpoint.
      *
      * @param string $bucket_name
-     * @return string
      *
+     * @return string
      */
     public function endpoint_s3($bucket_name)
     {
@@ -71,6 +71,30 @@ class CommonHelper extends AppHelper
     public function thumbnail_url($key)
     {
         $url = $this->endpoint_s3(Configure::read('image_bucket_name')).'/'.$key.'/thumbnail.jpg';
+
+        return $url;
+    }
+
+    /**
+     * slide_page_url.
+     *
+     * @param mixed $object_path
+     */
+    public function slide_page_url($object_path)
+    {
+        $url = $this->endpoint_s3(Configure::read('image_bucket_name')).'/'.$object_path;
+
+        return $url;
+    }
+
+    /**
+     * json_url.
+     *
+     * @param mixed $key
+     */
+    public function json_url($key)
+    {
+        $url = $this->endpoint_s3(Configure::read('image_bucket_name')).'/'.$key.'/list.json';
 
         return $url;
     }
