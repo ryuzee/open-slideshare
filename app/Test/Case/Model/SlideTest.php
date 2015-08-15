@@ -66,8 +66,7 @@ class SlideTest extends CakeTestCase
     }
 
     /**
-     * testCountup
-     *
+     * testCountup.
      */
     public function testCountup()
     {
@@ -92,7 +91,20 @@ class SlideTest extends CakeTestCase
      */
     public function testGetSlide()
     {
-        $this->markTestIncomplete('testGetSlide not implemented.');
+        $id = 1;
+        $data = $this->Slide->get_slide($id);
+
+        App::uses('SlideFixture', 'Test/Fixture');
+        $fixture = new SlideFixture();
+        $records = $fixture->records;
+        foreach ($records as $record) {
+            if ($record['id'] == $id) {
+                $expected_record = $record;
+            }
+        }
+        foreach ($data['Slide'] as $k => $v) {
+            $this->assertEquals($data['Slide'][$k], $expected_record[$k], "The value of $k is OK?");
+        }
     }
 
     /**
@@ -109,13 +121,5 @@ class SlideTest extends CakeTestCase
     public function testGetConditionsToGetSlidesInCategory()
     {
         $this->markTestIncomplete('testGetConditionsToGetSlidesInCategory not implemented.');
-    }
-
-    /**
-     * testGetCategoryName method.
-     */
-    public function testGetCategoryName()
-    {
-        $this->markTestIncomplete('testGetCategoryName not implemented.');
     }
 }

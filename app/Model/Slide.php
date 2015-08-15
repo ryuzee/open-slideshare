@@ -195,18 +195,4 @@ class Slide extends AppModel
 
         return $conditions;
     }
-
-    /**
-     * Get category name by id.
-     *
-     * @param int $id Category ID
-     *
-     * @return string category name
-     */
-    public function get_category_name($id)
-    {
-        $category = $this->read(null, $id);
-
-        return $category['Category']['name'];
-    }
 }
