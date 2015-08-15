@@ -10,15 +10,17 @@
     <div class="row slide_detail_row">
         <div class="col-md-9">
             <span class="h3"><?php echo h($slide['Slide']['name']); ?></span>
+            <div class="bottom_margin">
+            By <?php echo $this->Html->link($slide['User']['display_name'], array('controller' => 'users', 'action' => 'view', $slide['User']['id'])); ?>&nbsp;Published: <?php echo h(strftime("%Y/%m/%d",strtotime($slide['Slide']['created']))); ?> in <a href="/categories/view/<?php echo $slide["Category"]["id"]; ?>"><?php echo h($slide['Category']['name']); ?></a>
+            </div>
         </div>
         <div class="col-md-3" style="text-align:right">
-            <strong><?php echo $slide["Slide"]["page_view"]; ?></strong> views
+            <strong><?php echo $slide["Slide"]["page_view"] + $slide["Slide"]["embedded_view"]; ?></strong> views<br />
+            <strong><?php echo $slide["Slide"]["embedded_view"]; ?></strong> embedded views<br />
+            <?php if ($slide['Slide']['downloadable']): ?>
+            <strong><?php echo $slide["Slide"]["download_count"]; ?></strong> downloads
+            <?php endif; ?>
         </div>
-    </div>
-
-    <div>
-    By <?php echo $this->Html->link($slide['User']['display_name'], array('controller' => 'users', 'action' => 'view', $slide['User']['id'])); ?>&nbsp;
-    Published: <?php echo h(strftime("%Y/%m/%d",strtotime($slide['Slide']['created']))); ?> in <a href="/categories/view/<?php echo $slide["Category"]["id"]; ?>"><?php echo h($slide['Category']['name']); ?></a>
     </div>
 
     <div>
@@ -94,8 +96,6 @@
         <?php endif; ?>
         <li class="list-group-item"><?php echo $this->Html->link(__('Show Embedded Code'), "javascript:void(0);return false;", array("id" => "show_embedded")); ?> </li>
     </ul>
-
-
 
     <?php if($other_slides_in_category): ?>
         <!-- Default panel contents -->
