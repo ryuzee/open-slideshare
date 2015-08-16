@@ -8,6 +8,20 @@ module.exports = function(grunt){
                 ext: '.min.css'
             }
         },
+        csslint: {
+            strict: {
+                options: {
+                    import: 2
+                },
+                src: ['app/webroot/css/**/openslideshare*.css', '!app/webroot/**/*.min.css']
+            },
+            lax: {
+                options: {
+                    import: false
+                },
+                src: ['app/webroot/css/**/openslideshare*.css', '!app/webroot/**/*.min.css']
+            }
+        },
         watch: {
             css: {
                 files: ['app/webroot/css/**/*.css'],
@@ -22,6 +36,7 @@ module.exports = function(grunt){
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-csslint');
 
     grunt.registerTask('default', ['watch']);
 };
