@@ -23,7 +23,7 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 class AppController extends Controller
 {
     /**
-     * helpers
+     * helpers.
      */
     public $helpers = array(
         'Session',
@@ -35,7 +35,7 @@ class AppController extends Controller
     );
 
     /**
-     * components
+     * components.
      */
     public $components = array(
         'Auth',
@@ -50,16 +50,26 @@ class AppController extends Controller
     );
 
     /**
-     * uses
+     * uses.
      */
     public $uses = array('Comment', 'Category');
 
     /**
-     * beforeFilter
-     *
+     * beforeFilter.
      */
     public function beforeFilter()
     {
+        // Check the S3 buckets name to avoid SSL issue.
+        if ((strpos(Configure::read('bucket_name'), '.') !== false) ||
+           (Configure::read('use_s3_static_hosting') != 1 && strpos(Configure::read('image_bucket_name'), '.') !== false)) {
+            throw new Exception(
+                sprintf(
+                    __('Dot can not be allowed in the bucket name %s to avoid SSL certification issue... Please check S3 bucket name settings'),
+                    Configure::read('bucket_name')
+                )
+            );
+        }
+
         $this->set('title_for_layout', '');
 
         if (isset($this->Auth)) {
