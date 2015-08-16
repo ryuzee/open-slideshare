@@ -19,7 +19,7 @@ $1102(document).ready(function(){
         event.preventDefault();
 
         var formData = new FormData();
-        var url = "<?php echo $this->Common->endpoint_s3(Configure::read('bucket_name')); ?>/";
+        var url = "<?php echo $this->Common->upload_endpoint(); ?>/";
 
         var form = $1102('#upload-form');
         $1102(form.serializeArray()).each(function(i, v) {

@@ -52,10 +52,28 @@ class CommonHelper extends AppHelper
      */
     public function endpoint_s3($bucket_name)
     {
-        if (Configure::read('region') == 'us-east-1') {
-            $url = 'https://'.$bucket_name.'.s3.amazonaws.com';
+        if (Configure::read('use_s3_static_hosting') == true) {
+            $url = 'http://'.$bucket_name;
         } else {
-            $url = 'https://'.$bucket_name.'.s3-'.Configure::read('region').'.amazonaws.com';
+            if (Configure::read('region') == 'us-east-1') {
+                $url = 'https://'.$bucket_name.'.s3.amazonaws.com';
+            } else {
+                $url = 'https://'.$bucket_name.'.s3-'.Configure::read('region').'.amazonaws.com';
+            }
+        }
+
+        return $url;
+    }
+
+    /**
+     * upload_endpoint.
+     */
+    public function upload_endpoint()
+    {
+        if (Configure::read('region') == 'us-east-1') {
+            $url = 'https://'.Configure::read('bucket_name').'.s3.amazonaws.com';
+        } else {
+            $url = 'https://'.Configure::read('bucket_name').'.s3-'.Configure::read('region').'.amazonaws.com';
         }
 
         return $url;

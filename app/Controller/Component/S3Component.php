@@ -12,12 +12,17 @@ class S3Component extends Component
     {
         if (isset($_SERVER["AWS_ACCESS_ID"]) && isset($_SERVER['AWS_SECRET_KEY'])) {
             $config = array(
+                'signature' => 'v4',
+                'region' => Configure::read('region'),
                 'key' => $_SERVER["AWS_ACCESS_ID"],
                 'secret' => $_SERVER["AWS_SECRET_KEY"],
             );
             $s3 = S3Client::factory($config);
         } else {
-            $s3 = S3Client::factory();
+            $s3 = S3Client::factory(array(
+                'signature' => 'v4',
+                'region' => Configure::read('region'),
+            ));
         }
         return $s3;
     }
@@ -378,20 +383,26 @@ class S3Component extends Component
     {
         $s3 = $this->getClient();
         $file_array = array();
+        $this->print_log("Total number of files is " . count($files));
 
+        $bucket = Configure::read('image_bucket_name');
         foreach ($files as $file_path => $file_info) {
             $file_key = str_replace(TMP, '', $file_path);
             $file_array[] = $file_key;
             // store image to S3
-            $this->print_log("Start uploading image to S3. ".$file_key);
-            $s3->putObject(array(
-                'Bucket'       => Configure::read('image_bucket_name'),
-                'Key'          => $file_key,
-                'SourceFile'   => $file_path,
-                'ContentType'  => "image/jpg",
-                'ACL'          => 'public-read',
-                'StorageClass' => 'REDUCED_REDUNDANCY',
-            ));
+            $this->print_log("Start uploading image to S3($bucket). ".$file_key);
+            try {
+                $s3->putObject(array(
+                    'Bucket'       => $bucket,
+                    'Key'          => $file_key,
+                    'SourceFile'   => $file_path,
+                    'ContentType'  => "image/jpg",
+                    'ACL'          => 'public-read',
+                    'StorageClass' => 'REDUCED_REDUNDANCY',
+                ));
+            } catch (S3Exception $e) {
+                $this->print_log("The file was not uploaded.\n" . $e->getMessage());
+            }
         }
 
         sort($file_array);
