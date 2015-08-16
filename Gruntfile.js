@@ -23,6 +23,11 @@ module.exports = function(grunt){
             }
         },
         clean: ["app/tmp/logs/*", "!app/tmp/**/.gitkeep"],
+        shell: {
+            reloadx: {
+                command: './node_modules/.bin/livereloadx'
+            }
+        },
         watch: {
             css: {
                 files: ['app/webroot/css/**/*.css'],
@@ -39,6 +44,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-csslint');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-shell');
 
     grunt.registerTask('default', ['watch']);
 };
