@@ -65,7 +65,7 @@ class AppController extends Controller
             throw new Exception(
                 sprintf(
                     __('Dot can not be allowed in the bucket name %s to avoid SSL certification issue... Please check S3 bucket name settings'),
-                    Configure::read('bucket_name')
+                    Configure::read('bucket_name') . " / " . Configure::read('image_bucket_name')
                 )
             );
         }
