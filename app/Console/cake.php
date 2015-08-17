@@ -28,6 +28,14 @@ if (function_exists('ini_set')) {
 if (!include $dispatcher) {
     trigger_error('Could not locate CakePHP core files.', E_USER_ERROR);
 }
+
+// supply argument...
+$idx = array_search('-app', $argv);
+if ($idx === false) {
+    $argv[] = '-app';
+    $argv[] =  $root . $ds . 'app';
+}
+
 unset($paths, $path, $dispatcher, $root, $ds);
 
 return ShellDispatcher::run($argv);
