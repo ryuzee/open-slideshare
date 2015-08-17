@@ -26,7 +26,6 @@ dependencies:
         );
         }" > app/Config/database.php
     - echo "create database circle" | mysql -u root
-    - echo "create database circle_test" | mysql -u root
     - ./app/Console/cake Migrations.migration run all
 
 test:
