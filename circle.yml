@@ -3,6 +3,7 @@ machine:
     version: 5.5.11
 dependencies:
   post:
+    - chmod 755 ./app/Console/cake
     - echo "<?php
         class DATABASE_CONFIG {
         public \$test = array(
@@ -17,4 +18,4 @@ dependencies:
         }" > app/Config/database.php
 test:
   override:
-    - php ./app/Console/cake.php test app AllModel
+    - ./app/Console/cake test app AllTests
