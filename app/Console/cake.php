@@ -11,24 +11,22 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Console
  * @since         CakePHP(tm) v 2.0
  */
-
 $ds = DIRECTORY_SEPARATOR;
-$dispatcher = 'Cake' . $ds . 'Console' . $ds . 'ShellDispatcher.php';
+$dispatcher = 'Cake'.$ds.'Console'.$ds.'ShellDispatcher.php';
 
 if (function_exists('ini_set')) {
-	$root = dirname(dirname(dirname(__FILE__)));
+    $root = dirname(dirname(dirname(__FILE__)));
 
-	// the following line differs from its sibling
-	ini_set('include_path', $root . $ds . 'Vendor' . $ds . 'cakephp' . $ds . 'cakephp' .$ds . 'lib' . PATH_SEPARATOR . ini_get('include_path'));
-
+    // the following line differs from its sibling
+    ini_set('include_path', $root.$ds.'Vendor'.$ds.'cakephp'.$ds.'cakephp'.$ds.'lib'.PATH_SEPARATOR.ini_get('include_path'));
 }
 
 if (!include $dispatcher) {
-	trigger_error('Could not locate CakePHP core files.', E_USER_ERROR);
+    trigger_error('Could not locate CakePHP core files.', E_USER_ERROR);
 }
 unset($paths, $path, $dispatcher, $root, $ds);
 
