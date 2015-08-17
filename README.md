@@ -1,4 +1,4 @@
-# Open Slideshare
+# Open Slideshare [![Circle CI](https://circleci.com/gh/ryuzee/open-slideshare/tree/master.svg?style=svg)](https://circleci.com/gh/ryuzee/open-slideshare/tree/master)
 
 *This is simple open source slidesharing application.*
 
