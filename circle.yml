@@ -6,6 +6,15 @@ dependencies:
     - chmod 755 ./app/Console/cake
     - echo "<?php
         class DATABASE_CONFIG {
+         public \$default = array(
+          'datasource' => 'Database/Mysql',
+          'persistent' => false,
+          'host' => '127.0.0.1',
+          'login' => 'ubuntu',
+          'password' => '',
+          'database' => 'circle',
+          'prefix' => ''
+        );
         public \$test = array(
           'datasource' => 'Database/Mysql',
           'persistent' => false,
