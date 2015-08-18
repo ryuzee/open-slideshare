@@ -1,6 +1,7 @@
 filter:
     excluded_paths:
         - 'Vendor/*'
+        - 'app/Test/*'
 checks:
     php:
         code_rating: true
