@@ -1,6 +1,10 @@
 machine:
   php:
     version: 5.5.11
+general:
+  artifacts:
+      - "app/reports"
+
 dependencies:
   post:
     - chmod 755 ./app/Console/cake
