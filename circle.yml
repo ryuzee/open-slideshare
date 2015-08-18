@@ -34,4 +34,4 @@ dependencies:
 
 test:
   override:
-    - ./app/Console/cake test app AllTests
+    - ./app/Console/cake test --log-junit app/reports/unittest.xml app AllTests
