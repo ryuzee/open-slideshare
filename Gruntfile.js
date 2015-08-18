@@ -26,6 +26,12 @@ module.exports = function(grunt){
         shell: {
             reloadx: {
                 command: './node_modules/.bin/livereloadx'
+            },
+            run_test: {
+                command: 'app/Console/cake test --log-junit app/reports/unittest.xml app AllTests'
+            },
+            run_test_full: {
+                command: 'app/Console/cake test --log-junit app/reports/unittest.xml --coverage-html app/reports --coverage-clover app/reports/coverage.xml app AllTests'
             }
         },
         watch: {
