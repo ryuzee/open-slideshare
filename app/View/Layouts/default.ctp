@@ -120,7 +120,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
             </div>
         </div>
 
-        <div class="container" style="max-width:1024px; background-color:transparent; padding-top: 60px;; margin-top:1em; auto; border:none;" role="main">
+        <div class="container" id="main_container" role="main">
             <?php echo $this->Session->flash(); ?>
             <!-- start contents -->
             <?php echo $this->fetch('content'); ?>
