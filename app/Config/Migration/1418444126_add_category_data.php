@@ -1,4 +1,5 @@
 <?php
+namespace OpenSlideshare\Migration;
 
 class AddCategoryData extends CakeMigration
 {

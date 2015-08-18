@@ -1,4 +1,5 @@
 <?php
+namespace OpenSlideshare\Migration;
 
 class CreateComments extends CakeMigration
 {
@@ -42,7 +43,7 @@ class CreateComments extends CakeMigration
     /**
      * Before migration callback.
      *
-     * @param string $direction, up or down direction of migration process
+     * @param string $direction up or down direction of migration process
      *
      * @return bool Should process continue
      */
@@ -54,7 +55,7 @@ class CreateComments extends CakeMigration
     /**
      * After migration callback.
      *
-     * @param string $direction, up or down direction of migration process
+     * @param string $direction up or down direction of migration process
      *
      * @return bool Should process continue
      */
