@@ -12,7 +12,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @since         CakePHP(tm) v 0.10.8.2117
  */
-require_once dirname(dirname(dirname(__FILE__))).DS.'Vendor'.DS.'autoload.php';
+require_once dirname(dirname(dirname(__FILE__))) . DS . 'Vendor' . DS . 'autoload.php';
 
 // https://github.com/composer/composer/commit/c80cb76b9b5082ecc3e5b53b1050f76bb27b127b
 spl_autoload_unregister(array('App', 'load'));
@@ -21,7 +21,7 @@ spl_autoload_register(array('App', 'load'), true, true);
 // http://qiita.com/maccotsan/items/37d706bf978e80687d4c
 App::build(array(
     'Plugin' => array(
-      ROOT.'/Plugin/',
+        ROOT . '/Plugin/',
     ),
   )
 );
