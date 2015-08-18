@@ -37,4 +37,4 @@ test:
     - ./app/Console/cake test --log-junit app/reports/unittest.xml app AllTests
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/phpunit/
-    - find . -type f -regex "./app/reports/.*xml" -exec cp { $CIRCLE_TEST_REPORTS/phpunit/ \;}
+    - find . -type f -regex "./app/reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/phpunit/ \;
