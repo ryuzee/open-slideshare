@@ -210,6 +210,9 @@ body.openslideshare_body {
 .openslideshare_body div.icon_right span {
     color: #bbb;
 }
+.openslideshare_body #main_container {
+    max-width:1024px; background-color:transparent; padding-top: 60px;; margin-top:1em; auto; border:none;
+}
 
 /** Embedded Player **/
 @media screen and (max-width: 400px) {
