@@ -1,5 +1,4 @@
 <?php
-namespace OpenSlideshare\Migration;
 
 class CreateComments extends CakeMigration
 {

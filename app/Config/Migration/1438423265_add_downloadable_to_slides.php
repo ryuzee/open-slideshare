@@ -1,5 +1,4 @@
 <?php
-namespace OpenSlideshare\Migration;
 
 class AddDownloadableToSlides extends CakeMigration
 {
