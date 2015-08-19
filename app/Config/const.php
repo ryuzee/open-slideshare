@@ -6,6 +6,7 @@ $config['region'] = $_SERVER['REGION'];
 $config['bucket_name'] = $_SERVER['BUCKET_NAME'];
 $config['image_bucket_name'] = $_SERVER['IMAGE_BUCKET_NAME'];
 $config['use_s3_static_hosting'] = $_SERVER['USE_S3_STATIC_HOSTING'];
+$config['cdn_base_url'] = $_SERVER['CDN_BASE_URL'];
 $config['sqs_url'] = $_SERVER['SQS_URL'];
 
 // Convert status
