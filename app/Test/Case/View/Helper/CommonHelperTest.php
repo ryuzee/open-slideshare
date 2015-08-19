@@ -116,6 +116,9 @@ class CommonHelperTest extends CakeTestCase
         Configure::write('use_s3_static_hosting', 1);
         $this->assertEqual($this->Common->thumbnail_url($key), 'http://www.example.com/hoge/thumbnail.jpg');
 
+        Configure::write('cdn_base_url', 'http://example.cloudfront.net');
+        $this->assertEqual($this->Common->thumbnail_url($key), 'http://example.cloudfront.net/hoge/thumbnail.jpg');
+
         $this->restore_config($config);
     }
 
@@ -136,6 +139,9 @@ class CommonHelperTest extends CakeTestCase
         Configure::write('use_s3_static_hosting', 0);
         $this->assertEqual($this->Common->slide_page_url($object_key), 'https://example.s3-ap-northeast-1.amazonaws.com/sushi/toro.html');
 
+        Configure::write('cdn_base_url', 'http://example.cloudfront.net');
+        $this->assertEqual($this->Common->slide_page_url($object_key), 'http://example.cloudfront.net/sushi/toro.html');
+
         $this->restore_config($config);
     }
 
@@ -151,6 +157,9 @@ class CommonHelperTest extends CakeTestCase
         Configure::write('use_s3_static_hosting', 1);
         $this->assertEqual($this->Common->json_url($key), 'http://www.example.com/hoge/list.json');
 
+        Configure::write('cdn_base_url', 'http://example.cloudfront.net');
+        $this->assertEqual($this->Common->json_url($key), 'http://example.cloudfront.net/hoge/list.json');
+
         $this->restore_config($config);
     }
 
@@ -164,6 +173,7 @@ class CommonHelperTest extends CakeTestCase
             'image_bucket_name',
             'region',
             'use_s3_static_hosting',
+            'cdn_base_url',
         );
         $result = array();
         foreach ($keys as $key) {

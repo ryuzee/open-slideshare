@@ -53,12 +53,12 @@ class CommonHelper extends AppHelper
     public function endpoint_s3($bucket_name)
     {
         if (Configure::read('use_s3_static_hosting') == true) {
-            $url = 'http://'.$bucket_name;
+            $url = 'http://' . $bucket_name;
         } else {
             if (Configure::read('region') == 'us-east-1') {
-                $url = 'https://'.$bucket_name.'.s3.amazonaws.com';
+                $url = 'https://' . $bucket_name . '.s3.amazonaws.com';
             } else {
-                $url = 'https://'.$bucket_name.'.s3-'.Configure::read('region').'.amazonaws.com';
+                $url = 'https://' . $bucket_name . '.s3-' . Configure::read('region') . '.amazonaws.com';
             }
         }
 
@@ -71,9 +71,9 @@ class CommonHelper extends AppHelper
     public function upload_endpoint()
     {
         if (Configure::read('region') == 'us-east-1') {
-            $url = 'https://'.Configure::read('bucket_name').'.s3.amazonaws.com';
+            $url = 'https://' . Configure::read('bucket_name') . '.s3.amazonaws.com';
         } else {
-            $url = 'https://'.Configure::read('bucket_name').'.s3-'.Configure::read('region').'.amazonaws.com';
+            $url = 'https://' . Configure::read('bucket_name') . '.s3-' . Configure::read('region').'.amazonaws.com';
         }
 
         return $url;
@@ -88,7 +88,11 @@ class CommonHelper extends AppHelper
      */
     public function thumbnail_url($key)
     {
-        $url = $this->endpoint_s3(Configure::read('image_bucket_name')).'/'.$key.'/thumbnail.jpg';
+        if (Configure::read('cdn_base_url')) {
+            $url = Configure::read('cdn_base_url') . '/' . $key . '/thumbnail.jpg';
+        } else {
+            $url = $this->endpoint_s3(Configure::read('image_bucket_name')) . '/' . $key . '/thumbnail.jpg';
+        }
 
         return $url;
     }
@@ -100,7 +104,11 @@ class CommonHelper extends AppHelper
      */
     public function slide_page_url($object_path)
     {
-        $url = $this->endpoint_s3(Configure::read('image_bucket_name')).'/'.$object_path;
+        if (Configure::read('cdn_base_url')) {
+            $url = Configure::read('cdn_base_url') . '/' . $object_path;
+        } else {
+            $url = $this->endpoint_s3(Configure::read('image_bucket_name')) . '/' . $object_path;
+        }
 
         return $url;
     }
@@ -112,7 +120,11 @@ class CommonHelper extends AppHelper
      */
     public function json_url($key)
     {
-        $url = $this->endpoint_s3(Configure::read('image_bucket_name')).'/'.$key.'/list.json';
+        if (Configure::read('cdn_base_url')) {
+            $url = Configure::read('cdn_base_url') . '/' . $key . '/list.json';
+        } else {
+            $url = $this->endpoint_s3(Configure::read('image_bucket_name')) . '/' . $key . '/list.json';
+        }
 
         return $url;
     }
