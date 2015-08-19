@@ -17,7 +17,7 @@
         }
     },
     "require": {
-        "cakephp/cakephp": "2.5.*",
+        "cakephp/cakephp": "2.7.*",
         "phpunit/phpunit": "3.7.38",
         "aws/aws-sdk-php": "2.*",
         "cakedc/migrations": "~2.3",

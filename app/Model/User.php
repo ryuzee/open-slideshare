@@ -22,8 +22,8 @@ class User extends AppModel
      */
     public $validate = array(
         'username' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
              ),
             'unique' => array(
                 'rule' => array('isUnique'),
@@ -39,8 +39,8 @@ class User extends AppModel
             ),
         ),
         'password' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
              ),
             'minlength' => array(
                 'rule' => array('minLength', 5),
@@ -54,13 +54,13 @@ class User extends AppModel
             ),
         ),
         'display_name' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
              ),
         ),
         'biography' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
              ),
         ),
      );

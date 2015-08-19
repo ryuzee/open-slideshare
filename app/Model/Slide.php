@@ -38,8 +38,8 @@ class Slide extends AppModel
             ),
         ),
         'name' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
                 'message' => 'Title must be compulsory',
              ),
             'maxlength' => array(
@@ -48,14 +48,14 @@ class Slide extends AppModel
             ),
         ),
         'description' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
                 'message' => 'Description must be compulsory',
              ),
         ),
         'key' => array(
-            'notempty' => array(
-                'rule' => array('notempty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
                 'message' => 'Key must be set',
              ),
         ),
