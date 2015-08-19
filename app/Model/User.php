@@ -16,7 +16,7 @@ class User extends AppModel
     public $displayField = 'username';
 
     /**
-     * validate
+     * validate.
      *
      * @var array
      */
@@ -66,7 +66,7 @@ class User extends AppModel
      );
 
     /**
-     * beforeSave
+     * beforeSave.
      *
      * @param array $options
      */

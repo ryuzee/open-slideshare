@@ -11,13 +11,12 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController
 {
     /**
-     * uses
+     * uses.
      */
     public $uses = array('User', 'Slide');
 
     /**
-     * beforeFilter
-     *
+     * beforeFilter.
      */
     public function beforeFilter()
     {
@@ -26,8 +25,7 @@ class UsersController extends AppController
     }
 
     /**
-     * index
-     *
+     * index.
      */
     public function index()
     {
@@ -46,6 +44,10 @@ class UsersController extends AppController
         $this->set('slides', $this->Paginator->paginate('Slide'));
 
         $userinfo = $this->User->read(null, $user_id);
+        if (!$userinfo) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+
         $this->set('user', $userinfo);
     }
 
@@ -75,6 +77,7 @@ class UsersController extends AppController
                     ),
             );
         $this->set('slides', $this->Paginator->paginate('Slide'));
+
         $userinfo = $this->User->read(null, $id);
         $this->set('user', $userinfo);
 
@@ -83,8 +86,7 @@ class UsersController extends AppController
     }
 
     /**
-     * login
-     *
+     * login.
      */
     public function login()
     {
@@ -110,8 +112,7 @@ class UsersController extends AppController
     }
 
     /**
-     * logout
-     *
+     * logout.
      */
     public function logout()
     {
@@ -121,8 +122,7 @@ class UsersController extends AppController
     }
 
     /**
-     * signup
-     *
+     * signup.
      */
     public function signup()
     {
@@ -140,8 +140,7 @@ class UsersController extends AppController
     }
 
     /**
-     * json_list
-     *
+     * json_list.
      */
     public function json_list()
     {
@@ -150,13 +149,15 @@ class UsersController extends AppController
         $users = $this->User->find('all', array());
 
         $results = array();
-        foreach ($users as $user) {
-            $rec['id'] = $user['User']['id'];
-            $rec['name'] = $user['User']['display_name'];
-            $rec['avatar'] = '';
-            $rec['icon'] = '';
-            $rec['type'] = 'contact';
-            $results[] = $rec;
+        if (is_array($users)) {
+            foreach ($users as $user) {
+                $rec['id'] = $user['User']['id'];
+                $rec['name'] = $user['User']['display_name'];
+                $rec['avatar'] = '';
+                $rec['icon'] = '';
+                $rec['type'] = 'contact';
+                $results[] = $rec;
+            }
         }
         $this->set('users', json_encode($results));
     }
@@ -204,8 +205,6 @@ class UsersController extends AppController
      * delete method.
      *
      * @throws NotFoundException
-     *
-     * @param string $id
      */
     public function delete()
     {
