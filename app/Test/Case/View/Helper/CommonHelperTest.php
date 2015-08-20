@@ -112,10 +112,14 @@ class CommonHelperTest extends CakeTestCase
         $config = $this->store_config();
 
         $key = 'hoge';
+
+        // case 1
+        Configure::write('cdn_base_url', '');
         Configure::write('image_bucket_name', 'www.example.com');
         Configure::write('use_s3_static_hosting', 1);
         $this->assertEqual($this->Common->thumbnail_url($key), 'http://www.example.com/hoge/thumbnail.jpg');
 
+        // case 2
         Configure::write('cdn_base_url', 'http://example.cloudfront.net');
         $this->assertEqual($this->Common->thumbnail_url($key), 'http://example.cloudfront.net/hoge/thumbnail.jpg');
 
@@ -130,15 +134,20 @@ class CommonHelperTest extends CakeTestCase
         $config = $this->store_config();
 
         $object_key = 'sushi/toro.html';
+
+        // case 1
+        Configure::write('cdn_base_url', '');
         Configure::write('image_bucket_name', 'www.example.com');
         Configure::write('use_s3_static_hosting', 1);
         $this->assertEqual($this->Common->slide_page_url($object_key), 'http://www.example.com/sushi/toro.html');
 
+        // case 2
         Configure::write('image_bucket_name', 'example');
         Configure::write('region', 'ap-northeast-1');
         Configure::write('use_s3_static_hosting', 0);
         $this->assertEqual($this->Common->slide_page_url($object_key), 'https://example.s3-ap-northeast-1.amazonaws.com/sushi/toro.html');
 
+        // case 3
         Configure::write('cdn_base_url', 'http://example.cloudfront.net');
         $this->assertEqual($this->Common->slide_page_url($object_key), 'http://example.cloudfront.net/sushi/toro.html');
 
@@ -153,10 +162,14 @@ class CommonHelperTest extends CakeTestCase
         $config = $this->store_config();
 
         $key = 'hoge';
+
+        // case 1
+        Configure::write('cdn_base_url', '');
         Configure::write('image_bucket_name', 'www.example.com');
         Configure::write('use_s3_static_hosting', 1);
         $this->assertEqual($this->Common->json_url($key), 'http://www.example.com/hoge/list.json');
 
+        // case 2
         Configure::write('cdn_base_url', 'http://example.cloudfront.net');
         $this->assertEqual($this->Common->json_url($key), 'http://example.cloudfront.net/hoge/list.json');
 

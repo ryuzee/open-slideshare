@@ -123,4 +123,30 @@ class SlideTest extends CakeTestCase
             $this->assertEquals($data[0]['Slide'][$k], $expected_record[$k], "The value of $k is OK?");
         }
     }
+
+    /**
+     * testUpdateStatus
+     *
+     */
+    public function testUpdateStatus()
+    {
+        $id = 1;
+        $key = "4ea2abecba74eda5521fff924d9e5062";
+        $this->Slide->update_status($key, -1);
+        $data = $this->Slide->get_slide($id);
+        $this->assertEqual($data['Slide']['convert_status'], -1);
+    }
+
+    /**
+     * testUpdateExtension
+     *
+     */
+    public function testUpdateExtension()
+    {
+        $id = 1;
+        $key = "4ea2abecba74eda5521fff924d9e5062";
+        $this->Slide->update_extension($key, '.pptx');
+        $data = $this->Slide->get_slide($id);
+        $this->assertEqual($data['Slide']['extension'], '.pptx');
+    }
 }

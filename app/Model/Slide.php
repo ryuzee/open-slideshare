@@ -195,4 +195,39 @@ class Slide extends AppModel
 
         return $conditions;
     }
+    /**
+     * Update status code in Slide to indicate conversion status
+     *
+     * @param string $key
+     *        int    $status_code
+     * @return void
+     *
+     */
+    public function update_status($key, $status_code)
+    {
+        $this->primaryKey = "key";
+        if ($this->exists($key)) {
+            $this->read(null, $key);
+            $this->set('convert_status', $status_code);
+            $this->save();
+        }
+    }
+
+    /**
+     * Update status code in Slide to indicate conversion status
+     *
+     * @param string $key
+     *        string $extension
+     * @return void
+     *
+     */
+    public function update_extension($key, $extension)
+    {
+        $this->primaryKey = "key";
+        if ($this->exists($key)) {
+            $this->read(null, $key);
+            $this->set('extension', $extension);
+            $this->save();
+        }
+    }
 }
