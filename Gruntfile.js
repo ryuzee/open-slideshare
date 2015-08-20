@@ -32,6 +32,9 @@ module.exports = function(grunt){
             },
             run_test_full: {
                 command: 'app/Console/cake test --log-junit app/reports/unittest.xml --coverage-html app/reports --coverage-clover app/reports/coverage.xml app AllTests'
+            },
+            run_phpcs: {
+                command: './Vendor/bin/phpcs app/**/*.php --standard=PSR2;:'
             }
         },
         watch: {
