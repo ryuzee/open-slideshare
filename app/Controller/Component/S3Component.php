@@ -5,6 +5,23 @@ use Aws\Common\InstanceMetadata\InstanceMetadataClient;
 class S3Component extends Component
 {
     /**
+     * Slide
+     *
+     * @var mixed
+     */
+    private $Slide;
+
+    /**
+     * __construct
+     *
+     */
+    public function __construct(ComponentCollection $collection, $settings = array())
+    {
+        parent::__construct($collection, $settings);
+        $this->Slide = ClassRegistry::init('Slide');
+    }
+
+    /**
      * Create Amazon S3 Client instance
      *
      */
@@ -207,7 +224,7 @@ class S3Component extends Component
 
                 $status = $this->convert_ppt_to_pdf($file_path);
                 if (!$status) {
-                    $this->update_status($key, ERROR_CONVERT_PPT_TO_PDF);
+                    $this->Slide->update_status($key, ERROR_CONVERT_PPT_TO_PDF);
                     return false;
                 }
             } elseif (in_array($mime_type, $all_convertable)) {
@@ -215,20 +232,20 @@ class S3Component extends Component
                 $this->print_log("Renaming file...");
                 rename($file_path, $file_path.".pdf");
             }
-            $this->update_extension($key, $extension);
+            $this->Slide->update_extension($key, $extension);
 
             if (in_array($mime_type, $all_convertable)) {
                 // Convert PDF to ppm
                 $status = $this->convert_pdf_to_ppm($save_dir, $file_path);
                 if (!$status) {
-                    $this->update_status($key, ERROR_CONVERT_PDF_TO_PPM);
+                    $this->Slide->update_status($key, ERROR_CONVERT_PDF_TO_PPM);
                     return false;
                 }
 
                 // Convert ppm to jpg
                 $status = $this->convert_ppm_to_jpg($save_dir);
                 if (!$status) {
-                    $this->update_status($key, ERROR_CONVERT_PPM_TO_JPG);
+                    $this->Slide->update_status($key, ERROR_CONVERT_PPM_TO_JPG);
                     return false;
                 }
 
@@ -242,13 +259,13 @@ class S3Component extends Component
                 }
                 $this->print_log("Converting file successfully completed!!");
                 // update the db record
-                $this->update_status($key, SUCCESS_CONVERT_COMPLETED);
+                $this->Slide->update_status($key, SUCCESS_CONVERT_COMPLETED);
             } else {
-                $this->update_status($key, ERROR_NO_CONVERT_SOURCE);
+                $this->Slide->update_status($key, ERROR_NO_CONVERT_SOURCE);
                 $this->print_log("No Convertable File");
             }
         } catch(Exception $e) {
-            $this->update_status($key, -99);
+            $this->Slide->update_status($key, -99);
         } finally {
             $this->print_log("Cleaning up working directory " . $save_dir . "...");
             $this->cleanup_working_dir($save_dir);
@@ -513,44 +530,6 @@ class S3Component extends Component
             'ACL'          => 'public-read',
             'StorageClass' => 'REDUCED_REDUNDANCY',
         ));
-    }
-
-    /**
-     * Update status code in Slide to indicate conversion status
-     *
-     * @param string $key
-     *        int    $status_code
-     * @return void
-     *
-     */
-    private function update_status($key, $status_code)
-    {
-        $slide = ClassRegistry::init('Slide');
-        $slide->primaryKey = "key";
-        if ($slide->exists($key)) {
-            $slide->read(null, $key);
-            $slide->set('convert_status', $status_code);
-            $slide->save();
-        }
-    }
-
-     /**
-     * Update status code in Slide to indicate conversion status
-     *
-     * @param string $key
-     *        string $extension
-     * @return void
-     *
-     */
-    private function update_extension($key, $extension)
-    {
-        $slide = ClassRegistry::init('Slide');
-        $slide->primaryKey = "key";
-        if ($slide->exists($key)) {
-            $slide->read(null, $key);
-            $slide->set('extension', $extension);
-            $slide->save();
-        }
     }
 
     /**
