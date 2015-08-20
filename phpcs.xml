@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    PHP_Codesniffer config file.
+    @link http://pear.php.net/package/PHP_CodeSniffer
+-->
+<ruleset name="Custom Standard">
+    <!--
+        Exclude sniff rule.
+        @see /usr/lib/php/pear/PHP/CodeSniffer/Standards/PSR1/Sniffs/Classes/ClassDeclarationSniff.php
+        @see /usr/lib/php/pear/PHP/CodeSniffer/Standards/PSR1/Sniffs/Files/SideEffectsSniff.php
+    -->
+    <rule ref="PSR2">
+        <exclude name="PSR1.Classes.ClassDeclaration"/>
+        <exclude name="PSR1.Files.SideEffects"/>
+        <exclude name="Generic.Files.LineLength"/>
+        <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps" />
+    </rule>
+
+    <file>app/</file>
+    <extensions>php</extensions>
+    <!-- Exclude file and directory. -->
+    <exclude-pattern>*.js</exclude-pattern>
+    <exclude-pattern>*.css</exclude-pattern>
+    <exclude-pattern>*database.php</exclude-pattern>
+    <exclude-pattern>*i18n.php</exclude-pattern>
+    <exclude-pattern>*core.php</exclude-pattern>
+    <exclude-pattern>*/Config/Migration/*</exclude-pattern>
+    <exclude-pattern>*/Config/Schema/*</exclude-pattern>
+    <exclude-pattern>*/Console/Templates/*</exclude-pattern>
+    <exclude-pattern>*/Lib/*</exclude-pattern>
+    <exclude-pattern>*/Plugin/*</exclude-pattern>
+    <exclude-pattern>*/tmp/*</exclude-pattern>
+    <exclude-pattern>*/Vendor/*</exclude-pattern>
+    <exclude-pattern>*/webroot/*</exclude-pattern>
+</ruleset>
