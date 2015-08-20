@@ -64,16 +64,16 @@
  *
  *    $config['rules'] = array(
  *       'allow' => array(
- *       	'*' => 'Role/admin',
- *       	'controllers/users/(dashboard|profile)' => 'Role/default',
- *       	'controllers/invoices/*' => 'Role/accountant',
- *       	'controllers/articles/*' => 'Role/editor',
- *       	'controllers/users/*'  => 'Role/manager',
- *       	'controllers/invoices/delete'  => 'Role/manager',
+ *          '*' => 'Role/admin',
+ *          'controllers/users/(dashboard|profile)' => 'Role/default',
+ *          'controllers/invoices/*' => 'Role/accountant',
+ *          'controllers/articles/*' => 'Role/editor',
+ *          'controllers/users/*'  => 'Role/manager',
+ *          'controllers/invoices/delete'  => 'Role/manager',
  *       ),
  *       'deny' => array(
- *       	'controllers/invoices/delete' => 'Role/accountant, User/jeff',
- *       	'controllers/articles/(delete|publish)' => 'Role/editor',
+ *          'controllers/invoices/delete' => 'Role/accountant, User/jeff',
+ *          'controllers/articles/(delete|publish)' => 'Role/editor',
  *       ),
  *    );
  *

@@ -18,7 +18,7 @@ class Slide extends AppModel
     public $displayField = 'name';
 
     /**
-     * actsAs
+     * actsAs.
      *
      * @var array
      */
@@ -85,7 +85,7 @@ class Slide extends AppModel
     );
 
     /**
-     * hasMany
+     * hasMany.
      *
      * @var array
      */
@@ -106,7 +106,7 @@ class Slide extends AppModel
     );
 
     /**
-     * filterArgs
+     * filterArgs.
      *
      * @var array
      */
@@ -118,7 +118,7 @@ class Slide extends AppModel
     );
 
     /**
-     * countup
+     * countup.
      *
      * @param mixed $column
      * @param mixed $id
