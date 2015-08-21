@@ -1,6 +1,7 @@
 <?php
 use Aws\S3\S3Client;
 use Aws\Common\InstanceMetadata\InstanceMetadataClient;
+use Monolog\Logger;
 
 class S3Component extends Component
 {
@@ -11,6 +12,8 @@ class S3Component extends Component
      */
     private $Slide;
 
+    private $log;
+
     /**
      * __construct
      *
@@ -19,6 +22,11 @@ class S3Component extends Component
     {
         parent::__construct($collection, $settings);
         $this->Slide = ClassRegistry::init('Slide');
+
+        // create a log channel
+        $this->log = new Logger('name');
+        $this->log->pushHandler(new \Monolog\Handler\StreamHandler(LOGS . DS . 'batch.log', Logger::WARNING));
+        $this->log->pushHandler(new \Monolog\Handler\ErrorLogHandler());
     }
 
     /**
@@ -188,7 +196,7 @@ class S3Component extends Component
         $file_path = tempnam($save_dir, "original");
 
         // retrieve original file from S3
-        $this->print_log("Start retrieving file from S3");
+        $this->log->addInfo("Start retrieving file from S3");
         $s3 = $this->getClient();
         $object = $s3->getObject(array(
             "Bucket" => Configure::read('bucket_name'),
@@ -197,7 +205,7 @@ class S3Component extends Component
         ));
 
         $mime_type = $this->get_mime_type($file_path);
-        $this->print_log("File Type is ". $mime_type);
+        $this->log->addInfo("File Type is ". $mime_type);
 
         // Convertable mime type
         $all_convertable = array(
@@ -229,7 +237,7 @@ class S3Component extends Component
                 }
             } elseif (in_array($mime_type, $all_convertable)) {
                 $extension = ".pdf";
-                $this->print_log("Renaming file...");
+                $this->log->addInfo("Renaming file...");
                 rename($file_path, $file_path.".pdf");
             }
             $this->Slide->update_extension($key, $extension);
@@ -257,20 +265,20 @@ class S3Component extends Component
                 if ($first_page) {
                     $this->create_thumbnail($key, $first_page);
                 }
-                $this->print_log("Converting file successfully completed!!");
+                $this->log->addInfo("Converting file successfully completed!!");
                 // update the db record
                 $this->Slide->update_status($key, SUCCESS_CONVERT_COMPLETED);
             } else {
                 $this->Slide->update_status($key, ERROR_NO_CONVERT_SOURCE);
-                $this->print_log("No Convertable File");
+                $this->log->addInfo("No Convertable File");
             }
         } catch(Exception $e) {
             $this->Slide->update_status($key, -99);
         } finally {
-            $this->print_log("Cleaning up working directory " . $save_dir . "...");
+            $this->log->addInfo("Cleaning up working directory " . $save_dir . "...");
             $this->cleanup_working_dir($save_dir);
         }
-        $this->print_log("Completed to run the process...");
+        $this->log->addInfo("Completed to run the process...");
 
         return true;
     }
@@ -320,9 +328,9 @@ class S3Component extends Component
         $status = "";
         $command_logs = array();
 
-        $this->print_log("Start converting PowerPoint to PDF");
+        $this->log->addInfo("Start converting PowerPoint to PDF");
         exec("unoconv -f pdf -o " . $file_path . ".pdf ". $file_path, $command_logs, $status);
-        $this->print_logs($command_logs);
+        $this->log->addInfo(var_export($command_logs, true));
         if ($status != 0) {
             return false;
         } else {
@@ -342,9 +350,9 @@ class S3Component extends Component
         $status = "";
         $command_logs = array();
 
-        $this->print_log("Start converting PDF to ppm");
+        $this->log->addInfo("Start converting PDF to ppm");
         exec("cd ". $save_dir . "&& pdftoppm " . $file_path . ".pdf slide", $command_logs, $status);
-        $this->print_logs($command_logs);
+        $this->log->addInfo(var_export($command_logs, true));
         if ($status != 0) {
             return false;
         } else {
@@ -363,9 +371,9 @@ class S3Component extends Component
         $status = "";
         $command_logs = array();
 
-        $this->print_log("Start converting ppm to jpg");
+        $this->log->addInfo("Start converting ppm to jpg");
         exec("cd ". $save_dir . "&& mogrify -format jpg slide*.ppm", $command_logs, $status);
-        $this->print_logs($command_logs);
+        $this->log->addInfo(var_export($command_logs, true));
         if ($status != 0) {
             return false;
         } else {
@@ -400,14 +408,14 @@ class S3Component extends Component
     {
         $s3 = $this->getClient();
         $file_array = array();
-        $this->print_log("Total number of files is " . count($files));
+        $this->log->addInfo("Total number of files is " . count($files));
 
         $bucket = Configure::read('image_bucket_name');
         foreach ($files as $file_path => $file_info) {
             $file_key = str_replace(TMP, '', $file_path);
             $file_array[] = $file_key;
             // store image to S3
-            $this->print_log("Start uploading image to S3($bucket). ".$file_key);
+            $this->log->addInfo("Start uploading image to S3($bucket). ".$file_key);
             try {
                 $s3->putObject(array(
                     'Bucket'       => $bucket,
@@ -418,7 +426,7 @@ class S3Component extends Component
                     'StorageClass' => 'REDUCED_REDUNDANCY',
                 ));
             } catch (S3Exception $e) {
-                $this->print_log("The file was not uploaded.\n" . $e->getMessage());
+                $this->log->addInfo("The file was not uploaded.\n" . $e->getMessage());
             }
         }
 
@@ -427,7 +435,7 @@ class S3Component extends Component
         file_put_contents($save_dir."/list.json", $json_contents);
 
         // store list.json to S3
-        $this->print_log("Start uploading list.json to S3");
+        $this->log->addInfo("Start uploading list.json to S3");
         $s3->putObject(array(
             'Bucket'       => Configure::read('image_bucket_name'),
             'Key'          => $key . "/list.json",
@@ -586,17 +594,5 @@ class S3Component extends Component
 
         $files = new RegexIterator($files, '/^.+\.jpg$/i', RecursiveRegexIterator::MATCH);
         return $files;
-    }
-
-    private function print_logs($logs)
-    {
-        foreach ($logs as $log) {
-            $this->print_log($log);
-        }
-    }
-
-    private function print_log($log)
-    {
-        echo "[LOG] " . $log . "\n";
     }
 }
