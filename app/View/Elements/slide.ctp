@@ -77,7 +77,7 @@ $1102(document).ready(function(){
 
     // Peiodically update the div when the number of slide is zero.
     function updateDiv() {
-        var messageDiv = $1102('.openslideshare_body .slider');
+        var messageDiv = $1102('.openslideshare_body .slider #slide_body');
         if ($1102('.openslideshare_body div.slider ul').attr("data-count") > 0) {
             return;
         }

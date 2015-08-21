@@ -11,8 +11,8 @@
     <?php $count++; ?>
     <?php endforeach; ?>
 <?php elseif($slide["convert_status"] < 0): ?>
-    <li><img class="lazy image-0" src="/img/failed_to_convert.jpg" /></li>
+    <li><img class="image-0" src="/img/failed_to_convert.jpg" /></li>
 <?php else: ?>
-    <li><img class="lazy image-0" src="/img/converting.jpg" /></li>
+    <li><img class="image-0" src="/img/converting.jpg" /></li>
 <?php endif; ?>
 </ul>
