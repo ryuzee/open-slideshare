@@ -187,7 +187,7 @@ class SlidesController extends AppController
         $this->set('title_for_layout', __('New Slide'));
         $user = $this->Auth->User();
         $user_id = $user['id'];
-        $form_values = $this->S3->createPolicy(null);
+        $form_values = $this->S3->createPolicy();
         $this->set('form_values', $form_values);
 
         if ($this->request->is('post')) {
@@ -223,7 +223,7 @@ class SlidesController extends AppController
         if (!$this->Slide->exists($id)) {
             throw new NotFoundException(__('Invalid slide'));
         }
-        $form_values = $this->S3->createPolicy(null);
+        $form_values = $this->S3->createPolicy();
         $this->set('form_values', $form_values);
 
         // access check

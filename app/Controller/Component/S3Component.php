@@ -61,10 +61,8 @@ class S3Component extends Component
     /**
      * Create Policy for S3 Upload
      *
-     * @param integer $id_to_redirect
-     *
      */
-    public function createPolicy($id_to_redirect)
+    public function createPolicy()
     {
         date_default_timezone_set("UTC");
         $date_ymd = gmdate("Ymd");
