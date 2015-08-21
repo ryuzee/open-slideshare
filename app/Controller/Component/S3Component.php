@@ -25,7 +25,7 @@ class S3Component extends Component
 
         // create a log channel
         $this->log = new Logger('name');
-        $this->log->pushHandler(new \Monolog\Handler\StreamHandler(LOGS . DS . 'batch.log', Logger::WARNING));
+        $this->log->pushHandler(new \Monolog\Handler\StreamHandler(LOGS . DS . 'batch.log', Logger::INFO));
         $this->log->pushHandler(new \Monolog\Handler\ErrorLogHandler());
     }
 
@@ -270,7 +270,7 @@ class S3Component extends Component
                 $this->Slide->update_status($key, SUCCESS_CONVERT_COMPLETED);
             } else {
                 $this->Slide->update_status($key, ERROR_NO_CONVERT_SOURCE);
-                $this->log->addInfo("No Convertable File");
+                $this->log->addWarning("No Convertable File");
             }
         } catch(Exception $e) {
             $this->Slide->update_status($key, -99);
@@ -426,7 +426,7 @@ class S3Component extends Component
                     'StorageClass' => 'REDUCED_REDUNDANCY',
                 ));
             } catch (S3Exception $e) {
-                $this->log->addInfo("The file was not uploaded.\n" . $e->getMessage());
+                $this->log->addError("The file was not uploaded.\n" . $e->getMessage());
             }
         }
 

@@ -5,7 +5,6 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-08-12 07:57+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -60,7 +59,7 @@ msgstr ""
 msgid "There was an error deleting the %1$s with id: %2$s"
 msgstr ""
 
-#: Controller/Component/AuthComponent.php:431
+#: Controller/Component/AuthComponent.php:434
 msgid "You are not authorized to access that location."
 msgstr ""
 
@@ -72,7 +71,7 @@ msgstr ""
 msgid "This field cannot be left blank"
 msgstr ""
 
-#: Network/CakeResponse.php:1352
+#: Network/CakeResponse.php:1356
 msgid "The requested file was not found"
 msgstr ""
 
@@ -97,6 +96,10 @@ msgid "%d Byte"
 msgid_plural "%d Bytes"
 msgstr[0] ""
 msgstr[1] ""
+
+#: Utility/CakeText.php:702
+msgid "and"
+msgstr ""
 
 #: Utility/CakeTime.php:397
 msgid "Today, %s"
@@ -142,40 +145,20 @@ msgstr ""
 msgid "On %s %s"
 msgstr ""
 
-#: Utility/CakeTime.php:741
+#: Utility/CakeTime.php:743
 msgid "%s ago"
 msgstr ""
 
-#: Utility/CakeTime.php:742
+#: Utility/CakeTime.php:744
+msgid "in %s"
+msgstr ""
+
+#: Utility/CakeTime.php:745
 msgid "on %s"
 msgstr ""
 
-#: Utility/CakeTime.php:794
+#: Utility/CakeTime.php:801
 msgid "just now"
-msgstr ""
-
-#: Utility/CakeTime.php:910
-msgid "about a second ago"
-msgstr ""
-
-#: Utility/CakeTime.php:911
-msgid "about a minute ago"
-msgstr ""
-
-#: Utility/CakeTime.php:912
-msgid "about an hour ago"
-msgstr ""
-
-#: Utility/CakeTime.php:913
-msgid "about a day ago"
-msgstr ""
-
-#: Utility/CakeTime.php:914
-msgid "about a week ago"
-msgstr ""
-
-#: Utility/CakeTime.php:915
-msgid "about a year ago"
 msgstr ""
 
 #: Utility/CakeTime.php:924
@@ -202,130 +185,158 @@ msgstr ""
 msgid "in about a year"
 msgstr ""
 
-#: Utility/CakeTime.php:951;973
+#: Utility/CakeTime.php:933
+msgid "about a second ago"
+msgstr ""
+
+#: Utility/CakeTime.php:934
+msgid "about a minute ago"
+msgstr ""
+
+#: Utility/CakeTime.php:935
+msgid "about an hour ago"
+msgstr ""
+
+#: Utility/CakeTime.php:936
+msgid "about a day ago"
+msgstr ""
+
+#: Utility/CakeTime.php:937
+msgid "about a week ago"
+msgstr ""
+
+#: Utility/CakeTime.php:938
+msgid "about a year ago"
+msgstr ""
+
+#: Utility/CakeTime.php:958;980
 msgid "days"
 msgstr ""
 
-#: Utility/CakeTime.php:883
+#: Utility/CakeTime.php:895
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Utility/CakeTime.php:886
+#: Utility/CakeTime.php:898
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Utility/CakeTime.php:889
+#: Utility/CakeTime.php:901
 msgid "%d week"
 msgid_plural "%d weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Utility/CakeTime.php:892
+#: Utility/CakeTime.php:904
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Utility/CakeTime.php:895
+#: Utility/CakeTime.php:907
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Utility/CakeTime.php:898
+#: Utility/CakeTime.php:910
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: Utility/CakeTime.php:901
+#: Utility/CakeTime.php:913
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
 msgstr[1] ""
 
+#: View/ViewBlock.php:78
+msgid "A view block with the name '%s' is already/still open."
+msgstr ""
+
 #: View/Helper/FormHelper.php:732
 msgid "Error in field %s"
 msgstr ""
 
-#: View/Helper/FormHelper.php:921
+#: View/Helper/FormHelper.php:925
 #: View/Scaffolds/form.ctp:46
 #: View/Scaffolds/index.ctp:77;92
 #: View/Scaffolds/view.ctp:63;78;188
 msgid "New %s"
 msgstr ""
 
-#: View/Helper/FormHelper.php:927
+#: View/Helper/FormHelper.php:931
 #: View/Scaffolds/view.ctp:51;109
 msgid "Edit %s"
 msgstr ""
 
-#: View/Helper/FormHelper.php:1495
+#: View/Helper/FormHelper.php:1514
 msgid "empty"
 msgstr ""
 
-#: View/Helper/FormHelper.php:1889
+#: View/Helper/FormHelper.php:1918
 #: View/Scaffolds/form.ctp:21
 msgid "Submit"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2868
+#: View/Helper/FormHelper.php:2907
 msgid "January"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2869
+#: View/Helper/FormHelper.php:2908
 msgid "February"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2870
+#: View/Helper/FormHelper.php:2909
 msgid "March"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2871
+#: View/Helper/FormHelper.php:2910
 msgid "April"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2872
+#: View/Helper/FormHelper.php:2911
 msgid "May"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2873
+#: View/Helper/FormHelper.php:2912
 msgid "June"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2874
+#: View/Helper/FormHelper.php:2913
 msgid "July"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2875
+#: View/Helper/FormHelper.php:2914
 msgid "August"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2876
+#: View/Helper/FormHelper.php:2915
 msgid "September"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2877
+#: View/Helper/FormHelper.php:2916
 msgid "October"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2878
+#: View/Helper/FormHelper.php:2917
 msgid "November"
 msgstr ""
 
-#: View/Helper/FormHelper.php:2879
+#: View/Helper/FormHelper.php:2918
 msgid "December"
 msgstr ""
 
-#: View/Helper/HtmlHelper.php:767
+#: View/Helper/HtmlHelper.php:782
 msgid "Home"
 msgstr ""
 
-#: View/Helper/PaginatorHelper.php:637
+#: View/Helper/PaginatorHelper.php:644
 msgid " of "
 msgstr ""
 

@@ -242,8 +242,10 @@ class SlidesController extends AppController
                 if ($this->request->data['Slide']['convert_status'] == '0') {
                     $this->S3->delete_generated_files($d['Slide']['key']);
                     ClassRegistry::init('SQS.SimpleQueue')->send('extract', array('id' => $id, 'key' => $d['Slide']['key']));
+                    $this->Session->success(__('The slide has been saved. File conversion has just started.'));
+                } else {
+                    $this->Session->success(__('The slide has been saved.'));
                 }
-                $this->Session->success(__('The slide has been saved.'));
             } else {
                 $this->Session->warning(__('The slide could not be saved. Please, try again.'));
             }
