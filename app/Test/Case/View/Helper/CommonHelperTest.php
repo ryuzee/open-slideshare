@@ -30,21 +30,6 @@ class CommonHelperTest extends CakeTestCase
     }
 
     /**
-     * testBaseUrl method.
-     */
-    public function testBaseUrl()
-    {
-        $_SERVER['HTTPS'] = 'https';
-        $_SERVER['HTTP_HOST'] = 'www.example.com';
-        $this->assertEqual($this->Common->base_url(true), 'https://www.example.com');
-        $this->assertEqual($this->Common->base_url(false), 'http://www.example.com');
-        $_SERVER['HTTPS'] = '';
-        $_SERVER['HTTP_HOST'] = 'www.example.com';
-        $this->assertEqual($this->Common->base_url(true), 'http://www.example.com');
-        $this->assertEqual($this->Common->base_url(false), 'http://www.example.com');
-    }
-
-    /**
      * testDisplay method.
      */
     public function testDisplay()

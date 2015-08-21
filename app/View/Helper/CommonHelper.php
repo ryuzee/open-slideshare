@@ -7,24 +7,6 @@ class CommonHelper extends AppHelper
     public $helpers = array('Html');
 
     /**
-     * Generate base url.
-     *
-     * @param bool $ssl
-     *
-     * @return string
-     */
-    public function base_url($ssl = true)
-    {
-        if ($ssl) {
-            $protocol = empty($_SERVER['HTTPS']) ? 'http://' : 'https://';
-
-            return $protocol.$_SERVER['HTTP_HOST'];
-        } else {
-            return 'http://'.$_SERVER['HTTP_HOST'];
-        }
-    }
-
-    /**
      * Display comment.
      *
      * @param string $comment
