@@ -1,5 +1,6 @@
 <?php
 use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
 use Aws\Common\InstanceMetadata\InstanceMetadataClient;
 use Monolog\Logger;
 
@@ -12,6 +13,11 @@ class S3Component extends Component
      */
     private $Slide;
 
+    /**
+     * log
+     *
+     * @var mixed
+     */
     private $log;
 
     /**
@@ -60,15 +66,11 @@ class S3Component extends Component
      */
     public function createPolicy($id_to_redirect)
     {
-        App::uses('CommonHelper', 'View/Helper');
-        $this->Common = new CommonHelper(new View());
-
         date_default_timezone_set("UTC");
         $date_ymd = gmdate("Ymd");
         $date_gm = gmdate("Ymd\THis\Z");
         $acl = "public-read";
         $expires = gmdate("Y-m-d\TH:i:s\Z", time() + 60 * 120);
-        $success_action_redirect = $this->Common->base_url() . "/attachments/complete/" . $id_to_redirect;
 
         // will be replaced from Env var or IAM Role
         if (isset($_SERVER["AWS_ACCESS_ID"]) && isset($_SERVER['AWS_SECRET_KEY'])) {
@@ -93,7 +95,6 @@ class S3Component extends Component
             array("bucket" => Configure::read('bucket_name')),
             array("starts-with", '$key', ""),
             array("acl" => $acl),
-            // array("success_action_redirect" => $success_action_redirect),
             array("success_action_status" => '201'),
             array("starts-with", '$Content-Type', "application/octetstream"),
             array("x-amz-meta-uuid" => "14365123651274"),
@@ -132,7 +133,6 @@ class S3Component extends Component
             'acl'           => $acl,
             'security_token'=> $security_token,
             'signature'     => $signature,
-            // 'success_action_redirect' => $success_action_redirect,
             'success_action_status' => '201',
         );
 
@@ -188,10 +188,9 @@ class S3Component extends Component
     {
         // S3 object key
         $key = $data['key'];
-        // post record id
-        $id = $data['id'];
+
         // filename to use for original one from S3
-        $save_dir = TMP . $key;
+        $save_dir = TMP . basename($key);
         @mkdir($save_dir);
         $file_path = tempnam($save_dir, "original");
 
@@ -331,10 +330,10 @@ class S3Component extends Component
         $this->log->addInfo("Start converting PowerPoint to PDF");
         exec("unoconv -f pdf -o " . $file_path . ".pdf ". $file_path, $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
-        if ($status != 0) {
-            return false;
-        } else {
+        if ($status === 0) {
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -353,10 +352,10 @@ class S3Component extends Component
         $this->log->addInfo("Start converting PDF to ppm");
         exec("cd ". $save_dir . "&& pdftoppm " . $file_path . ".pdf slide", $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
-        if ($status != 0) {
-            return false;
-        } else {
+        if ($status === 0) {
             return true;
+        } else {
+            return false;
         }
     }
 
