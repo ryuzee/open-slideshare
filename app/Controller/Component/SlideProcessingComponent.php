@@ -71,13 +71,13 @@ class SlideProcessingComponent extends Component
         $res = $s3->listObjects(array('Bucket' => Configure::read('image_bucket_name'), 'MaxKeys' => 1000, 'Prefix' => $key . '/'));
         $keys = $res->getPath('Contents');
         $delete_files = array();
-        if(is_array($keys))
+        if (is_array($keys))
         {
             foreach ($keys as $kk) {
                 $delete_files[] = array("Key" => $kk["Key"]);
             }
         }
-        if(count($delete_files) > 0)
+        if (count($delete_files) > 0)
         {
             $res = $s3->deleteObjects(array(
                 'Bucket'  => Configure::read('image_bucket_name'),
@@ -105,7 +105,7 @@ class SlideProcessingComponent extends Component
 
         try {
             mkdir($save_dir);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
         $file_path = tempnam($save_dir, "original");
@@ -120,7 +120,7 @@ class SlideProcessingComponent extends Component
         ));
 
         $mime_type = $this->get_mime_type($file_path);
-        $this->log->addInfo("File Type is ". $mime_type);
+        $this->log->addInfo("File Type is " . $mime_type);
 
         // Convertable mime type
         $all_convertable = array(
@@ -153,7 +153,7 @@ class SlideProcessingComponent extends Component
             } elseif (in_array($mime_type, $all_convertable)) {
                 $extension = ".pdf";
                 $this->log->addInfo("Renaming file...");
-                rename($file_path, $file_path.".pdf");
+                rename($file_path, $file_path . ".pdf");
             }
             $this->Slide->update_extension($key, $extension);
 
@@ -187,7 +187,7 @@ class SlideProcessingComponent extends Component
                 $this->Slide->update_status($key, ERROR_NO_CONVERT_SOURCE);
                 $this->log->addWarning("No Convertable File");
             }
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->Slide->update_status($key, -99);
         } finally {
             $this->log->addInfo("Cleaning up working directory " . $save_dir . "...");
@@ -243,7 +243,7 @@ class SlideProcessingComponent extends Component
         $command_logs = array();
 
         $this->log->addInfo("Start converting PowerPoint to PDF");
-        exec("unoconv -f pdf -o " . $file_path . ".pdf ". $file_path, $command_logs, $status);
+        exec("unoconv -f pdf -o " . $file_path . ".pdf " . $file_path, $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
         if ($status === 0) {
             return true;
@@ -265,7 +265,7 @@ class SlideProcessingComponent extends Component
         $command_logs = array();
 
         $this->log->addInfo("Start converting PDF to ppm");
-        exec("cd ". $save_dir . "&& pdftoppm " . $file_path . ".pdf slide", $command_logs, $status);
+        exec("cd " . $save_dir . "&& pdftoppm " . $file_path . ".pdf slide", $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
         if ($status === 0) {
             return true;
@@ -286,7 +286,7 @@ class SlideProcessingComponent extends Component
         $command_logs = array();
 
         $this->log->addInfo("Start converting ppm to jpg");
-        exec("cd ". $save_dir . "&& mogrify -format jpg slide*.ppm", $command_logs, $status);
+        exec("cd " . $save_dir . "&& mogrify -format jpg slide*.ppm", $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
         if ($status != 0) {
             return false;
@@ -303,7 +303,7 @@ class SlideProcessingComponent extends Component
      */
     private function get_mime_type($file_path)
     {
-        $mime = shell_exec('file -bi '.escapeshellcmd($file_path));
+        $mime = shell_exec('file -bi ' . escapeshellcmd($file_path));
         $mime = trim($mime);
         $parts = explode(";", $mime);
         $mime = preg_replace("/ [^ ]*/", "", trim($parts[0]));
@@ -329,7 +329,7 @@ class SlideProcessingComponent extends Component
             $file_key = str_replace(TMP, '', $file_path);
             $file_array[] = $file_key;
             // store image to S3
-            $this->log->addInfo("Start uploading image to S3($bucket). ".$file_key);
+            $this->log->addInfo("Start uploading image to S3($bucket). " . $file_key);
             try {
                 $s3->putObject(array(
                     'Bucket'       => $bucket,
@@ -346,7 +346,7 @@ class SlideProcessingComponent extends Component
 
         sort($file_array);
         $json_contents = json_encode($file_array, JSON_UNESCAPED_SLASHES);
-        file_put_contents($save_dir."/list.json", $json_contents);
+        file_put_contents($save_dir . "/list.json", $json_contents);
 
         // store list.json to S3
         $this->log->addInfo("Start uploading list.json to S3");
@@ -440,7 +440,7 @@ class SlideProcessingComponent extends Component
         $dst_image = ImageCreateTrueColor($dst_w, $dst_h);
         ImageCopyResampled($dst_image, $src_image, 0, 0, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
 
-        imagejpeg($dst_image, TMP .$key.  "/thumbnail.jpg");
+        imagejpeg($dst_image, TMP . $key . "/thumbnail.jpg");
 
         // store thumbnail to S3
         $s3 = $this->S3->getClient();
