@@ -54,7 +54,7 @@ class ExtractShell extends AppShell
      */
     public function handleJob($data)
     {
-        echo '[LOG] Start extracting '.$data['key']."\n";
+        echo '[LOG] Start extracting ' . $data['key'] . "\n";
 
         return $this->SlideProcessing->extract_images($data);
     }

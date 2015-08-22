@@ -40,7 +40,7 @@ class SlideProcessingComponent extends Component
 
         // create a log channel
         $this->log = new Logger('name');
-        $this->log->pushHandler(new \Monolog\Handler\StreamHandler(LOGS.DS.'batch.log', Logger::INFO));
+        $this->log->pushHandler(new \Monolog\Handler\StreamHandler(LOGS . DS . 'batch.log', Logger::INFO));
         $this->log->pushHandler(new \Monolog\Handler\ErrorLogHandler());
     }
 
@@ -64,7 +64,7 @@ class SlideProcessingComponent extends Component
     {
         $s3 = $this->S3->getClient();
         // List files and delete them.
-        $res = $s3->listObjects(array('Bucket' => Configure::read('image_bucket_name'), 'MaxKeys' => 1000, 'Prefix' => $key.'/'));
+        $res = $s3->listObjects(array('Bucket' => Configure::read('image_bucket_name'), 'MaxKeys' => 1000, 'Prefix' => $key . '/'));
         $keys = $res->getPath('Contents');
         $delete_files = array();
         if (is_array($keys)) {
@@ -91,9 +91,9 @@ class SlideProcessingComponent extends Component
         $key = $data['key'];
 
         // filename to use for original one from S3
-        $save_dir = TMP.basename($key);
+        $save_dir = TMP . basename($key);
 
-        set_error_handler(function ($severity, $message, $file, $line) {
+        set_error_handler(function($severity, $message, $file, $line) {
             throw new ErrorException($message, 0, $severity, $file, $line);
         });
 
@@ -114,7 +114,7 @@ class SlideProcessingComponent extends Component
         ));
 
         $mime_type = $this->get_mime_type($file_path);
-        $this->log->addInfo('File Type is '.$mime_type);
+        $this->log->addInfo('File Type is ' . $mime_type);
 
         // Convertable mime type
         $all_convertable = array(
@@ -147,7 +147,7 @@ class SlideProcessingComponent extends Component
             } elseif (in_array($mime_type, $all_convertable)) {
                 $extension = '.pdf';
                 $this->log->addInfo('Renaming file...');
-                rename($file_path, $file_path.'.pdf');
+                rename($file_path, $file_path . '.pdf');
             }
             $this->Slide->update_extension($key, $extension);
 
@@ -186,7 +186,7 @@ class SlideProcessingComponent extends Component
         } catch (Exception $e) {
             $this->Slide->update_status($key, -99);
         }
-        $this->log->addInfo('Cleaning up working directory '.$save_dir.'...');
+        $this->log->addInfo('Cleaning up working directory ' . $save_dir . '...');
         $this->cleanup_working_dir($save_dir);
         $this->log->addInfo('Completed to run the process...');
 
@@ -208,7 +208,7 @@ class SlideProcessingComponent extends Component
             'http' => array('ignore_errors' => true),
         ));
 
-        set_error_handler(function ($severity, $message, $file, $line) {
+        set_error_handler(function($severity, $message, $file, $line) {
             throw new ErrorException($message, 0, $severity, $file, $line);
         });
 
@@ -233,8 +233,8 @@ class SlideProcessingComponent extends Component
     public function get_original_file_download_path($key, $extension = null)
     {
         $s3 = $this->S3->getClient();
-        $filename = $key.$extension;
-        $opt = array('ResponseContentDisposition' => 'attachment; filename="'.$filename.'"');
+        $filename = $key . $extension;
+        $opt = array('ResponseContentDisposition' => 'attachment; filename="' . $filename . '"');
         $url = $s3->getObjectUrl(Configure::read('bucket_name'), $key, '+15 minutes', $opt);
 
         return $url;
@@ -253,7 +253,7 @@ class SlideProcessingComponent extends Component
         $command_logs = array();
 
         $this->log->addInfo('Start converting PowerPoint to PDF');
-        exec('unoconv -f pdf -o '.$file_path.'.pdf '.$file_path, $command_logs, $status);
+        exec('unoconv -f pdf -o ' . $file_path . '.pdf ' . $file_path, $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
         if ($status === 0) {
             return true;
@@ -274,7 +274,7 @@ class SlideProcessingComponent extends Component
         $command_logs = array();
 
         $this->log->addInfo('Start converting PDF to ppm');
-        exec('cd '.$save_dir.'&& pdftoppm '.$file_path.'.pdf slide', $command_logs, $status);
+        exec('cd ' . $save_dir . '&& pdftoppm ' . $file_path . '.pdf slide', $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
         if ($status === 0) {
             return true;
@@ -294,7 +294,7 @@ class SlideProcessingComponent extends Component
         $command_logs = array();
 
         $this->log->addInfo('Start converting ppm to jpg');
-        exec('cd '.$save_dir.'&& mogrify -format jpg slide*.ppm', $command_logs, $status);
+        exec('cd ' . $save_dir . '&& mogrify -format jpg slide*.ppm', $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
         if ($status != 0) {
             return false;
@@ -312,7 +312,7 @@ class SlideProcessingComponent extends Component
      */
     private function get_mime_type($file_path)
     {
-        $mime = shell_exec('file -bi '.escapeshellcmd($file_path));
+        $mime = shell_exec('file -bi ' . escapeshellcmd($file_path));
         $mime = trim($mime);
         $parts = explode(';', $mime);
         $mime = preg_replace('/ [^ ]*/', '', trim($parts[0]));
@@ -331,14 +331,14 @@ class SlideProcessingComponent extends Component
     {
         $s3 = $this->S3->getClient();
         $file_array = array();
-        $this->log->addInfo('Total number of files is '.count($files));
+        $this->log->addInfo('Total number of files is ' . count($files));
 
         $bucket = Configure::read('image_bucket_name');
         foreach ($files as $file_path => $file_info) {
             $file_key = str_replace(TMP, '', $file_path);
             $file_array[] = $file_key;
             // store image to S3
-            $this->log->addInfo("Start uploading image to S3($bucket). ".$file_key);
+            $this->log->addInfo("Start uploading image to S3($bucket). " . $file_key);
             try {
                 $s3->putObject(array(
                     'Bucket' => $bucket,
@@ -349,20 +349,20 @@ class SlideProcessingComponent extends Component
                     'StorageClass' => 'REDUCED_REDUNDANCY',
                 ));
             } catch (S3Exception $e) {
-                $this->log->addError("The file was not uploaded.\n".$e->getMessage());
+                $this->log->addError("The file was not uploaded.\n" . $e->getMessage());
             }
         }
 
         sort($file_array);
         $json_contents = json_encode($file_array, JSON_UNESCAPED_SLASHES);
-        file_put_contents($save_dir.'/list.json', $json_contents);
+        file_put_contents($save_dir . '/list.json', $json_contents);
 
         // store list.json to S3
         $this->log->addInfo('Start uploading list.json to S3');
         $s3->putObject(array(
             'Bucket' => Configure::read('image_bucket_name'),
-            'Key' => $key.'/list.json',
-            'SourceFile' => $save_dir.'/list.json',
+            'Key' => $key . '/list.json',
+            'SourceFile' => $save_dir . '/list.json',
             'ContentType' => 'text/plain',
             'ACL' => 'public-read',
             'StorageClass' => 'REDUCED_REDUNDANCY',
@@ -417,7 +417,7 @@ class SlideProcessingComponent extends Component
     private function create_thumbnail($key, $filename)
     {
         // Create Same Size Thumbnail
-        $f = TMP.$filename;
+        $f = TMP . $filename;
         $src_image = imagecreatefromjpeg($f);
 
         // get size
@@ -446,14 +446,14 @@ class SlideProcessingComponent extends Component
         $dst_image = ImageCreateTrueColor($dst_w, $dst_h);
         ImageCopyResampled($dst_image, $src_image, 0, 0, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
 
-        imagejpeg($dst_image, TMP.$key.'/thumbnail.jpg');
+        imagejpeg($dst_image, TMP . $key . '/thumbnail.jpg');
 
         // store thumbnail to S3
         $s3 = $this->S3->getClient();
         $s3->putObject(array(
             'Bucket' => Configure::read('image_bucket_name'),
-            'Key' => $key.'/thumbnail.jpg',
-            'SourceFile' => TMP.$key.'/thumbnail.jpg',
+            'Key' => $key . '/thumbnail.jpg',
+            'SourceFile' => TMP . $key . '/thumbnail.jpg',
             'ContentType' => 'image/jpeg',
             'ACL' => 'public-read',
             'StorageClass' => 'REDUCED_REDUNDANCY',
