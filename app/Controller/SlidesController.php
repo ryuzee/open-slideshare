@@ -53,15 +53,15 @@ class SlidesController extends AppController
 
         $this->Prg->commonProcess();
 
-        $add_query = array('Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED);
+        $add_query = array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED);
 
         $val = isset($this->passedArgs['created_f']) ? $this->passedArgs['created_f'] : null;
         if (!empty($val)) {
-            $add_query[] = "Slide.created >= '".$val."'";
+            $add_query[] = "Slide.created >= '" . $val . "'";
         }
         $val = isset($this->passedArgs['created_t']) ? $this->passedArgs['created_t'] : null;
         if (!empty($val)) {
-            $add_query[] = "Slide.created <= '".$val."'";
+            $add_query[] = "Slide.created <= '" . $val . "'";
         }
 
         $this->paginate = array(
@@ -201,7 +201,7 @@ class SlidesController extends AppController
                 $this->Session->success(__('The slide has been saved.'));
                 ClassRegistry::init('SQS.SimpleQueue')->send('extract', array('id' => $last_insert_id, 'key' => $this->request->data['Slide']['key']));
 
-                return $this->redirect('/slides/view/'.$last_insert_id);
+                return $this->redirect('/slides/view/' . $last_insert_id);
             } else {
                 $this->Session->warning(__('The slide could not be saved. Please, try again.'));
             }
