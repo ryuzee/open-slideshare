@@ -25,7 +25,7 @@ class S3Component extends Component
 
         // create a log channel
         $this->log = new Logger('name');
-        $this->log->pushHandler(new \Monolog\Handler\StreamHandler(LOGS.DS.'batch.log', Logger::INFO));
+        $this->log->pushHandler(new \Monolog\Handler\StreamHandler(LOGS . DS . 'batch.log', Logger::INFO));
         $this->log->pushHandler(new \Monolog\Handler\ErrorLogHandler());
     }
 
@@ -90,10 +90,10 @@ class S3Component extends Component
             array('starts-with', '$Content-Type', 'application/octetstream'),
             array('x-amz-meta-uuid' => '14365123651274'),
             array('starts-with', '$x-amz-meta-tag', ''),
-            array('x-amz-credential' => $access_id.'/'.$date_ymd.'/'.Configure::read('region').'/s3/aws4_request'),
+            array('x-amz-credential' => $access_id . '/' . $date_ymd . '/' . Configure::read('region') . '/s3/aws4_request'),
             array('x-amz-algorithm' => 'AWS4-HMAC-SHA256'),
             array('x-amz-date' => $date_gm),
-            array('starts-with', '$x-amz-meta-title', ''),  // Custom Field
+            array('starts-with', '$x-amz-meta-title', ''), // Custom Field
           ),
         );
 
@@ -144,7 +144,7 @@ class S3Component extends Component
      */
     private function getSigningKey($shortDate, $region, $service, $secretKey)
     {
-        $dateKey = hash_hmac('sha256', $shortDate, 'AWS4'.$secretKey, true);
+        $dateKey = hash_hmac('sha256', $shortDate, 'AWS4' . $secretKey, true);
         $regionKey = hash_hmac('sha256', $region, $dateKey, true);
         $serviceKey = hash_hmac('sha256', $service, $regionKey, true);
         $signinKey = hash_hmac('sha256', 'aws4_request', $serviceKey, true);
