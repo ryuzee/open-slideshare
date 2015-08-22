@@ -11,8 +11,7 @@ App::uses('AppController', 'Controller');
 class SlidesController extends AppController
 {
     /**
-     * presetVars
-     *
+     * presetVars.
      */
     public $presetVars = array(
         array('field' => 'name', 'type' => 'value'),
@@ -24,14 +23,19 @@ class SlidesController extends AppController
     );
 
     /**
-     * uses
-     *
+     * uses.
      */
     public $uses = array('Slide', 'User');
 
     /**
-     * beforeFilter
+     * SlideProcessing.
      *
+     * @var mixed
+     */
+    public $SlideProcessing;
+
+    /**
+     * beforeFilter.
      */
     public function beforeFilter()
     {
@@ -85,7 +89,6 @@ class SlidesController extends AppController
         $user_id = $user['id'];
         $this->set('user_id', $user_id);
 
-
         if (!$this->Slide->exists($id)) {
             throw new NotFoundException(__('Invalid slide'));
         }
@@ -95,7 +98,7 @@ class SlidesController extends AppController
         $userinfo = $this->User->read(null, $slide['Slide']['user_id']);
         $this->set('user', $userinfo);
 
-        $file_list = $this->SlideProcessing->get_slide_pages_list($slide["Slide"]["key"]);
+        $file_list = $this->SlideProcessing->get_slide_pages_list($slide['Slide']['key']);
         $this->set('file_list', $file_list);
 
         if (count($file_list) > $display_position) {
@@ -103,9 +106,9 @@ class SlidesController extends AppController
         } elseif ($display_position <= 0) {
             $start_position = 0;
         } else {
-            $start_position = $display_position -1;
+            $start_position = $display_position - 1;
         }
-        $this->set("start_position", $start_position);
+        $this->set('start_position', $start_position);
 
         $other_slides_in_category = $this->Slide->get_recent_slides_in_category($slide['Slide']['category_id'], $id);
         $this->set('other_slides_in_category', $other_slides_in_category);
@@ -142,7 +145,7 @@ class SlidesController extends AppController
     }
 
     /**
-     * embedded
+     * embedded.
      *
      * @param mixed $id
      */
@@ -152,17 +155,17 @@ class SlidesController extends AppController
             throw new NotFoundException(__('Invalid slide'));
         }
         Configure::write('debug', 0);
-        $this->response->type("javascript");
+        $this->response->type('javascript');
         $this->layout = 'escaped_javascript';
         $slide = $this->Slide->get_slide($id);
         $this->set('slide', $slide);
-        $file_list = $this->SlideProcessing->get_slide_pages_list($slide["Slide"]["key"]);
+        $file_list = $this->SlideProcessing->get_slide_pages_list($slide['Slide']['key']);
         $this->set('file_list', $file_list);
         $this->Slide->countup('embedded_view', $id);
     }
 
     /**
-     * update_view
+     * update_view.
      *
      * @param mixed $id
      */
@@ -175,7 +178,7 @@ class SlidesController extends AppController
         $this->layout = 'ajax';
         $slide = $this->Slide->get_slide($id);
         $this->set('slide', $slide);
-        $file_list = $this->SlideProcessing->get_slide_pages_list($slide["Slide"]["key"]);
+        $file_list = $this->SlideProcessing->get_slide_pages_list($slide['Slide']['key']);
         $this->set('file_list', $file_list);
     }
 
