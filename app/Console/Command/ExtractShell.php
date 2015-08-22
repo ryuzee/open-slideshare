@@ -4,13 +4,12 @@ App::uses('ComponentCollection', 'Controller');
 App::uses('SlideProcessingComponent', 'Controller/Component');
 
 /**
- * Class: ExtractShell
- *
+ * Class: ExtractShell.
  */
 class ExtractShell extends AppShell
 {
     /**
-     * tasks
+     * tasks.
      *
      * @var array
      */
@@ -31,8 +30,7 @@ class ExtractShell extends AppShell
     public $SlideProcessing;
 
     /**
-     * startup
-     *
+     * startup.
      */
     public function startup()
     {
@@ -41,8 +39,7 @@ class ExtractShell extends AppShell
     }
 
     /**
-     * main
-     *
+     * main.
      */
     public function main()
     {
@@ -51,13 +48,13 @@ class ExtractShell extends AppShell
     }
 
     /**
-     * handleJob
+     * handleJob.
      *
      * @param mixed $data
      */
     public function handleJob($data)
     {
-        echo '[LOG] Start extracting ' . $data['key'] . "\n";
+        echo '[LOG] Start extracting '.$data['key']."\n";
 
         return $this->SlideProcessing->extract_images($data);
     }
