@@ -55,7 +55,7 @@ class CommonHelper extends AppHelper
         if (Configure::read('region') == 'us-east-1') {
             $url = 'https://' . Configure::read('bucket_name') . '.s3.amazonaws.com';
         } else {
-            $url = 'https://' . Configure::read('bucket_name') . '.s3-' . Configure::read('region').'.amazonaws.com';
+            $url = 'https://' . Configure::read('bucket_name') . '.s3-' . Configure::read('region') . '.amazonaws.com';
         }
 
         return $url;

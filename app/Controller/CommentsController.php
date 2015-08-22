@@ -50,7 +50,7 @@ class CommentsController extends AppController
             throw new NotFoundException(__('Invalid comment'));
         }
 
-        $options = array('conditions' => array('Comment.'.$this->Comment->primaryKey => $id), 'recursive' => 0);
+        $options = array('conditions' => array('Comment.' . $this->Comment->primaryKey => $id), 'recursive' => 0);
         $comment = $this->Comment->find('first', $options);
         $comment_owner = $comment['Comment']['user_id'];
 
