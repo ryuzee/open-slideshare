@@ -1,7 +1,7 @@
 <?php
 
 App::uses('ComponentCollection', 'Controller');
-App::uses('S3Component', 'Controller/Component');
+App::uses('SlideProcessingComponent', 'Controller/Component');
 
 /**
  * Class: ExtractShell
@@ -28,7 +28,7 @@ class ExtractShell extends AppShell
      *
      * @var mixed
      */
-    public $S3;
+    public $SlideProcessing;
 
     /**
      * startup
@@ -37,7 +37,7 @@ class ExtractShell extends AppShell
     public function startup()
     {
         $this->components = new ComponentCollection();
-        $this->S3 = $this->components->load('S3');
+        $this->SlideProcessing = $this->components->load('SlideProcessing');
     }
 
     /**
@@ -59,6 +59,6 @@ class ExtractShell extends AppShell
     {
         echo '[LOG] Start extracting ' . $data['key'] . "\n";
 
-        return $this->S3->extract_images($data);
+        return $this->SlideProcessing->extract_images($data);
     }
 }

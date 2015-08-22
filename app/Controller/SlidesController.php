@@ -95,7 +95,7 @@ class SlidesController extends AppController
         $userinfo = $this->User->read(null, $slide['Slide']['user_id']);
         $this->set('user', $userinfo);
 
-        $file_list = $this->S3->get_slide_pages_list($slide["Slide"]["key"]);
+        $file_list = $this->SlideProcessing->get_slide_pages_list($slide["Slide"]["key"]);
         $this->set('file_list', $file_list);
 
         if (count($file_list) > $display_position) {
@@ -134,7 +134,7 @@ class SlidesController extends AppController
         $this->Slide->countup('download_count', $id);
 
         // Generate Signed URL
-        $url = $this->S3->get_original_file_download_path($slide['Slide']['key'], $slide['Slide']['extension']);
+        $url = $this->SlideProcessing->get_original_file_download_path($slide['Slide']['key'], $slide['Slide']['extension']);
 
         // Redirect
         $this->autoRender = false;
@@ -156,7 +156,7 @@ class SlidesController extends AppController
         $this->layout = 'escaped_javascript';
         $slide = $this->Slide->get_slide($id);
         $this->set('slide', $slide);
-        $file_list = $this->S3->get_slide_pages_list($slide["Slide"]["key"]);
+        $file_list = $this->SlideProcessing->get_slide_pages_list($slide["Slide"]["key"]);
         $this->set('file_list', $file_list);
         $this->Slide->countup('embedded_view', $id);
     }
@@ -175,7 +175,7 @@ class SlidesController extends AppController
         $this->layout = 'ajax';
         $slide = $this->Slide->get_slide($id);
         $this->set('slide', $slide);
-        $file_list = $this->S3->get_slide_pages_list($slide["Slide"]["key"]);
+        $file_list = $this->SlideProcessing->get_slide_pages_list($slide["Slide"]["key"]);
         $this->set('file_list', $file_list);
     }
 
@@ -240,7 +240,7 @@ class SlidesController extends AppController
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Slide->save($this->request->data)) {
                 if ($this->request->data['Slide']['convert_status'] == '0') {
-                    $this->S3->delete_generated_files($d['Slide']['key']);
+                    $this->SlideProcessing->delete_generated_files($d['Slide']['key']);
                     ClassRegistry::init('SQS.SimpleQueue')->send('extract', array('id' => $id, 'key' => $d['Slide']['key']));
                     $this->Session->success(__('The slide has been saved. File conversion has just started.'));
                 } else {
@@ -289,7 +289,7 @@ class SlidesController extends AppController
         $this->request->allowMethod('post', 'delete');
         if ($this->Slide->delete()) {
             // Delete master slide and generated images
-            $this->S3->delete_slide_from_s3($data['Slide']['key']);
+            $this->SlideProcessing->delete_slide_from_s3($data['Slide']['key']);
 
             // show message
             $this->Session->success(__('The slide has been deleted.'));

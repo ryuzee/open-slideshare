@@ -41,6 +41,7 @@ class AppController extends Controller
         'Auth',
         'Paginator',
         'Session' => array('className' => 'SessionEx'),
+        'SlideProcessing',
         'S3',
         'DebugKit.Toolbar',
         'Search.Prg' => array(
