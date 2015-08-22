@@ -59,7 +59,10 @@ class Category extends AppModel
     public function get_category_name($id)
     {
         $category = $this->read(null, $id);
-
-        return $category['Category']['name'];
+        if ($category) {
+            return $category['Category']['name'];
+        } else {
+            return __('No Category');
+        }
     }
 }
