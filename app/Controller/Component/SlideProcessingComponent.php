@@ -98,7 +98,16 @@ class SlideProcessingComponent extends Component
 
         // filename to use for original one from S3
         $save_dir = TMP . basename($key);
-        @mkdir($save_dir);
+
+        set_error_handler(function($severity, $message, $file, $line) {
+            throw new ErrorException($message, 0, $severity, $file, $line);
+        });
+
+        try {
+            mkdir($save_dir);
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
         $file_path = tempnam($save_dir, "original");
 
         // retrieve original file from S3
@@ -218,7 +227,6 @@ class SlideProcessingComponent extends Component
         catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        restore_error_handler();
     }
 
     ################## Private ################
