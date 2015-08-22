@@ -44,7 +44,7 @@ class SlideProcessingComponentTest extends CakeTestCase
 
         // pptx
         $result = $method->invoke($this->SlideProcessing, $dir . DS . "test.pptx");
-        $this->assertEqual('application/vnd.openxmlformats-officedocument.presentationml.presentation', $result);
+        $this->assertTrue(in_array($result, array('application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.ms-powerpoint')));
 
         // pdf
         $result = $method->invoke($this->SlideProcessing, $dir . DS . "test.pdf");
