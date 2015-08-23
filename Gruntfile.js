@@ -22,7 +22,7 @@ module.exports = function(grunt){
                 src: ['app/webroot/css/**/openslideshare*.css', '!app/webroot/**/*.min.css']
             }
         },
-        clean: ["app/tmp/logs/*", "!app/tmp/**/.gitkeep"],
+        clean: ["app/tmp/logs/*", "app/reports/*", "!app/tmp/**/.gitkeep"],
         shell: {
             reloadx: {
                 command: './node_modules/.bin/livereloadx'
