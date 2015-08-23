@@ -64,7 +64,39 @@ class SlideProcessingComponentTest extends CakeTestCase
         // pdf
         $result = $method->invoke($this->SlideProcessing, $dir . DS . "test.pdf");
         $this->assertEqual('application/pdf', $result);
+    }
 
+    /**
+     * testLocalImages
+     *
+     */
+    public function testLocalImages()
+    {
+        $method = new ReflectionMethod($this->SlideProcessing, 'list_local_images');
+        $method->setAccessible(true);
+        $dir = dirname(dirname(dirname(dirname(__FILE__)))) . DS . 'Data' . DS . 'tmp';
+        if (! file_exists($dir)) {
+            mkdir($dir);
+        }
 
+        // There is no file.
+        $result = $method->invoke($this->SlideProcessing, $dir);
+        $this->assertTrue(count(iterator_to_array($result)) == 0);
+
+        // There is no jpg file but png file
+        copy(dirname($dir) . DS . 'test.png', $dir . DS . 'test.png');
+        $result = $method->invoke($this->SlideProcessing, $dir);
+        $this->assertTrue(count(iterator_to_array($result)) == 0);
+
+        // There is only 1 jpg file.
+        copy(dirname($dir) . DS . 'test.jpg', $dir . DS . 'test.jpg');
+        $result = $method->invoke($this->SlideProcessing, $dir);
+        $this->assertTrue(count(iterator_to_array($result)) == 1);
+
+        // Delete directory
+        $method = new ReflectionMethod($this->SlideProcessing, 'cleanup_working_dir');
+        $method->setAccessible(true);
+        $result = $method->invoke($this->SlideProcessing, $dir);
+        $this->assertFalse(file_exists($dir));
     }
 }
