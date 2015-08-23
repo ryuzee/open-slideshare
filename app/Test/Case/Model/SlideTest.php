@@ -149,4 +149,18 @@ class SlideTest extends CakeTestCase
         $data = $this->Slide->get_slide($id);
         $this->assertEqual($data['Slide']['extension'], '.pptx');
     }
+
+    /**
+     * testUnbindFully
+     */
+    public function testUnbindFully()
+    {
+        // confirm the number of hasMany model
+        $this->assertTrue(count($this->Slide->hasMany) > 0);
+
+        $this->Slide->unbindFully();
+        $this->assertTrue(count($this->Slide->hasMany) === 0);
+        $this->assertTrue(count($this->Slide->belongsTo) === 0);
+        $this->assertTrue(count($this->Slide->hasAndBelongsToMany) === 0);
+    }
 }
