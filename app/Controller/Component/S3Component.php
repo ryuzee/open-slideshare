@@ -58,10 +58,7 @@ class S3Component extends Component
     public function createPolicy()
     {
         date_default_timezone_set('UTC');
-        $date_ymd = gmdate('Ymd');
-        $date_gm = gmdate("Ymd\THis\Z");
-        $acl = 'public-read';
-        $expires = gmdate("Y-m-d\TH:i:s\Z", time() + 60 * 120);
+        $base_time = time();
 
         // will be replaced from Env var or IAM Role
         if (isset($_SERVER['AWS_ACCESS_ID']) && isset($_SERVER['AWS_SECRET_KEY'])) {
@@ -75,6 +72,21 @@ class S3Component extends Component
             $secret_key = $credentials->getSecretKey();
             $security_token = $credentials->getSecurityToken();
         }
+
+        return $this->populatePolicy($base_time, $access_id, $secret_key, $security_token);
+    }
+
+    ################## Private ################
+
+    /**
+     * Populate policy for S3 Upload.
+     */
+    private function populatePolicy($base_time, $access_id, $secret_key, $security_token)
+    {
+        $date_ymd = gmdate('Ymd', $base_time);
+        $date_gm = gmdate("Ymd\THis\Z", $base_time);
+        $acl = 'public-read';
+        $expires = gmdate("Y-m-d\TH:i:s\Z", $base_time + 60 * 120);
 
         //---------------------------------------------
         // 1. Create a policy using UTF-8 encoding.
@@ -93,7 +105,6 @@ class S3Component extends Component
             array('x-amz-credential' => $access_id . '/' . $date_ymd . '/' . Configure::read('region') . '/s3/aws4_request'),
             array('x-amz-algorithm' => 'AWS4-HMAC-SHA256'),
             array('x-amz-date' => $date_gm),
-            array('starts-with', '$x-amz-meta-title', ''), // Custom Field
           ),
         );
 
@@ -129,8 +140,6 @@ class S3Component extends Component
 
         return $result;
     }
-
-    ################## Private ################
 
     /**
      * get several key for AWS API.

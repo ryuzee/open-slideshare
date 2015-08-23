@@ -33,7 +33,7 @@ class S3ComponentTest extends CakeTestCase
     }
 
     /**
-     * testCreatePolicy method
+     * testGetSigningKey method
      *
      * @return void
      */

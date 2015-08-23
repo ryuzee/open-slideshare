@@ -102,7 +102,6 @@ $1102(document).ready(function(){
     <?php if($form_values['security_token'] != ""): ?>
     <input class="fval" type="hidden" name="x-amz-security-token" value="<?php echo $form_values['security_token']; ?>" />
     <?php endif; ?>
-    <input class="fval" type="hidden" id="x-amz-meta-title"  name="x-amz-meta-title" value="" class="form-control"/>
     <input class="fval" type="hidden" id="x-amz-meta-tag" name="x-amz-meta-tag" value="open-slideshare" class="form-control"/>
 
 </form>
