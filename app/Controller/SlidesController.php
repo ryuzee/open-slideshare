@@ -137,7 +137,7 @@ class SlidesController extends AppController
         $this->Slide->countup('download_count', $id);
 
         // Generate Signed URL
-        $url = $this->SlideProcessing->get_original_file_download_path($slide['Slide']['key'], $slide['Slide']['extension']);
+        $url = $this->SlideProcessing->get_original_file_download_path($this->S3->getClient(), $slide['Slide']['key'], $slide['Slide']['extension']);
 
         // Redirect
         $this->autoRender = false;
@@ -243,7 +243,7 @@ class SlidesController extends AppController
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Slide->save($this->request->data)) {
                 if ($this->request->data['Slide']['convert_status'] == '0') {
-                    $this->SlideProcessing->delete_generated_files($d['Slide']['key']);
+                    $this->SlideProcessing->delete_generated_files($this->S3->getClient(), $d['Slide']['key']);
                     ClassRegistry::init('SQS.SimpleQueue')->send('extract', array('id' => $id, 'key' => $d['Slide']['key']));
                     $this->Session->success(__('The slide has been saved. File conversion has just started.'));
                 } else {

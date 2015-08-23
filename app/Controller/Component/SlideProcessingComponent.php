@@ -49,10 +49,10 @@ class SlideProcessingComponent extends Component
      *
      * @param string $key key to remove
      */
-    public function delete_slide_from_s3($key)
+    public function delete_slide_from_s3($s3, $key)
     {
-        $this->delete_master_slide($key);
-        $this->delete_generated_files($key);
+        $this->delete_master_slide($s3, $key);
+        $this->delete_generated_files($s3, $key);
     }
 
     /**
@@ -60,9 +60,8 @@ class SlideProcessingComponent extends Component
      *
      * @param string $key
      */
-    public function delete_generated_files($key)
+    public function delete_generated_files($s3, $key)
     {
-        $s3 = $this->S3->getClient();
         // List files and delete them.
         $res = $s3->listObjects(array('Bucket' => Configure::read('image_bucket_name'), 'MaxKeys' => 1000, 'Prefix' => $key . '/'));
         $keys = $res->getPath('Contents');
@@ -85,7 +84,7 @@ class SlideProcessingComponent extends Component
      *
      * @param array $data that is retrieved from SQS
      */
-    public function extract_images($data)
+    public function extract_images($s3, $data)
     {
         // S3 object key
         $key = $data['key'];
@@ -106,7 +105,6 @@ class SlideProcessingComponent extends Component
 
         // retrieve original file from S3
         $this->log->addInfo('Start retrieving file from S3');
-        $s3 = $this->S3->getClient();
         $object = $s3->getObject(array(
             'Bucket' => Configure::read('bucket_name'),
             'Key' => $key,
@@ -170,11 +168,11 @@ class SlideProcessingComponent extends Component
 
                 $files = $this->list_local_images($save_dir);
                 $first_page = false;
-                $this->upload_extract_images($key, $save_dir, $files, $first_page);
+                $this->upload_extract_images($s3, $key, $save_dir, $files, $first_page);
 
                 // create thumbnail images
                 if ($first_page) {
-                    $this->create_thumbnail($key, $first_page);
+                    $this->create_thumbnail($s3, $key, $first_page);
                 }
                 $this->log->addInfo('Converting file successfully completed!!');
                 // update the db record
@@ -230,9 +228,8 @@ class SlideProcessingComponent extends Component
      *
      * @param string $key filename in S3
      */
-    public function get_original_file_download_path($key, $extension = null)
+    public function get_original_file_download_path($s3, $key, $extension = null)
     {
-        $s3 = $this->S3->getClient();
         $filename = $key . $extension;
         $opt = array('ResponseContentDisposition' => 'attachment; filename="' . $filename . '"');
         $url = $s3->getObjectUrl(Configure::read('bucket_name'), $key, '+15 minutes', $opt);
@@ -327,9 +324,8 @@ class SlideProcessingComponent extends Component
      *                    string $save_dir
      *                    array  $files
      */
-    private function upload_extract_images($key, $save_dir, $files, &$first_page)
+    private function upload_extract_images($s3, $key, $save_dir, $files, &$first_page)
     {
-        $s3 = $this->S3->getClient();
         $file_array = array();
         $this->log->addInfo('Total number of files is ' . count($files));
 
@@ -380,9 +376,8 @@ class SlideProcessingComponent extends Component
      *
      * @param string $key
      */
-    private function delete_master_slide($key)
+    private function delete_master_slide($s3, $key)
     {
-        $s3 = $this->S3->getClient();
         $res = $s3->deleteObject(array(
             'Bucket' => Configure::read('bucket_name'),
             'Key' => $key,
@@ -414,7 +409,7 @@ class SlideProcessingComponent extends Component
      * @param string $key
      *                    string $filename
      */
-    private function create_thumbnail($key, $filename)
+    private function create_thumbnail($s3, $key, $filename)
     {
         // Create Same Size Thumbnail
         $f = TMP . $filename;
@@ -449,7 +444,6 @@ class SlideProcessingComponent extends Component
         imagejpeg($dst_image, TMP . $key . '/thumbnail.jpg');
 
         // store thumbnail to S3
-        $s3 = $this->S3->getClient();
         $s3->putObject(array(
             'Bucket' => Configure::read('image_bucket_name'),
             'Key' => $key . '/thumbnail.jpg',

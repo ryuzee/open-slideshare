@@ -27,7 +27,14 @@ class BatchExtractShell extends AppShell
      *
      * @var mixed
      */
-    public $SlideProcessing;
+     public $S3;
+
+     /**
+      * SlideProcessing
+      *
+      * @var mixed
+      */
+     public $SlideProcessing;
 
     /**
      * Slide.
@@ -43,6 +50,7 @@ class BatchExtractShell extends AppShell
     {
         $this->components = new ComponentCollection();
         $this->SlideProcessing = $this->components->load('SlideProcessing');
+        $this->S3 = $this->components->load('S3');
     }
 
     /**
@@ -53,7 +61,7 @@ class BatchExtractShell extends AppShell
         $slides = $this->Slide->find('all');
         foreach ($slides as $slide) {
             echo '----' . $slide['Slide']['key'] . "----\n";
-            $this->SlideProcessing->extract_images($slide['Slide']);
+            $this->SlideProcessing->extract_images($this->S3->getClient(), $slide['Slide']);
         }
     }
 }

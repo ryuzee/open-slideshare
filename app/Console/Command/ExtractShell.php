@@ -27,7 +27,15 @@ class ExtractShell extends AppShell
      *
      * @var mixed
      */
-    public $SlideProcessing;
+     public $S3;
+
+
+     /**
+      * SlideProcessing
+      *
+      * @var mixed
+      */
+     public $SlideProcessing;
 
     /**
      * startup.
@@ -36,6 +44,7 @@ class ExtractShell extends AppShell
     {
         $this->components = new ComponentCollection();
         $this->SlideProcessing = $this->components->load('SlideProcessing');
+        $this->S3 = $this->components->load('S3');
     }
 
     /**
@@ -56,6 +65,6 @@ class ExtractShell extends AppShell
     {
         echo '[LOG] Start extracting ' . $data['key'] . "\n";
 
-        return $this->SlideProcessing->extract_images($data);
+        return $this->SlideProcessing->extract_images($this->S3->getClient(), $data);
     }
 }
