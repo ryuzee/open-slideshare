@@ -136,9 +136,9 @@ class S3Component extends Component
      * get several key for AWS API.
      *
      * @param string $shortDate
-     *                          string $region
-     *                          string $service
-     *                          string $secretKey
+     * @param string $region
+     * @param string $service
+     * @param string $secretKey
      *
      * @return tring
      */
