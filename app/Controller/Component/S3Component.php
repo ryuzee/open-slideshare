@@ -72,8 +72,10 @@ class S3Component extends Component
             $secret_key = $credentials->getSecretKey();
             $security_token = $credentials->getSecurityToken();
         }
+        $region = Configure::read('region');
+        $bucket_name = Configure::read('bucket_name');
 
-        return $this->populatePolicy($base_time, $access_id, $secret_key, $security_token);
+        return $this->populatePolicy($base_time, $access_id, $secret_key, $security_token, $region, $bucket_name);
     }
 
     ################## Private ################
@@ -81,7 +83,7 @@ class S3Component extends Component
     /**
      * Populate policy for S3 Upload.
      */
-    private function populatePolicy($base_time, $access_id, $secret_key, $security_token)
+    private function populatePolicy($base_time, $access_id, $secret_key, $security_token, $region, $bucket_name)
     {
         $date_ymd = gmdate('Ymd', $base_time);
         $date_gm = gmdate("Ymd\THis\Z", $base_time);
@@ -95,14 +97,14 @@ class S3Component extends Component
         $p_array = array(
           'expiration' => $expires,
           'conditions' => array(
-            array('bucket' => Configure::read('bucket_name')),
+            array('bucket' => $bucket_name),
             array('starts-with', '$key', ''),
             array('acl' => $acl),
             array('success_action_status' => '201'),
             array('starts-with', '$Content-Type', 'application/octetstream'),
             array('x-amz-meta-uuid' => '14365123651274'),
             array('starts-with', '$x-amz-meta-tag', ''),
-            array('x-amz-credential' => $access_id . '/' . $date_ymd . '/' . Configure::read('region') . '/s3/aws4_request'),
+            array('x-amz-credential' => $access_id . '/' . $date_ymd . '/' . $region . '/s3/aws4_request'),
             array('x-amz-algorithm' => 'AWS4-HMAC-SHA256'),
             array('x-amz-date' => $date_gm),
           ),
@@ -124,7 +126,7 @@ class S3Component extends Component
         // 3. Create the signature as an HMAC-SHA256 hash of the string to sign. You will provide the signing key as key to the hash function.
         //---------------------------------------------
         // https://github.com/aws/aws-sdk-php/blob/00c4d18d666d2da44814daca48deb33e20cc4d3c/src/Aws/Common/Signature/SignatureV4.php
-        $signinkey = $this->getSigningKey($date_ymd, Configure::read('region'), 's3', $secret_key);
+        $signinkey = $this->getSigningKey($date_ymd, $region, 's3', $secret_key);
         $signature = hash_hmac('sha256', $base64_policy, $signinkey, false);
 
         $result = array(
