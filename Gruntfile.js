@@ -31,7 +31,7 @@ module.exports = function(grunt){
                 command: 'app/Console/cake test --log-junit app/reports/unittest.xml app AllTests'
             },
             run_test_full: {
-                command: 'app/Console/cake test --log-junit app/reports/unittest.xml --coverage-html app/reports --coverage-clover app/reports/coverage.xml app AllTests'
+                command: 'app/Console/cake test --configuration=oss_phpunit.xml app AllTests'
             },
             run_phpcs: {
                 command: './Vendor/bin/phpcs app/**/*.php --standard=PSR2;:'

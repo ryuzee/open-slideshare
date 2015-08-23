@@ -1,0 +1,18 @@
+<phpunit>
+
+<logging>
+        <log type="coverage-html" target="./app/reports/coverage_html/" title="My Project" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"></log>
+        <log type="coverage-clover" target="./app/reports/coverage.xml"></log>
+        <log type="junit" target="./app/reports/unittest.xml" logIncompleteSkipped="false"></log>
+</logging>
+
+<filter>
+  <blacklist>
+    <directory suffix=".php">Vendor</directory>
+    <directory suffix=".php">Plugin</directory>
+    <directory suffix=".php">app/Test</directory>
+    <directory suffix=".php">app/Vendor</directory>
+  </blacklist>
+</filter>
+
+</phpunit>
