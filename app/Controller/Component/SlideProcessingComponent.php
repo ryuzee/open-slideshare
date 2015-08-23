@@ -47,6 +47,7 @@ class SlideProcessingComponent extends Component
     /**
      * Delete slide from S3.
      *
+     * @param object $s3 S3 instance
      * @param string $key key to remove
      */
     public function delete_slide_from_s3($s3, $key)
@@ -58,6 +59,7 @@ class SlideProcessingComponent extends Component
     /**
      * Delete all generated files in Amazon S3.
      *
+     * @param object $s3 S3 instance
      * @param string $key
      */
     public function delete_generated_files($s3, $key)
@@ -82,6 +84,7 @@ class SlideProcessingComponent extends Component
     /**
      * Extract images from uploaded file.
      *
+     * @param object $s3 S3 instance
      * @param array $data that is retrieved from SQS
      */
     public function extract_images($s3, $data)
@@ -226,6 +229,7 @@ class SlideProcessingComponent extends Component
     /**
      * Download original file from bucket.
      *
+     * @param object $s3 S3 instance
      * @param string $key filename in S3
      */
     public function get_original_file_download_path($s3, $key, $extension = null)
@@ -263,7 +267,8 @@ class SlideProcessingComponent extends Component
      * Convert PDF file to PPM.
      *
      * @param string $save_dir path to store file
-     *                         string $file_path source file to convert
+     * @param string $file_path source file to convert
+     *
      */
     private function convert_pdf_to_ppm($save_dir, $file_path)
     {
@@ -320,9 +325,10 @@ class SlideProcessingComponent extends Component
     /**
      * Upload all generated files to Amazon S3.
      *
+     * @param object $s3 S3 instance
      * @param string $key
-     *                    string $save_dir
-     *                    array  $files
+     * @param string $save_dir
+     * @param array  $files
      */
     private function upload_extract_images($s3, $key, $save_dir, $files, &$first_page)
     {
@@ -374,6 +380,7 @@ class SlideProcessingComponent extends Component
     /**
      * Delete master slide from Amazon S3.
      *
+     * @param object $s3 S3 instance
      * @param string $key
      */
     private function delete_master_slide($s3, $key)
@@ -406,8 +413,9 @@ class SlideProcessingComponent extends Component
     /**
      * Create thumbnail from specified original image file.
      *
+     * @param object $s3 S3 instance
      * @param string $key
-     *                    string $filename
+     * @param string $filename
      */
     private function create_thumbnail($s3, $key, $filename)
     {
