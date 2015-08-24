@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-08-24 19:21+0900\n"
+"PO-Revision-Date: 2015-08-25 05:01+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -63,15 +63,16 @@ msgstr "コメントを削除しました。"
 msgid "The comment could not be deleted. Please, try again."
 msgstr "コメントを削除できませんでした。もう一度試してください。"
 
-#: Controller/SlidesController.php:51
+#: Controller/SlidesController.php:59
 msgid "All Slides"
 msgstr "すべてのスライド"
 
-#: Controller/SlidesController.php:85
+#: Controller/SlidesController.php:101
 msgid "Recent Slides"
 msgstr "最新のスライド"
 
-#: Controller/SlidesController.php:104 View/Slides/popular.ctp:4
+#: Controller/SlidesController.php:112 View/Slides/index.ctp:4
+#: View/Slides/popular.ctp:4
 msgid "Popular Slides"
 msgstr "人気のスライド"
 
@@ -259,13 +260,17 @@ msgstr "削除"
 msgid "Are you sure you want to delete # %s?"
 msgstr "#%s を削除してもよろしいですか？"
 
-#: View/Slides/index.ctp:4
-msgid "Slides"
-msgstr "スライド"
+#: View/Slides/index.ctp:4;11
+msgid "More..."
+msgstr "もっと見る"
 
-#: View/Slides/latest.ctp:4
+#: View/Slides/index.ctp:11 View/Slides/latest.ctp:4
 msgid "Latest Slides"
 msgstr "最新のスライド"
+
+#: View/Slides/search.ctp:3
+msgid "Search Results"
+msgstr "検索結果"
 
 #: View/Slides/view.ctp:35
 msgid "Comments"
@@ -406,6 +411,9 @@ msgid ""
 msgstr ""
 "パスワードはアルファベット・数字または!#$%&*+@?の文字から構成されている必"
 "要があります"
+
+#~ msgid "Slides"
+#~ msgstr "スライド"
 
 #~ msgid "A view block with the name '%s' is already/still open."
 #~ msgstr "%s という名前のView Blockが既に開かれています。"

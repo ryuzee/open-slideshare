@@ -57,15 +57,16 @@ msgstr ""
 msgid "The comment could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/SlidesController.php:51
+#: Controller/SlidesController.php:59
 msgid "All Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:85
+#: Controller/SlidesController.php:101
 msgid "Recent Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:104
+#: Controller/SlidesController.php:112
+#: View/Slides/index.ctp:4
 #: View/Slides/popular.ctp:4
 msgid "Popular Slides"
 msgstr ""
@@ -263,12 +264,17 @@ msgstr ""
 msgid "Are you sure you want to delete # %s?"
 msgstr ""
 
-#: View/Slides/index.ctp:4
-msgid "Slides"
+#: View/Slides/index.ctp:4;11
+msgid "More..."
 msgstr ""
 
+#: View/Slides/index.ctp:11
 #: View/Slides/latest.ctp:4
 msgid "Latest Slides"
+msgstr ""
+
+#: View/Slides/search.ctp:3
+msgid "Search Results"
 msgstr ""
 
 #: View/Slides/view.ctp:35
