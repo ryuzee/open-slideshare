@@ -136,9 +136,9 @@ class CommonHelper extends AppHelper
             if (mb_strlen($text) > $length) {
                 $length -= mb_strlen($ending);
                 if (!$exact) {
-                    $text = preg_replace('/¥s+?(¥S+)?$/', '', mb_substr($text, 0, $length+1));
+                    $text = preg_replace('/\s+?(\S+)?$/', '', mb_substr($text, 0, $length+1));
                 }
-                return mb_substr($text, 0, $length).$ending;
+                return mb_substr($text, 0, $length) . $ending;
             } else {
                 return $text;
             }
