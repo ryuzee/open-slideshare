@@ -50,20 +50,4 @@ class Comment extends AppModel
             'order' => '',
         ),
     );
-
-    /**
-     * get_recent_comment
-     *
-     */
-    public function get_recent_comment()
-    {
-        $recent_comment = $this->find('all', array(
-            'fields' => array('Slide.id', 'Slide.name', 'User.display_name', 'Comment.created'),
-            'order' => 'Comment.created desc',
-            'recursive' => 2,
-            'limit' => 10,
-        ));
-
-        return $recent_comment;
-    }
 }
