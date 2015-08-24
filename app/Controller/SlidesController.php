@@ -54,7 +54,7 @@ class SlidesController extends AppController
     /**
      * index method.
      */
-    public function index()
+    public function search()
     {
         $this->set('title_for_layout', __('All Slides'));
         $this->Slide->recursive = 0;
@@ -84,6 +84,14 @@ class SlidesController extends AppController
         $this->set('slides', $this->Paginator->paginate());
     }
 
+    public function index()
+    {
+        $slides_popular = $this->Slide->find('all', $this->Slide->get_conditions_to_get_popular_slides(8));
+        $slides_latest = $this->Slide->find('all', $this->Slide->get_conditions_to_get_latest_slides(8));
+        $this->set('slides_popular', $slides_popular);
+        $this->set('slides_latest', $slides_latest);
+    }
+
     /**
      * latest
      *
@@ -91,7 +99,7 @@ class SlidesController extends AppController
     public function latest()
     {
         $this->set('title_for_layout', __('Recent Slides'));
-        $this->Paginator->settings = $this->Slide->get_conditions_to_get_latest_slides();
+        $this->Paginator->settings = $this->Slide->get_conditions_to_get_latest_slides(20);
         $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 
@@ -102,7 +110,7 @@ class SlidesController extends AppController
     public function popular()
     {
         $this->set('title_for_layout', __('Popular Slides'));
-        $this->Paginator->settings = $this->Slide->get_conditions_to_get_popular_slides();
+        $this->Paginator->settings = $this->Slide->get_conditions_to_get_popular_slides(20);
         $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 

@@ -200,16 +200,14 @@ class Slide extends AppModel
      * get_conditions_to_get_latest_slides
      *
      */
-    public function get_conditions_to_get_latest_slides()
+     public function get_conditions_to_get_latest_slides($count = 20)
     {
         $conditions = array(
-            'Slide' => array(
-                'model' => 'Slide',
-                'limit' => 20,
-                'recursive' => 2,
-                'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
-                'order' => array('created' => 'desc'),
-            ),
+            'model' => 'Slide',
+            'limit' => $count,
+            'recursive' => 2,
+            'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
+            'order' => array('Slide.created' => 'desc'),
         );
 
         return $conditions;
@@ -219,16 +217,14 @@ class Slide extends AppModel
      * get_conditions_to_get_popular_slides
      *
      */
-    public function get_conditions_to_get_popular_slides()
+    public function get_conditions_to_get_popular_slides($count = 20)
     {
         $conditions = array(
-            'Slide' => array(
-                'model' => 'Slide',
-                'limit' => 20,
-                'recursive' => 2,
-                'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
-                'order' => array('page_view' => 'desc'),
-            ),
+            'model' => 'Slide',
+            'limit' => $count,
+            'recursive' => 2,
+            'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
+            'order' => array('Slide.page_view' => 'desc'),
         );
 
         return $conditions;
