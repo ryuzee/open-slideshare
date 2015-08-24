@@ -39,7 +39,7 @@ class SlidesController extends AppController
      */
     public function beforeFilter()
     {
-        $this->Auth->allow('index', 'view', 'update_view', 'download', 'embedded');
+        $this->Auth->allow('index', 'view', 'update_view', 'download', 'embedded', 'popular', 'latest');
         parent::beforeFilter();
     }
 
