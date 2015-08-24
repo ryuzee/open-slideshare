@@ -16,7 +16,7 @@
 
 You can see the working demo at http://slide.meguro.ryuzee.com/
 
-![Sample1](http://www.ryuzee.com/images/work/OpenSlideshare01_small.png)
+![Sample1](http://www.ryuzee.com/images/work/OpenSlideshare02.png)
 
 ![Embedded Player](http://www.ryuzee.com/images/work/embedded_player.png)
 
