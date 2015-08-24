@@ -77,6 +77,44 @@ class SlidesController extends AppController
     }
 
     /**
+     * latest
+     *
+     */
+    public function latest()
+    {
+        $this->set('title_for_layout', __('Recent Slides'));
+        $this->paginate = array(
+            'Slide' => array(
+                'model' => 'Slide',
+                'limit' => 20,
+                'recursive' => 2,
+                'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
+                'order' => array('created' => 'desc'),
+            ),
+        );
+        $this->set('slides', $this->Paginator->paginate('Slide'));
+    }
+
+    /**
+     * popular
+     *
+     */
+    public function popular()
+    {
+        $this->set('title_for_layout', __('Popular Slides'));
+        $this->paginate = array(
+            'Slide' => array(
+                'model' => 'Slide',
+                'limit' => 20,
+                'recursive' => 2,
+                'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
+                'order' => array('page_view' => 'desc'),
+            ),
+        );
+        $this->set('slides', $this->Paginator->paginate('Slide'));
+    }
+
+    /**
      * view method.
      *
      * @throws NotFoundException

@@ -13,15 +13,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/AppController.php:67
+#: Controller/AppController.php:68
 msgid "Dot can not be allowed in the bucket name %s to avoid SSL certification issue... Please check S3 bucket name settings"
 msgstr ""
 
-#: Controller/AppController.php:77
+#: Controller/AppController.php:78
 msgid "Invalid username or password"
 msgstr ""
 
-#: Controller/AppController.php:78
+#: Controller/AppController.php:79
 msgid "You have no privileges"
 msgstr ""
 
@@ -57,47 +57,56 @@ msgstr ""
 msgid "The comment could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/SlidesController.php:47
+#: Controller/SlidesController.php:51
 msgid "All Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:90;126;152;172;224;276
+#: Controller/SlidesController.php:85
+msgid "Recent Slides"
+msgstr ""
+
+#: Controller/SlidesController.php:104
+#: View/Slides/popular.ctp:4
+msgid "Popular Slides"
+msgstr ""
+
+#: Controller/SlidesController.php:131;167;193;213;265;317
 msgid "Invalid slide"
 msgstr ""
 
-#: Controller/SlidesController.php:130
+#: Controller/SlidesController.php:171
 msgid "This slide can not be downloaded"
 msgstr ""
 
-#: Controller/SlidesController.php:187
+#: Controller/SlidesController.php:228
 msgid "New Slide"
 msgstr ""
 
-#: Controller/SlidesController.php:198;247
+#: Controller/SlidesController.php:239;288
 msgid "The slide has been saved."
 msgstr ""
 
-#: Controller/SlidesController.php:203;250
+#: Controller/SlidesController.php:244;291
 msgid "The slide could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/SlidesController.php:235
+#: Controller/SlidesController.php:276
 msgid "You do not have permission to edit the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:245
+#: Controller/SlidesController.php:286
 msgid "The slide has been saved. File conversion has just started."
 msgstr ""
 
-#: Controller/SlidesController.php:284
+#: Controller/SlidesController.php:325
 msgid "You do not have permission to delete the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:295
+#: Controller/SlidesController.php:336
 msgid "The slide has been deleted."
 msgstr ""
 
-#: Controller/SlidesController.php:297
+#: Controller/SlidesController.php:338
 msgid "The slide could not be deleted. Please, try again."
 msgstr ""
 
@@ -126,7 +135,7 @@ msgid "You have finished to logout."
 msgstr ""
 
 #: Controller/UsersController.php:129
-#: View/Layouts/default.ctp:116
+#: View/Layouts/default.ctp:118
 msgid "Signup"
 msgstr ""
 
@@ -154,37 +163,49 @@ msgstr ""
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
+#: Model/Category.php:65
+msgid "No Category"
+msgstr ""
+
 #: View/Elements/right_side_bar_common.ctp:1
 msgid "Speaker Details"
 msgstr ""
 
 #: View/Layouts/default.ctp:78
-#: View/Slides/add.ctp:128
+#: View/Slides/add.ctp:127
 msgid "Category"
 msgstr ""
 
 #: View/Layouts/default.ctp:87
+msgid "Popular"
+msgstr ""
+
+#: View/Layouts/default.ctp:88
+msgid "Latest"
+msgstr ""
+
+#: View/Layouts/default.ctp:89
 msgid "Search"
 msgstr ""
 
-#: View/Layouts/default.ctp:91
+#: View/Layouts/default.ctp:93
 msgid "Upload"
 msgstr ""
 
-#: View/Layouts/default.ctp:97
+#: View/Layouts/default.ctp:99
 #: View/Users/index.ctp:3
 msgid "My Slides"
 msgstr ""
 
-#: View/Layouts/default.ctp:98
+#: View/Layouts/default.ctp:100
 msgid "My Account"
 msgstr ""
 
-#: View/Layouts/default.ctp:100
+#: View/Layouts/default.ctp:102
 msgid "Logout"
 msgstr ""
 
-#: View/Layouts/default.ctp:113
+#: View/Layouts/default.ctp:115
 msgid "Sign in"
 msgstr ""
 
@@ -197,20 +218,20 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: View/Slides/add.ctp:122
+#: View/Slides/add.ctp:121
 msgid "Name"
 msgstr ""
 
-#: View/Slides/add.ctp:123
+#: View/Slides/add.ctp:122
 msgid "Description"
 msgstr ""
 
-#: View/Slides/add.ctp:125
-#: View/Slides/edit.ctp:125
+#: View/Slides/add.ctp:124
+#: View/Slides/edit.ctp:124
 msgid "Allow to download original slide"
 msgstr ""
 
-#: View/Slides/add.ctp:132
+#: View/Slides/add.ctp:131
 msgid "Upload a file to save"
 msgstr ""
 
@@ -218,32 +239,36 @@ msgstr ""
 msgid "Edit slide"
 msgstr ""
 
-#: View/Slides/edit.ctp:104
+#: View/Slides/edit.ctp:103
 msgid "Re-upload"
 msgstr ""
 
-#: View/Slides/edit.ctp:130
+#: View/Slides/edit.ctp:129
 #: View/Slides/view.ctp:69
 msgid "Submit"
 msgstr ""
 
-#: View/Slides/edit.ctp:138
+#: View/Slides/edit.ctp:137
 #: View/Slides/view.ctp:79
 msgid "Actions"
 msgstr ""
 
-#: View/Slides/edit.ctp:141
+#: View/Slides/edit.ctp:140
 #: View/Slides/view.ctp:41
 msgid "Delete"
 msgstr ""
 
-#: View/Slides/edit.ctp:141
+#: View/Slides/edit.ctp:140
 #: View/Slides/view.ctp:41;83
 msgid "Are you sure you want to delete # %s?"
 msgstr ""
 
 #: View/Slides/index.ctp:4
 msgid "Slides"
+msgstr ""
+
+#: View/Slides/latest.ctp:4
+msgid "Latest Slides"
 msgstr ""
 
 #: View/Slides/view.ctp:35

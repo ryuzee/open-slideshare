@@ -84,6 +84,8 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
+                    <li><a href="/slides/popular"><?php echo __('Popular'); ?></a></li>
+                    <li><a href="/slides/latest"><?php echo __('Latest'); ?></a></li>
                     <li><a href="#" id="open_search_form_"><?php echo __('Search'); ?></a></li>
                     </ul>
                     <?php if (AuthComponent::user('username')): ?>
