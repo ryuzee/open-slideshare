@@ -84,6 +84,11 @@ class SlideTest extends CakeTestCase
                 $this->assertEqual($data['Slide'][$key], $data_new['Slide'][$key]);
             }
         }
+
+        $id = null;
+        $result = $this->Slide->countup('download_count', $id);
+        $this->assertFalse($result);
+
     }
 
     /**
@@ -162,5 +167,41 @@ class SlideTest extends CakeTestCase
         $this->assertTrue(count($this->Slide->hasMany) === 0);
         $this->assertTrue(count($this->Slide->belongsTo) === 0);
         $this->assertTrue(count($this->Slide->hasAndBelongsToMany) === 0);
+    }
+
+    /**
+     * testGetConditionsToGetPopularSlides
+     *
+     */
+    public function testGetConditionsToGetPopularSlides()
+    {
+        $cond = $this->Slide->get_conditions_to_get_popular_slides();
+        $result = $this->Slide->find('all', $cond);
+        $this->assertEqual($result[0]['Slide']['id'], 4);
+        $this->assertEqual($result[0]['Slide']['page_view'], 9999);
+    }
+
+    /**
+     * testGetConditionsToGetLatestSlides
+     *
+     */
+    public function testGetConditionsToGetLatestSlides()
+    {
+        $cond = $this->Slide->get_conditions_to_get_latest_slides();
+        $result = $this->Slide->find('all', $cond);
+        $this->assertEqual($result[0]['Slide']['id'], 3);
+        $this->assertEqual($result[0]['Slide']['created'], '2015-08-01 00:00:00');
+    }
+
+    /**
+     * testGetConditionsToGetSlidesInCategory
+     *
+     */
+    public function testGetConditionsToGetSlidesInCategory()
+    {
+        $cond = $this->Slide->get_conditions_to_get_slides_in_category(3);
+        $result = $this->Slide->find('all', $cond);
+        $this->assertEqual($result[0]['Slide']['id'], 3);
+        $this->assertEqual($result[0]['Slide']['category_id'], 3);
     }
 }

@@ -126,11 +126,11 @@ class Slide extends AppModel
     public function countup($column, $id = null)
     {
         if (!$id) {
-            return;
+            return false;
         }
         $fields = array(sprintf('%s', $column) => sprintf('%s + 1', $column));
         $conditions = array('Slide.id' => $id);
-        $this->updateAll($fields, $conditions);
+        return $this->updateAll($fields, $conditions);
     }
 
     /**
@@ -184,13 +184,11 @@ class Slide extends AppModel
     public function get_conditions_to_get_slides_in_category($id)
     {
         $conditions = array(
-            'Slide' => array(
-                'model' => 'Slide',
-                'limit' => 20,
-                'recursive' => 2,
-                'conditions' => 'Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.category_id = '.$id,
-                'order' => array('id' => 'desc'),
-            ),
+            'model' => 'Slide',
+            'limit' => 20,
+            'recursive' => 2,
+            'conditions' => 'Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.category_id = '.$id,
+            'order' => array('Slide.id' => 'desc'),
         );
 
         return $conditions;
