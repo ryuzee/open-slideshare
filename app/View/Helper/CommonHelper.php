@@ -110,4 +110,38 @@ class CommonHelper extends AppHelper
 
         return $url;
     }
+
+    /**
+     * truncate
+     *
+     * @param mixed $text
+     * @param mixed $length
+     * @param string $ending
+     * @param mixed $exact
+     */
+    public function truncate($text, $length, $ending = '...', $exact = true)
+    {
+        $len = strlen($text);
+        $mblen = mb_strlen($text, mb_internal_encoding());
+
+        // including multibyte??
+        if ($len !== $mblen) {
+            $length = floor($length / 2);
+        }
+
+        if (strlen($text) <= $length) {
+            return $text;
+        } else {
+            mb_internal_encoding("UTF-8");
+            if (mb_strlen($text) > $length) {
+                $length -= mb_strlen($ending);
+                if (!$exact) {
+                    $text = preg_replace('/¥s+?(¥S+)?$/', '', mb_substr($text, 0, $length+1));
+                }
+                return mb_substr($text, 0, $length).$ending;
+            } else {
+                return $text;
+            }
+        }
+    }
 }

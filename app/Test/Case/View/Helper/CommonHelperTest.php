@@ -162,6 +162,34 @@ class CommonHelperTest extends CakeTestCase
     }
 
     /**
+     * truncateTestDataProvider
+     *
+     */
+    public function truncateTestDataProvider()
+    {
+        return array(
+            array('test', 'test'),
+            array('testtest', 'testtest'),
+            array('testtesttest', 'testt...'),
+            array('鯛鮪鰻鯖', '鯛鮪鰻鯖'),
+            array('鯛鮪鰻鯖鮎', '鯛...'),
+        );
+    }
+
+    /**
+     * testTruncate
+     *
+     * @dataProvider truncateTestDataProvider
+     *
+     * @param mixed $a
+     * @param mixed $expected
+     */
+    public function testTruncate($a, $expected)
+    {
+        $this->assertEqual($this->Common->truncate($a, 8), $expected);
+    }
+
+    /**
      * store_config.
      */
     private function store_config()
