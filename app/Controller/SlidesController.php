@@ -34,6 +34,14 @@ class SlidesController extends AppController
      */
     public $SlideProcessing;
 
+
+    /**
+     * paginate
+     *
+     * @var mixed
+     */
+    public $paginate;
+
     /**
      * beforeFilter.
      */
