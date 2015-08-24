@@ -195,6 +195,45 @@ class Slide extends AppModel
 
         return $conditions;
     }
+
+    /**
+     * get_conditions_to_get_latest_slides
+     *
+     */
+    public function get_conditions_to_get_latest_slides()
+    {
+        $conditions = array(
+            'Slide' => array(
+                'model' => 'Slide',
+                'limit' => 20,
+                'recursive' => 2,
+                'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
+                'order' => array('created' => 'desc'),
+            ),
+        );
+
+        return $conditions;
+    }
+
+    /**
+     * get_conditions_to_get_popular_slides
+     *
+     */
+    public function get_conditions_to_get_popular_slides()
+    {
+        $conditions = array(
+            'Slide' => array(
+                'model' => 'Slide',
+                'limit' => 20,
+                'recursive' => 2,
+                'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
+                'order' => array('page_view' => 'desc'),
+            ),
+        );
+
+        return $conditions;
+    }
+
     /**
      * Update status code in Slide to indicate conversion status
      *

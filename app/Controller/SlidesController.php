@@ -91,15 +91,7 @@ class SlidesController extends AppController
     public function latest()
     {
         $this->set('title_for_layout', __('Recent Slides'));
-        $this->paginate = array(
-            'Slide' => array(
-                'model' => 'Slide',
-                'limit' => 20,
-                'recursive' => 2,
-                'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
-                'order' => array('created' => 'desc'),
-            ),
-        );
+        $this->Paginator->settings = $this->Slide->get_conditions_to_get_latest_slides();
         $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 
@@ -110,15 +102,7 @@ class SlidesController extends AppController
     public function popular()
     {
         $this->set('title_for_layout', __('Popular Slides'));
-        $this->paginate = array(
-            'Slide' => array(
-                'model' => 'Slide',
-                'limit' => 20,
-                'recursive' => 2,
-                'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
-                'order' => array('page_view' => 'desc'),
-            ),
-        );
+        $this->Paginator->settings = $this->Slide->get_conditions_to_get_popular_slides();
         $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 
