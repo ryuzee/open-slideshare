@@ -205,12 +205,21 @@ class SlideTest extends CakeTestCase
         $this->assertEqual($result[0]['Slide']['category_id'], 3);
     }
 
+    /**
+     * testGetConditionsToGetSlidesByUser
+     *
+     */
     public function testGetConditionsToGetSlidesByUser()
     {
         $cond = $this->Slide->get_conditions_to_get_slides_by_user(1);
         $result = $this->Slide->find('all', $cond);
         foreach ($result as $res) {
             $this->assertEqual($res['Slide']['user_id'], 1);
+            $this->assertEqual($res['Slide']['convert_status'], SUCCESS_CONVERT_COMPLETED);
         }
+
+        $cond2 = $this->Slide->get_conditions_to_get_slides_by_user(1, true);
+        $result2 = $this->Slide->find('all', $cond2);
+        $this->assertNotEqual($result, $result2);
     }
 }

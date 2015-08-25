@@ -233,15 +233,18 @@ class Slide extends AppModel
      *
      * @param mixed $user_id
      */
-    public function get_conditions_to_get_slides_by_user($user_id)
+    public function get_conditions_to_get_slides_by_user($user_id, $include_all_slides = false)
     {
         $conditions = array(
             'model' => 'Slide',
             'limit' => 15,
             'recursive' => 2,
-            'conditions' => 'Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.user_id = '.$user_id,
+            'conditions' => array('Slide.user_id = ' . $user_id),
             'order' => array('Slide.id' => 'desc'),
         );
+        if ($include_all_slides === false) {
+            $conditions['conditions'][] = 'Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED;
+        }
 
         return $conditions;
     }

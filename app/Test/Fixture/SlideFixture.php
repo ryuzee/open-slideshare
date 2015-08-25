@@ -69,7 +69,7 @@ class SlideFixture extends CakeTestFixture
         array(
             'id' => '4',
             'user_id' => '2',
-            'name' => 'TestSlide3',
+            'name' => 'TestSlide4',
             'description' => 'The Description of TestSlide4',
             'downloadable' => 1,
             'category_id' => '2',
@@ -82,5 +82,22 @@ class SlideFixture extends CakeTestFixture
             'download_count' => '1111',
             'embedded_view' => '3333',
         ),
+        array(
+            'id' => '5',
+            'user_id' => '1',
+            'name' => 'TestSlide5',
+            'description' => 'The Description of TestSlide5',
+            'downloadable' => 0,
+            'category_id' => '4',
+            'created' => '2015-05-01 00:00:00',
+            'modified' => '2015-05-01 01:00:00',
+            'key' => '1cf9ff7657312d63072439632e6110bd',
+            'extension' => '.pptx',
+            'convert_status' => '-40',
+            'page_view' => '1',
+            'download_count' => '1',
+            'embedded_view' => '1',
+        ),
+
     );
 }

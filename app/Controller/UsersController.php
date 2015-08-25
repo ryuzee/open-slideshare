@@ -32,15 +32,8 @@ class UsersController extends AppController
         $this->set('title_for_layout', __('Your Dashboard'));
         $user = $this->Auth->User();
         $user_id = $user['id'];
-        $this->paginate = array(
-                    'Slide' => array(
-                        'model' => 'Slide',
-                        'limit' => 12,
-                        'recursive' => 2,
-                        'conditions' => 'Slide.user_id = ' . $user_id,
-                        'order' => array('id' => 'desc'),
-                    ),
-            );
+        $conditions = $this->Slide->get_conditions_to_get_slides_by_user($user_id, true);
+        $this->paginate = $conditions;
         $this->set('slides', $this->Paginator->paginate('Slide'));
 
         $userinfo = $this->User->read(null, $user_id);
@@ -149,6 +142,7 @@ class UsersController extends AppController
         $results = array();
         if (is_array($users)) {
             foreach ($users as $user) {
+                $rec = array();
                 $rec['id'] = $user['User']['id'];
                 $rec['name'] = $user['User']['display_name'];
                 $rec['avatar'] = '';
