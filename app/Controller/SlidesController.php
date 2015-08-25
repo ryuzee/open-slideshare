@@ -84,6 +84,10 @@ class SlidesController extends AppController
         $this->set('slides', $this->Paginator->paginate());
     }
 
+    /**
+     * index
+     *
+     */
     public function index()
     {
         $slides_popular = $this->Slide->find('all', $this->Slide->get_conditions_to_get_popular_slides(8));
@@ -98,16 +102,11 @@ class SlidesController extends AppController
      */
     public function latest()
     {
-        $this->set('title_for_layout', __('Recent Slides'));
+        $this->set('title_for_layout', __('Latest Slides'));
         $conditions = $this->Slide->get_conditions_to_get_latest_slides(20);
 
         if ($this->RequestHandler->isRss()) {
-            Configure::write('debug', 0);
-            $slides = $this->Slide->find('all', $conditions);
-            $this->set(compact('slides'));
-            $this->set('title', __('Latest Slides'));
-            $this->set('description', __('Latest Slides'));
-            return $this->render('slide_list');
+            return $this->render_rss($conditions, __('Latest Slides'), __('Latest Slides'));
         }
 
         $this->Paginator->settings = $conditions;
@@ -124,16 +123,28 @@ class SlidesController extends AppController
         $conditions = $this->Slide->get_conditions_to_get_popular_slides(20);
 
         if ($this->RequestHandler->isRss()) {
-            Configure::write('debug', 0);
-            $slides = $this->Slide->find('all', $conditions);
-            $this->set(compact('slides'));
-            $this->set('title', __('Popular Slides'));
-            $this->set('description', __('Popular Slides'));
-            return $this->render('slide_list');
+            return $this->render_rss($conditions, __('Popular Slides'), __('Popular Slides'));
         }
 
         $this->Paginator->settings = $conditions;
         $this->set('slides', $this->Paginator->paginate('Slide'));
+    }
+
+    /**
+     * render_rss
+     *
+     * @param array $conditions
+     * @param string $title
+     * @param string $description
+     */
+    private function render_rss($conditions = array(), $title = '', $description = '')
+    {
+        Configure::write('debug', 0);
+        $slides = $this->Slide->find('all', $conditions);
+        $this->set(compact('slides'));
+        $this->set('title', __('Popular Slides'));
+        $this->set('description', __('Popular Slides'));
+        return $this->render('slide_list');
     }
 
     /**
