@@ -46,6 +46,7 @@ class AddDummyData extends CakeMigration
         $User = ClassRegistry::init('User');
         if ($direction === 'up') {
             // add admin account to user table
+            $data = array();
             $data['User']['username'] = 'admin@example.com';
             $data['User']['password'] = 'passw0rd';
             $data['User']['display_name'] = 'Admin';
@@ -56,8 +57,6 @@ class AddDummyData extends CakeMigration
             } else {
                 echo 'User data creation failed......';
             }
-        } elseif ($direction === 'down') {
-            // do more work here
         }
 
         return true;

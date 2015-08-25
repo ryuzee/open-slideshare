@@ -65,6 +65,7 @@ class AddCategoryData extends CakeMigration
             );
             foreach ($category_data as $k => $v) {
                 // add admin account to user table
+                $data = array();
                 $data['Category']['id'] = $k;
                 $data['Category']['name'] = $v;
                 $Category->create();
@@ -74,8 +75,6 @@ class AddCategoryData extends CakeMigration
                     echo 'Category data creation failed......';
                 }
             }
-        } elseif ($direction === 'down') {
-            // do more work here
         }
 
         return true;
