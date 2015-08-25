@@ -65,24 +65,22 @@ class UsersController extends AppController
         }
         $options = array('conditions' => array('User.'.$this->User->primaryKey => $id), 'recursive' => 2);
         $user = $this->User->find('first', $options);
-        $this->set('title_for_layout', h($user['User']['display_name']));
         $this->set('user', $user);
-        $this->paginate = array(
-                    'Slide' => array(
-                        'model' => 'Slide',
-                        'limit' => 20,
-                        'recursive' => 2,
-                        'conditions' => 'Slide.user_id = '.$id,
-                        'order' => array('id' => 'desc'),
-                    ),
-            );
-        $this->set('slides', $this->Paginator->paginate('Slide'));
-
-        $userinfo = $this->User->read(null, $id);
-        $this->set('user', $userinfo);
-
-        $title = sprintf(__('Slides by %s'), $userinfo['User']['display_name']);
+        $this->set('title_for_layout', h($user['User']['display_name']));
+        $title = sprintf(__('Slides by %s'), $user['User']['display_name']);
         $this->set('title', $title);
+        $conditions = $this->Slide->get_conditions_to_get_slides_by_user($id);
+
+        if ($this->RequestHandler->isRss()) {
+            Configure::write('debug', 0);
+            $slides = $this->Slide->find('all', $conditions);
+            $this->set(compact('slides'));
+            $this->set('description', $title);
+            return $this->render('/Slides/rss/slide_list');
+        }
+
+        $this->paginate = $conditions;
+        $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 
     /**

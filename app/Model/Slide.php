@@ -229,6 +229,24 @@ class Slide extends AppModel
     }
 
     /**
+     * get_conditions_to_get_slides_by_user
+     *
+     * @param mixed $user_id
+     */
+    public function get_conditions_to_get_slides_by_user($user_id)
+    {
+        $conditions = array(
+            'model' => 'Slide',
+            'limit' => 15,
+            'recursive' => 2,
+            'conditions' => 'Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.user_id = '.$user_id,
+            'order' => array('Slide.id' => 'desc'),
+        );
+
+        return $conditions;
+    }
+
+    /**
      * Update status code in Slide to indicate conversion status
      *
      * @param string $key
