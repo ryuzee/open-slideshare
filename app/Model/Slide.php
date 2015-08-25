@@ -157,9 +157,9 @@ class Slide extends AppModel
      */
     public function get_recent_slides_in_category($category_id, $exclude_slide_id = null)
     {
-        $conditions = array('Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.category_id ='.$category_id);
+        $conditions = array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED . ' and Slide.category_id =' . $category_id);
         if ($exclude_slide_id) {
-            $conditions[] = 'Slide.id != '.$exclude_slide_id;
+            $conditions[] = 'Slide.id != ' . $exclude_slide_id;
         }
 
         $result = $this->find('all',
@@ -187,7 +187,7 @@ class Slide extends AppModel
             'model' => 'Slide',
             'limit' => 20,
             'recursive' => 2,
-            'conditions' => 'Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.category_id = '.$id,
+            'conditions' => 'Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED . ' and Slide.category_id = ' . $id,
             'order' => array('Slide.id' => 'desc'),
         );
 
@@ -239,7 +239,7 @@ class Slide extends AppModel
             'model' => 'Slide',
             'limit' => 15,
             'recursive' => 2,
-            'conditions' => 'Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.user_id = '.$user_id,
+            'conditions' => 'Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED . ' and Slide.user_id = ' . $user_id,
             'order' => array('Slide.id' => 'desc'),
         );
 
