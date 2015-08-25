@@ -99,7 +99,18 @@ class SlidesController extends AppController
     public function latest()
     {
         $this->set('title_for_layout', __('Recent Slides'));
-        $this->Paginator->settings = $this->Slide->get_conditions_to_get_latest_slides(20);
+        $conditions = $this->Slide->get_conditions_to_get_latest_slides(20);
+
+        if ($this->RequestHandler->isRss()) {
+            Configure::write('debug', 0);
+            $slides = $this->Slide->find('all', $conditions);
+            $this->set(compact('slides'));
+            $this->set('title', __('Latest Slides'));
+            $this->set('description', __('Latest Slides'));
+            return $this->render('slide_list');
+        }
+
+        $this->Paginator->settings = $conditions;
         $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 
@@ -110,7 +121,18 @@ class SlidesController extends AppController
     public function popular()
     {
         $this->set('title_for_layout', __('Popular Slides'));
-        $this->Paginator->settings = $this->Slide->get_conditions_to_get_popular_slides(20);
+        $conditions = $this->Slide->get_conditions_to_get_popular_slides(20);
+
+        if ($this->RequestHandler->isRss()) {
+            Configure::write('debug', 0);
+            $slides = $this->Slide->find('all', $conditions);
+            $this->set(compact('slides'));
+            $this->set('title', __('Popular Slides'));
+            $this->set('description', __('Popular Slides'));
+            return $this->render('slide_list');
+        }
+
+        $this->Paginator->settings = $conditions;
         $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 

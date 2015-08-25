@@ -48,6 +48,7 @@ class AppController extends Controller
             'commonProcess' => array('paramType' => 'named'),
             'presetForm' => array('paramType' => 'named'),
         ),
+        'RequestHandler',
     );
 
     /**

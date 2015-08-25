@@ -49,6 +49,8 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0 (<?php echo __('Latest Slides'); ?>)" href="/slides/latest.rss" />
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0 (<?php echo __('Popular Slides'); ?>)" href="/slides/popular.rss" />
         <title>
             <?php echo $cakeDescription ?>:
             <?php echo $this->fetch('title'); ?>
@@ -141,7 +143,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
 <div id="search_slide_dialog_" title="Search">
     <!-- search form -->
     <?php echo $this->Form->create('Slide', array(
-        'url' => array('controller' => 'slides', 'action' => 'index'),
+        'url' => array('controller' => 'slides', 'action' => 'search'),
         'inputDefaults' => array(
             'div' => 'form-group',
             'label' => array(
