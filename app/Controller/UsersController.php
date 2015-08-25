@@ -32,7 +32,7 @@ class UsersController extends AppController
         $this->set('title_for_layout', __('Your Dashboard'));
         $user = $this->Auth->User();
         $user_id = $user['id'];
-        $conditions = $this->Slide->get_conditions_to_get_slides_by_user($user_id, true);
+        $conditions = $this->Slide->get_conditions_to_get_slides_by_user($user_id, 15, true);
         $this->paginate = $conditions;
         $this->set('slides', $this->Paginator->paginate('Slide'));
 
@@ -42,6 +42,20 @@ class UsersController extends AppController
         }
 
         $this->set('user', $userinfo);
+    }
+
+    /**
+     * statistics
+     *
+     */
+    public function statistics()
+    {
+        $this->set('title_for_layout', __('Your Statistics'));
+        $user = $this->Auth->User();
+        $user_id = $user['id'];
+        $conditions = $this->Slide->get_conditions_to_get_slides_by_user($user_id, false, true);
+        $slides = $this->Slide->find('all', $conditions);
+        $this->set(compact('slides'));
     }
 
     /**
@@ -62,7 +76,7 @@ class UsersController extends AppController
         $this->set('title_for_layout', h($user['User']['display_name']));
         $title = sprintf(__('Slides by %s'), $user['User']['display_name']);
         $this->set('title', $title);
-        $conditions = $this->Slide->get_conditions_to_get_slides_by_user($id);
+        $conditions = $this->Slide->get_conditions_to_get_slides_by_user($id, 15, false);
 
         if ($this->RequestHandler->isRss()) {
             Configure::write('debug', 0);

@@ -232,16 +232,22 @@ class Slide extends AppModel
      * get_conditions_to_get_slides_by_user
      *
      * @param mixed $user_id
+     * @param int $limit
+     * @param mixed $include_all_slides
      */
-    public function get_conditions_to_get_slides_by_user($user_id, $include_all_slides = false)
+    public function get_conditions_to_get_slides_by_user($user_id, $limit = 15, $include_all_slides = false)
     {
         $conditions = array(
             'model' => 'Slide',
-            'limit' => 15,
             'recursive' => 2,
             'conditions' => array('Slide.user_id = ' . $user_id),
             'order' => array('Slide.id' => 'desc'),
         );
+
+        if ($limit !== false) {
+            $conditions['limit'] = $limit;
+        }
+
         if ($include_all_slides === false) {
             $conditions['conditions'][] = 'Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED;
         }

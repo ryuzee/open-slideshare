@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-08-25 05:01+0900\n"
+"PO-Revision-Date: 2015-08-26 06:01+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.3\n"
 
-#: Controller/AppController.php:68
+#: Controller/AppController.php:69
 msgid ""
 "Dot can not be allowed in the bucket name %s to avoid SSL certification "
 "issue... Please check S3 bucket name settings"
@@ -23,11 +23,11 @@ msgstr ""
 "SSL証明書の問題があるためバケット名 %s には.(ドット)を含めないでください。"
 "バケット名をチェックしてください。"
 
-#: Controller/AppController.php:78
+#: Controller/AppController.php:79
 msgid "Invalid username or password"
 msgstr "無効なユーザー名またはパスワードです。"
 
-#: Controller/AppController.php:79
+#: Controller/AppController.php:80
 msgid "You have no privileges"
 msgstr "権限がありません。"
 
@@ -35,7 +35,7 @@ msgstr "権限がありません。"
 msgid "Invalid category"
 msgstr "無効なカテゴリです。"
 
-#: Controller/CategoriesController.php:43
+#: Controller/CategoriesController.php:41
 msgid "Slides in %s"
 msgstr "カテゴリ”%s”のスライド"
 
@@ -67,52 +67,53 @@ msgstr "コメントを削除できませんでした。もう一度試してく
 msgid "All Slides"
 msgstr "すべてのスライド"
 
-#: Controller/SlidesController.php:101
-msgid "Recent Slides"
+#: Controller/SlidesController.php:106 View/Layouts/default.ctp:52
+#: View/Slides/index.ctp:11 View/Slides/latest.ctp:4
+msgid "Latest Slides"
 msgstr "最新のスライド"
 
-#: Controller/SlidesController.php:112 View/Slides/index.ctp:4
-#: View/Slides/popular.ctp:4
+#: Controller/SlidesController.php:116;134;135 View/Layouts/default.ctp:53
+#: View/Slides/index.ctp:4 View/Slides/popular.ctp:4
 msgid "Popular Slides"
 msgstr "人気のスライド"
 
-#: Controller/SlidesController.php:131;167;193;213;265;317
+#: Controller/SlidesController.php:157;193;219;239;291;343
 msgid "Invalid slide"
 msgstr "無効なスライド"
 
-#: Controller/SlidesController.php:171
+#: Controller/SlidesController.php:197
 msgid "This slide can not be downloaded"
 msgstr "このスライドはダウンロードできません。"
 
-#: Controller/SlidesController.php:228
+#: Controller/SlidesController.php:254
 msgid "New Slide"
 msgstr "新しいスライド"
 
-#: Controller/SlidesController.php:239;288
+#: Controller/SlidesController.php:265;314
 msgid "The slide has been saved."
 msgstr "スライドを保存しました。"
 
-#: Controller/SlidesController.php:244;291
+#: Controller/SlidesController.php:270;317
 msgid "The slide could not be saved. Please, try again."
 msgstr "スライドを保存できませんでした。もう一度試してください。"
 
-#: Controller/SlidesController.php:276
+#: Controller/SlidesController.php:302
 msgid "You do not have permission to edit the slide created by others."
 msgstr "他の人のスライドを編集することはできません。"
 
-#: Controller/SlidesController.php:286
+#: Controller/SlidesController.php:312
 msgid "The slide has been saved. File conversion has just started."
 msgstr "スライドを保存しファイルの変換を開始しました。"
 
-#: Controller/SlidesController.php:325
+#: Controller/SlidesController.php:351
 msgid "You do not have permission to delete the slide created by others."
 msgstr "他の人のスライドを削除することはできません。"
 
-#: Controller/SlidesController.php:336
+#: Controller/SlidesController.php:362
 msgid "The slide has been deleted."
 msgstr "スライドを削除しました。"
 
-#: Controller/SlidesController.php:338
+#: Controller/SlidesController.php:364
 msgid "The slide could not be deleted. Please, try again."
 msgstr "スライドを削除できませんでした。もう一度試してください。"
 
@@ -120,51 +121,55 @@ msgstr "スライドを削除できませんでした。もう一度試してく
 msgid "Your Dashboard"
 msgstr "ダッシュボード"
 
-#: Controller/UsersController.php:48;64;177;215
+#: Controller/UsersController.php:41;71;183;221
 msgid "Invalid user"
 msgstr "無効なユーザー"
 
-#: Controller/UsersController.php:84
+#: Controller/UsersController.php:53
+msgid "Your Statistics"
+msgstr "統計情報"
+
+#: Controller/UsersController.php:77
 msgid "Slides by %s"
 msgstr "“%s”投稿のスライド"
 
-#: Controller/UsersController.php:93
+#: Controller/UsersController.php:98
 msgid "Login"
 msgstr "ログイン"
 
-#: Controller/UsersController.php:109
+#: Controller/UsersController.php:114
 msgid "Invalid username or password, try again"
 msgstr "無効なユーザー名かパスワードです。やり直してください。"
 
-#: Controller/UsersController.php:120
+#: Controller/UsersController.php:125
 msgid "You have finished to logout."
 msgstr "ログアウトしました。"
 
-#: Controller/UsersController.php:129 View/Layouts/default.ctp:118
+#: Controller/UsersController.php:134 View/Layouts/default.ctp:121
 msgid "Signup"
 msgstr "サインアップ"
 
-#: Controller/UsersController.php:133
+#: Controller/UsersController.php:138
 msgid "The user has been saved"
 msgstr "ユーザーを保存しました。"
 
-#: Controller/UsersController.php:137;194
+#: Controller/UsersController.php:142;200
 msgid "The user could not be saved. Please, try again."
 msgstr "ユーザーを保存できませんでした。もう一度試してください。"
 
-#: Controller/UsersController.php:174
+#: Controller/UsersController.php:180
 msgid "Edit"
 msgstr "編集"
 
-#: Controller/UsersController.php:190
+#: Controller/UsersController.php:196
 msgid "The user has been saved."
 msgstr "ユーザーを保存しました。"
 
-#: Controller/UsersController.php:219
+#: Controller/UsersController.php:225
 msgid "The user has been deleted."
 msgstr "ユーザーを削除しました。"
 
-#: Controller/UsersController.php:222
+#: Controller/UsersController.php:228
 msgid "The user could not be deleted. Please, try again."
 msgstr "ユーザーを削除できませんでした。もう一度試してください。"
 
@@ -176,39 +181,43 @@ msgstr "カテゴリーなし"
 msgid "Speaker Details"
 msgstr "スピーカーについて"
 
-#: View/Layouts/default.ctp:78 View/Slides/add.ctp:127
+#: View/Layouts/default.ctp:80 View/Slides/add.ctp:127
 msgid "Category"
 msgstr "カテゴリ"
 
-#: View/Layouts/default.ctp:87
+#: View/Layouts/default.ctp:89
 msgid "Popular"
 msgstr "人気"
 
-#: View/Layouts/default.ctp:88
+#: View/Layouts/default.ctp:90
 msgid "Latest"
 msgstr "最新"
 
-#: View/Layouts/default.ctp:89
+#: View/Layouts/default.ctp:91
 msgid "Search"
 msgstr "検索"
 
-#: View/Layouts/default.ctp:93
+#: View/Layouts/default.ctp:95
 msgid "Upload"
 msgstr "アップロード"
 
-#: View/Layouts/default.ctp:99 View/Users/index.ctp:3
+#: View/Layouts/default.ctp:101 View/Users/index.ctp:3
 msgid "My Slides"
 msgstr "自分のスライド"
 
-#: View/Layouts/default.ctp:100
+#: View/Layouts/default.ctp:102 View/Users/statistics.ctp:1
+msgid "My Statistics"
+msgstr "自分の統計情報"
+
+#: View/Layouts/default.ctp:103
 msgid "My Account"
 msgstr "アカウント"
 
-#: View/Layouts/default.ctp:102
+#: View/Layouts/default.ctp:105
 msgid "Logout"
 msgstr "ログアウト"
 
-#: View/Layouts/default.ctp:115
+#: View/Layouts/default.ctp:118
 msgid "Sign in"
 msgstr "サインイン"
 
@@ -263,10 +272,6 @@ msgstr "#%s を削除してもよろしいですか？"
 #: View/Slides/index.ctp:4;11
 msgid "More..."
 msgstr "もっと見る"
-
-#: View/Slides/index.ctp:11 View/Slides/latest.ctp:4
-msgid "Latest Slides"
-msgstr "最新のスライド"
 
 #: View/Slides/search.ctp:3
 msgid "Search Results"
@@ -364,6 +369,38 @@ msgstr "自己紹介"
 msgid "Register"
 msgstr "登録"
 
+#: View/Users/statistics.ctp:8
+msgid "Slide Name"
+msgstr "スライド名"
+
+#: View/Users/statistics.ctp:9
+msgid "Created"
+msgstr "作成日"
+
+#: View/Users/statistics.ctp:10
+msgid "Modified"
+msgstr "更新日"
+
+#: View/Users/statistics.ctp:11
+msgid "Convert Status"
+msgstr "変換状況"
+
+#: View/Users/statistics.ctp:12
+msgid "Page View"
+msgstr "ページビュー"
+
+#: View/Users/statistics.ctp:13
+msgid "Embedded View"
+msgstr "埋め込み"
+
+#: View/Users/statistics.ctp:14
+msgid "Download Count"
+msgstr "ダウンロード数"
+
+#: View/Users/statistics.ctp:15
+msgid "Number of Commnets"
+msgstr "コメント数"
+
 #: Model/Category.php:validation for field name Model/User.php:validation
 #: username;validation password;validation display_name;validation biography
 msgid "notBlank"
@@ -411,6 +448,9 @@ msgid ""
 msgstr ""
 "パスワードはアルファベット・数字または!#$%&*+@?の文字から構成されている必"
 "要があります"
+
+#~ msgid "Recent Slides"
+#~ msgstr "最新のスライド"
 
 #~ msgid "Slides"
 #~ msgstr "スライド"
@@ -576,6 +616,3 @@ msgstr ""
 
 #~ msgid "SQL Query Params"
 #~ msgstr "SQLクエリーパラメーター"
-
-#~ msgid "Page View"
-#~ msgstr "ページビュー"

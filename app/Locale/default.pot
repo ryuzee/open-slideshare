@@ -13,15 +13,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/AppController.php:68
+#: Controller/AppController.php:69
 msgid "Dot can not be allowed in the bucket name %s to avoid SSL certification issue... Please check S3 bucket name settings"
 msgstr ""
 
-#: Controller/AppController.php:78
+#: Controller/AppController.php:79
 msgid "Invalid username or password"
 msgstr ""
 
-#: Controller/AppController.php:79
+#: Controller/AppController.php:80
 msgid "You have no privileges"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Invalid category"
 msgstr ""
 
-#: Controller/CategoriesController.php:43
+#: Controller/CategoriesController.php:41
 msgid "Slides in %s"
 msgstr ""
 
@@ -61,53 +61,57 @@ msgstr ""
 msgid "All Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:101
-msgid "Recent Slides"
+#: Controller/SlidesController.php:106
+#: View/Layouts/default.ctp:52
+#: View/Slides/index.ctp:11
+#: View/Slides/latest.ctp:4
+msgid "Latest Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:112
+#: Controller/SlidesController.php:116;134;135
+#: View/Layouts/default.ctp:53
 #: View/Slides/index.ctp:4
 #: View/Slides/popular.ctp:4
 msgid "Popular Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:131;167;193;213;265;317
+#: Controller/SlidesController.php:157;193;219;239;291;343
 msgid "Invalid slide"
 msgstr ""
 
-#: Controller/SlidesController.php:171
+#: Controller/SlidesController.php:197
 msgid "This slide can not be downloaded"
 msgstr ""
 
-#: Controller/SlidesController.php:228
+#: Controller/SlidesController.php:254
 msgid "New Slide"
 msgstr ""
 
-#: Controller/SlidesController.php:239;288
+#: Controller/SlidesController.php:265;314
 msgid "The slide has been saved."
 msgstr ""
 
-#: Controller/SlidesController.php:244;291
+#: Controller/SlidesController.php:270;317
 msgid "The slide could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/SlidesController.php:276
+#: Controller/SlidesController.php:302
 msgid "You do not have permission to edit the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:286
+#: Controller/SlidesController.php:312
 msgid "The slide has been saved. File conversion has just started."
 msgstr ""
 
-#: Controller/SlidesController.php:325
+#: Controller/SlidesController.php:351
 msgid "You do not have permission to delete the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:336
+#: Controller/SlidesController.php:362
 msgid "The slide has been deleted."
 msgstr ""
 
-#: Controller/SlidesController.php:338
+#: Controller/SlidesController.php:364
 msgid "The slide could not be deleted. Please, try again."
 msgstr ""
 
@@ -115,52 +119,56 @@ msgstr ""
 msgid "Your Dashboard"
 msgstr ""
 
-#: Controller/UsersController.php:48;64;177;215
+#: Controller/UsersController.php:41;71;183;221
 msgid "Invalid user"
 msgstr ""
 
-#: Controller/UsersController.php:84
+#: Controller/UsersController.php:53
+msgid "Your Statistics"
+msgstr ""
+
+#: Controller/UsersController.php:77
 msgid "Slides by %s"
 msgstr ""
 
-#: Controller/UsersController.php:93
+#: Controller/UsersController.php:98
 msgid "Login"
 msgstr ""
 
-#: Controller/UsersController.php:109
+#: Controller/UsersController.php:114
 msgid "Invalid username or password, try again"
 msgstr ""
 
-#: Controller/UsersController.php:120
+#: Controller/UsersController.php:125
 msgid "You have finished to logout."
 msgstr ""
 
-#: Controller/UsersController.php:129
-#: View/Layouts/default.ctp:118
+#: Controller/UsersController.php:134
+#: View/Layouts/default.ctp:121
 msgid "Signup"
 msgstr ""
 
-#: Controller/UsersController.php:133
+#: Controller/UsersController.php:138
 msgid "The user has been saved"
 msgstr ""
 
-#: Controller/UsersController.php:137;194
+#: Controller/UsersController.php:142;200
 msgid "The user could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:174
+#: Controller/UsersController.php:180
 msgid "Edit"
 msgstr ""
 
-#: Controller/UsersController.php:190
+#: Controller/UsersController.php:196
 msgid "The user has been saved."
 msgstr ""
 
-#: Controller/UsersController.php:219
+#: Controller/UsersController.php:225
 msgid "The user has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:222
+#: Controller/UsersController.php:228
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
@@ -172,41 +180,46 @@ msgstr ""
 msgid "Speaker Details"
 msgstr ""
 
-#: View/Layouts/default.ctp:78
+#: View/Layouts/default.ctp:80
 #: View/Slides/add.ctp:127
 msgid "Category"
 msgstr ""
 
-#: View/Layouts/default.ctp:87
+#: View/Layouts/default.ctp:89
 msgid "Popular"
 msgstr ""
 
-#: View/Layouts/default.ctp:88
+#: View/Layouts/default.ctp:90
 msgid "Latest"
 msgstr ""
 
-#: View/Layouts/default.ctp:89
+#: View/Layouts/default.ctp:91
 msgid "Search"
 msgstr ""
 
-#: View/Layouts/default.ctp:93
+#: View/Layouts/default.ctp:95
 msgid "Upload"
 msgstr ""
 
-#: View/Layouts/default.ctp:99
+#: View/Layouts/default.ctp:101
 #: View/Users/index.ctp:3
 msgid "My Slides"
 msgstr ""
 
-#: View/Layouts/default.ctp:100
+#: View/Layouts/default.ctp:102
+#: View/Users/statistics.ctp:1
+msgid "My Statistics"
+msgstr ""
+
+#: View/Layouts/default.ctp:103
 msgid "My Account"
 msgstr ""
 
-#: View/Layouts/default.ctp:102
+#: View/Layouts/default.ctp:105
 msgid "Logout"
 msgstr ""
 
-#: View/Layouts/default.ctp:115
+#: View/Layouts/default.ctp:118
 msgid "Sign in"
 msgstr ""
 
@@ -266,11 +279,6 @@ msgstr ""
 
 #: View/Slides/index.ctp:4;11
 msgid "More..."
-msgstr ""
-
-#: View/Slides/index.ctp:11
-#: View/Slides/latest.ctp:4
-msgid "Latest Slides"
 msgstr ""
 
 #: View/Slides/search.ctp:3
@@ -367,6 +375,38 @@ msgstr ""
 
 #: View/Users/signup.ctp:22
 msgid "Register"
+msgstr ""
+
+#: View/Users/statistics.ctp:8
+msgid "Slide Name"
+msgstr ""
+
+#: View/Users/statistics.ctp:9
+msgid "Created"
+msgstr ""
+
+#: View/Users/statistics.ctp:10
+msgid "Modified"
+msgstr ""
+
+#: View/Users/statistics.ctp:11
+msgid "Convert Status"
+msgstr ""
+
+#: View/Users/statistics.ctp:12
+msgid "Page View"
+msgstr ""
+
+#: View/Users/statistics.ctp:13
+msgid "Embedded View"
+msgstr ""
+
+#: View/Users/statistics.ctp:14
+msgid "Download Count"
+msgstr ""
+
+#: View/Users/statistics.ctp:15
+msgid "Number of Commnets"
 msgstr ""
 
 #: Model/Category.php:validation for field name

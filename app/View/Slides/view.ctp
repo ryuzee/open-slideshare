@@ -11,7 +11,7 @@
         <div class="col-md-9">
             <span class="h3"><?php echo h($slide['Slide']['name']); ?></span>
             <div class="bottom_margin">
-            By <?php echo $this->Html->link($slide['User']['display_name'], array('controller' => 'users', 'action' => 'view', $slide['User']['id'])); ?>&nbsp;Published: <?php echo h(strftime("%Y/%m/%d",strtotime($slide['Slide']['created']))); ?> in <a href="/categories/view/<?php echo $slide["Category"]["id"]; ?>"><?php echo h($slide['Category']['name']); ?></a>
+            By <?php echo $this->Html->link($slide['User']['display_name'], array('controller' => 'users', 'action' => 'view', $slide['User']['id'])); ?>&nbsp;Published: <?php echo $this->Time->format($slide['Slide']['created'], "%Y/%m/%d"); ?> in <a href="/categories/view/<?php echo $slide["Category"]["id"]; ?>"><?php echo h($slide['Category']['name']); ?></a>
             </div>
         </div>
         <div class="col-md-3" style="text-align:right">
