@@ -13,6 +13,7 @@
 - i18n
 - Responsive design
 - Embedded player
+- RSS
 
 You can see the working demo at http://slide.meguro.ryuzee.com/
 
