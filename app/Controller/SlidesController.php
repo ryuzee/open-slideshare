@@ -102,15 +102,8 @@ class SlidesController extends AppController
      */
     public function latest()
     {
-        $this->set('title_for_layout', __('Latest Slides'));
         $conditions = $this->Slide->get_conditions_to_get_latest_slides(20);
-
-        if ($this->RequestHandler->isRss()) {
-            return $this->render_rss($conditions, __('Latest Slides'), __('Latest Slides'));
-        }
-
-        $this->Paginator->settings = $conditions;
-        $this->set('slides', $this->Paginator->paginate('Slide'));
+        return $this->render_slides($conditions, __('Latest Slides'), __('Latest Slides'));
     }
 
     /**
@@ -119,32 +112,32 @@ class SlidesController extends AppController
      */
     public function popular()
     {
-        $this->set('title_for_layout', __('Popular Slides'));
         $conditions = $this->Slide->get_conditions_to_get_popular_slides(20);
-
-        if ($this->RequestHandler->isRss()) {
-            return $this->render_rss($conditions, __('Popular Slides'), __('Popular Slides'));
-        }
-
-        $this->Paginator->settings = $conditions;
-        $this->set('slides', $this->Paginator->paginate('Slide'));
+        return $this->render_slides($conditions, __('Popular Slides'), __('Popular Slides'));
     }
 
     /**
-     * render_rss
+     * render_slides
      *
      * @param array $conditions
      * @param string $title
      * @param string $description
      */
-    private function render_rss($conditions = array(), $title = '', $description = '')
+    private function render_slides($conditions = array(), $title = '', $description = '')
     {
-        Configure::write('debug', 0);
-        $slides = $this->Slide->find('all', $conditions);
-        $this->set(compact('slides'));
-        $this->set('title', __('Popular Slides'));
-        $this->set('description', __('Popular Slides'));
-        return $this->render('slide_list');
+        $this->set('title_for_layout', $title);
+
+        if ($this->RequestHandler->isRss()) {
+            Configure::write('debug', 0);
+            $slides = $this->Slide->find('all', $conditions);
+            $this->set(compact('slides'));
+            $this->set('title', __('Popular Slides'));
+            $this->set('description', __('Popular Slides'));
+            return $this->render('slide_list');
+        }
+
+        $this->Paginator->settings = $conditions;
+        $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 
     /**
