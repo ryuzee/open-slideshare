@@ -37,7 +37,7 @@ class UsersController extends AppController
                         'model' => 'Slide',
                         'limit' => 12,
                         'recursive' => 2,
-                        'conditions' => 'Slide.user_id = '.$user_id,
+                        'conditions' => 'Slide.user_id = ' . $user_id,
                         'order' => array('id' => 'desc'),
                     ),
             );
@@ -63,7 +63,7 @@ class UsersController extends AppController
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('Invalid user'));
         }
-        $options = array('conditions' => array('User.'.$this->User->primaryKey => $id), 'recursive' => 2);
+        $options = array('conditions' => array('User.' . $this->User->primaryKey => $id), 'recursive' => 2);
         $user = $this->User->find('first', $options);
         $this->set('user', $user);
         $this->set('title_for_layout', h($user['User']['display_name']));
@@ -192,7 +192,7 @@ class UsersController extends AppController
                 $this->Session->warning(__('The user could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('User.'.$this->User->primaryKey => $id));
+            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
         $userinfo = $this->User->read(null, $id);
