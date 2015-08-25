@@ -49,7 +49,7 @@ class CategoriesController extends AppController
             $slides = $this->Slide->find('all', $conditions);
             $this->set(compact('slides'));
             $this->set('description', $title);
-            return $this->render('slide_list');
+            return $this->render('/Slides/rss/slide_list');
         }
 
         $this->paginate = $conditions;
