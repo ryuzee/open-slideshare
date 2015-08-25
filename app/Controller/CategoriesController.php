@@ -38,10 +38,22 @@ class CategoriesController extends AppController
         if (!$this->Category->exists($id)) {
             throw new NotFoundException(__('Invalid category'));
         }
-        $this->paginate = $this->Slide->get_conditions_to_get_slides_in_category($id);
-        $this->set('slides', $this->Paginator->paginate('Slide'));
         $title = sprintf(__('Slides in %s'), h($this->Category->get_category_name($id)));
+        $this->set('id', $id);
         $this->set('title', $title);
         $this->set('title_for_layout', $title);
+        $conditions = $this->Slide->get_conditions_to_get_slides_in_category($id);
+
+        if ($this->RequestHandler->isRss()) {
+            Configure::write('debug', 0);
+            $slides = $this->Slide->find('all', $conditions);
+            $this->set(compact('slides'));
+            $this->set('description', $title);
+            return $this->render('slide_list');
+        }
+
+        $this->paginate = $conditions;
+        $this->set('slides', $this->Paginator->paginate('Slide'));
+
     }
 }

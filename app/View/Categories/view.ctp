@@ -4,3 +4,5 @@
     </div>
 </div>
 
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0 (<?php echo $title; ?>)" href="/categories/view/<?php echo $id; ?>.rss" />
+
