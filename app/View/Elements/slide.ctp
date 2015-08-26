@@ -37,6 +37,12 @@ $1102(document).ready(function(){
         create: function(e, ui) {
         }
     });
+    var start_position = <?php echo $start_position; ?>;
+    if (start_position != 0) {
+        var current_img = $1102(".openslideshare_body ul.bxslider_<?php echo $slide["key"]; ?> img.image-" +  (start_position));
+        var current_ds = current_img.attr("data-src");
+        current_img.attr("src", current_ds).removeClass("lazy");
+    }
 
     function bxslider_init() {
         var slider_config = {
@@ -44,6 +50,7 @@ $1102(document).ready(function(){
             controls: true,
             responsive:true,
             pager:true,
+            startSlide: start_position,
             pagerType:'short',
             prevText: '◀',
             nextText: '▶',

@@ -165,7 +165,7 @@ class SlidesController extends AppController
         $file_list = $this->SlideProcessing->get_slide_pages_list($slide['Slide']['key']);
         $this->set('file_list', $file_list);
 
-        if (count($file_list) > $display_position) {
+        if (count($file_list) < $display_position) {
             $start_position = 0;
         } elseif ($display_position <= 0) {
             $start_position = 0;

@@ -4,7 +4,7 @@
     <?php if($this->request->query('vertical') == 1): ?>
     <?php echo $this->element("slide_vertical", array('slide' => $slide["Slide"])); ?>
     <?php else: ?>
-    <?php echo $this->element("slide", array('slide' => $slide["Slide"])); ?>
+    <?php echo $this->element("slide", array('slide' => $slide["Slide"], 'start_position' => $start_position)); ?>
     <?php endif; ?>
 
     <div class="row slide_detail_row">
