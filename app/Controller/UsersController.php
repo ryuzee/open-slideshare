@@ -123,7 +123,12 @@ class UsersController extends AppController
     {
         $this->Auth->logout();
         $this->Session->success(__('You have finished to logout.', true));
-        $this->redirect(array('controller' => 'slides', 'action' => 'index'));
+        $return_url = $this->request->query['return_url'];
+        if (isset($return_url)) {
+            $this->redirect($return_url);
+        } else {
+            $this->redirect(array('controller' => 'slides', 'action' => 'index'));
+        }
     }
 
     /**
