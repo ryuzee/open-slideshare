@@ -87,10 +87,10 @@ CakePlugin::load('BoostCake');
 CakePlugin::load('SQS');
 CakePlugin::load('DebugKit');
 
-if (isset($_SERVER['AWS_ACCESS_ID']) && isset($_SERVER['AWS_SECRET_KEY'])) {
+if (isset($_SERVER['OSS_AWS_ACCESS_ID']) && isset($_SERVER['OSS_AWS_SECRET_KEY'])) {
     $connection = array(
-        'key' => $_SERVER['AWS_ACCESS_ID'],
-        'secret' => $_SERVER['AWS_SECRET_KEY'],
+        'key' => $_SERVER['OSS_AWS_ACCESS_ID'],
+        'secret' => $_SERVER['OSS_AWS_SECRET_KEY'],
         'region' => Configure::read('region'),
     );
 } else {

@@ -76,10 +76,12 @@ This application uses Amazon S3 and SQS. You need to configure options. If you u
 `app/Config/const.php`
 
 ```
-$config['region'] = $_SERVER['REGION'];
-$config['bucket_name'] = $_SERVER['BUCKET_NAME'];
-$config['image_bucket_name'] = $_SERVER['IMAGE_BUCKET_NAME'];
-$config['sqs_url'] = $_SERVER['SQS_URL'];
+$config['region'] = isset($_SERVER['OSS_REGION']) ? $_SERVER['OSS_REGION'] : "";
+$config['bucket_name'] = isset($_SERVER['OSS_BUCKET_NAME']) ? $_SERVER['OSS_BUCKET_NAME'] : "";
+$config['image_bucket_name'] = isset($_SERVER['OSS_IMAGE_BUCKET_NAME']) ? $_SERVER['OSS_IMAGE_BUCKET_NAME'] : "";
+$config['use_s3_static_hosting'] = isset($_SERVER['OSS_USE_S3_STATIC_HOSTING']) ? $_SERVER['OSS_USE_S3_STATIC_HOSTING'] : 0;
+$config['cdn_base_url'] = isset($_SERVER['OSS_CDN_BASE_URL']) ? $_SERVER['OSS_CDN_BASE_URL'] : "";
+$config['sqs_url'] = isset($_SERVER['OSS_SQS_URL']) ? $_SERVER['OSS_SQS_URL'] : "";
 ```
 
 `app/Config/database.php`
@@ -88,16 +90,16 @@ For database connection, you need to change configuration if you do not use envi
 
 ```
 if (!defined('DB_HOSTNAME')) {
-    $db_hostname = isset($_SERVER['RDS_HOSTNAME']) ? $_SERVER['RDS_HOSTNAME'] : "localhost";
+    $db_hostname = isset($_SERVER['OSS_RDS_HOSTNAME']) ? $_SERVER['OSS_RDS_HOSTNAME'] : "localhost";
     define('DB_HOSTNAME', $db_hostname);
 
-    $db_username = isset($_SERVER['RDS_USERNAME']) ? $_SERVER['RDS_USERNAME'] : "webapp";
+    $db_username = isset($_SERVER['OSS_RDS_USERNAME']) ? $_SERVER['OSS_RDS_USERNAME'] : "webapp";
     define('DB_USERNAME', $db_username);
 
-    $db_password = isset($_SERVER['RDS_PASSWORD']) ? $_SERVER['RDS_PASSWORD'] : "passw0rd";
+    $db_password = isset($_SERVER['OSS_RDS_PASSWORD']) ? $_SERVER['OSS_RDS_PASSWORD'] : "passw0rd";
     define('DB_PASSWORD', $db_password);
 
-    $db_name = isset($_SERVER['RDS_DB_NAME']) ? $_SERVER['RDS_DB_NAME'] : "openslideshare";
+    $db_name = isset($_SERVER['OSS_RDS_DB_NAME']) ? $_SERVER['OSS_RDS_DB_NAME'] : "openslideshare";
     define('DB_NAME', $db_name);
 }
 ```

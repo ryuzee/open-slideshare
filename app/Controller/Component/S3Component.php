@@ -34,12 +34,12 @@ class S3Component extends Component
      */
     public function getClient()
     {
-        if (isset($_SERVER['AWS_ACCESS_ID']) && isset($_SERVER['AWS_SECRET_KEY'])) {
+        if (isset($_SERVER['OSS_AWS_ACCESS_ID']) && isset($_SERVER['OSS_AWS_SECRET_KEY'])) {
             $config = array(
                 'signature' => 'v4',
                 'region' => Configure::read('region'),
-                'key' => $_SERVER['AWS_ACCESS_ID'],
-                'secret' => $_SERVER['AWS_SECRET_KEY'],
+                'key' => $_SERVER['OSS_AWS_ACCESS_ID'],
+                'secret' => $_SERVER['OSS_AWS_SECRET_KEY'],
             );
             $s3 = S3Client::factory($config);
         } else {
@@ -61,9 +61,9 @@ class S3Component extends Component
         $base_time = time();
 
         // will be replaced from Env var or IAM Role
-        if (isset($_SERVER['AWS_ACCESS_ID']) && isset($_SERVER['AWS_SECRET_KEY'])) {
-            $access_id = $_SERVER['AWS_ACCESS_ID'];
-            $secret_key = $_SERVER['AWS_SECRET_KEY'];
+        if (isset($_SERVER['OSS_AWS_ACCESS_ID']) && isset($_SERVER['OSS_AWS_SECRET_KEY'])) {
+            $access_id = $_SERVER['OSS_AWS_ACCESS_ID'];
+            $secret_key = $_SERVER['OSS_AWS_SECRET_KEY'];
             $security_token = '';
         } else {
             $meta_client = InstanceMetadataClient::factory();

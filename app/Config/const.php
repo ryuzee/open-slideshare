@@ -2,12 +2,12 @@
 
 $config = array();
 
-$config['region'] = $_SERVER['REGION'];
-$config['bucket_name'] = $_SERVER['BUCKET_NAME'];
-$config['image_bucket_name'] = $_SERVER['IMAGE_BUCKET_NAME'];
-$config['use_s3_static_hosting'] = $_SERVER['USE_S3_STATIC_HOSTING'];
-$config['cdn_base_url'] = $_SERVER['CDN_BASE_URL'];
-$config['sqs_url'] = $_SERVER['SQS_URL'];
+$config['region'] = isset($_SERVER['OSS_REGION']) ? $_SERVER['OSS_REGION'] : "";
+$config['bucket_name'] = isset($_SERVER['OSS_BUCKET_NAME']) ? $_SERVER['OSS_BUCKET_NAME'] : "";
+$config['image_bucket_name'] = isset($_SERVER['OSS_IMAGE_BUCKET_NAME']) ? $_SERVER['OSS_IMAGE_BUCKET_NAME'] : "";
+$config['use_s3_static_hosting'] = isset($_SERVER['OSS_USE_S3_STATIC_HOSTING']) ? $_SERVER['OSS_USE_S3_STATIC_HOSTING'] : 0;
+$config['cdn_base_url'] = isset($_SERVER['OSS_CDN_BASE_URL']) ? $_SERVER['OSS_CDN_BASE_URL'] : "";
+$config['sqs_url'] = isset($_SERVER['OSS_SQS_URL']) ? $_SERVER['OSS_SQS_URL'] : "";
 
 // Convert status
 if (!defined('ERROR_CONVERT_PPT_TO_PDF')) {
