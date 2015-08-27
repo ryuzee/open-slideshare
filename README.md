@@ -14,6 +14,7 @@
 - Responsive design
 - Embedded player
 - RSS
+- Statistics
 
 You can see the working demo at http://slide.meguro.ryuzee.com/
 
@@ -32,6 +33,12 @@ This application depends on following technologies.
 You can use the develop environment here. https://github.com/ryuzee/open-slideshare-environment
 
 It includes Vagrantfile and Chef cookbooks to build dev environment.
+
+## Install For AWS User
+
+If you want to run this app on AWS, You can use a simple CloudFormation Template [here](https://raw.githubusercontent.com/ryuzee/open-slideshare-environment/master/aws_cfn_single.template). This template will create a VPC, 4 subnets for both provate and public, required S3 buckets, SQS queue, IAM Role and so on. When you run this template, only you need to do is to wait around 15 minutes with coffee.
+
+This template is only for Tokyo region (ap-northeast-1). If you want to run the app in other region, you need to customize both this CFn template and install.sh.
 
 ## Install
 
