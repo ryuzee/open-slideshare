@@ -106,4 +106,43 @@ class FileConverterComponent extends Component
             return true;
         }
     }
+
+    /**
+     * isPPT
+     *
+     * @param mixed $mime
+     */
+    public function isPDF($mime) {
+        return "application/pdf" === $mime;
+    }
+
+    /**
+     * isPPT
+     *
+     * @param mixed $mime
+     */
+    public function isPPT($mime) {
+        return 'application/vnd.ms-powerpoint' === $mime;
+    }
+
+    /**
+     * isPPTX
+     *
+     * @param mixed $mime
+     */
+    public function isPPTX($mime) {
+        return 'application/vnd.openxmlformats-officedocument.presentationml.presentation' === $mime;
+    }
+
+    /**
+     * isConvertable
+     *
+     * @param mixed $mime_type
+     */
+    public function isConvertable($mime_type) {
+        if ($this->isPDF($mime_type))  return true;
+        if ($this->isPPTX($mime_type)) return true;
+        if ($this->isPPT($mime_type))  return true;
+        return false;
+    }
 }

@@ -128,73 +128,58 @@ class SlideProcessingComponent extends Component
         $mime_type = $this->FileConverter->get_mime_type($file_path);
         $this->log->addInfo('File Type is ' . $mime_type);
 
-        // Convertable mime type
-        $all_convertable = array(
-            'application/pdf',
-            'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-            'application/vnd.ms-powerpoint',
-        );
-        $need_to_convert_pdf = array(
-            'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-            'application/vnd.ms-powerpoint',
-        );
+        if (!$this->FileConverter->isConvertable($mime_type)) {
+            $this->Slide->update_status($key, ERROR_NO_CONVERT_SOURCE);
+            $this->log->addWarning('No Convertable File');
+            return;
+        }
 
         try {
-            // Convert PowerPoint to PDF
-            if (in_array($mime_type, $need_to_convert_pdf)) {
-                if ($mime_type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation') {
-                    $extension = '.pptx';
-                } elseif ($mime_type == 'application/vnd.ms-powerpoint') {
+            if ($this->FileConverter->isPPT($mime_type) || $this->FileConverter->isPPTX($mime_type)) {
+                if ($this->FileConverter->isPPT($mime_type)) {
                     $extension = '.ppt';
                 } else {
-                    $extension = '';
+                    $extension = '.pptx';
                 }
-
                 $status = $this->FileConverter->convert_ppt_to_pdf($file_path);
                 if (!$status) {
                     $this->Slide->update_status($key, ERROR_CONVERT_PPT_TO_PDF);
-
                     return false;
                 }
-            } elseif (in_array($mime_type, $all_convertable)) {
+            }
+            if ($this->FileConverter->isPDF($mime_type)) {
                 $extension = '.pdf';
                 $this->log->addInfo('Renaming file...');
                 rename($file_path, $file_path . '.pdf');
             }
             $this->Slide->update_extension($key, $extension);
 
-            if (in_array($mime_type, $all_convertable)) {
-                // Convert PDF to ppm
-                $status = $this->FileConverter->convert_pdf_to_ppm($save_dir, $file_path);
-                if (!$status) {
-                    $this->Slide->update_status($key, ERROR_CONVERT_PDF_TO_PPM);
-
-                    return false;
-                }
-
-                // Convert ppm to jpg
-                $status = $this->FileConverter->convert_ppm_to_jpg($save_dir);
-                if (!$status) {
-                    $this->Slide->update_status($key, ERROR_CONVERT_PPM_TO_JPG);
-
-                    return false;
-                }
-
-                $files = $this->list_local_images($save_dir);
-                $first_page = false;
-                $this->upload_extract_images($s3, $key, $save_dir, $files, $first_page);
-
-                // create thumbnail images
-                if ($first_page) {
-                    $this->create_thumbnail($s3, $key, $first_page);
-                }
-                $this->log->addInfo('Converting file successfully completed!!');
-                // update the db record
-                $this->Slide->update_status($key, SUCCESS_CONVERT_COMPLETED);
-            } else {
-                $this->Slide->update_status($key, ERROR_NO_CONVERT_SOURCE);
-                $this->log->addWarning('No Convertable File');
+            // Convert PDF to ppm
+            $status = $this->FileConverter->convert_pdf_to_ppm($save_dir, $file_path);
+            if (!$status) {
+                $this->Slide->update_status($key, ERROR_CONVERT_PDF_TO_PPM);
+                return false;
             }
+
+            // Convert ppm to jpg
+            $status = $this->FileConverter->convert_ppm_to_jpg($save_dir);
+            if (!$status) {
+                $this->Slide->update_status($key, ERROR_CONVERT_PPM_TO_JPG);
+                return false;
+            }
+
+            $files = $this->list_local_images($save_dir);
+            $first_page = false;
+            $this->upload_extract_images($s3, $key, $save_dir, $files, $first_page);
+
+            // create thumbnail images
+            if ($first_page) {
+                $this->create_thumbnail($s3, $key, $first_page);
+            }
+            $this->log->addInfo('Converting file successfully completed!!');
+            // update the db record
+            $this->Slide->update_status($key, SUCCESS_CONVERT_COMPLETED);
+
         } catch (Exception $e) {
             $this->Slide->update_status($key, -99);
         }
