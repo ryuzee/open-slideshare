@@ -63,4 +63,27 @@ class FileConverterComponentTest extends CakeTestCase
         $result = $this->FileConverter->get_mime_type($dir . DS . "test.pdf");
         $this->assertEqual('application/pdf', $result);
     }
+
+    public function filterProvider()
+    {
+        return array(
+            array("abc", "abc"),
+            array("abc  def", "abc def"),
+            array("\n\n", " "),
+            array(hex2bin('ef83bc'), ""),
+        );
+    }
+
+    /**
+     * testFilterScript
+     *
+     * @dataProvider filterProvider
+     */
+    public function testFilterScript($a, $expected)
+    {
+        $method = new ReflectionMethod($this->FileConverter, 'filter_script');
+        $method->setAccessible(true);
+        $result = $method->invoke($this->FileConverter, $a);
+        $this->assertEqual($result, $expected);
+    }
 }
