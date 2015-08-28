@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-08-26 06:01+0900\n"
+"PO-Revision-Date: 2015-08-28 10:17+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -77,7 +77,7 @@ msgstr "最新のスライド"
 msgid "Popular Slides"
 msgstr "人気のスライド"
 
-#: Controller/SlidesController.php:157;193;219;239;291;343
+#: Controller/SlidesController.php:157;193;219;239;296;348
 msgid "Invalid slide"
 msgstr "無効なスライド"
 
@@ -89,31 +89,37 @@ msgstr "このスライドはダウンロードできません。"
 msgid "New Slide"
 msgstr "新しいスライド"
 
-#: Controller/SlidesController.php:265;314
+#: Controller/SlidesController.php:266
+msgid ""
+"The slide has been saved. It will take five minutes to complete the whole "
+"process. Please wait for a while."
+msgstr "スライドを保存しました。CDNに反映が終わるまで5分程お待ちください。"
+
+#: Controller/SlidesController.php:268;319
 msgid "The slide has been saved."
 msgstr "スライドを保存しました。"
 
-#: Controller/SlidesController.php:270;317
+#: Controller/SlidesController.php:275;322
 msgid "The slide could not be saved. Please, try again."
 msgstr "スライドを保存できませんでした。もう一度試してください。"
 
-#: Controller/SlidesController.php:302
+#: Controller/SlidesController.php:307
 msgid "You do not have permission to edit the slide created by others."
 msgstr "他の人のスライドを編集することはできません。"
 
-#: Controller/SlidesController.php:312
+#: Controller/SlidesController.php:317
 msgid "The slide has been saved. File conversion has just started."
 msgstr "スライドを保存しファイルの変換を開始しました。"
 
-#: Controller/SlidesController.php:351
+#: Controller/SlidesController.php:356
 msgid "You do not have permission to delete the slide created by others."
 msgstr "他の人のスライドを削除することはできません。"
 
-#: Controller/SlidesController.php:362
+#: Controller/SlidesController.php:367
 msgid "The slide has been deleted."
 msgstr "スライドを削除しました。"
 
-#: Controller/SlidesController.php:364
+#: Controller/SlidesController.php:369
 msgid "The slide could not be deleted. Please, try again."
 msgstr "スライドを削除できませんでした。もう一度試してください。"
 
@@ -121,7 +127,7 @@ msgstr "スライドを削除できませんでした。もう一度試してく
 msgid "Your Dashboard"
 msgstr "ダッシュボード"
 
-#: Controller/UsersController.php:41;71;183;221
+#: Controller/UsersController.php:41;71;188;226
 msgid "Invalid user"
 msgstr "無効なユーザー"
 
@@ -145,31 +151,31 @@ msgstr "無効なユーザー名かパスワードです。やり直してくだ
 msgid "You have finished to logout."
 msgstr "ログアウトしました。"
 
-#: Controller/UsersController.php:134 View/Layouts/default.ctp:121
+#: Controller/UsersController.php:139 View/Layouts/default.ctp:121
 msgid "Signup"
 msgstr "サインアップ"
 
-#: Controller/UsersController.php:138
+#: Controller/UsersController.php:143
 msgid "The user has been saved"
 msgstr "ユーザーを保存しました。"
 
-#: Controller/UsersController.php:142;200
+#: Controller/UsersController.php:147;205
 msgid "The user could not be saved. Please, try again."
 msgstr "ユーザーを保存できませんでした。もう一度試してください。"
 
-#: Controller/UsersController.php:180
+#: Controller/UsersController.php:185
 msgid "Edit"
 msgstr "編集"
 
-#: Controller/UsersController.php:196
+#: Controller/UsersController.php:201
 msgid "The user has been saved."
 msgstr "ユーザーを保存しました。"
 
-#: Controller/UsersController.php:225
+#: Controller/UsersController.php:230
 msgid "The user has been deleted."
 msgstr "ユーザーを削除しました。"
 
-#: Controller/UsersController.php:228
+#: Controller/UsersController.php:233
 msgid "The user could not be deleted. Please, try again."
 msgstr "ユーザーを削除できませんでした。もう一度試してください。"
 

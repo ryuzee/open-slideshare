@@ -80,12 +80,12 @@ $1102(document).ready(function(){
         change: function(e, ui) { myslider.goToSlide(ui.value -1); }
     });
 
-    var timer = setInterval( updateDiv, 10 * 100);
+    var viewport_attr = $1102('.openslideshare_body .bx-viewport').attr('style');
+    var timer = setInterval( updateDiv, 10 * 1000);
 
     // Peiodically update the div when the number of slide is zero.
     function updateDiv() {
-        var messageDiv = $1102('.openslideshare_body .slider #slide_body');
-        if ($1102('.openslideshare_body div.slider ul').attr("data-count") > 0) {
+        if ($1102('.openslideshare_body .slider ul').attr("data-count") > 0) {
             return;
         }
         $1102.ajax({
@@ -94,12 +94,9 @@ $1102(document).ready(function(){
             url: "<?php echo Router::url($this->Html->url(array("controller" => "slides", "action" => "update_view", $slide["id"])), true); ?>",
             cache: false,
             success: function(result) {
-                $1102('.openslideshare_body div.slide_control span#prev').empty();
-                $1102('.openslideshare_body div.slide_control span#next').empty();
-                $1102('.openslideshare_body div.slide_control span#pager').empty();
-                messageDiv.empty();
-                messageDiv.append(result);
-                bxslider_init();
+                if (result + 0 > 0) {
+                    location.reload();
+                }
             },
             error: function(xhr, ajaxOptions, thrownError) {}
         });

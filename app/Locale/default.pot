@@ -75,7 +75,7 @@ msgstr ""
 msgid "Popular Slides"
 msgstr ""
 
-#: Controller/SlidesController.php:157;193;219;239;291;343
+#: Controller/SlidesController.php:157;193;219;239;296;348
 msgid "Invalid slide"
 msgstr ""
 
@@ -87,31 +87,35 @@ msgstr ""
 msgid "New Slide"
 msgstr ""
 
-#: Controller/SlidesController.php:265;314
+#: Controller/SlidesController.php:266
+msgid "The slide has been saved. It will take five minutes to complete the whole process. Please wait for a while."
+msgstr ""
+
+#: Controller/SlidesController.php:268;319
 msgid "The slide has been saved."
 msgstr ""
 
-#: Controller/SlidesController.php:270;317
+#: Controller/SlidesController.php:275;322
 msgid "The slide could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/SlidesController.php:302
+#: Controller/SlidesController.php:307
 msgid "You do not have permission to edit the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:312
+#: Controller/SlidesController.php:317
 msgid "The slide has been saved. File conversion has just started."
 msgstr ""
 
-#: Controller/SlidesController.php:351
+#: Controller/SlidesController.php:356
 msgid "You do not have permission to delete the slide created by others."
 msgstr ""
 
-#: Controller/SlidesController.php:362
+#: Controller/SlidesController.php:367
 msgid "The slide has been deleted."
 msgstr ""
 
-#: Controller/SlidesController.php:364
+#: Controller/SlidesController.php:369
 msgid "The slide could not be deleted. Please, try again."
 msgstr ""
 
@@ -119,7 +123,7 @@ msgstr ""
 msgid "Your Dashboard"
 msgstr ""
 
-#: Controller/UsersController.php:41;71;183;221
+#: Controller/UsersController.php:41;71;188;226
 msgid "Invalid user"
 msgstr ""
 
@@ -143,32 +147,32 @@ msgstr ""
 msgid "You have finished to logout."
 msgstr ""
 
-#: Controller/UsersController.php:134
+#: Controller/UsersController.php:139
 #: View/Layouts/default.ctp:121
 msgid "Signup"
 msgstr ""
 
-#: Controller/UsersController.php:138
+#: Controller/UsersController.php:143
 msgid "The user has been saved"
 msgstr ""
 
-#: Controller/UsersController.php:142;200
+#: Controller/UsersController.php:147;205
 msgid "The user could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:180
+#: Controller/UsersController.php:185
 msgid "Edit"
 msgstr ""
 
-#: Controller/UsersController.php:196
+#: Controller/UsersController.php:201
 msgid "The user has been saved."
 msgstr ""
 
-#: Controller/UsersController.php:225
+#: Controller/UsersController.php:230
 msgid "The user has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:228
+#: Controller/UsersController.php:233
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 

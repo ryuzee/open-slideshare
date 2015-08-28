@@ -262,7 +262,12 @@ class SlidesController extends AppController
             $this->request->data['Slide']['user_id'] = $user_id;
             if ($this->Slide->save($this->request->data)) {
                 $last_insert_id = $this->Slide->getLastInsertID();
-                $this->Session->success(__('The slide has been saved.'));
+                if (Configure::read('cdn_base_url')) {
+                    $message = __('The slide has been saved. It will take five minutes to complete the whole process. Please wait for a while.');
+                } else {
+                    $message = __('The slide has been saved.');
+                }
+                $this->Session->success($message);
                 ClassRegistry::init('SQS.SimpleQueue')->send('extract', array('id' => $last_insert_id, 'key' => $this->request->data['Slide']['key']));
 
                 return $this->redirect('/slides/view/' . $last_insert_id);
