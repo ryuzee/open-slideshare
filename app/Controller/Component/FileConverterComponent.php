@@ -108,6 +108,40 @@ class FileConverterComponent extends Component
     }
 
     /**
+     * extract_transcript
+     *
+     * @param mixed $save_dir
+     * @param mixed $file_path
+     */
+    public function extract_transcript($save_dir, $file_path)
+    {
+        $status = '';
+        $command_logs = array();
+
+        $this->log->addInfo('Start extracting transcript...');
+        $out = exec('cd ' . $save_dir . '&& pdfinfo ' . $file_path . '.pdf | grep Pages', $command_logs, $status);
+        if ($status != 0) {
+            return false;
+        }
+        $num = mb_ereg_replace("[^0-9]", '' , $out) + 0;
+        if ($num === 0) {
+            return false;
+        }
+
+        $transcripts = array();
+        for($i = 0; $i < $num; $i++) {
+            $current_page = $i + 1;
+            $cmd = sprintf("cd %s && pdftotext %s -f %d -l %d - > %s", $save_dir, $file_path . '.pdf', $current_page, $current_page, $save_dir . DS . $current_page . ".txt");
+            exec($cmd, $command_logs, $status);
+            $transcripts[] = file_get_contents($save_dir . DS . $current_page . ".txt");
+        }
+        file_put_contents($save_dir . DS . 'transcript.txt', serialize($transcripts));
+        $this->log->addInfo('Extracting transcript completed...');
+
+        return true;
+    }
+
+    /**
      * isPPT
      *
      * @param mixed $mime

@@ -168,6 +168,12 @@ class SlideProcessingComponent extends Component
                 return false;
             }
 
+            // Extract Transcript
+            if ($this->FileConverter->extract_transcript($save_dir, $file_path)) {
+                $this->upload_transcript($s3, $key);
+            }
+
+            // Upload images to Amazon S3
             $files = $this->list_local_images($save_dir);
             $first_page = false;
             $this->upload_extract_images($s3, $key, $save_dir, $files, $first_page);
@@ -217,6 +223,37 @@ class SlideProcessingComponent extends Component
             }
 
             return $file_list;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /**
+     * get_transcript
+     *
+     * @param mixed $slide_key
+     */
+    public function get_transcript($slide_key)
+    {
+        App::uses('CommonHelper', 'View/Helper');
+        $helper = new CommonHelper(new View());
+        $url = $helper->transcript_url($slide_key);
+
+        $context = stream_context_create(array(
+            'http' => array('ignore_errors' => true),
+        ));
+
+        set_error_handler(function($severity, $message, $file, $line) {
+            throw new ErrorException($message, 0, $severity, $file, $line);
+        });
+
+        $transcripts = array();
+        try {
+            $contents = file_get_contents($url, false, $context);
+            if (strpos($http_response_header[0], '200')) {
+                $transcripts = unserialize($contents);
+            }
+            return $transcripts;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -292,6 +329,25 @@ class SlideProcessingComponent extends Component
         } else {
             $first_page = false;
         }
+    }
+
+    /**
+     * upload_transcript
+     *
+     * @param mixed $s3
+     * @param mixed $key
+     */
+    private function upload_transcript($s3, $key)
+    {
+        $this->log->addInfo("Start uploading transcript ($key)");
+        $s3->putObject(array(
+            'Bucket' => Configure::read('image_bucket_name'),
+            'Key' => $key . '/transcript.txt',
+            'SourceFile' => TMP . $key . '/transcript.txt',
+            'ContentType' => 'text/plain',
+            'ACL' => 'public-read',
+            'StorageClass' => 'REDUCED_REDUNDANCY',
+        ));
     }
 
     /**

@@ -165,6 +165,9 @@ class SlidesController extends AppController
         $file_list = $this->SlideProcessing->get_slide_pages_list($slide['Slide']['key']);
         $this->set('file_list', $file_list);
 
+        $transcripts = $this->SlideProcessing->get_transcript($slide['Slide']['key']);
+        $this->set('transcripts', $transcripts);
+
         if (count($file_list) < $display_position) {
             $start_position = 0;
         } elseif ($display_position <= 0) {
@@ -361,7 +364,7 @@ class SlidesController extends AppController
         $this->request->allowMethod('post', 'delete');
         if ($this->Slide->delete()) {
             // Delete master slide and generated images
-            $this->SlideProcessing->delete_slide_from_s3($data['Slide']['key']);
+            $this->SlideProcessing->delete_slide_from_s3($this->S3->getClient(), $data['Slide']['key']);
 
             // show message
             $this->Session->success(__('The slide has been deleted.'));

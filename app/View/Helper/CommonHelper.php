@@ -112,6 +112,22 @@ class CommonHelper extends AppHelper
     }
 
     /**
+     * transcript_url.
+     *
+     * @param mixed $key
+     */
+    public function transcript_url($key)
+    {
+        if (Configure::read('cdn_base_url')) {
+            $url = Configure::read('cdn_base_url') . '/' . $key . '/transcript.txt';
+        } else {
+            $url = $this->endpoint_s3(Configure::read('image_bucket_name')) . '/' . $key . '/transcript.txt';
+        }
+
+        return $url;
+    }
+
+    /**
      * truncate
      *
      * @param mixed $text

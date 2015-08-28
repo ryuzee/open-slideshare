@@ -1,6 +1,7 @@
 <?php $slide_id = $slide["Slide"]["id"]; ?>
 <div class="row">
 <div class="col-md-8" id="slide_div_box">
+
     <?php if($this->request->query('vertical') == 1): ?>
     <?php echo $this->element("slide_vertical", array('slide' => $slide["Slide"])); ?>
     <?php else: ?>
@@ -68,6 +69,18 @@
         </fieldset>
         <?php echo $this->Form->end(__('Submit')); ?>
     </div>
+
+    <?php if (count($transcripts) > 0): ?>
+    <?php $page_count = 0; ?>
+    <h3 class="h4"><?php echo __('Transcripts'); ?></h3>
+    <div class="slide_description">
+        <?php foreach($transcripts as $tran): ?>
+        <?php $page_count++; ?>
+        <div class="h6"><a href="#page_top" onclick="javascript:myslider.goToSlide(<?php echo $page_count -1; ?>);"><?php echo $page_count; ?>.</a> <?php echo h($tran); ?></div>
+        <?php endforeach; ?>
+    </div>
+    <div>&nbsp;</div>
+    <?php endif; ?>
 </div>
 
 <div class="col-md-4" id="rightside">

@@ -124,7 +124,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                 </div><!--/.navbar-collapse -->
             </div>
         </div>
-
+        <a name="page_top"></a>
         <div class="container" id="main_container" role="main">
             <?php echo $this->Session->flash(); ?>
             <!-- start contents -->
