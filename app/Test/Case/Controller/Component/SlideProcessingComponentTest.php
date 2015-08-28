@@ -33,40 +33,6 @@ class SlideProcessingComponentTest extends CakeTestCase
     }
 
     /**
-     * testGetMimeType
-     *
-     */
-    public function testGetMimeType()
-    {
-        $method = new ReflectionMethod($this->SlideProcessing, 'get_mime_type');
-        $method->setAccessible(true);
-        $dir = dirname(dirname(dirname(dirname(__FILE__)))) . DS . "Data";
-
-        // pptx
-        $result = $method->invoke($this->SlideProcessing, $dir . DS . "test.pptx");
-        $this->assertTrue(in_array($result,
-            array(
-                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                'application/vnd.ms-powerpoint',
-                'application/vnd.ms-office',
-            )
-        ));
-
-        // ppt
-        $result = $method->invoke($this->SlideProcessing, $dir . DS . "test.ppt");
-        $this->assertTrue(in_array($result,
-            array(
-                'application/vnd.ms-powerpoint',
-                'application/vnd.ms-office',
-            )
-        ));
-
-        // pdf
-        $result = $method->invoke($this->SlideProcessing, $dir . DS . "test.pdf");
-        $this->assertEqual('application/pdf', $result);
-    }
-
-    /**
      * testLocalImages
      *
      */

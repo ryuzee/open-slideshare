@@ -27,6 +27,13 @@ class SlideProcessingComponent extends Component
     private $S3;
 
     /**
+     * FileConverter
+     *
+     * @var mixed
+     */
+    private $FileConverter;
+
+    /**
      * __construct.
      */
     public function __construct(ComponentCollection $collection, $settings = array())
@@ -37,6 +44,10 @@ class SlideProcessingComponent extends Component
         // create S3 library instance
         App::uses('S3Component', 'Controller/Component');
         $this->S3 = new S3Component($collection, $settings);
+
+        // create FileConverter library instance
+        App::uses('FileConverterComponent', 'Controller/Component');
+        $this->FileConverter = new FileConverterComponent($collection, $settings);
 
         // create a log channel
         $this->log = new Logger('name');
@@ -114,7 +125,7 @@ class SlideProcessingComponent extends Component
             'SaveAs' => $file_path,
         ));
 
-        $mime_type = $this->get_mime_type($file_path);
+        $mime_type = $this->FileConverter->get_mime_type($file_path);
         $this->log->addInfo('File Type is ' . $mime_type);
 
         // Convertable mime type
@@ -139,7 +150,7 @@ class SlideProcessingComponent extends Component
                     $extension = '';
                 }
 
-                $status = $this->convert_ppt_to_pdf($file_path);
+                $status = $this->FileConverter->convert_ppt_to_pdf($file_path);
                 if (!$status) {
                     $this->Slide->update_status($key, ERROR_CONVERT_PPT_TO_PDF);
 
@@ -154,7 +165,7 @@ class SlideProcessingComponent extends Component
 
             if (in_array($mime_type, $all_convertable)) {
                 // Convert PDF to ppm
-                $status = $this->convert_pdf_to_ppm($save_dir, $file_path);
+                $status = $this->FileConverter->convert_pdf_to_ppm($save_dir, $file_path);
                 if (!$status) {
                     $this->Slide->update_status($key, ERROR_CONVERT_PDF_TO_PPM);
 
@@ -162,7 +173,7 @@ class SlideProcessingComponent extends Component
                 }
 
                 // Convert ppm to jpg
-                $status = $this->convert_ppm_to_jpg($save_dir);
+                $status = $this->FileConverter->convert_ppm_to_jpg($save_dir);
                 if (!$status) {
                     $this->Slide->update_status($key, ERROR_CONVERT_PPM_TO_JPG);
 
@@ -242,85 +253,6 @@ class SlideProcessingComponent extends Component
     }
 
     ################## Private ################
-
-    /**
-     * Convert PPT file to PDF.
-     *
-     * @param string $file_path source file to convert
-     */
-    private function convert_ppt_to_pdf($file_path)
-    {
-        $status = '';
-        $command_logs = array();
-
-        $this->log->addInfo('Start converting PowerPoint to PDF');
-        exec('unoconv -f pdf -o ' . $file_path . '.pdf ' . $file_path, $command_logs, $status);
-        $this->log->addInfo(var_export($command_logs, true));
-        if ($status === 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Convert PDF file to PPM.
-     *
-     * @param string $save_dir path to store file
-     * @param string $file_path source file to convert
-     *
-     */
-    private function convert_pdf_to_ppm($save_dir, $file_path)
-    {
-        $status = '';
-        $command_logs = array();
-
-        $this->log->addInfo('Start converting PDF to ppm');
-        exec('cd ' . $save_dir . '&& pdftoppm ' . $file_path . '.pdf slide', $command_logs, $status);
-        $this->log->addInfo(var_export($command_logs, true));
-        if ($status === 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Convert PPM file to Jpeg.
-     *
-     * @param string $save_dir path to store file
-     */
-    private function convert_ppm_to_jpg($save_dir)
-    {
-        $status = '';
-        $command_logs = array();
-
-        $this->log->addInfo('Start converting ppm to jpg');
-        exec('cd ' . $save_dir . '&& mogrify -format jpg slide*.ppm', $command_logs, $status);
-        $this->log->addInfo(var_export($command_logs, true));
-        if ($status != 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * Get mime type from file.
-     *
-     * @param string $file_path path to file
-     *
-     * @return string mime_type
-     */
-    private function get_mime_type($file_path)
-    {
-        $mime = shell_exec('file -bi ' . escapeshellcmd($file_path));
-        $mime = trim($mime);
-        $parts = explode(';', $mime);
-        $mime = preg_replace('/ [^ ]*/', '', trim($parts[0]));
-
-        return $mime;
-    }
 
     /**
      * Upload all generated files to Amazon S3.
