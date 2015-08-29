@@ -90,15 +90,7 @@ class UsersController extends AppController
         $this->set('slides', $this->Paginator->paginate('Slide'));
 
         // Get User Tagged Data
-        $id_array = array();
-        $id_source = $this->Slide->find('all', array(
-            'fields' => array('Slide.id'),
-            'conditions' => array('Slide.user_id' => $id),
-            'recursive' => -1,
-        ));
-        foreach ($id_source as $tmp) {
-            $id_array[] = $tmp["Slide"]["id"];
-        }
+        $id_array = $this->Slide->get_slide_id_by_user($id);
         $this->set('tags', $this->Slide->Tagged->find('cloud', array('conditions' => array('foreign_key' => $id_array), 'limit' => 20)));
     }
 

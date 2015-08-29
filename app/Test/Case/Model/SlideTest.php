@@ -228,4 +228,15 @@ class SlideTest extends CakeTestCase
         $result2 = $this->Slide->find('all', $cond2);
         $this->assertNotEqual($result, $result2);
     }
+
+    /**
+     * testGetSlideIdByUser
+     *
+     */
+    public function testGetSlideIdByUser()
+    {
+        $id_array = $this->Slide->get_slide_id_by_user(1);
+        $expected = array(1,2);
+        $this->assertEqual($id_array, $expected);
+    }
 }

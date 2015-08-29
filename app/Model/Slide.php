@@ -258,6 +258,25 @@ class Slide extends AppModel
     }
 
     /**
+     * get_slide_id_by_user
+     *
+     * @param integer $user_id
+     */
+    public function get_slide_id_by_user($user_id)
+    {
+        $id_array = array();
+        $id_source = $this->find('all', array(
+            'fields' => array('Slide.id'),
+            'conditions' => array('Slide.user_id' => $user_id, 'Slide.convert_status' => SUCCESS_CONVERT_COMPLETED),
+            'recursive' => -1,
+        ));
+        foreach ($id_source as $tmp) {
+            $id_array[] = $tmp["Slide"]["id"];
+        }
+        return $id_array;
+    }
+
+    /**
      * Update status code in Slide to indicate conversion status
      *
      * @param string $key
