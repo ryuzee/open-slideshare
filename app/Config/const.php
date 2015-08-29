@@ -1,4 +1,11 @@
 <?php
+/**
+ * This is OpenSlideshare environmental configuration file.
+ *
+ * Usually you do not need to edit this file.
+ * You have to set environment variables through nginx or apache configuration to keep the app portability.
+ *
+ */
 
 $config = array();
 
