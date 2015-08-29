@@ -20,7 +20,7 @@ class UsersController extends AppController
      */
     public function beforeFilter()
     {
-        $this->Auth->allow('signup', 'view', 'index');
+        $this->Auth->allow('signup', 'view');
         parent::beforeFilter();
     }
 
@@ -146,7 +146,7 @@ class UsersController extends AppController
             if ($this->User->save($this->request->data)) {
                 $this->Session->success(__('The user has been saved'));
 
-                return $this->redirect(array('action' => 'login'));
+                return $this->redirect(array('controller' => 'users', 'action' => 'index'));
             } else {
                 $this->Session->danger(__('The user could not be saved. Please, try again.'));
             }
