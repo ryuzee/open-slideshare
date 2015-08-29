@@ -120,7 +120,7 @@ class FileConverterComponent extends Component
 
         $this->log->addInfo('Start extracting transcript...');
         $out = exec('cd ' . $save_dir . '&& pdfinfo ' . $file_path . '.pdf | grep Pages', $command_logs, $status);
-        if ($status != 0) {
+        if ($status !== 0) {
             return false;
         }
         $num = mb_ereg_replace("[^0-9]", '', $out) + 0;
