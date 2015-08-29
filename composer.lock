@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.8.17",
+            "version": "2.8.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2f854073d68ee891c1e582015a423938942aa913"
+                "reference": "282aa6e96275c49fcc363429297ddc1ba006c42a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2f854073d68ee891c1e582015a423938942aa913",
-                "reference": "2f854073d68ee891c1e582015a423938942aa913",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/282aa6e96275c49fcc363429297ddc1ba006c42a",
+                "reference": "282aa6e96275c49fcc363429297ddc1ba006c42a",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-08-04 21:28:55"
+            "time": "2015-08-20 23:04:59"
         },
         {
             "name": "cakedc/migrations",
@@ -195,16 +195,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "2.7.2",
+            "version": "2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "f959b7601323065e74c6ec5dd0b63049ae939dac"
+                "reference": "0dbabce792cf3ff04f68a5ecadefb7659113f5e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/f959b7601323065e74c6ec5dd0b63049ae939dac",
-                "reference": "f959b7601323065e74c6ec5dd0b63049ae939dac",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/0dbabce792cf3ff04f68a5ecadefb7659113f5e3",
+                "reference": "0dbabce792cf3ff04f68a5ecadefb7659113f5e3",
                 "shasum": ""
             },
             "require": {
@@ -234,7 +234,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-08-07 01:43:53"
+            "time": "2015-08-24 02:22:27"
         },
         {
             "name": "cakephp/debug_kit",
