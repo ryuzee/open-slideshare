@@ -98,7 +98,7 @@
     <?php echo $this->element("right_side_bar_common"); ?>
 
     <?php if(isset($user_id) && $user_id == $slide["Slide"]["user_id"]): ?>
-    <div class="panel panel-default">
+    <div class="panel panel-default h5">
         <!-- Default panel contents -->
         <div class="panel-heading"><?php echo __('Actions'); ?></div>
         <!-- List group -->
@@ -109,7 +109,7 @@
     </div>
     <?php endif; ?>
 
-    <ul class="list-group">
+    <ul class="list-group h5">
         <?php if($this->request->query('vertical') == 1): ?>
         <li class="list-group-item"><?php echo $this->Html->link(__('Show Slide with Normal Mode'), array('action' => 'view', $slide_id)); ?> </li>
         <?php else: ?>
