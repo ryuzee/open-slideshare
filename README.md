@@ -15,6 +15,7 @@
 - Embedded player
 - RSS
 - Statistics
+- Transcript
 
 You can see the working demo at http://slide.meguro.ryuzee.com/
 

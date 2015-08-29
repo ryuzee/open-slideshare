@@ -64,13 +64,19 @@ class FileConverterComponentTest extends CakeTestCase
         $this->assertEqual('application/pdf', $result);
     }
 
+    /**
+     * filterProvider
+     *
+     */
     public function filterProvider()
     {
         return array(
             array("abc", "abc"),
             array("abc  def", "abc def"),
-            array("\n\n", " "),
+            array("a\r\rb", "a b"),
             array(hex2bin('ef83bc'), ""),
+            array("\f", ""),
+            array("", ""),
         );
     }
 

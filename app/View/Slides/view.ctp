@@ -70,13 +70,24 @@
         <?php echo $this->Form->end(__('Submit')); ?>
     </div>
 
-    <?php if (count($transcripts) > 0): ?>
+    <?php
+        $show_tran = false;
+        foreach ($transcripts as $tran) {
+            if ($tran !== "") {
+                $show_tran = true;
+                break;
+            }
+        }
+    ?>
+    <?php if ($show_tran): ?>
     <?php $page_count = 0; ?>
     <h3 class="h4"><?php echo __('Transcripts'); ?></h3>
     <div class="slide_description">
         <?php foreach($transcripts as $tran): ?>
         <?php $page_count++; ?>
+        <?php if ($tran !== ""): ?>
         <div class="h6"><a href="#page_top" onclick="javascript:myslider.goToSlide(<?php echo $page_count -1; ?>);"><?php echo $page_count; ?>.</a> <?php echo h($tran); ?></div>
+        <?php endif; ?>
         <?php endforeach; ?>
     </div>
     <div>&nbsp;</div>

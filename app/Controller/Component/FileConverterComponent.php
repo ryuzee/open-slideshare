@@ -134,9 +134,7 @@ class FileConverterComponent extends Component
             $cmd = sprintf("cd %s && pdftotext %s -f %d -l %d - > %s", $save_dir, $file_path . '.pdf', $current_page, $current_page, $save_dir . DS . $current_page . ".txt");
             exec($cmd, $command_logs, $status);
             $script = $this->filter_script(file_get_contents($save_dir . DS . $current_page . ".txt"));
-            if ($script !== "") {
-                $transcripts[] = $script;
-            }
+            $transcripts[] = $script;
         }
         file_put_contents($save_dir . DS . 'transcript.txt', serialize($transcripts));
         $this->log->addInfo('Extracting transcript completed...');
@@ -151,6 +149,7 @@ class FileConverterComponent extends Component
      */
     private function filter_script($script)
     {
+        $script = preg_replace('/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F]/', '', $script);
         $script = preg_replace('/[ 　\r\n\t]+/u', ' ', $script);
         $result = "";
         $arr = preg_split("//u", $script, -1, PREG_SPLIT_NO_EMPTY);
@@ -159,7 +158,7 @@ class FileConverterComponent extends Component
                 $result .= $a;
             }
         }
-        return $result;
+        return trim($result);
     }
 
     /**

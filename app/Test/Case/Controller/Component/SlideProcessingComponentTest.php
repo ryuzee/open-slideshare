@@ -42,7 +42,7 @@ class SlideProcessingComponentTest extends CakeTestCase
         $method->setAccessible(true);
         $dir = dirname(dirname(dirname(dirname(__FILE__)))) . DS . 'Data' . DS . 'tmp';
         if (! file_exists($dir)) {
-            mkdir($dir);
+            @mkdir($dir);
         }
 
         // There is no file.
