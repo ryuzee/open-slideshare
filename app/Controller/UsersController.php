@@ -91,7 +91,11 @@ class UsersController extends AppController
 
         // Get User Tagged Data
         $id_array = array();
-        $id_source = $this->Slide->find('all', array('fields' => array('Slide.id'), 'conditions' => array('Slide.user_id' => $id)));
+        $id_source = $this->Slide->find('all', array(
+            'fields' => array('Slide.id'),
+            'conditions' => array('Slide.user_id' => $id),
+            'recursive' => -1,
+        ));
         foreach ($id_source as $tmp) {
             $id_array[] = $tmp["Slide"]["id"];
         }
