@@ -5,6 +5,22 @@
 
     <div class="col-md-3">
     <?php echo $this->element('right_side_bar_common', array('user' => $user)); ?>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Popular Tags</div>
+            <div class="panel-body">
+                <?php
+                    echo $this->TagCloud->display($tags, array(
+                        'before' => '<span style="font-size:%size%px;" class="tag">',
+                        'after' => '</span>&nbsp;',
+                        'maxSize' => 28,
+                        'minSize' => 14,
+                        'url' => array('controller' => 'slides', 'action' => 'search'),
+                        'named' => 'tags',
+                    ));
+                ?>
+            </div>
+        </div>
     </div>
 </div>
 
