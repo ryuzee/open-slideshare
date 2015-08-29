@@ -100,10 +100,10 @@ class FileConverterComponent extends Component
         $this->log->addInfo('Start converting ppm to jpg');
         exec('cd ' . $save_dir . '&& mogrify -format jpg slide*.ppm', $command_logs, $status);
         $this->log->addInfo(var_export($command_logs, true));
-        if ($status != 0) {
-            return false;
-        } else {
+        if ($status === 0) {
             return true;
+        } else {
+            return false;
         }
     }
 
