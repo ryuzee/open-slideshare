@@ -61,7 +61,7 @@ class BatchExtractShell extends AppShell
         $id_array = array();
         if (isset($this->args[0])) {
             $ids = mb_split("/,/", $this->args[0]);
-            foreach($ids as $id) {
+            foreach ($ids as $id) {
                 if ($id + 0 > 0) {
                     $id_array[] = $id + 0;
                 }
