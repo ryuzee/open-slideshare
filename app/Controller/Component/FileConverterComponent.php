@@ -123,13 +123,13 @@ class FileConverterComponent extends Component
         if ($status != 0) {
             return false;
         }
-        $num = mb_ereg_replace("[^0-9]", '' , $out) + 0;
+        $num = mb_ereg_replace("[^0-9]", '', $out) + 0;
         if ($num === 0) {
             return false;
         }
 
         $transcripts = array();
-        for($i = 0; $i < $num; $i++) {
+        for ($i = 0; $i < $num; $i++) {
             $current_page = $i + 1;
             $cmd = sprintf("cd %s && pdftotext %s -f %d -l %d - > %s", $save_dir, $file_path . '.pdf', $current_page, $current_page, $save_dir . DS . $current_page . ".txt");
             exec($cmd, $command_logs, $status);
@@ -145,7 +145,7 @@ class FileConverterComponent extends Component
     /**
      * filter_script
      *
-     * @param mixed $script
+     * @param string $script
      */
     private function filter_script($script)
     {
@@ -153,7 +153,7 @@ class FileConverterComponent extends Component
         $script = preg_replace('/[ 　\r\n\t]+/u', ' ', $script);
         $result = "";
         $arr = preg_split("//u", $script, -1, PREG_SPLIT_NO_EMPTY);
-        foreach($arr as $a) {
+        foreach ($arr as $a) {
             if (!preg_match('/^(\xEE[\x80-\xBF])|(\xEF[\x80-\xA3])|(\xF3[\xB0-\xBF])|(\xF4[\x80-\x8F])/', $a)) {
                 $result .= $a;
             }
@@ -166,7 +166,8 @@ class FileConverterComponent extends Component
      *
      * @param mixed $mime
      */
-    public function isPDF($mime) {
+    public function isPDF($mime)
+    {
         return "application/pdf" === $mime;
     }
 
@@ -175,7 +176,8 @@ class FileConverterComponent extends Component
      *
      * @param mixed $mime
      */
-    public function isPPT($mime) {
+    public function isPPT($mime)
+    {
         return 'application/vnd.ms-powerpoint' === $mime;
     }
 
@@ -184,7 +186,8 @@ class FileConverterComponent extends Component
      *
      * @param mixed $mime
      */
-    public function isPPTX($mime) {
+    public function isPPTX($mime)
+    {
         return 'application/vnd.openxmlformats-officedocument.presentationml.presentation' === $mime;
     }
 
@@ -193,10 +196,17 @@ class FileConverterComponent extends Component
      *
      * @param mixed $mime_type
      */
-    public function isConvertable($mime_type) {
-        if ($this->isPDF($mime_type))  return true;
-        if ($this->isPPTX($mime_type)) return true;
-        if ($this->isPPT($mime_type))  return true;
+    public function isConvertable($mime_type)
+    {
+        if ($this->isPDF($mime_type)) {
+            return true;
+        }
+        if ($this->isPPTX($mime_type)) {
+            return true;
+        }
+        if ($this->isPPT($mime_type)) {
+            return true;
+        }
         return false;
     }
 }
