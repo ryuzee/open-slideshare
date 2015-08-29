@@ -17,6 +17,8 @@ class SlideTest extends CakeTestCase
         'app.user',
         'app.category',
         'app.comment',
+        'plugin.tags.tag',
+        'plugin.tags.tagged',
     );
 
     /**
@@ -108,7 +110,9 @@ class SlideTest extends CakeTestCase
             }
         }
         foreach ($data['Slide'] as $k => $v) {
-            $this->assertEquals($data['Slide'][$k], $expected_record[$k], "The value of $k is OK?");
+            if($k != "tags") {
+                $this->assertEquals($data['Slide'][$k], $expected_record[$k], "The value of $k is OK?");
+            }
         }
     }
 
@@ -125,7 +129,9 @@ class SlideTest extends CakeTestCase
         $fixture = new SlideFixture();
         $expected_record = $fixture->records[1]; // The second record in the fixture
         foreach ($data[0]['Slide'] as $k => $v) {
-            $this->assertEquals($data[0]['Slide'][$k], $expected_record[$k], "The value of $k is OK?");
+            if($k != "tags") {
+                $this->assertEquals($data[0]['Slide'][$k], $expected_record[$k], "The value of $k is OK?");
+            }
         }
     }
 
