@@ -92,4 +92,27 @@ class FileConverterComponentTest extends CakeTestCase
         $result = $method->invoke($this->FileConverter, $a);
         $this->assertEqual($result, $expected);
     }
+
+    public function convertableProvider()
+    {
+        return array(
+            array(true, 'application/pdf'),
+            array(true, 'application/vnd.openxmlformats-officedocument.presentationml.presentation'),
+            array(true, 'application/vnd.ms-powerpoint'),
+            array(false, 'text/plain'),
+            array(false, 'application/zip'),
+        );
+    }
+
+    /**
+     * testIsConvertable
+     *
+     * @dataProvider convertableProvider
+     * @param mixed $expected
+     * @param mixed $a
+     */
+    public function testIsConvertable($expected, $a)
+    {
+        $this->assertEqual($expected, $this->FileConverter->isConvertable($a));
+    }
 }
