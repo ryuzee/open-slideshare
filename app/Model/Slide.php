@@ -270,8 +270,10 @@ class Slide extends AppModel
             'conditions' => array('Slide.user_id' => $user_id, 'Slide.convert_status' => SUCCESS_CONVERT_COMPLETED),
             'recursive' => -1,
         ));
-        foreach ($id_source as $tmp) {
-            $id_array[] = $tmp["Slide"]["id"];
+        if (is_array($id_source)) {
+            foreach ($id_source as $tmp) {
+                $id_array[] = $tmp["Slide"]["id"];
+            }
         }
         return $id_array;
     }
