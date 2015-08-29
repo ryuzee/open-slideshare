@@ -29,6 +29,10 @@ if (isset($_SERVER['OSS_DEBUG'])) {
 }
 Configure::write('debug', $debug);
 
+// @TODO It must be removed after CakeDC/tag library fixes the issue
+// See. https://github.com/CakeDC/tags/issues/101
+error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
+
 /*
  * Configure the Error handler used to handle errors for your application. By default
  * ErrorHandler::handleError() is used. It will display errors using Debugger, when debug > 0

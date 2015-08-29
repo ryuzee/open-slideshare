@@ -120,6 +120,7 @@ $1102(document).ready(function(){
     <?php
     echo $this->Form->input('name', array('label' => __('Name')));
     echo $this->Form->input('description', array('label' => __('Description')));
+    echo $this->Form->input('tags', array('type' => 'text'));
     echo $this->Form->input('downloadable', array(
             'label' => __('Allow to download original slide'),
             'class' => false

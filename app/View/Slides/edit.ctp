@@ -119,6 +119,7 @@ $1102(document).ready(function(){
         echo $this->Form->hidden('convert_status');
         echo $this->Form->hidden('key');
         echo $this->Form->input('description');
+        echo $this->Form->input('tags', array('type' => 'text'));
     ?>
     <?php echo $this->Form->input('downloadable', array(
             'label' => __('Allow to download original slide'),

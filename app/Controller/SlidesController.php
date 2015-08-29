@@ -17,6 +17,7 @@ class SlidesController extends AppController
         array('field' => 'name', 'type' => 'value'),
         array('field' => 'display_name', 'type' => 'value'),
         array('field' => 'description', 'type' => 'value'),
+        array('field' => 'tags', 'type' => 'value'),
         array('field' => 'category', 'type' => 'value'),
         array('field' => 'created_f', 'type' => 'value'),
         array('field' => 'created_t', 'type' => 'value'),
@@ -56,7 +57,7 @@ class SlidesController extends AppController
      */
     public function search()
     {
-        $this->set('title_for_layout', __('All Slides'));
+        $this->set('title_for_layout', __('Search'));
         $this->Slide->recursive = 0;
 
         $this->Prg->commonProcess();
@@ -72,7 +73,7 @@ class SlidesController extends AppController
             $add_query[] = "Slide.created <= '" . $val . "'";
         }
 
-        $this->paginate = array(
+        $this->Paginator->settings = array(
             'Slide' => array(
                 'conditions' => array($this->Slide->parseCriteria($this->passedArgs), $add_query),
                 'limit' => 20,
@@ -81,7 +82,7 @@ class SlidesController extends AppController
             ),
         );
 
-        $this->set('slides', $this->Paginator->paginate());
+        $this->set('slides', $this->Paginator->paginate('Slide'));
     }
 
     /**

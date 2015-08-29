@@ -23,7 +23,7 @@ class Slide extends AppModel
      * @var array
      */
     public $actsAs = array(
-        'Search.Searchable',
+        'Tags.Taggable', 'Search.Searchable'
     );
 
     /**
@@ -115,6 +115,8 @@ class Slide extends AppModel
         'description' => array('type' => 'like'),
         'display_name' => array('type' => 'like', 'field' => array('User.display_name')),
         'category' => array('type' => 'value', 'field' => array('Category.name')),
+        'tags' => array('type' => 'subquery', 'method' => 'findByTags', 'field' => 'Slide.id'),
+        array('name' => 'search', 'type' => 'query', 'method' => 'filterQuery'),
     );
 
     /**
@@ -289,5 +291,20 @@ class Slide extends AppModel
             $this->set('extension', $extension);
             $this->save();
         }
+    }
+
+    // Find by tags method
+    // see http://stackoverflow.com/questions/16812949/cakedc-search-and-tag-plugin-search-for-multiple-tags
+    public function findByTags($data = array())
+    {
+        $this->Tagged->Behaviors->attach('Containable', array('autoFields' => false));
+        $this->Tagged->Behaviors->attach('Search.Searchable');
+        $query = $this->Tagged->getQuery('all', array(
+            'conditions' => array('Tag.name'  => $data['tags']),
+            'fields' => array('foreign_key'),
+            'contain' => array('Tag')
+        ));
+
+        return $query;
     }
 }

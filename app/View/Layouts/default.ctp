@@ -156,10 +156,11 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         'class' => 'well form-horizontal'
     )); ?>
     <fieldset>
-        <?php
-     echo $this->Form->input('name', array('required' => false, 'placeholder' => 'Name'));
-     echo $this->Form->input('display_name', array('required' => false, 'placeholder' => 'Author'));
-     echo $this->Form->input('description', array('required' => false, 'type' => 'text', 'placeholder' => 'Description'));
+    <?php
+    echo $this->Form->input('name', array('required' => false, 'placeholder' => 'Name'));
+    echo $this->Form->input('display_name', array('required' => false, 'placeholder' => 'Author'));
+    echo $this->Form->input('description', array('required' => false, 'type' => 'text', 'placeholder' => 'Description'));
+    echo $this->Form->input('tags', array('required' => false, 'type' => 'text', 'placeholder' => 'Tag'));
     $date_f = $this->Form->value("created_f");
     $date_t = $this->Form->value("created_t");
      echo $this->Form->input('created_f', array('required' => false, 'type' => 'text', 'placeholder' => 'From', 'label' => 'Date(From)', 'class' => 'datepicker_f form-control'));

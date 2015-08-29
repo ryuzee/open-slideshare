@@ -32,6 +32,17 @@
     <p><?php echo nl2br(h($slide['Slide']['description'])); ?></p>
     </div>
 
+    <div class="h5">
+    <?php echo __('Tags'); ?>:
+    <?php
+        $disp_tags = mb_split(',' , $slide['Slide']['tags']);
+        foreach ($disp_tags as $t):
+            $t = trim($t);
+    ?>
+    <a href="/slides/search/tags:<?php echo h($t); ?>"><?php echo h($t); ?></a>&nbsp;
+    <?php endforeach; ?>
+    </div>
+
     <a name="comment"></a>
     <h3 class="h4"><?php echo __('Comments'); ?></h3>
     <?php if (!empty($slide['Comment'])): ?>
