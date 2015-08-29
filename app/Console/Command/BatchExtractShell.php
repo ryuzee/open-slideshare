@@ -58,7 +58,21 @@ class BatchExtractShell extends AppShell
      */
     public function main()
     {
-        $slides = $this->Slide->find('all');
+        $id_array = array();
+        if (isset($this->args[0])) {
+            $ids = mb_split("/,/", $this->args[0]);
+            foreach($ids as $id) {
+                if ($id + 0 > 0) {
+                    $id_array[] = $id + 0;
+                }
+            }
+        }
+        if (count($id_array) > 0) {
+            $conditions = array("conditions" => array("Slide.id" => $id_array));
+        } else {
+            $conditions = array();
+        }
+        $slides = $this->Slide->find('all', $conditions);
         foreach ($slides as $slide) {
             echo '----' . $slide['Slide']['key'] . "----\n";
             $this->SlideProcessing->extract_images($this->S3->getClient(), $slide['Slide']);
