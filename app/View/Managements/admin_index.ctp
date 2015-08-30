@@ -1,4 +1,4 @@
-<h3><?php echo __('User List'); ?>&nbsp;&nbsp;<small><a href="/admin/users/dashboard"><?php echo __('Back to Dashboard'); ?></a></small></h3>
+<h3><?php echo __('User List'); ?>&nbsp;&nbsp;<small><a href="/admin/managements/dashboard"><?php echo __('Back to Dashboard'); ?></a></small></h3>
 
 <div class="panel panel-default">
     <!-- Table -->
