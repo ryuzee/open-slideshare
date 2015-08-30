@@ -12,7 +12,7 @@
                 <th class="col-md-1"><?php echo __('Page View'); ?></th>
                 <th class="col-md-1"><?php echo __('Embedded View'); ?></th>
                 <th class="col-md-1"><?php echo __('Download Count'); ?></th>
-                <th class="col-md-1"><?php echo __('Number of Commnets'); ?></th>
+                <th class="col-md-1"><?php echo __('Number of Comments'); ?></th>
             </tr>
         </thead>
         <tbody>

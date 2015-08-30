@@ -103,7 +103,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 // ログインフォームに戻りURLの指定があるか確認
-                $return_url = $this->request->data['return_url'];
+                $return_url = isset($this->request->data['return_url']) ? $this->request->data['return_url'] : '';
                 // 本来の戻りURL
                 $url = $this->Auth->redirectUrl();
                 // どっちのURLを使うか
@@ -127,11 +127,11 @@ class UsersController extends AppController
     {
         $this->Auth->logout();
         $this->Session->success(__('You have finished to logout.', true));
-        $return_url = $this->request->query['return_url'];
+        $return_url = isset($this->request->query['return_url']) ? $this->request->query['return_url'] : null;
         if (isset($return_url)) {
-            $this->redirect($return_url);
+            return $this->redirect($return_url);
         } else {
-            $this->redirect(array('controller' => 'slides', 'action' => 'index'));
+            return $this->redirect('/slides/index');
         }
     }
 
