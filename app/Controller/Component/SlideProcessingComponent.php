@@ -113,7 +113,7 @@ class SlideProcessingComponent extends Component
         try {
             mkdir($save_dir);
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            $this->log->addInfo('Failed to create directory...');
         }
         $file_path = tempnam($save_dir, 'original');
 
