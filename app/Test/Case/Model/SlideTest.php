@@ -200,6 +200,22 @@ class SlideTest extends CakeTestCase
     }
 
     /**
+     * testGetConditionsToGetAllSlides
+     *
+     */
+    public function testGetConditionsToGetAllSlides()
+    {
+        $cond = $this->Slide->get_conditions_to_get_all_slides();
+        $result = $this->Slide->find('all', $cond);
+
+        App::uses('SlideFixture', 'Test/Fixture');
+        $fixture = new SlideFixture();
+        $expected_records = $fixture->records; // The second record in the fixture
+
+        $this->assertEqual(count($result), count($expected_records));
+    }
+
+    /**
      * testGetConditionsToGetSlidesInCategory
      *
      */

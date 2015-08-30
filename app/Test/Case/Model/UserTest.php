@@ -84,6 +84,22 @@ class UserTest extends CakeTestCase
     }
 
     /**
+     * testGetConditionsToGetAllUsers
+     *
+     */
+    public function testGetConditionsToGetAllUsers()
+    {
+        $cond = $this->User->get_conditions_to_get_all_users();
+        $result = $this->User->find('all', $cond);
+
+        App::uses('UserFixture', 'Test/Fixture');
+        $fixture = new UserFixture();
+        $expected_records = $fixture->records; // The second record in the fixture
+
+        $this->assertEqual(count($result), count($expected_records));
+    }
+
+    /**
      * tearDown method.
      */
     public function tearDown()

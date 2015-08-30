@@ -79,4 +79,20 @@ class User extends AppModel
 
         return true;
     }
+
+    /**
+     * get_conditions_to_get_all_users
+     *
+     */
+    public function get_conditions_to_get_all_users()
+    {
+        $conditions = array(
+            'model' => 'User',
+            'recursive' => 2,
+            'limit' => 20,
+            'order' => array('User.id' => 'desc'),
+        );
+
+        return $conditions;
+    }
 }

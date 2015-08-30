@@ -50,13 +50,7 @@ class ManagementsController extends AppController
      */
     public function admin_user_list()
     {
-        $conditions = array(
-            'model' => 'User',
-            'recursive' => 2,
-            'limit' => 20,
-            'order' => array('User.id' => 'desc'),
-        );
-        $this->paginate = $conditions;
+        $this->paginate = $this->User->get_conditions_to_get_all_users();
         $this->set('users', $this->Paginator->paginate('User'));
     }
 
@@ -66,13 +60,7 @@ class ManagementsController extends AppController
      */
     public function admin_slide_list()
     {
-        $conditions = array(
-            'model' => 'Slide',
-            'recursive' => 2,
-            'limit' => 20,
-            'order' => array('Slide.id' => 'desc'),
-        );
-        $this->paginate = $conditions;
+        $this->paginate = $this->Slide->get_conditions_to_get_all_slides();
         $this->set('slides', $this->Paginator->paginate('Slide'));
         Configure::write('cdn_base_url', '');
     }

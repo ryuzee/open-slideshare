@@ -214,6 +214,22 @@ class Slide extends AppModel
     }
 
     /**
+     * get_conditions_to_get_all_slides
+     *
+     */
+    public function get_conditions_to_get_all_slides()
+    {
+        $conditions = array(
+            'model' => 'Slide',
+            'recursive' => 2,
+            'limit' => 20,
+            'order' => array('Slide.id' => 'desc'),
+        );
+
+        return $conditions;
+    }
+
+    /**
      * get_conditions_to_get_popular_slides
      *
      */
