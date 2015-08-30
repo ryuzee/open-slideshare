@@ -93,6 +93,29 @@ class SlideProcessingComponent extends Component
     }
 
     /**
+     * create_directory
+     *
+     * @param string $directory
+     */
+    private function create_directory($directory)
+    {
+        set_error_handler(function($severity, $message, $file, $line) {
+            throw new ErrorException($message, 0, $severity, $file, $line);
+        });
+
+        if (file_exists($directory)) {
+            return true;
+        }
+
+        try {
+            mkdir($directory);
+        } catch (Exception $e) {
+            $this->log->addInfo(sprintf("Failed to create directory %s... ", $directory) . $e->getMessage());
+        }
+        restore_error_handler();
+    }
+
+    /**
      * Extract images from uploaded file.
      *
      * @param object $s3 S3 instance
@@ -105,16 +128,7 @@ class SlideProcessingComponent extends Component
 
         // filename to use for original one from S3
         $save_dir = TMP . basename($key);
-
-        set_error_handler(function($severity, $message, $file, $line) {
-            throw new ErrorException($message, 0, $severity, $file, $line);
-        });
-
-        try {
-            mkdir($save_dir);
-        } catch (Exception $e) {
-            $this->log->addInfo('Failed to create directory...');
-        }
+        $this->create_directory($save_dir);
         $file_path = tempnam($save_dir, 'original');
 
         // retrieve original file from S3
@@ -207,25 +221,9 @@ class SlideProcessingComponent extends Component
         $helper = new CommonHelper(new View());
         $url = $helper->json_url($slide_key);
 
-        $context = stream_context_create(array(
-            'http' => array('ignore_errors' => true),
-        ));
-
-        set_error_handler(function($severity, $message, $file, $line) {
-            throw new ErrorException($message, 0, $severity, $file, $line);
-        });
-
-        $file_list = array();
-        try {
-            $contents = file_get_contents($url, false, $context);
-            if (strpos($http_response_header[0], '200')) {
-                $file_list = json_decode($contents);
-            }
-
-            return $file_list;
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        $contents = $this->get_contents($url);
+        $file_list = json_decode($contents);
+        return $file_list;
     }
 
     /**
@@ -239,6 +237,19 @@ class SlideProcessingComponent extends Component
         $helper = new CommonHelper(new View());
         $url = $helper->transcript_url($slide_key);
 
+        $contents = $this->get_contents($url);
+        $transcripts = unserialize($contents);
+
+        return $transcripts;
+    }
+
+    /**
+     * get_contents
+     *
+     * @param mixed $path
+     */
+    private function get_contents($path)
+    {
         $context = stream_context_create(array(
             'http' => array('ignore_errors' => true),
         ));
@@ -247,16 +258,17 @@ class SlideProcessingComponent extends Component
             throw new ErrorException($message, 0, $severity, $file, $line);
         });
 
-        $transcripts = array();
+        $result = "";
         try {
-            $contents = file_get_contents($url, false, $context);
+            $contents = file_get_contents($path, false, $context);
             if (strpos($http_response_header[0], '200')) {
-                $transcripts = unserialize($contents);
+                $result = $contents;
             }
-            return $transcripts;
+            return $result;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
+        restore_error_handler();
     }
 
     /**
