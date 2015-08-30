@@ -17,7 +17,7 @@
         <tbody>
             <tr>
                 <td><a href="/admin/managements/user_list"><?php echo $user_count; ?></a>&nbsp;</td>
-                <td><?php echo $slide_count; ?>&nbsp;</td>
+                <td><a href="/admin/managements/slide_list"><?php echo $slide_count; ?></a>&nbsp;</td>
                 <td><?php echo $conversion_failed_count; ?>&nbsp;</td>
                 <td><?php echo $comment_count; ?>&nbsp;</td>
                 <td><?php echo $page_view; ?>&nbsp;</td>

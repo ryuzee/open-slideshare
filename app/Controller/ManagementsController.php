@@ -24,7 +24,7 @@ class ManagementsController extends AppController
     }
 
     /**
-     * admin_index
+     * admin_dashboard
      *
      */
     public function admin_dashboard()
@@ -45,7 +45,7 @@ class ManagementsController extends AppController
     }
 
     /**
-     * admin_index
+     * admin_slide_list
      *
      */
     public function admin_user_list()
@@ -58,5 +58,42 @@ class ManagementsController extends AppController
         );
         $this->paginate = $conditions;
         $this->set('users', $this->Paginator->paginate('User'));
+    }
+
+    /**
+     * admin_slide_list
+     *
+     */
+    public function admin_slide_list()
+    {
+        $conditions = array(
+            'model' => 'Slide',
+            'recursive' => 2,
+            'limit' => 20,
+            'order' => array('Slide.id' => 'desc'),
+        );
+        $this->paginate = $conditions;
+        $this->set('slides', $this->Paginator->paginate('Slide'));
+        Configure::write('cdn_base_url', '');
+    }
+
+    /**
+     * admin_download
+     *
+     * @param mixed $id
+     */
+    public function admin_download($id = null)
+    {
+        if (!$this->Slide->exists($id)) {
+            throw new NotFoundException(__('Invalid slide'));
+        }
+        $slide = $this->Slide->get_slide($id);
+
+        // Generate Signed URL
+        $url = $this->SlideProcessing->get_original_file_download_path($this->S3->getClient(), $slide['Slide']['key'], $slide['Slide']['extension']);
+
+        // Redirect
+        $this->autoRender = false;
+        $this->response->header('Location', $url);
     }
 }
