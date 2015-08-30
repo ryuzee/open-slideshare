@@ -128,6 +128,19 @@ class UsersControllerTest extends ControllerTestCase
     }
 
     /**
+     * testViewException
+     *
+     * @expectedException NotFoundException
+     */
+    public function testViewException()
+    {
+        $this->testAction('/users/view/', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+    }
+
+    /**
      * testIndex method
      *
      * @return void
@@ -147,6 +160,30 @@ class UsersControllerTest extends ControllerTestCase
         foreach ($expected_strings as $str) {
             $this->assertRegExp("/" . preg_quote($str) . "/", $this->contents);
         }
+    }
+
+    /**
+     * testIndexException
+     *
+     *i @expectedException NotFoundException
+     */
+    public function testIndexException()
+    {
+        $this->goIntoLoginStatus();
+
+        // Delete this user.
+        App::uses('User', 'Model');
+        $s = new User();
+        $s->useDbConfig = 'test';
+        $s->id = 1;
+        $s->delete();
+
+        $this->assertEmpty($s->read(null, 1));
+
+        $this->testAction('/users/index', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
     }
 
     /**
@@ -179,11 +216,11 @@ class UsersControllerTest extends ControllerTestCase
     }
 
     /**
-     * testLogout method
+     * testLogoutWithReturnUrl method
      *
      * @return void
      */
-    public function testLogout()
+    public function testLogoutWithReturnUrl()
     {
         $this->goIntoLoginStatus();
 
@@ -192,6 +229,22 @@ class UsersControllerTest extends ControllerTestCase
             'return' => 'contents'
         ));
         $this->assertContains('/hoge', $this->headers['Location']);
+    }
+
+    /**
+     * testLogout
+     *
+     * @return void
+     */
+    public function testLogout()
+    {
+        $this->goIntoLoginStatus();
+
+        $this->testAction('/users/logout', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+        $this->assertContains('/slides/index', $this->headers['Location']);
     }
 
     /**
@@ -218,6 +271,57 @@ class UsersControllerTest extends ControllerTestCase
             'return' => 'contents'
         ));
         $this->assertContains('/users', $this->headers['Location']);
+    }
+
+    /**
+     * testEditWithNoId
+     *
+     * @expectedException NotFoundException
+     */
+    public function testEditWithNoId()
+    {
+        $this->goIntoLoginStatus();
+
+        $data = array(
+            'User' => array(
+                'id' => 1,
+                'username' => 'sushi@example.com',
+                'password' => 'sushi12345678',
+                'biography' => 'SUSHI FOREVER',
+                'display_name' => 'SUSHIFOREVER',
+            )
+        );
+        $result = $this->testAction('/users/edit/', array(
+            'data' => $data,
+            'method' => 'post',
+            'return' => 'contents'
+        ));
+    }
+
+    /**
+     * testEditOtherUser
+     *
+     */
+    public function testEditOtherUser()
+    {
+        $this->goIntoLoginStatus();
+
+        $data = array(
+            'User' => array(
+                'id' => 2,
+                'username' => 'user2@example.com',
+                'password' => 'User2User2',
+                'biography' => 'Second User',
+                'display_name' => 'user2',
+            )
+        );
+        $result = $this->testAction('/users/edit/2', array(
+            'data' => $data,
+            'method' => 'post',
+            'return' => 'contents'
+        ));
+
+        $this->assertContains('/users/index', $this->headers['Location']);
     }
 
     /**

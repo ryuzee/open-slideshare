@@ -195,7 +195,7 @@ class UsersController extends AppController
         $u = $this->Auth->User();
         // illegal user check
         if ($id != $u['id']) {
-            return $this->redirect(array('controller' => 'users', 'action' => 'index'));
+            return $this->redirect("/users/index");
         }
         if ($this->request->is(array('post', 'put'))) {
             $save_fields = array('password', 'display_name', 'biography');
