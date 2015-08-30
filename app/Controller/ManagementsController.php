@@ -48,7 +48,7 @@ class ManagementsController extends AppController
      * admin_index
      *
      */
-    public function admin_index()
+    public function admin_user_list()
     {
         $conditions = array(
             'model' => 'User',
