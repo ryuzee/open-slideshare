@@ -101,8 +101,12 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                             <li><a href="/users/index"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;<?php echo __('My Slides'); ?></a></li>
                             <li><a href="/users/statistics"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;<?php echo __('My Statistics'); ?></a></li>
                             <li><a href="/users/edit/<?php echo AuthComponent::user('id'); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<?php echo __('My Account'); ?></a></li>
-                                <li class="divider"></li>
-                                <li><a href="/users/logout?return_url=<?php echo $_SERVER["REQUEST_URI"]; ?>"><?php echo __('Logout'); ?>&nbsp;</a></li>
+                            <?php if (AuthComponent::user('admin') === true): ?>
+                            <li class="divider"></li>
+                            <li><a href="/admin/managements/dashboard"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;<?php echo __('Admin Dashboard'); ?></a></li>
+                            <?php endif; ?>
+                            <li class="divider"></li>
+                            <li><a href="/users/logout?return_url=<?php echo $_SERVER["REQUEST_URI"]; ?>"><?php echo __('Logout'); ?>&nbsp;</a></li>
                             </ul>
                         </li>
                     </ul>

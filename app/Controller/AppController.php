@@ -81,6 +81,11 @@ class AppController extends Controller
             $this->Auth->userModel = 'User';
             $this->Auth->fields = array('username' => 'username', 'password' => 'password');
             $this->Auth->autoRedirect = true;
+
+            // admin
+            if (!empty($this->params['admin']) && $this->Auth->user("admin") !== true) {
+                throw new NotFoundException(__('Page Not Found'));
+            }
         }
 
         $this->set('category', $this->Category->find('all'));

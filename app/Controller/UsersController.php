@@ -13,7 +13,7 @@ class UsersController extends AppController
     /**
      * uses.
      */
-    public $uses = array('User', 'Slide');
+    public $uses = array('User', 'Slide', 'Comment');
 
     /**
      * beforeFilter.
@@ -21,6 +21,7 @@ class UsersController extends AppController
     public function beforeFilter()
     {
         $this->Auth->allow('signup', 'view');
+
         parent::beforeFilter();
     }
 
