@@ -84,7 +84,7 @@ class AppController extends Controller
 
             // admin
             if (!empty($this->params['admin']) && $this->Auth->user("admin") !== true) {
-                throw new NotFoundException(__('Page Not Found'));
+                return $this->redirect('/slides/index');
             }
         }
 
