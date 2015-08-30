@@ -264,11 +264,11 @@ class SlideProcessingComponent extends Component
             if (strpos($http_response_header[0], '200')) {
                 $result = $contents;
             }
-            return $result;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
         restore_error_handler();
+        return $result;
     }
 
     /**

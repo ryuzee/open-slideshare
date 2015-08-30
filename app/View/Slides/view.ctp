@@ -83,10 +83,12 @@
 
     <?php
         $show_tran = false;
-        foreach ($transcripts as $tran) {
-            if ($tran !== "") {
-                $show_tran = true;
-                break;
+        if (is_array($transcripts)) {
+            foreach ($transcripts as $tran) {
+                if ($tran !== "") {
+                    $show_tran = true;
+                    break;
+                }
             }
         }
     ?>
