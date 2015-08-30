@@ -25,6 +25,10 @@ msgstr ""
 msgid "You have no privileges"
 msgstr ""
 
+#: Controller/AppController.php:87
+msgid "Page Not Found"
+msgstr ""
+
 #: Controller/CategoriesController.php:39
 msgid "Invalid category"
 msgstr ""
@@ -57,6 +61,11 @@ msgstr ""
 msgid "The comment could not be deleted. Please, try again."
 msgstr ""
 
+#: Controller/ManagementsController.php:88
+#: Controller/SlidesController.php:158;197;223;243;300;352
+msgid "Invalid slide"
+msgstr ""
+
 #: Controller/SlidesController.php:60
 #: View/Layouts/default.ctp:91
 msgid "Search"
@@ -74,10 +83,6 @@ msgstr ""
 #: View/Slides/index.ctp:4
 #: View/Slides/popular.ctp:4
 msgid "Popular Slides"
-msgstr ""
-
-#: Controller/SlidesController.php:158;197;223;243;300;352
-msgid "Invalid slide"
 msgstr ""
 
 #: Controller/SlidesController.php:201
@@ -120,61 +125,61 @@ msgstr ""
 msgid "The slide could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:32
+#: Controller/UsersController.php:33
 msgid "Your Dashboard"
 msgstr ""
 
-#: Controller/UsersController.php:41;71;192;230
+#: Controller/UsersController.php:42;72;193;231
 msgid "Invalid user"
 msgstr ""
 
-#: Controller/UsersController.php:53
+#: Controller/UsersController.php:54
 msgid "Your Statistics"
 msgstr ""
 
-#: Controller/UsersController.php:77
+#: Controller/UsersController.php:78
 #: Test/Case/Controller/UsersControllerTest.php:121
 msgid "Slides by %s"
 msgstr ""
 
-#: Controller/UsersController.php:102
+#: Controller/UsersController.php:103
 msgid "Login"
 msgstr ""
 
-#: Controller/UsersController.php:118
+#: Controller/UsersController.php:119
 msgid "Invalid username or password, try again"
 msgstr ""
 
-#: Controller/UsersController.php:129
+#: Controller/UsersController.php:130
 msgid "You have finished to logout."
 msgstr ""
 
-#: Controller/UsersController.php:143
-#: View/Layouts/default.ctp:121
+#: Controller/UsersController.php:144
+#: View/Layouts/default.ctp:125
 msgid "Signup"
 msgstr ""
 
-#: Controller/UsersController.php:147
+#: Controller/UsersController.php:148
 msgid "The user has been saved"
 msgstr ""
 
-#: Controller/UsersController.php:151;209
+#: Controller/UsersController.php:152;210
 msgid "The user could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/UsersController.php:189
+#: Controller/UsersController.php:190
 msgid "Edit"
 msgstr ""
 
-#: Controller/UsersController.php:205
+#: Controller/UsersController.php:206
 msgid "The user has been saved."
 msgstr ""
 
-#: Controller/UsersController.php:234
+#: Controller/UsersController.php:235
 msgid "The user has been deleted."
 msgstr ""
 
-#: Controller/UsersController.php:237
+#: Controller/UsersController.php:238
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
@@ -210,41 +215,54 @@ msgid "My Statistics"
 msgstr ""
 
 #: Test/Case/Controller/UsersControllerTest.php:167
+#: View/Managements/admin_slide_list.ctp:9
 #: View/Users/statistics.ctp:8
 msgid "Slide Name"
 msgstr ""
 
 #: Test/Case/Controller/UsersControllerTest.php:168
+#: View/Managements/admin_slide_list.ctp:11
+#: View/Managements/admin_user_list.ctp:13
 #: View/Users/statistics.ctp:9
 msgid "Created"
 msgstr ""
 
 #: Test/Case/Controller/UsersControllerTest.php:169
+#: View/Managements/admin_slide_list.ctp:12
+#: View/Managements/admin_user_list.ctp:14
 #: View/Users/statistics.ctp:10
 msgid "Modified"
 msgstr ""
 
 #: Test/Case/Controller/UsersControllerTest.php:170
+#: View/Managements/admin_slide_list.ctp:13
 #: View/Users/statistics.ctp:11
 msgid "Convert Status"
 msgstr ""
 
 #: Test/Case/Controller/UsersControllerTest.php:171
+#: View/Managements/admin_dashboard.ctp:12
+#: View/Managements/admin_slide_list.ctp:14
 #: View/Users/statistics.ctp:12
 msgid "Page View"
 msgstr ""
 
 #: Test/Case/Controller/UsersControllerTest.php:172
+#: View/Managements/admin_dashboard.ctp:13
+#: View/Managements/admin_slide_list.ctp:15
 #: View/Users/statistics.ctp:13
 msgid "Embedded View"
 msgstr ""
 
 #: Test/Case/Controller/UsersControllerTest.php:173
+#: View/Managements/admin_dashboard.ctp:14
+#: View/Managements/admin_slide_list.ctp:16
 #: View/Users/statistics.ctp:14
 msgid "Download Count"
 msgstr ""
 
 #: Test/Case/Controller/UsersControllerTest.php:174
+#: View/Managements/admin_slide_list.ctp:17
 #: View/Users/statistics.ctp:15
 msgid "Number of Comments"
 msgstr ""
@@ -270,12 +288,80 @@ msgstr ""
 msgid "My Account"
 msgstr ""
 
-#: View/Layouts/default.ctp:105
+#: View/Layouts/default.ctp:106
+#: View/Managements/admin_dashboard.ctp:1
+msgid "Admin Dashboard"
+msgstr ""
+
+#: View/Layouts/default.ctp:109
 msgid "Logout"
 msgstr ""
 
-#: View/Layouts/default.ctp:118
+#: View/Layouts/default.ctp:122
 msgid "Sign in"
+msgstr ""
+
+#: View/Managements/admin_dashboard.ctp:8
+msgid "# of Users"
+msgstr ""
+
+#: View/Managements/admin_dashboard.ctp:9
+msgid "# of Slides"
+msgstr ""
+
+#: View/Managements/admin_dashboard.ctp:10
+msgid "# of Conversion Failed"
+msgstr ""
+
+#: View/Managements/admin_dashboard.ctp:11
+msgid "# of Comments"
+msgstr ""
+
+#: View/Managements/admin_slide_list.ctp:1
+msgid "Slide List"
+msgstr ""
+
+#: View/Managements/admin_slide_list.ctp:1
+#: View/Managements/admin_user_list.ctp:1
+msgid "Back to Dashboard"
+msgstr ""
+
+#: View/Managements/admin_slide_list.ctp:8
+msgid "ID"
+msgstr ""
+
+#: View/Managements/admin_slide_list.ctp:10
+msgid "User ID"
+msgstr ""
+
+#: View/Managements/admin_slide_list.ctp:18
+msgid "Command"
+msgstr ""
+
+#: View/Managements/admin_user_list.ctp:1
+msgid "User List"
+msgstr ""
+
+#: View/Managements/admin_user_list.ctp:8
+msgid "id"
+msgstr ""
+
+#: View/Managements/admin_user_list.ctp:9
+#: View/Users/login.ctp:5
+msgid "Username"
+msgstr ""
+
+#: View/Managements/admin_user_list.ctp:10
+#: View/Users/signup.ctp:17
+msgid "Display Name"
+msgstr ""
+
+#: View/Managements/admin_user_list.ctp:11
+msgid "Admin"
+msgstr ""
+
+#: View/Managements/admin_user_list.ctp:12
+msgid "Slide Count"
 msgstr ""
 
 #: View/Slides/add.ctp:79
@@ -412,20 +498,12 @@ msgstr ""
 msgid "Signin here"
 msgstr ""
 
-#: View/Users/login.ctp:5
-msgid "Username"
-msgstr ""
-
 #: View/Users/login.ctp:6
 msgid "Password"
 msgstr ""
 
 #: View/Users/login.ctp:7
 msgid "Signin"
-msgstr ""
-
-#: View/Users/signup.ctp:17
-msgid "Display Name"
 msgstr ""
 
 #: View/Users/signup.ctp:18
