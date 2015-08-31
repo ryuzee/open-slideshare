@@ -128,6 +128,36 @@ class UsersControllerTest extends ControllerTestCase
     }
 
     /**
+     * testViewRss
+     *
+     */
+    public function testViewRss()
+    {
+        // Disable debug mode to avoid DebugKit interruption
+        $debug = Configure::read('debug');
+        Configure::write('debug', 0);
+        $this->testAction('/users/view/1.rss', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+        // Restore debug setting
+        Configure::write('debug', $debug);
+
+        $expected_strings = array(
+            'TestUser',
+            'TestSlide1',
+            'TestSlide2',
+        );
+        foreach ($expected_strings as $str) {
+            $this->assertRegExp("/" . preg_quote($str) . "/", $this->contents);
+        }
+
+        $z = new XMLReader;
+        $z->xml($this->contents, NULL, LIBXML_DTDVALID);
+        $this->assertTrue($z->isValid());
+    }
+
+    /**
      * testViewException
      *
      * @expectedException NotFoundException
