@@ -374,6 +374,33 @@ class UsersControllerTest extends ControllerTestCase
     }
 
     /**
+     * testEditPostFailed
+     *
+     */
+    public function testEditPostFailed()
+    {
+        $c = $this->goIntoLoginStatus();
+
+        $data = array(
+            'User' => array(
+                'id' => 1,
+                'username' => 'sushi@example.com',
+                'biography' => '',
+                'password' => '',
+                'display_name' => 'SUSHIFOREVER',
+            )
+        );
+        $result = $this->testAction('/users/edit/1', array(
+            'data' => $data,
+            'method' => 'post',
+            'return' => 'contents'
+        ));
+
+        $this->assertContains($data['User']['username'], $this->view);
+        $this->assertContains($data['User']['display_name'], $this->view);
+    }
+
+    /**
      * testEditWithNoId
      *
      * @expectedException NotFoundException
@@ -453,11 +480,14 @@ class UsersControllerTest extends ControllerTestCase
         $c = $this->generate('Users', array(
             'components' => array(
                 'Auth' => array('user'),
+                'SessionEx' => array('success', 'danger', 'info', 'setFlash'),
             )
         ));
         $c->Auth->staticExpects($this->any())
             ->method('user')
             ->will($this->returnCallback(array($this, 'authUserCallback')));
+
+        return $c;
     }
 
     /**
