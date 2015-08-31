@@ -282,7 +282,30 @@ class UsersControllerTest extends ControllerTestCase
      *
      * @return void
      */
-    public function testEdit()
+    public function testEditGet()
+    {
+        $this->goIntoLoginStatus();
+
+        App::uses('UserFixture', 'Test/Fixture');
+        $fixture = new UserFixture();
+        $expected_record = $fixture->records[0];
+
+        $result = $this->testAction('/users/edit/1', array(
+            'method' => 'get',
+            'return' => 'contents'
+        ));
+        $this->assertContains($expected_record['username'], $this->view);
+        $this->assertContains($expected_record['display_name'], $this->view);
+        $this->assertContains($expected_record['biography'], $this->view);
+        $this->assertNotContains($expected_record['password'], $this->view);
+    }
+
+    /**
+     * testEdit method
+     *
+     * @return void
+     */
+    public function testEditPost()
     {
         $this->goIntoLoginStatus();
 
