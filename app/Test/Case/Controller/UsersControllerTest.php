@@ -324,6 +324,53 @@ class UsersControllerTest extends ControllerTestCase
             'return' => 'contents'
         ));
         $this->assertContains('/users', $this->headers['Location']);
+
+        $passwordHasher = new SimplePasswordHasher();
+        $column_password = $passwordHasher->hash($data['User']['password']);
+
+        App::uses('User', 'Model');
+        $s = new User();
+        $s->useDbConfig = 'test';
+        $rec = $s->read(null, 1);
+        $this->assertEqual($rec['User']['password'], $column_password);
+    }
+
+    /**
+     * testEditNoPassword method
+     *
+     * @return void
+     */
+    public function testEditPostNoPassword()
+    {
+        $this->goIntoLoginStatus();
+
+        $data = array(
+            'User' => array(
+                'id' => 1,
+                'username' => 'sushi@example.com',
+                'biography' => 'SUSHI FOREVER',
+                'password' => '',
+                'display_name' => 'SUSHIFOREVER',
+            )
+        );
+        $result = $this->testAction('/users/edit/1', array(
+            'data' => $data,
+            'method' => 'post',
+            'return' => 'contents'
+        ));
+        $this->assertContains('/users', $this->headers['Location']);
+
+        App::uses('UserFixture', 'Test/Fixture');
+        $fixture = new UserFixture();
+        $expected_record = $fixture->records[0];
+
+        App::uses('User', 'Model');
+        $s = new User();
+        $s->useDbConfig = 'test';
+        $rec = $s->read(null, 1);
+
+        // Confirm password was not changed.
+        $this->assertEqual($rec['User']['password'], $expected_record["password"]);
     }
 
     /**
