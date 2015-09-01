@@ -155,30 +155,6 @@ class UsersController extends AppController
     }
 
     /**
-     * json_list.
-     */
-    public function json_list()
-    {
-        $this->layout = 'ajax';
-        Configure::write('debug', 0);
-        $users = $this->User->find('all', array());
-
-        $results = array();
-        if (is_array($users)) {
-            foreach ($users as $user) {
-                $rec = array();
-                $rec['id'] = $user['User']['id'];
-                $rec['name'] = $user['User']['display_name'];
-                $rec['avatar'] = '';
-                $rec['icon'] = '';
-                $rec['type'] = 'contact';
-                $results[] = $rec;
-            }
-        }
-        $this->set('users', json_encode($results));
-    }
-
-    /**
      * edit method.
      *
      * @throws NotFoundException

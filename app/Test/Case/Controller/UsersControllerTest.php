@@ -321,7 +321,7 @@ class UsersControllerTest extends ControllerTestCase
         $result = $this->testAction('/users/edit/1', array(
             'data' => $data,
             'method' => 'post',
-            'return' => 'contents'
+            'return' => 'vars'
         ));
         $this->assertContains('/users', $this->headers['Location']);
 
@@ -333,6 +333,7 @@ class UsersControllerTest extends ControllerTestCase
         $s->useDbConfig = 'test';
         $rec = $s->read(null, 1);
         $this->assertEqual($rec['User']['password'], $column_password);
+
     }
 
     /**
@@ -386,7 +387,7 @@ class UsersControllerTest extends ControllerTestCase
                 'id' => 1,
                 'username' => 'sushi@example.com',
                 'biography' => '',
-                'password' => '',
+                'password' => 'a',
                 'display_name' => 'SUSHIFOREVER',
             )
         );
@@ -395,9 +396,9 @@ class UsersControllerTest extends ControllerTestCase
             'method' => 'post',
             'return' => 'contents'
         ));
-
         $this->assertContains($data['User']['username'], $this->view);
         $this->assertContains($data['User']['display_name'], $this->view);
+        $this->assertContains('<form', $this->view);
     }
 
     /**
@@ -480,7 +481,6 @@ class UsersControllerTest extends ControllerTestCase
         $c = $this->generate('Users', array(
             'components' => array(
                 'Auth' => array('user'),
-                'SessionEx' => array('success', 'danger', 'info', 'setFlash'),
             )
         ));
         $c->Auth->staticExpects($this->any())
