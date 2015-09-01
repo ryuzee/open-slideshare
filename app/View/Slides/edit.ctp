@@ -120,12 +120,13 @@ $1102(document).ready(function(){
         echo $this->Form->hidden('key');
         echo $this->Form->input('description');
         echo $this->Form->input('tags', array('type' => 'text'));
-    ?>
-    <?php echo $this->Form->input('downloadable', array(
+        echo $this->Form->input('downloadable', array(
             'label' => __('Allow to download original slide'),
             'class' => false
         ));
+        echo $this->Form->input('category_id', array('label' => __('Category')));
     ?>
+
     </fieldset>
     <input type="submit" id="re-upload" class="btn btn-primary" value="<?php echo __('Submit'); ?>" />
 </form>

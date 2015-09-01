@@ -42,7 +42,7 @@ class UsersControllerTest extends OssControllerTestCase
             'UserDisplayName',
         );
         foreach ($expected_strings as $str) {
-            $this->assertRegExp("/" . preg_quote($str) . "/", $this->contents);
+            $this->assertRegExp("/" . preg_quote($str) . "/", $this->view);
         }
     }
 

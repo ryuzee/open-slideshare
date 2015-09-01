@@ -242,7 +242,7 @@ class SlidesController extends AppController
         if (!$this->Slide->exists($id)) {
             throw new NotFoundException(__('Invalid slide'));
         }
-        Configure::write('debug', 0);
+        // Configure::write('debug', 0);
         $this->layout = 'ajax';
         $slide = $this->Slide->get_slide($id);
         $this->set('slide', $slide);
