@@ -116,6 +116,19 @@ class SlidesControllerTest extends OssControllerTestCase
     }
 
     /**
+     * testViewSlideNotFound
+     *
+     * @expectedException NotFoundException
+     */
+    public function testViewSlideNotFound()
+    {
+        $this->testAction('/slides/view/9999', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+    }
+
+    /**
      * mockSlide
      *
      */
@@ -180,6 +193,30 @@ class SlidesControllerTest extends OssControllerTestCase
         foreach ($expected_strings as $str) {
             $this->assertRegExp("/" . preg_quote($str) . "/", $this->view);
         }
+
+        $this->testAction('/slides/search/created_f:20140101/created_t:20381231', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+        $expected_strings = array(
+            __('Search Result'),
+            'TestSlide1',
+            'TestUser',
+        );
+        foreach ($expected_strings as $str) {
+            $this->assertRegExp("/" . preg_quote($str) . "/", $this->view);
+        }
+        $this->testAction('/slides/search/created_f:20381231', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+        $unexpected_strings = array(
+            'TestSlide1',
+            'TestUser',
+        );
+        foreach ($unexpected_strings as $str) {
+            $this->assertNotContains($str, $this->view);
+        }
     }
 
     /**
@@ -195,6 +232,32 @@ class SlidesControllerTest extends OssControllerTestCase
             'return' => 'contents'
         ));
         $this->assertContains('http://makimono.example.com/sushi.pdf', $this->headers['Location']);
+    }
+
+    /**
+     * testDownloadSlideNotFound
+     *
+     * @expectedException NotFoundException
+     */
+    public function testDownloadSlideNotFound()
+    {
+        $this->testAction('/slides/download/9999', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+    }
+
+    /**
+     * testDownloadNotDownloadable
+     *
+     * @expectedException NotFoundException
+     */
+    public function testDownloadNotDownloadable()
+    {
+        $this->testAction('/slides/download/1', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
     }
 
     /**
@@ -222,6 +285,19 @@ class SlidesControllerTest extends OssControllerTestCase
     }
 
     /**
+     * testEmbeddedSlideNotFound
+     *
+     * @expectedException NotFoundException
+     */
+    public function testEmbeddedSlideNotFound()
+    {
+        $this->testAction('/slides/embedded/9999', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+    }
+
+    /**
      * testUpdateView method
      *
      * @return void
@@ -238,6 +314,20 @@ class SlidesControllerTest extends OssControllerTestCase
         ));
         $this->assertEqual("2", $this->view); // Num of Slide pages
     }
+
+    /**
+     * testUpdateViewSlideNotFound
+     *
+     * @expectedException NotFoundException
+     */
+    public function testUpdateViewSlideNotFound()
+    {
+        $this->testAction('/slides/update_view/9999', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+    }
+
 
     /**
      * testAdd method
