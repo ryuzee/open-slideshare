@@ -130,6 +130,9 @@ class SlidesControllerTest extends OssControllerTestCase
                     'get_original_file_download_path',
                     'delete_slide_from_s3',
                 ),
+                'S3' => array(
+                    'createPolicy'
+                ),
             )
         ));
         $c->SlideProcessing->expects($this->any())
@@ -144,6 +147,18 @@ class SlidesControllerTest extends OssControllerTestCase
         $c->SlideProcessing->expects($this->any())
             ->method('delete_slide_from_s3')
             ->will($this->returnValue(true));
+        $c->S3->expects($this->any())
+            ->method('createPolicy')
+            ->will($this->returnValue(array(
+                'access_id' => 'AKI12345',
+                'base64_policy' => 'basepolicystrings',
+                'date_ymd' => '20150901',
+                'date_gm' => '20150901',
+                'acl' => '',
+                'security_token' => 'token',
+                'signature' => 'sig',
+                'success_action_status' => '201',
+            )));
     }
 
     /**
@@ -232,6 +247,7 @@ class SlidesControllerTest extends OssControllerTestCase
     public function testAdd()
     {
         $this->goIntoLoginStatus('Slides');
+        $this->mockSlide();
 
         $this->testAction('/slides/add', array(
             'method' => 'GET',
@@ -248,7 +264,6 @@ class SlidesControllerTest extends OssControllerTestCase
         foreach ($expected_strings as $str) {
             $this->assertRegExp("/" . preg_quote($str) . "/", $this->view);
         }
-
     }
 
     /**
