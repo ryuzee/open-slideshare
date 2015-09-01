@@ -18,7 +18,7 @@ class OssControllerTestCase extends ControllerTestCase
      *
      * @var array
      */
-    private $__authUser = array(
+    protected $__authUser = array(
         'id' => 1,
         'name' => 'test1',
         'biography' => "test1's bio",

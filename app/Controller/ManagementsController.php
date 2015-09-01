@@ -72,6 +72,11 @@ class ManagementsController extends AppController
      */
     public function admin_download($id = null)
     {
+        // duplicate code because of passing test (resolving redirect issue)
+        if (!empty($this->params['admin']) && $this->Auth->user("admin") !== true) {
+            return $this->redirect('/slides/index');
+        }
+
         if (!$this->Slide->exists($id)) {
             throw new NotFoundException(__('Invalid slide'));
         }
