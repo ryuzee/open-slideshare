@@ -27,6 +27,11 @@ class Comment extends AppModel
                 'rule' => array('numeric'),
             ),
         ),
+        'content' => array(
+            'notBlank' => array(
+                'rule' => array('notBlank'),
+            ),
+        ),
     );
 
     /**

@@ -19,6 +19,8 @@ class CommentsController extends AppController
         $user_id = $user['id'];
         $this->set('user_id', $user_id);
         if ($this->request->is('post')) {
+            // force set commenter user id.
+            $this->request->data['Comment']['user_id'] = $user_id;
             $this->Comment->create();
             if ($this->Comment->save($this->request->data)) {
                 $this->Session->success(__('The comment has been saved.'));

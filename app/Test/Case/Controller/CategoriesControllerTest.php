@@ -1,10 +1,12 @@
 <?php
 App::uses('CategoriesController', 'Controller');
 
+require_once dirname(__FILE__) . DS . 'OssControllerTest.php';
+
 /**
  * CategoriesController Test Case
  */
-class CategoriesControllerTest extends ControllerTestCase
+class CategoriesControllerTest extends OssControllerTestCase
 {
     /**
      * Fixtures
@@ -19,34 +21,6 @@ class CategoriesControllerTest extends ControllerTestCase
         'plugin.tags.tag',
         'plugin.tags.tagged'
     );
-
-    /**
-     * stored_request_uri
-     *
-     * @var string
-     */
-    private $stored_request_uri;
-
-    public function setUp()
-    {
-        $this->stored_request_uri = '';
-        if (isset($_SERVER['REQUEST_URI'])) {
-            $this->stored_request_uri = $_SERVER['REQUEST_URI'];
-        }
-        $_SERVER['REQUEST_URI'] = '/example';
-        parent::setUp();
-    }
-
-    /**
-     * tearDown method
-     *
-     * @return void
-     */
-    public function tearDown()
-    {
-        $_SERVER['REQUEST_URI'] = $this->stored_request_uri;
-        parent::tearDown();
-    }
 
     /**
      * testView method

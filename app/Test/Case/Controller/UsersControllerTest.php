@@ -1,10 +1,12 @@
 <?php
 App::uses('UsersController', 'Controller');
 
+require_once dirname(__FILE__) . DS . 'OssControllerTest.php';
+
 /**
  * UsersController Test Case
  */
-class UsersControllerTest extends ControllerTestCase
+class UsersControllerTest extends OssControllerTestCase
 {
     /**
      * Fixtures
@@ -19,47 +21,6 @@ class UsersControllerTest extends ControllerTestCase
         'plugin.tags.tag',
         'plugin.tags.tagged',
     );
-
-    /**
-     * __authUser
-     *
-     * @var array
-     */
-    private $__authUser = array(
-        'id' => 1,
-        'name' => 'test1',
-        'biography' => "test1's bio",
-        'created' => '2015-04-17 10:37:35',
-        'modified' => '2015-04-17 10:37:35'
-    );
-
-    private $stored_request_uri;
-
-    /**
-     * setUp method
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        $this->stored_request_uri = '';
-        if (isset($_SERVER['REQUEST_URI'])) {
-            $this->stored_request_uri = $_SERVER['REQUEST_URI'];
-        }
-        $_SERVER['REQUEST_URI'] = '/example';
-        parent::setUp();
-    }
-
-    /**
-     * tearDown method
-     *
-     * @return void
-     */
-    public function tearDown()
-    {
-        $_SERVER['REQUEST_URI'] = $this->stored_request_uri;
-        parent::tearDown();
-    }
 
     /**
      * testSignup method
@@ -471,36 +432,5 @@ class UsersControllerTest extends ControllerTestCase
         $s = new User();
         $s->useDbConfig = 'test';
         $this->assertEqual($s->read(null, 1), array());
-    }
-
-    /**
-     * goIntoLoginStatus
-     *
-     */
-    public function goIntoLoginStatus() {
-        $c = $this->generate('Users', array(
-            'components' => array(
-                'Auth' => array('user'),
-            )
-        ));
-        $c->Auth->staticExpects($this->any())
-            ->method('user')
-            ->will($this->returnCallback(array($this, 'authUserCallback')));
-
-        return $c;
-    }
-
-    /**
-     * authUserCallback
-     *
-     * @param mixed $param
-     */
-    public function authUserCallback($param)
-    {
-        if (empty($param)) {
-            return $this->__authUser;
-        } else {
-            return $this->__authUser[$param];
-        }
     }
 }
