@@ -394,7 +394,7 @@ class SlidesControllerTest extends OssControllerTestCase
     }
 
     /**
-     * testEdit method
+     * testEditOtherUserSlide method
      *
      * @return void
      */
@@ -410,6 +410,53 @@ class SlidesControllerTest extends OssControllerTestCase
         // Slide ID:3 was owned by user ID:2
         $this->assertContains('/slides/view/3', $this->headers['Location']);
     }
+
+    /**
+     * testEditWithPost method
+     *
+     * @return void
+     */
+    public function testEditWithPost()
+    {
+        $this->goIntoLoginStatus('Slides');
+        $this->mockSlide();
+
+        $data = array(
+            'Slide' => array(
+                'id' => 1,
+                'name' => 'Updated1',
+                'description' => 'UpdatedDescription1',
+                'downloadable' => 1,
+                'category_id' => 3,
+                'key' => '4ea2abecba74eda5521fff924d9e5062',
+                'convert_status' => 100,
+                'tags' => 'toro,uni,ika',
+            ),
+        );
+        //@TODO:This configure setting must be removed after cakedc/tags fixes the issue
+        Configure::write('debug', 0);
+        $this->testAction('/slides/edit/1', array(
+            'data' => $data,
+            'method' => 'POST',
+            'return' => 'contents'
+        ));
+        Configure::write('debug', 2);
+        // Slide ID:3 was owned by user ID:2
+        $this->assertContains('/slides/view/1', $this->headers['Location']);
+
+        App::uses('Slide', 'Model');
+        $s = new Slide();
+        $s->useDbConfig = 'test';
+        $s->recursive = -1;
+        $s->id = 1;
+        $rec = $s->read(null, 1);
+        $this->assertEqual($rec['Slide']['name'], $data['Slide']['name']);
+        $this->assertEqual($rec['Slide']['description'], $data['Slide']['description']);
+        $this->assertEqual($rec['Slide']['downloadable'], $data['Slide']['downloadable']);
+        $this->assertEqual($rec['Slide']['category_id'], $data['Slide']['category_id']);
+
+    }
+
 
     /**
      * testDelete method
@@ -429,4 +476,23 @@ class SlidesControllerTest extends OssControllerTestCase
         );
         $this->assertContains('/users', $this->headers['Location']);
     }
+
+    /**
+     * testDeleteOthersSlide
+     *
+     */
+    public function testDeleteOthersSlide()
+    {
+        $this->goIntoLoginStatus('Slides');
+        $this->mockSlide();
+        $result = $this->testAction(
+            '/comments/delete/3',
+            array(
+                'method' => 'POST',
+                'return' => 'contents'
+            )
+        );
+        $this->assertContains('/slides/view/3', $this->headers['Location']);
+    }
+
 }
