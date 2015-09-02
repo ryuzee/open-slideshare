@@ -116,19 +116,6 @@ class SlidesControllerTest extends OssControllerTestCase
     }
 
     /**
-     * testViewSlideNotFound
-     *
-     * @expectedException NotFoundException
-     */
-    public function testViewSlideNotFound()
-    {
-        $this->testAction('/slides/view/9999', array(
-            'method' => 'GET',
-            'return' => 'contents'
-        ));
-    }
-
-    /**
      * mockSlide
      *
      */
@@ -235,19 +222,6 @@ class SlidesControllerTest extends OssControllerTestCase
     }
 
     /**
-     * testDownloadSlideNotFound
-     *
-     * @expectedException NotFoundException
-     */
-    public function testDownloadSlideNotFound()
-    {
-        $this->testAction('/slides/download/9999', array(
-            'method' => 'GET',
-            'return' => 'contents'
-        ));
-    }
-
-    /**
      * testDownloadNotDownloadable
      *
      * @expectedException NotFoundException
@@ -285,19 +259,6 @@ class SlidesControllerTest extends OssControllerTestCase
     }
 
     /**
-     * testEmbeddedSlideNotFound
-     *
-     * @expectedException NotFoundException
-     */
-    public function testEmbeddedSlideNotFound()
-    {
-        $this->testAction('/slides/embedded/9999', array(
-            'method' => 'GET',
-            'return' => 'contents'
-        ));
-    }
-
-    /**
      * testUpdateView method
      *
      * @return void
@@ -316,18 +277,35 @@ class SlidesControllerTest extends OssControllerTestCase
     }
 
     /**
-     * testUpdateViewSlideNotFound
+     * notFoundUrlProvider
+     *
+     */
+    public function notFoundUrlProvider()
+    {
+        return array(
+            array('/slides/update_view/9999'),
+            array('/slides/embedded/9999'),
+            array('/slides/view/9999'),
+            array('/slides/download/9999'),
+            array('/slides/edit/9999'),
+            array('/slides/delete/9999'),
+        );
+    }
+
+    /**
+     * testSlideNotFound
      *
      * @expectedException NotFoundException
+     * @dataProvider notFoundUrlProvider
+     * @param mixed $url
      */
-    public function testUpdateViewSlideNotFound()
+    public function testSlideNotFound($url)
     {
-        $this->testAction('/slides/update_view/9999', array(
+        $this->testAction($url, array(
             'method' => 'GET',
             'return' => 'contents'
         ));
     }
-
 
     /**
      * testAdd method
