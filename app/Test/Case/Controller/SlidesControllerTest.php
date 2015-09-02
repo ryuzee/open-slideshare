@@ -81,6 +81,36 @@ class SlidesControllerTest extends OssControllerTestCase
     }
 
     /**
+     * testViewRss
+     *
+     */
+    public function testPopularRss()
+    {
+        // Disable debug mode to avoid DebugKit interruption
+        $debug = Configure::read('debug');
+        Configure::write('debug', 0);
+        $this->testAction('/slides/popular.rss', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+        // Restore debug setting
+        Configure::write('debug', $debug);
+
+        $expected_strings = array(
+            'Popular Slides',
+            'TestSlide1',
+            'TestSlide2',
+        );
+        foreach ($expected_strings as $str) {
+            $this->assertRegExp("/" . preg_quote($str) . "/", $this->contents);
+        }
+
+        $z = new XMLReader;
+        $z->xml($this->contents, NULL, LIBXML_DTDVALID);
+        $this->assertTrue($z->isValid());
+    }
+
+    /**
      * testView method
      *
      * @return void
@@ -363,11 +393,29 @@ class SlidesControllerTest extends OssControllerTestCase
         }
     }
 
-/**
- * testDelete method
- *
- * @return void
- */
+    /**
+     * testEdit method
+     *
+     * @return void
+     */
+    public function testEditOtherUserSlide()
+    {
+        $this->goIntoLoginStatus('Slides');
+        $this->mockSlide();
+
+        $this->testAction('/slides/edit/3', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+        // Slide ID:3 was owned by user ID:2
+        $this->assertContains('/slides/view/3', $this->headers['Location']);
+    }
+
+    /**
+     * testDelete method
+     *
+     * @return void
+     */
     public function testDelete()
     {
         $this->goIntoLoginStatus('Slides');
