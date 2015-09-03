@@ -9,10 +9,10 @@ require_once dirname(__FILE__) . DS . 'OssControllerTest.php';
 class SlidesControllerTest extends OssControllerTestCase
 {
     /**
- * Fixtures
- *
- * @var array
- */
+     * Fixtures
+     *
+     * @var array
+     */
     public $fixtures = array(
         'app.slide',
         'app.user',
@@ -159,11 +159,12 @@ class SlidesControllerTest extends OssControllerTestCase
                     'get_transcript',
                     'get_original_file_download_path',
                     'delete_slide_from_s3',
+                    'delete_generated_files',
                 ),
                 'S3' => array(
                     'createPolicy'
                 ),
-            )
+            ),
         ));
         $c->SlideProcessing->expects($this->any())
             ->method('get_slide_pages_list')
@@ -177,6 +178,9 @@ class SlidesControllerTest extends OssControllerTestCase
         $c->SlideProcessing->expects($this->any())
             ->method('delete_slide_from_s3')
             ->will($this->returnValue(true));
+        $c->SlideProcessing->expects($this->any())
+            ->method('delete_generated_files')
+            ->will($this->returnValue(true));
         $c->S3->expects($this->any())
             ->method('createPolicy')
             ->will($this->returnValue(array(
@@ -189,6 +193,10 @@ class SlidesControllerTest extends OssControllerTestCase
                 'signature' => 'sig',
                 'success_action_status' => '201',
             )));
+        $c->SimpleQueue = $this->getMock('SimpleQueue', array('send'));
+        $c->SimpleQueue->expects($this->any())
+            ->method('send')
+            ->will($this->returnValue(true));
     }
 
     /**
@@ -364,6 +372,32 @@ class SlidesControllerTest extends OssControllerTestCase
         }
     }
 
+    public function testAddWithPostData()
+    {
+        $this->goIntoLoginStatus('Slides');
+        $this->mockSlide();
+
+        $data = array(
+            'Slide' => array(
+                'name' => 'Add1',
+                'description' => 'AddDescription1',
+                'downloadable' => 0,
+                'category_id' => 4,
+                'key' => 'torouniunagiikatako',
+                'tags' => 'toro,uni,ika',
+            ),
+        );
+        Configure::write('debug', 0);
+        $this->testAction('/slides/add', array(
+            'data' => $data,
+            'method' => 'POST',
+            'return' => 'contents'
+        ));
+        Configure::write('debug', 2);
+        // Slide ID:3 was owned by user ID:2
+        $this->assertContains('/slides/view/6', $this->headers['Location']);
+    }
+
     /**
      * testEdit method
      *
@@ -457,6 +491,48 @@ class SlidesControllerTest extends OssControllerTestCase
 
     }
 
+    /**
+     * testEditWithPostWithConvert method
+     *
+     * @return void
+     */
+    public function testEditWithPostWithConvert()
+    {
+        $this->goIntoLoginStatus('Slides');
+        $this->mockSlide();
+
+        $data = array(
+            'Slide' => array(
+                'id' => 1,
+                'name' => 'Updated1',
+                'description' => 'UpdatedDescription1',
+                'downloadable' => 1,
+                'category_id' => 3,
+                'key' => '4ea2abecba74eda5521fff924d9e5062',
+                'convert_status' => 0,
+                'tags' => 'toro,uni,ika',
+            ),
+        );
+        //@TODO:This configure setting must be removed after cakedc/tags fixes the issue
+        Configure::write('debug', 0);
+        $this->testAction('/slides/edit/1', array(
+            'data' => $data,
+            'method' => 'POST',
+            'return' => 'contents'
+        ));
+        Configure::write('debug', 2);
+        // Slide ID:3 was owned by user ID:2
+        $this->assertContains('/slides/view/1', $this->headers['Location']);
+
+        App::uses('Slide', 'Model');
+        $s = new Slide();
+        $s->useDbConfig = 'test';
+        $s->recursive = -1;
+        $s->id = 1;
+        $rec = $s->read(null, 1);
+        $this->assertEqual($rec['Slide']['convert_status'], $data['Slide']['convert_status']);
+        $this->assertEqual($rec['Slide']['convert_status'], 0);
+    }
 
     /**
      * testDelete method
