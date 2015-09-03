@@ -100,6 +100,8 @@ class SlidesController extends AppController
      */
     public function index()
     {
+        $this->set('title_for_layout', __('Home'));
+
         $slides_popular = $this->Slide->find('all', $this->Slide->get_conditions_to_get_popular_slides(8));
         $slides_latest = $this->Slide->find('all', $this->Slide->get_conditions_to_get_latest_slides(8));
         $this->set('slides_popular', $slides_popular);
