@@ -81,6 +81,20 @@ class ManagementsControllerTest extends OssControllerTestCase
     }
 
     /**
+     * testAdminDownloadNonExistenceSlide
+     *
+     * @expectedException NotFoundException
+     */
+    public function testAdminDownloadNonExistenceSlide()
+    {
+        $this->goIntoLoginStatus('Managements');
+        $this->testAction('/admin/managements/download/9999', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+    }
+
+    /**
      * testNotAccessible
      *
      */
