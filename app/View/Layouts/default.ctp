@@ -145,7 +145,7 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         </div>
 
 
-<div id="search_slide_dialog_" title="Search">
+    <div id="search_slide_dialog_" title="<?php echo __('Search'); ?>" style="display:none">
     <!-- search form -->
     <?php echo $this->Form->create('Slide', array(
         'url' => array('controller' => 'slides', 'action' => 'search'),
@@ -161,21 +161,21 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
     )); ?>
     <fieldset>
     <?php
-    echo $this->Form->input('name', array('required' => false, 'placeholder' => 'Name'));
-    echo $this->Form->input('display_name', array('required' => false, 'placeholder' => 'Author'));
-    echo $this->Form->input('description', array('required' => false, 'type' => 'text', 'placeholder' => 'Description'));
-    echo $this->Form->input('tags', array('required' => false, 'type' => 'text', 'placeholder' => 'Tag'));
+        echo $this->Form->input('name', array('required' => false, 'placeholder' => __('Title'), 'label' => __('Title')));
+        echo $this->Form->input('display_name', array('required' => false, 'placeholder' => __('Author'), 'label' => __('Author')));
+    echo $this->Form->input('description', array('required' => false, 'type' => 'text', 'placeholder' => __('Description')));
+    echo $this->Form->input('tags', array('required' => false, 'type' => 'text', 'placeholder' => __('Tag')));
     $date_f = $this->Form->value("created_f");
     $date_t = $this->Form->value("created_t");
-     echo $this->Form->input('created_f', array('required' => false, 'type' => 'text', 'placeholder' => 'From', 'label' => 'Date(From)', 'class' => 'datepicker_f form-control'));
-     echo $this->Form->input('created_t', array('required' => false, 'type' => 'text', 'placeholder' => 'To', 'label' => 'Date(To)', 'class' => 'datepicker_t form-control'));
+     echo $this->Form->input('created_f', array('required' => false, 'type' => 'text', 'placeholder' => __('From'), 'label' => __('Date(From)'), 'class' => 'datepicker_f form-control'));
+     echo $this->Form->input('created_t', array('required' => false, 'type' => 'text', 'placeholder' => __('To'), 'label' => __('Date(To)'), 'class' => 'datepicker_t form-control'));
 
      ?>
     </fieldset>
 
     <div class="form-group">
         <div class="col col-md-10 col-md-offset-2">
-            <?php echo $this->Form->submit('Search', array(
+            <?php echo $this->Form->submit(__('Search'), array(
                 'div' => false,
                 'class' => 'btn btn-primary'
             )); ?>
