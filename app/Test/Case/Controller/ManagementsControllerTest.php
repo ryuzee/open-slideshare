@@ -156,7 +156,7 @@ class ManagementsControllerTest extends OssControllerTestCase
             'return' => 'contents'
         ));
         Configure::write('debug', 2);
-        $this->assertContains('/admin/managements/dashboard', $this->headers['Location']);
+        $this->assertContains('/admin/managements/slide_list', $this->headers['Location']);
 
         App::uses('Slide', 'Model');
         $s = new Slide();

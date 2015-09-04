@@ -107,7 +107,7 @@ class ManagementsController extends AppController
             } else {
                 $this->Session->warning(__('The slide could not be saved. Please, try again.'));
             }
-            return $this->redirect(array('controller' => 'managements', 'action' => 'dashboard'));
+            return $this->redirect(array('controller' => 'managements', 'action' => 'slide_list'));
         } else {
             $this->request->data = $this->Slide->get_slide($id);
         }

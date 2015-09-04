@@ -24,7 +24,7 @@
     ?>
     <label for="SlideCreated"><?php echo __('Created'); ?></label><br />
     <?php
-        echo $this->Form->dateTime('created', 'YMD', '24', array('empty' => false, 'monthNames' => false));
+        echo $this->Form->dateTime('created', 'YMD', '24', array('empty' => false, 'monthNames' => false, 'maxYear' => date('Y')));
     ?>
     </fieldset>
     <br />
