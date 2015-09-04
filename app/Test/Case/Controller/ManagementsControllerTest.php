@@ -95,6 +95,20 @@ class ManagementsControllerTest extends OssControllerTestCase
     }
 
     /**
+     * testAdminDownload
+     *
+     */
+    public function testAdminDownload()
+    {
+        $this->goIntoLoginStatus('Managements');
+        $this->testAction('/admin/managements/download/2', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+        $this->assertContains('http://makimono.example.com/sushi.pdf', $this->headers['Location']);
+    }
+
+    /**
      * testNotAccessible
      *
      */

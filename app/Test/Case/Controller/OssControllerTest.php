@@ -59,11 +59,15 @@ class OssControllerTestCase extends ControllerTestCase
         $c = $this->generate($name, array(
             'components' => array(
                 'Auth' => array('user'),
+                'SlideProcessing' => array('get_original_file_download_path'),
             )
         ));
         $c->Auth->staticExpects($this->any())
             ->method('user')
             ->will($this->returnCallback(array($this, 'authUserCallback')));
+        $c->SlideProcessing->expects($this->any())
+            ->method('get_original_file_download_path')
+            ->will($this->returnValue('http://makimono.example.com/sushi.pdf'));
 
         return $c;
     }
