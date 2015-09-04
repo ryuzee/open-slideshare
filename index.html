@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Open-slideshare : Open Source Slide Deck Sharing Application like Slideshare or SpeakerDeck">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Open-slideshare</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ryuzee/open-slideshare">View on GitHub</a>
+
+          <h1 id="project_title">Open-slideshare</h1>
+          <h2 id="project_tagline">Open Source Slide Deck Sharing Application like Slideshare or SpeakerDeck</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ryuzee/open-slideshare/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ryuzee/open-slideshare/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="open-slideshare--" class="anchor" href="#open-slideshare--" aria-hidden="true"><span class="octicon octicon-link"></span></a>Open Slideshare <a href="https://circleci.com/gh/ryuzee/open-slideshare/tree/master"><img src="https://circleci.com/gh/ryuzee/open-slideshare/tree/master.svg?style=svg" alt="Circle CI"></a> <a href="https://scrutinizer-ci.com/g/ryuzee/open-slideshare/?branch=master"><img src="https://scrutinizer-ci.com/g/ryuzee/open-slideshare/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
+</h1>
+
+<p><em>This is simple open source slidesharing application.</em></p>
+
+<h2>
+<a id="feature" class="anchor" href="#feature" aria-hidden="true"><span class="octicon octicon-link"></span></a>Feature</h2>
+
+<ul>
+<li>Uploading slides (pptx, pdf)</li>
+<li>Listing slides by category, user and so on</li>
+<li>Showing slide without Flash Player</li>
+<li>Showing slide vertically</li>
+<li>Storing all slides in Amazon S3. Thus terribly scalabale</li>
+<li>Searching slides</li>
+<li>i18n</li>
+<li>Responsive design</li>
+<li>Embedded player</li>
+<li>RSS</li>
+<li>Statistics</li>
+<li>Transcript</li>
+</ul>
+
+<p>You can see the working demo at <a href="http://slide.meguro.ryuzee.com/">http://slide.meguro.ryuzee.com/</a></p>
+
+<p><img src="http://www.ryuzee.com/images/work/OpenSlideshare02.png" alt="Sample1"></p>
+
+<p><img src="http://www.ryuzee.com/images/work/embedded_player.png" alt="Embedded Player"></p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>This application depends on following technologies.</p>
+
+<ul>
+<li>Amazon S3</li>
+<li>Amazon SQS</li>
+<li>Ubuntu 12 or higher with OpenOffice, xpdf, unoconv and so on</li>
+</ul>
+
+<p>You can use the develop environment here. <a href="https://github.com/ryuzee/open-slideshare-environment">https://github.com/ryuzee/open-slideshare-environment</a></p>
+
+<p>It includes Vagrantfile and Chef cookbooks to build dev environment.</p>
+
+<h2>
+<a id="install-for-aws-user" class="anchor" href="#install-for-aws-user" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install For AWS User</h2>
+
+<p>If you want to run this app on AWS, You can use a simple CloudFormation Template <a href="https://raw.githubusercontent.com/ryuzee/open-slideshare-environment/master/aws_cfn_single.template">here</a>. This template will create a VPC, 4 subnets for both provate and public, required S3 buckets, SQS queue, IAM Role and so on. When you run this template, only you need to do is to wait around 15 minutes with coffee.</p>
+
+<p>This template is only for Tokyo region (ap-northeast-1). If you want to run the app in other region, you need to customize both this CFn template and install.sh.</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<ul>
+<li>Create two Amazon S3 buckets (cf. open-slideshare-slides, open-slideshare-images)</li>
+<li>Set CORS policy for bucket that will store the slide decks as follows</li>
+</ul>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"&gt;
+    &lt;CORSRule&gt;
+        &lt;AllowedOrigin&gt;*&lt;/AllowedOrigin&gt;
+        &lt;AllowedMethod&gt;GET&lt;/AllowedMethod&gt;
+        &lt;AllowedMethod&gt;PUT&lt;/AllowedMethod&gt;
+        &lt;AllowedMethod&gt;POST&lt;/AllowedMethod&gt;
+        &lt;AllowedMethod&gt;HEAD&lt;/AllowedMethod&gt;
+        &lt;AllowedHeader&gt;*&lt;/AllowedHeader&gt;
+        &lt;ExposeHeader&gt;Access-Control-Allow-Origin&lt;/ExposeHeader&gt;
+        &lt;MaxAgeSeconds&gt;3000&lt;/MaxAgeSeconds&gt;
+    &lt;/CORSRule&gt;
+&lt;/CORSConfiguration&gt;
+</code></pre>
+
+<ul>
+<li>Create SQS queue (cf. open-slideshare-convert) and note the url.</li>
+<li>Create database and its user (all tables will be created by Migration function).</li>
+<li>Install required php library by using composer as follows.</li>
+</ul>
+
+<pre><code>php composer.phar install
+</code></pre>
+
+<ul>
+<li>Change permissions as follows</li>
+</ul>
+
+<pre><code>chmod -R 777 app/tmp
+chmod 755 app/Console/cake
+</code></pre>
+
+<ul>
+<li>Configure application.</li>
+</ul>
+
+<p>This application uses Amazon S3 and SQS. You need to configure options. If you use environment variables, there's no need to change configuration of this file.</p>
+
+<p><code>app/Config/const.php</code></p>
+
+<pre><code>$config['region'] = isset($_SERVER['OSS_REGION']) ? $_SERVER['OSS_REGION'] : "";
+$config['bucket_name'] = isset($_SERVER['OSS_BUCKET_NAME']) ? $_SERVER['OSS_BUCKET_NAME'] : "";
+$config['image_bucket_name'] = isset($_SERVER['OSS_IMAGE_BUCKET_NAME']) ? $_SERVER['OSS_IMAGE_BUCKET_NAME'] : "";
+$config['use_s3_static_hosting'] = isset($_SERVER['OSS_USE_S3_STATIC_HOSTING']) ? $_SERVER['OSS_USE_S3_STATIC_HOSTING'] : 0;
+$config['cdn_base_url'] = isset($_SERVER['OSS_CDN_BASE_URL']) ? $_SERVER['OSS_CDN_BASE_URL'] : "";
+$config['sqs_url'] = isset($_SERVER['OSS_SQS_URL']) ? $_SERVER['OSS_SQS_URL'] : "";
+</code></pre>
+
+<p><code>app/Config/database.php</code></p>
+
+<p>For database connection, you need to change configuration if you do not use environment variables that start with <code>RDS_</code>.</p>
+
+<pre><code>if (!defined('DB_HOSTNAME')) {
+    $db_hostname = isset($_SERVER['OSS_RDS_HOSTNAME']) ? $_SERVER['OSS_RDS_HOSTNAME'] : "localhost";
+    define('DB_HOSTNAME', $db_hostname);
+
+    $db_username = isset($_SERVER['OSS_RDS_USERNAME']) ? $_SERVER['OSS_RDS_USERNAME'] : "webapp";
+    define('DB_USERNAME', $db_username);
+
+    $db_password = isset($_SERVER['OSS_RDS_PASSWORD']) ? $_SERVER['OSS_RDS_PASSWORD'] : "passw0rd";
+    define('DB_PASSWORD', $db_password);
+
+    $db_name = isset($_SERVER['OSS_RDS_DB_NAME']) ? $_SERVER['OSS_RDS_DB_NAME'] : "openslideshare";
+    define('DB_NAME', $db_name);
+}
+</code></pre>
+
+<ul>
+<li>Run migration tool to create tables.</li>
+</ul>
+
+<pre><code>app/Console/cake Migrations.migration run all
+app/Console/cake Migrations.migration run all -p Tags
+</code></pre>
+
+<ul>
+<li>Now you can login to the application by <a href="mailto:admin@example.com">admin@example.com</a> / passw0rd. After your first login, you must change your password.</li>
+</ul>
+
+<h2>
+<a id="this-application-on-amazon-ec2" class="anchor" href="#this-application-on-amazon-ec2" aria-hidden="true"><span class="octicon octicon-link"></span></a>This application on Amazon EC2</h2>
+
+<ul>
+<li>If you want to run the application on Amazon EC2 instance, you need to assign IAM Role to the instance when launching.</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This software is released under the MIT License, see LICENSE.txt.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Open-slideshare maintained by <a href="https://github.com/ryuzee">ryuzee</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
