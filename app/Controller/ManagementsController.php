@@ -13,7 +13,7 @@ class ManagementsController extends AppController
     /**
      * uses.
      */
-    public $uses = array('User', 'Slide', 'Comment');
+    public $uses = array('User', 'Slide', 'Comment', 'Category');
 
     /**
      * beforeFilter.
@@ -88,5 +88,31 @@ class ManagementsController extends AppController
         // Redirect
         $this->autoRender = false;
         $this->response->header('Location', $url);
+    }
+
+    /**
+     * admin_slide_edit
+     *
+     * @param mixed $id
+     */
+    public function admin_slide_edit($id = null)
+    {
+        if (!$this->Slide->exists($id)) {
+            throw new NotFoundException(__('Invalid slide'));
+        }
+
+        if ($this->request->is(array('post', 'put'))) {
+            if ($this->Slide->save($this->request->data)) {
+                $this->Session->success(__('The slide has been saved.'));
+            } else {
+                $this->Session->warning(__('The slide could not be saved. Please, try again.'));
+            }
+            return $this->redirect(array('controller' => 'managements', 'action' => 'dashboard'));
+        } else {
+            $this->request->data = $this->Slide->get_slide($id);
+        }
+        $categories = $this->Slide->Category->find('list');
+        $this->set(compact('categories'));
+
     }
 }

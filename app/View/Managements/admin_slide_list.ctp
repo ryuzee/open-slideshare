@@ -31,7 +31,7 @@
                 <td><?php echo $slide['Slide']['embedded_view']; ?></td>
                 <td><?php echo $slide['Slide']['download_count']; ?></td>
                 <td><?php echo count($slide['Comment']); ?></td>
-                <td><a href="<?php echo $this->Common->transcript_url($slide['Slide']['key']); ?>" target="_blank"><i class="fa fa-file-text"></i></a>&nbsp;&nbsp;<a href="<?php echo $this->Common->json_url($slide['Slide']['key']); ?>" target="_blank"><i class="fa fa-jsfiddle"></i></a>&nbsp;&nbsp;<a href="/admin/managements/download/<?php echo $slide['Slide']['id']; ?>"><i class="fa fa-cloud-download"></i></a></td>
+                <td><a href="<?php echo $this->Common->transcript_url($slide['Slide']['key']); ?>" target="_blank"><i class="fa fa-file-text"></i></a>&nbsp;<a href="<?php echo $this->Common->json_url($slide['Slide']['key']); ?>" target="_blank"><i class="fa fa-jsfiddle"></i></a>&nbsp;<a href="/admin/managements/download/<?php echo $slide['Slide']['id']; ?>"><i class="fa fa-cloud-download"></i></a>&nbsp;<a href="/admin/managements/slide_edit/<?php echo $slide['Slide']['id']; ?>"><i class="fa fa-pencil"></i></a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
