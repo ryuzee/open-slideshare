@@ -10,24 +10,24 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
 <!DOCTYPE html>
 <html>
     <head>
-        <?php echo $this->Html->charset(); ?>
+        <?php echo $this->Html->charset() . "\n"; ?>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php echo $this->Html->script('jquery-1.10.2.min.js'); ?>
-        <?php echo $this->Html->script('bootstrap.min.js'); ?>
-        <?php echo $this->Html->script('jquery-ui.min.js'); ?>
-        <?php echo $this->Html->css('bootstrap.min.css'); ?>
-        <?php echo $this->Html->css('jquery-ui.min.css'); ?>
-        <?php echo $this->Html->css('sticky-footer-navbar.css'); ?>
-        <?php echo $this->Html->css('jquery.bxslider.css'); ?>
-        <?php echo $this->Html->css('custom-theme/jquery-ui-1.10.0.custom.css'); ?>
-        <?php echo $this->Html->css('openslideshare.css'); ?>
-        <?php echo $this->Html->script('jquery.elastic.js'); ?>
-        <?php echo $this->Html->script('jquery.events.input.js'); ?>
-        <?php echo $this->Html->script('jquery.bxslider.js?20141218'); ?>
-        <?php echo $this->Html->script('jquery.lazyload.js'); ?>
-        <?php echo $this->Html->script('jquery.equalheights.min.js'); ?>
-        <?php echo $this->Html->script('jquery.sticky-kit.min.js'); ?>
+        <?php echo $this->Html->script('jquery-1.10.2.min.js') . "\n"; ?>
+        <?php echo $this->Html->script('bootstrap.min.js') . "\n"; ?>
+        <?php echo $this->Html->script('jquery-ui.min.js') . "\n"; ?>
+        <?php echo $this->Html->css('bootstrap.min.css') . "\n"; ?>
+        <?php echo $this->Html->css('jquery-ui.min.css') . "\n"; ?>
+        <?php echo $this->Html->css('sticky-footer-navbar.css') . "\n"; ?>
+        <?php echo $this->Html->css('jquery.bxslider.css') . "\n"; ?>
+        <?php echo $this->Html->css('custom-theme/jquery-ui-1.10.0.custom.css') . "\n"; ?>
+        <?php echo $this->Html->css('openslideshare.css') . "\n"; ?>
+        <?php echo $this->Html->script('jquery.elastic.js') . "\n"; ?>
+        <?php echo $this->Html->script('jquery.events.input.js') . "\n"; ?>
+        <?php echo $this->Html->script('jquery.bxslider.js?20141218') . "\n"; ?>
+        <?php echo $this->Html->script('jquery.lazyload.js') . "\n"; ?>
+        <?php echo $this->Html->script('jquery.equalheights.min.js') . "\n"; ?>
+        <?php echo $this->Html->script('jquery.sticky-kit.min.js') . "\n"; ?>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <script type="text/javascript">
         $1102= jQuery.noConflict(true);
@@ -51,18 +51,12 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         <meta name="theme-color" content="#ffffff">
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0 (<?php echo __('Latest Slides'); ?>)" href="/slides/latest.rss" />
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0 (<?php echo __('Popular Slides'); ?>)" href="/slides/popular.rss" />
-        <title>
-            <?php echo $cakeDescription ?>:
-            <?php echo $this->fetch('title'); ?>
-        </title>
-        <?php
-             echo $this->fetch('meta');
-             echo $this->fetch('css');
-             echo $this->fetch('script');
-         ?>
+        <title><?php echo $cakeDescription ?>:<?php echo $this->fetch('title'); ?></title>
+        <?php echo $this->fetch('meta') . "\n"; ?>
+        <?php echo $this->fetch('css') . "\n"; ?>
+        <?php echo $this->fetch('script') . "\n"; ?>
     </head>
     <body class="openslideshare_body">
-
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
