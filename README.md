@@ -16,6 +16,7 @@
 - RSS
 - Statistics
 - Transcript
+- Admin Dashboard to overview statistics and edit slides
 
 You can see the working demo at http://slide.meguro.ryuzee.com/
 
