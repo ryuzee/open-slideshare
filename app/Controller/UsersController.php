@@ -108,7 +108,7 @@ class UsersController extends AppController
                 // 本来の戻りURL
                 $url = $this->Auth->redirectUrl();
                 // どっちのURLを使うか
-                if (isset($return_url) && $this->Auth->loginAction != $return_url) {
+                if (!empty($return_url) && $this->Auth->loginAction != $return_url) {
                     $redirect_url = $return_url;
                 } else {
                     $redirect_url = $url;

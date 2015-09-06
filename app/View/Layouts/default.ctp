@@ -103,18 +103,9 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                         </li>
                     </ul>
                     <?php else: ?>
-                    <form class="navbar-form navbar-right" action="/users/login" role="form" method="post">
-                        <div class="form-group">
-                            <input type="text" name="data[User][username]" placeholder="Username" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="data[User][password]" placeholder="Password" class="form-control">
-                        </div>
-                        <input type="hidden" name="return_url" value="<?php echo $_SERVER["REQUEST_URI"]; ?>" />
-                        <button type="submit" class="btn btn-success"><?php echo __('Sign in'); ?></button>
-                    </form>
                     <ul class="nav navbar-nav navbar-right">
                     <li><a href="/users/signup"><?php echo __('Signup'); ?></a></li>
+                    <li><a href="/users/login"><?php echo __('Signin'); ?></a></li>
                     </ul>
                     <?php endif; ?>
                 </div><!--/.navbar-collapse -->

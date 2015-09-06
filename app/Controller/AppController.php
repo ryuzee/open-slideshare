@@ -81,6 +81,7 @@ class AppController extends Controller
             $this->Auth->userModel = 'User';
             $this->Auth->fields = array('username' => 'username', 'password' => 'password');
             $this->Auth->autoRedirect = true;
+            $this->Auth->loginRedirect = '/users/index';
 
             // admin
             if (!empty($this->params['admin']) && $this->Auth->user("admin") !== true) {
