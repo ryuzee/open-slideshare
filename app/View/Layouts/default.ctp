@@ -86,10 +86,10 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                     </ul>
                     <?php if (AuthComponent::user('username')): ?>
                     <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/slides/add"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;<?php echo __('Upload'); ?>!!</a></li>
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<?php echo h(AuthComponent::user('username')); ?><span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
+                            <li><a href="/slides/add"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;<?php echo __('Upload'); ?>!!</a></li>
                             <li><a href="/users/index"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;<?php echo __('My Slides'); ?></a></li>
                             <li><a href="/users/statistics"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span>&nbsp;<?php echo __('My Statistics'); ?></a></li>
                             <li><a href="/users/edit/<?php echo AuthComponent::user('id'); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;<?php echo __('My Account'); ?></a></li>
