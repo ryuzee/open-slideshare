@@ -16,7 +16,7 @@ class ApiV1Controller extends AppController
      *
      * @var array
      */
-    public $uses = array('Slide');
+    public $uses = array('Slide', 'User');
 
     public $presetVars = array(
         array('field' => 'name', 'type' => 'value'),
@@ -36,7 +36,7 @@ class ApiV1Controller extends AppController
     {
         parent::beforeFilter();
         $this->viewClass = 'Json';
-        $this->Auth->allow('get_slides', 'get_slide');
+        $this->Auth->allow();
         $this->response->header('X-Content-Type-Options', 'nosniff');
     }
 
@@ -46,7 +46,7 @@ class ApiV1Controller extends AppController
      */
     public function get_slides()
     {
-        Configure::write('debug', 0);
+        // Configure::write('debug', 0);
         $this->Prg->commonProcess();
         $add_query = array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED);
 
@@ -70,10 +70,11 @@ class ApiV1Controller extends AppController
             $this->response->statusCode(400);
             $result['error']['message'] = __('Failed to retrieve results');
             $this->set('error', $result['error']);
-            return;
+            return $this->render('slides');
         }
         $this->response->statusCode(200);
         $this->set('slides', $records);
+        return $this->render('slides');
     }
 
     /**
@@ -81,16 +82,41 @@ class ApiV1Controller extends AppController
      *
      * @param mixed $id
      */
-    public function get_slide($id = null)
+    public function get_slide_by_id()
     {
-        if (!$this->Slide->exists($id)) {
+        $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
+        if (!$id || !$this->Slide->exists($id)) {
             $this->response->statusCode(400);
             $result['error']['message'] = __('Invalid slide');
             $this->set('error', $result['error']);
-            return;
+            return $this->render('slide');
         }
         $this->response->statusCode(200);
         $slide = $this->Slide->get_slide($id);
         $this->set('slide', $slide);
+        return $this->render('slide');
+    }
+
+    /**
+     * get_slides_by_user_id
+     *
+     * This API can be accessed by "/api/v1/user/:id/slides". See route.php
+     *
+     * @param mixed $id
+     */
+    public function get_slides_by_user_id()
+    {
+        $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
+        if (!$id || !$this->User->exists($id)) {
+            $this->response->statusCode(400);
+            $result['error']['message'] = __('Invalid user');
+            $this->set('error', $result['error']);
+            return $this->render('slides');
+        }
+        $this->response->statusCode(200);
+        $conditions = $this->Slide->get_conditions_to_get_slides_by_user($id, false, false);
+        $slides = $this->Slide->find('all', $conditions);
+        $this->set('slides', $slides);
+        return $this->render('slides');
     }
 }
