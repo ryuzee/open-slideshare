@@ -25,6 +25,11 @@ Router::connect('/', array('controller' => 'slides', 'action' => 'index'));
  */
 Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
+/**
+ * API routing
+ */
+Router::connect('/api/v1/:action/*', array('controller' => 'apiv1'));
+
 /*
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
