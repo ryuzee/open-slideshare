@@ -34,9 +34,10 @@ class ApiV1Controller extends AppController
      */
     public function beforeFilter()
     {
+        parent::beforeFilter();
         $this->viewClass = 'Json';
         $this->Auth->allow('get_slides', 'get_slide');
-        parent::beforeFilter();
+        $this->response->header('X-Content-Type-Options', 'nosniff');
     }
 
     /**
@@ -66,16 +67,29 @@ class ApiV1Controller extends AppController
         try {
             $records = $this->Paginator->paginate('Slide');
         } catch(Exception $e) {
-            $records = array();
+            $this->response->statusCode(400);
+            $result['error']['message'] = __('Failed to retrieve results');
+            $this->set('error', $result['error']);
+            return;
         }
+        $this->response->statusCode(200);
         $this->set('slides', $records);
     }
 
+    /**
+     * get_slide
+     *
+     * @param mixed $id
+     */
     public function get_slide($id = null)
     {
         if (!$this->Slide->exists($id)) {
-            throw new NotFoundException(__('Invalid slide'));
+            $this->response->statusCode(400);
+            $result['error']['message'] = __('Invalid slide');
+            $this->set('error', $result['error']);
+            return;
         }
+        $this->response->statusCode(200);
         $slide = $this->Slide->get_slide($id);
         $this->set('slide', $slide);
     }
