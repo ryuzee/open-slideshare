@@ -34,8 +34,9 @@ class ApiV1Controller extends AppController
      */
     public function beforeFilter()
     {
-        parent::beforeFilter();
         $this->viewClass = 'Json';
+        $this->Auth->allow('get_slides', 'get_slide');
+        parent::beforeFilter();
     }
 
     /**
