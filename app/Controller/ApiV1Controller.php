@@ -35,6 +35,7 @@ class ApiV1Controller extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
+        Configure::write('debug', 0);
         $this->viewClass = 'Json';
         $this->Auth->allow();
         $this->response->header('X-Content-Type-Options', 'nosniff');
@@ -46,7 +47,6 @@ class ApiV1Controller extends AppController
      */
     public function get_slides()
     {
-        // Configure::write('debug', 0);
         $this->Prg->commonProcess();
         $add_query = array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED);
 
@@ -118,5 +118,24 @@ class ApiV1Controller extends AppController
         $slides = $this->Slide->find('all', $conditions);
         $this->set('slides', $slides);
         return $this->render('slides');
+    }
+
+    /**
+     * get_user_by_user_id
+     *
+     */
+    public function get_user_by_user_id()
+    {
+        $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
+        if (!$id || !$this->User->exists($id)) {
+            $this->response->statusCode(400);
+            $result['error']['message'] = __('Invalid user');
+            $this->set('error', $result['error']);
+            return $this->render('user');
+        }
+        $this->response->statusCode(200);
+        $user = $this->User->read(null, $id);
+        $this->set('user', $user);
+        return $this->render('user');
     }
 }

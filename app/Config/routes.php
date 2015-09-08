@@ -30,6 +30,7 @@ Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'
  */
 Router::connect('/api/v1/slides/*', array('controller' => 'api_v1', 'action' => 'get_slides'));
 Router::connect('/api/v1/slide/:id', array('controller' => 'api_v1', 'action' => 'get_slide_by_id'), array('id' => '[0-9]+'));
+Router::connect('/api/v1/user/:id', array('controller' => 'api_v1', 'action' => 'get_user_by_user_id'), array('id' => '[0-9]+'));
 Router::connect('/api/v1/user/:id/slides', array('controller' => 'api_v1', 'action' => 'get_slides_by_user_id'), array('id' => '[0-9]+'));
 // Router::connect('/api/v1/:action/*', array('controller' => 'api_v1'));
 
