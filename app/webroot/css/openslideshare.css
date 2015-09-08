@@ -43,7 +43,7 @@ body.openslideshare_body {
     box-shadow: none;
     border: 0;
     left: 0;
-    background: #fff;
+    background: transparent;
     height: auto;
     display: block;
 }
@@ -117,7 +117,7 @@ body.openslideshare_body {
 }
 
 .openslideshare_body div#slide_div_box {
-    background-color:#fff !important;
+    background-color: #fff;
     border:1px solid #ccc;
     padding-top:20px;
     margin-bottom:20px
