@@ -243,6 +243,22 @@ class SlidesController extends AppController
         $this->Slide->countup('embedded_view', $id);
     }
 
+    public function iframe($id = null)
+    {
+        if (!$this->Slide->exists($id)) {
+            throw new NotFoundException(__('Invalid slide'));
+        }
+        Configure::write('debug', 0);
+        $this->response->type('text/html');
+        $this->layout = 'iframe';
+        $slide = $this->Slide->get_slide($id);
+        $this->set('slide', $slide);
+        $file_list = $this->SlideProcessing->get_slide_pages_list($slide['Slide']['key']);
+        $this->set('file_list', $file_list);
+        $this->Slide->countup('embedded_view', $id);
+        $this->render('embedded');
+    }
+
     /**
      * update_view.
      *
