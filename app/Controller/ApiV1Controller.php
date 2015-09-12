@@ -78,23 +78,58 @@ class ApiV1Controller extends AppController
     }
 
     /**
-     * get_slide
+     * get_slide_id
      *
-     * @param mixed $id
      */
-    public function get_slide_by_id()
+    private function get_slide_id($template_name = 'slide')
     {
         $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
         if (!$id || !$this->Slide->exists($id)) {
             $this->response->statusCode(400);
             $result['error']['message'] = __('Invalid slide');
             $this->set('error', $result['error']);
-            return $this->render('slide');
+            $this->render($template_name);
+            return false;
+        } else {
+            return $id;
+        }
+    }
+
+    /**
+     * get_slide
+     *
+     * @param mixed $id
+     */
+    public function get_slide_by_id()
+    {
+        $id = $this->get_slide_id();
+        if(!$id) {
+            return;
+        }
+
+        $this->response->statusCode(200);
+        $slide = $this->Slide->get_slide($id);
+
+        $this->set('slide', $slide);
+        return $this->render('slide');
+    }
+
+    /**
+     * get_transcript_by_id
+     *
+     */
+    public function get_transcript_by_id()
+    {
+        $id = $this->get_slide_id("transcript");
+        if(!$id) {
+            return;
         }
         $this->response->statusCode(200);
         $slide = $this->Slide->get_slide($id);
-        $this->set('slide', $slide);
-        return $this->render('slide');
+
+        $transcripts = $this->SlideProcessing->get_transcript($slide['Slide']['key']);
+        $this->set('transcripts', $transcripts);
+        return $this->render('transcript');
     }
 
     /**
