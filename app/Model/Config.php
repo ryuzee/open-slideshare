@@ -70,7 +70,11 @@ class Config extends AppModel
         $data = array();
         $data["Config"]["name"] = $key;
         $data["Config"]["value"] = $value;
-        $m = $this->create($data);
-        return $m->save();
+        $this->create($data);
+        if ($this->save()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
