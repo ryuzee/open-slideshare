@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-09-05 05:57+0900\n"
+"PO-Revision-Date: 2015-10-03 06:53+0900\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: ja\n"
@@ -15,13 +15,28 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.3\n"
 
+#: Controller/ApiV1Controller.php:71
+msgid "Failed to retrieve results"
+msgstr "結果の取得に失敗しました。"
+
+#: Controller/ApiV1Controller.php:89
+#: Controller/ManagementsController.php:81;101
+#: Controller/SlidesController.php:169;208;234;249;270;327;379
+msgid "Invalid slide"
+msgstr "無効なスライド"
+
+#: Controller/ApiV1Controller.php:147;167
+#: Controller/UsersController.php:42;72;169;207
+msgid "Invalid user"
+msgstr "無効なユーザー"
+
 #: Controller/AppController.php:69
 msgid ""
 "Dot can not be allowed in the bucket name %s to avoid SSL certification "
 "issue... Please check S3 bucket name settings"
 msgstr ""
-"SSL証明書の問題があるためバケット名 %s には.(ドット)を含めないでください。"
-"バケット名をチェックしてください。"
+"SSL証明書の問題があるためバケット名 %s には.(ドット)を含めないでください。バ"
+"ケット名をチェックしてください。"
 
 #: Controller/AppController.php:79
 msgid "Invalid username or password"
@@ -36,7 +51,7 @@ msgid "Invalid category"
 msgstr "無効なカテゴリです。"
 
 #: Controller/CategoriesController.php:41
-#: Test/Case/Controller/CategoriesControllerTest.php:37
+#: Test/Case/Controller/CategoriesControllerTest.php:38
 msgid "Slides in %s"
 msgstr "カテゴリ”%s”のスライド"
 
@@ -64,23 +79,26 @@ msgstr "コメントを削除しました。"
 msgid "The comment could not be deleted. Please, try again."
 msgstr "コメントを削除できませんでした。もう一度試してください。"
 
-#: Controller/ManagementsController.php:81;101
-#: Controller/SlidesController.php:169;208;234;254;311;363
-msgid "Invalid slide"
-msgstr "無効なスライド"
-
 #: Controller/ManagementsController.php:106
-#: Controller/SlidesController.php:283;334
+#: Controller/SlidesController.php:299;350
 msgid "The slide has been saved."
 msgstr "スライドを保存しました。"
 
 #: Controller/ManagementsController.php:108
-#: Controller/SlidesController.php:290;337
+#: Controller/SlidesController.php:306;353
 msgid "The slide could not be saved. Please, try again."
 msgstr "スライドを保存できませんでした。もう一度試してください。"
 
-#: Controller/SlidesController.php:69 View/Layouts/default.ctp:91;148;178
-#: View/Layouts/error.ctp:91
+#: Controller/ManagementsController.php:127
+msgid "Completed to save settings..."
+msgstr "設定を保存しました。"
+
+#: Controller/ManagementsController.php:129
+msgid "Could not save settings..."
+msgstr "設定が保存できませんでした。"
+
+#: Controller/SlidesController.php:69 View/Elements/search_dialog.ctp:1;31
+#: View/Layouts/default.ctp:85 View/Layouts/error.ctp:91
 msgid "Search"
 msgstr "検索"
 
@@ -89,14 +107,14 @@ msgid "Home"
 msgstr "ホーム"
 
 #: Controller/SlidesController.php:118
-#: Test/Case/Controller/SlidesControllerTest.php:37;57
+#: Test/Case/Controller/SlidesControllerTest.php:38;58
 #: View/Layouts/default.ctp:52 View/Layouts/error.ctp:52
 #: View/Slides/index.ctp:11 View/Slides/latest.ctp:4
 msgid "Latest Slides"
 msgstr "最新のスライド"
 
 #: Controller/SlidesController.php:128;146;147
-#: Test/Case/Controller/SlidesControllerTest.php:38;76
+#: Test/Case/Controller/SlidesControllerTest.php:39;77
 #: View/Layouts/default.ctp:53 View/Layouts/error.ctp:53
 #: View/Slides/index.ctp:4 View/Slides/popular.ctp:4
 msgid "Popular Slides"
@@ -106,33 +124,33 @@ msgstr "人気のスライド"
 msgid "This slide can not be downloaded"
 msgstr "このスライドはダウンロードできません。"
 
-#: Controller/SlidesController.php:269
+#: Controller/SlidesController.php:285
 msgid "New Slide"
 msgstr "新しいスライド"
 
-#: Controller/SlidesController.php:281
+#: Controller/SlidesController.php:297
 msgid ""
 "The slide has been saved. It will take five minutes to complete the whole "
 "process. Please wait for a while."
 msgstr "スライドを保存しました。CDNに反映が終わるまで5分程お待ちください。"
 
-#: Controller/SlidesController.php:322
+#: Controller/SlidesController.php:338
 msgid "You do not have permission to edit the slide created by others."
 msgstr "他の人のスライドを編集することはできません。"
 
-#: Controller/SlidesController.php:332
+#: Controller/SlidesController.php:348
 msgid "The slide has been saved. File conversion has just started."
 msgstr "スライドを保存しファイルの変換を開始しました。"
 
-#: Controller/SlidesController.php:371
+#: Controller/SlidesController.php:387
 msgid "You do not have permission to delete the slide created by others."
 msgstr "他の人のスライドを削除することはできません。"
 
-#: Controller/SlidesController.php:382
+#: Controller/SlidesController.php:398
 msgid "The slide has been deleted."
 msgstr "スライドを削除しました。"
 
-#: Controller/SlidesController.php:384
+#: Controller/SlidesController.php:400
 msgid "The slide could not be deleted. Please, try again."
 msgstr "スライドを削除できませんでした。もう一度試してください。"
 
@@ -140,16 +158,12 @@ msgstr "スライドを削除できませんでした。もう一度試してく
 msgid "Your Dashboard"
 msgstr "ダッシュボード"
 
-#: Controller/UsersController.php:42;72;169;207
-msgid "Invalid user"
-msgstr "無効なユーザー"
-
 #: Controller/UsersController.php:54
 msgid "Your Statistics"
 msgstr "統計情報"
 
 #: Controller/UsersController.php:78
-#: Test/Case/Controller/UsersControllerTest.php:82
+#: Test/Case/Controller/UsersControllerTest.php:83
 msgid "Slides by %s"
 msgstr "“%s”投稿のスライド"
 
@@ -165,7 +179,7 @@ msgstr "無効なユーザー名かパスワードです。やり直してくだ
 msgid "You have finished to logout."
 msgstr "ログアウトしました。"
 
-#: Controller/UsersController.php:144 View/Layouts/default.ctp:125
+#: Controller/UsersController.php:144 View/Layouts/default.ctp:108
 #: View/Layouts/error.ctp:125
 msgid "Signup"
 msgstr "サインアップ"
@@ -198,202 +212,204 @@ msgstr "ユーザーを削除できませんでした。もう一度試してく
 msgid "No Category"
 msgstr "カテゴリーなし"
 
-#: Test/Case/Controller/ManagementsControllerTest.php:48
-#: View/Layouts/default.ctp:106 View/Layouts/error.ctp:106
+#: Test/Case/Controller/ManagementsControllerTest.php:49
+#: View/Layouts/default.ctp:98 View/Layouts/error.ctp:106
 #: View/Managements/admin_dashboard.ctp:1
 msgid "Admin Dashboard"
 msgstr "管理者ダッシュボード"
 
-#: Test/Case/Controller/ManagementsControllerTest.php:64
+#: Test/Case/Controller/ManagementsControllerTest.php:65
 #: View/Managements/admin_user_list.ctp:1
 msgid "User List"
 msgstr "ユーザー一覧"
 
-#: Test/Case/Controller/ManagementsControllerTest.php:80
+#: Test/Case/Controller/ManagementsControllerTest.php:81
 #: View/Managements/admin_slide_list.ctp:1
 msgid "Slide List"
 msgstr "スライド一覧"
 
-#: Test/Case/Controller/ManagementsControllerTest.php:136
-#: Test/Case/Controller/SlidesControllerTest.php:140
+#: Test/Case/Controller/ManagementsControllerTest.php:137
+#: Test/Case/Controller/SlidesControllerTest.php:141
 #: View/Managements/admin_slide_edit.ctp:1 View/Slides/view.ctp:119
 msgid "Edit Slide"
 msgstr "スライドの編集"
 
-#: Test/Case/Controller/SlidesControllerTest.php:129
+#: Test/Case/Controller/SlidesControllerTest.php:130
 msgid "TestSlide1"
 msgstr ""
 
-#: Test/Case/Controller/SlidesControllerTest.php:141 View/Slides/view.ctp:120
+#: Test/Case/Controller/SlidesControllerTest.php:142 View/Slides/view.ctp:120
 msgid "Delete Slide"
 msgstr "スライドの削除"
 
-#: Test/Case/Controller/SlidesControllerTest.php:214;227
+#: Test/Case/Controller/SlidesControllerTest.php:215;228
 msgid "Search Result"
 msgstr "検索結果"
 
-#: Test/Case/Controller/SlidesControllerTest.php:363 View/Slides/add.ctp:79
+#: Test/Case/Controller/SlidesControllerTest.php:364 View/Slides/add.ctp:79
 msgid "Upload slide"
 msgstr "スライドのアップロード"
 
-#: Test/Case/Controller/SlidesControllerTest.php:364;417
+#: Test/Case/Controller/SlidesControllerTest.php:365;418
 #: View/Slides/add.ctp:121
 msgid "Name"
 msgstr "名前"
 
-#: Test/Case/Controller/SlidesControllerTest.php:365;418
-#: View/Layouts/default.ctp:166 View/Slides/add.ctp:122
+#: Test/Case/Controller/SlidesControllerTest.php:366;419
+#: View/Elements/search_dialog.ctp:19 View/Slides/add.ctp:122
 msgid "Description"
 msgstr "詳細"
 
-#: Test/Case/Controller/SlidesControllerTest.php:366;419
-#: View/Layouts/default.ctp:167
+#: Test/Case/Controller/SlidesControllerTest.php:367;420
+#: View/Elements/search_dialog.ctp:20
 msgid "Tag"
 msgstr "タグ"
 
-#: Test/Case/Controller/SlidesControllerTest.php:367;420
-#: View/Layouts/default.ctp:80 View/Layouts/error.ctp:80
+#: Test/Case/Controller/SlidesControllerTest.php:368;421
+#: View/Layouts/default.ctp:74 View/Layouts/error.ctp:80
 #: View/Managements/admin_slide_edit.ctp:23 View/Slides/add.ctp:128
 #: View/Slides/edit.ctp:127
 msgid "Category"
 msgstr "カテゴリ"
 
-#: Test/Case/Controller/SlidesControllerTest.php:368 View/Slides/add.ctp:132
+#: Test/Case/Controller/SlidesControllerTest.php:369 View/Slides/add.ctp:132
 msgid "Upload a file to save"
 msgstr "ファイルのアップロード"
 
-#: Test/Case/Controller/SlidesControllerTest.php:416 View/Slides/edit.ctp:76
+#: Test/Case/Controller/SlidesControllerTest.php:417 View/Slides/edit.ctp:76
 msgid "Edit slide"
 msgstr "スライドの編集"
 
-#: Test/Case/Controller/SlidesControllerTest.php:421 View/Slides/edit.ctp:103
+#: Test/Case/Controller/SlidesControllerTest.php:422 View/Slides/edit.ctp:103
 msgid "Re-upload"
 msgstr "再アップロード"
 
-#: Test/Case/Controller/SlidesControllerTest.php:422
+#: Test/Case/Controller/SlidesControllerTest.php:423
 #: View/Managements/admin_slide_edit.ctp:31 View/Slides/edit.ctp:131
 #: View/Slides/view.ctp:81
 msgid "Submit"
 msgstr "送信"
 
-#: Test/Case/Controller/UsersControllerTest.php:37 View/Users/signup.ctp:13
+#: Test/Case/Controller/UsersControllerTest.php:38 View/Users/signup.ctp:13
 msgid "Add User"
 msgstr "ユーザーの追加"
 
-#: Test/Case/Controller/UsersControllerTest.php:38 View/Users/signup.ctp:22
+#: Test/Case/Controller/UsersControllerTest.php:39 View/Users/signup.ctp:22
 msgid "Register"
 msgstr "登録"
 
-#: Test/Case/Controller/UsersControllerTest.php:148
+#: Test/Case/Controller/UsersControllerTest.php:149
 #: View/Elements/right_side_bar_common.ctp:1
 msgid "Speaker Details"
 msgstr "スピーカーについて"
 
-#: Test/Case/Controller/UsersControllerTest.php:149
-#: View/Layouts/default.ctp:101 View/Layouts/error.ctp:101
-#: View/Users/index.ctp:3
+#: Test/Case/Controller/UsersControllerTest.php:150 View/Layouts/default.ctp:93
+#: View/Layouts/error.ctp:101 View/Users/index.ctp:3
 msgid "My Slides"
 msgstr "自分のスライド"
 
-#: Test/Case/Controller/UsersControllerTest.php:194
-#: View/Layouts/default.ctp:102 View/Layouts/error.ctp:102
-#: View/Users/statistics.ctp:1
+#: Test/Case/Controller/UsersControllerTest.php:195 View/Layouts/default.ctp:94
+#: View/Layouts/error.ctp:102 View/Users/statistics.ctp:1
 msgid "My Statistics"
 msgstr "自分の統計情報"
 
-#: Test/Case/Controller/UsersControllerTest.php:195
+#: Test/Case/Controller/UsersControllerTest.php:196
 #: View/Managements/admin_slide_list.ctp:9 View/Users/statistics.ctp:8
 msgid "Slide Name"
 msgstr "スライド名"
 
-#: Test/Case/Controller/UsersControllerTest.php:196
+#: Test/Case/Controller/UsersControllerTest.php:197
 #: View/Managements/admin_slide_edit.ctp:25
 #: View/Managements/admin_slide_list.ctp:11
 #: View/Managements/admin_user_list.ctp:13 View/Users/statistics.ctp:9
 msgid "Created"
 msgstr "作成日"
 
-#: Test/Case/Controller/UsersControllerTest.php:197
+#: Test/Case/Controller/UsersControllerTest.php:198
 #: View/Managements/admin_slide_list.ctp:12
 #: View/Managements/admin_user_list.ctp:14 View/Users/statistics.ctp:10
 msgid "Modified"
 msgstr "更新日"
 
-#: Test/Case/Controller/UsersControllerTest.php:198
+#: Test/Case/Controller/UsersControllerTest.php:199
 #: View/Managements/admin_slide_list.ctp:13 View/Users/statistics.ctp:11
 msgid "Convert Status"
 msgstr "変換状況"
 
-#: Test/Case/Controller/UsersControllerTest.php:199
+#: Test/Case/Controller/UsersControllerTest.php:200
 #: View/Managements/admin_dashboard.ctp:12
 #: View/Managements/admin_slide_list.ctp:14 View/Users/statistics.ctp:12
 msgid "Page View"
 msgstr "ページビュー"
 
-#: Test/Case/Controller/UsersControllerTest.php:200
+#: Test/Case/Controller/UsersControllerTest.php:201
 #: View/Managements/admin_dashboard.ctp:13
 #: View/Managements/admin_slide_list.ctp:15 View/Users/statistics.ctp:13
 msgid "Embedded View"
 msgstr "埋め込み"
 
-#: Test/Case/Controller/UsersControllerTest.php:201
+#: Test/Case/Controller/UsersControllerTest.php:202
 #: View/Managements/admin_dashboard.ctp:14
 #: View/Managements/admin_slide_list.ctp:16 View/Users/statistics.ctp:14
 msgid "Download Count"
 msgstr "ダウンロード数"
 
-#: Test/Case/Controller/UsersControllerTest.php:202
+#: Test/Case/Controller/UsersControllerTest.php:203
 #: View/Managements/admin_slide_list.ctp:17 View/Users/statistics.ctp:15
 msgid "Number of Comments"
 msgstr "コメント数"
 
-#: View/Layouts/default.ctp:89 View/Layouts/error.ctp:89
-msgid "Popular"
-msgstr "人気"
-
-#: View/Layouts/default.ctp:90 View/Layouts/error.ctp:90
-msgid "Latest"
-msgstr "最新"
-
-#: View/Layouts/default.ctp:95 View/Layouts/error.ctp:95
-msgid "Upload"
-msgstr "アップロード"
-
-#: View/Layouts/default.ctp:103 View/Layouts/error.ctp:103
-msgid "My Account"
-msgstr "アカウント"
-
-#: View/Layouts/default.ctp:109 View/Layouts/error.ctp:109
-msgid "Logout"
-msgstr "ログアウト"
-
-#: View/Layouts/default.ctp:122 View/Layouts/error.ctp:122
-msgid "Sign in"
-msgstr "サインイン"
-
-#: View/Layouts/default.ctp:164
+#: View/Elements/search_dialog.ctp:17
 msgid "Title"
 msgstr "タイトル"
 
-#: View/Layouts/default.ctp:165
+#: View/Elements/search_dialog.ctp:18
 msgid "Author"
 msgstr "投稿者"
 
-#: View/Layouts/default.ctp:170
+#: View/Elements/search_dialog.ctp:23
 msgid "From"
 msgstr "日付(From)"
 
-#: View/Layouts/default.ctp:170
+#: View/Elements/search_dialog.ctp:23
 msgid "Date(From)"
 msgstr "日付(From)"
 
-#: View/Layouts/default.ctp:171
+#: View/Elements/search_dialog.ctp:24
 msgid "To"
 msgstr "日付(To)"
 
-#: View/Layouts/default.ctp:171
+#: View/Elements/search_dialog.ctp:24
 msgid "Date(To)"
 msgstr "日付(To)"
+
+#: View/Layouts/default.ctp:83 View/Layouts/error.ctp:89
+msgid "Popular"
+msgstr "人気"
+
+#: View/Layouts/default.ctp:84 View/Layouts/error.ctp:90
+msgid "Latest"
+msgstr "最新"
+
+#: View/Layouts/default.ctp:92 View/Layouts/error.ctp:95
+msgid "Upload"
+msgstr "アップロード"
+
+#: View/Layouts/default.ctp:95 View/Layouts/error.ctp:103
+msgid "My Account"
+msgstr "アカウント"
+
+#: View/Layouts/default.ctp:101 View/Layouts/error.ctp:109
+msgid "Logout"
+msgstr "ログアウト"
+
+#: View/Layouts/default.ctp:111 View/Users/login.ctp:7
+msgid "Signin"
+msgstr "サインイン"
+
+#: View/Layouts/error.ctp:122
+msgid "Sign in"
+msgstr "サインイン"
 
 #: View/Managements/admin_dashboard.ctp:8
 msgid "# of Users"
@@ -410,6 +426,27 @@ msgstr "変換失敗数"
 #: View/Managements/admin_dashboard.ctp:11
 msgid "# of Comments"
 msgstr "コメント数"
+
+#: View/Managements/admin_dashboard.ctp:31
+msgid "Settings"
+msgstr "設定"
+
+#: View/Managements/admin_dashboard.ctp:33
+#: View/Managements/admin_site_setting.ctp:1
+msgid "Site Settings"
+msgstr "サイト設定"
+
+#: View/Managements/admin_site_setting.ctp:10
+msgid "Setting"
+msgstr "設定"
+
+#: View/Managements/admin_site_setting.ctp:11
+msgid "Value"
+msgstr "値"
+
+#: View/Managements/admin_site_setting.ctp:28
+msgid "Save"
+msgstr "保存"
 
 #: View/Managements/admin_slide_edit.ctp:1
 #: View/Managements/admin_slide_list.ctp:1
@@ -546,16 +583,13 @@ msgstr "サインイン"
 msgid "Password"
 msgstr "パスワード"
 
-#: View/Users/login.ctp:7
-msgid "Signin"
-msgstr "サインイン"
-
 #: View/Users/signup.ctp:18
 msgid "Biography"
 msgstr "自己紹介"
 
 #: Model/Category.php:validation for field name Model/Comment.php:validation
-#: content Model/User.php:validation username;validation password;validation
+#: content Model/Config.php:validation name;validation value
+#: Model/User.php:validation username;validation password;validation
 #: display_name;validation biography
 msgid "notBlank"
 msgstr "値を入力してください"
@@ -600,8 +634,8 @@ msgstr "パスワードは5文字以上である必要があります"
 msgid ""
 "password must be consist of alphabetic or numeric or !#$%&*+@? characters"
 msgstr ""
-"パスワードはアルファベット・数字または!#$%&*+@?の文字から構成されている必要"
-"があります"
+"パスワードはアルファベット・数字または!#$%&*+@?の文字から構成されている必要が"
+"あります"
 
 #~ msgid "Page Not Found"
 #~ msgstr "ページが見つかりません。"
@@ -768,8 +802,7 @@ msgstr ""
 #~ msgstr "データベースのテーブルが見つかりません"
 
 #~ msgid "Table %1$s for model %2$s was not found in datasource %3$s."
-#~ msgstr ""
-#~ "%2$s モデル用のテーブル %1$s がデータソース %3$s に見つかりません。"
+#~ msgstr "%2$s モデル用のテーブル %1$s がデータソース %3$s に見つかりません。"
 
 #~ msgid "Database Error"
 #~ msgstr "データベースエラー"
