@@ -18,6 +18,7 @@ class CommentsControllerTest extends OssControllerTestCase
         'app.user',
         'app.slide',
         'app.category',
+        'app.config',
         'plugin.tags.tag',
         'plugin.tags.tagged'
     );

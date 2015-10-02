@@ -18,6 +18,7 @@ class ManagementsControllerTest extends OssControllerTestCase
         'app.slide',
         'app.category',
         'app.comment',
+        'app.config',
         'plugin.tags.tag',
         'plugin.tags.tagged'
     );
