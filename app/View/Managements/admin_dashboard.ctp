@@ -27,3 +27,8 @@
         </tbody>
     </table>
 </div>
+
+<h2><?php echo __('Settings'); ?></h2>
+<ul>
+    <li><?php echo $this->Html->link(__('Site Settings'), "/admin/managements/site_setting"); ?></li>
+</ul>

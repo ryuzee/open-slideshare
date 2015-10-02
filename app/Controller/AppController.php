@@ -54,7 +54,7 @@ class AppController extends Controller
     /**
      * uses.
      */
-    public $uses = array('Comment', 'Category');
+    public $uses = array('Comment', 'Category', 'Config');
 
     /**
      * beforeFilter.
@@ -90,5 +90,7 @@ class AppController extends Controller
         }
 
         $this->set('category', $this->Category->find('all'));
+
+        $this->set('config', $this->Config->get_all_configs());
     }
 }

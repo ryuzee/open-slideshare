@@ -104,8 +104,12 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
                     </ul>
                     <?php else: ?>
                     <ul class="nav navbar-nav navbar-right">
+                    <?php if($config["signup_enabled"] === "1"): ?>
                     <li><a href="/users/signup"><?php echo __('Signup'); ?></a></li>
+                    <?php endif; ?>
+                    <?php if($config["display_login_link"] === "1"): ?>
                     <li><a href="/users/login"><?php echo __('Signin'); ?></a></li>
+                    <?php endif; ?>
                     </ul>
                     <?php endif; ?>
                 </div><!--/.navbar-collapse -->

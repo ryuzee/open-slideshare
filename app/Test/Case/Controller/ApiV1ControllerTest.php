@@ -18,6 +18,7 @@ class ApiV1ControllerTest extends OssControllerTestCase
         'app.user',
         'app.category',
         'app.comment',
+        'app.config',
         'plugin.tags.tag',
         'plugin.tags.tagged'
     );

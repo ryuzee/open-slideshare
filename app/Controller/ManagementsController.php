@@ -115,4 +115,21 @@ class ManagementsController extends AppController
         $this->set(compact('categories'));
 
     }
+
+    /**
+     * admin_site_setting
+     *
+     */
+    public function admin_site_setting()
+    {
+        if($this->request->data) {
+            if ($this->Config->saveAll($this->request->data['Config'])) {
+                $this->Session->success(__("Completed to save settings..."));
+            } else {
+                $this->Session->error(__("Could not save settings..."));
+            }
+        }
+        $data = $this->Config->find('all');
+        $this->set(compact('data'));
+    }
 }
