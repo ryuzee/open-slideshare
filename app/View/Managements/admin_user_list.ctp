@@ -18,8 +18,8 @@
             <?php foreach ($users as $user): ?>
             <tr>
                 <td><a href="/users/view/<?php echo $user['User']['id']; ?>"><?php echo $user['User']['id'] ?></a>&nbsp;</td>
-                <td><?php echo $user['User']['username'] ?></td>
-                <td><?php echo $user['User']['display_name'] ?></td>
+                <td><?php echo h($user['User']['username']); ?></td>
+                <td><?php echo h($user['User']['display_name']); ?></td>
                 <td><?php echo $user['User']['admin'] ?></td>
                 <td><?php echo $user['User']['slides_count'] ?></td>
                 <td><?php echo $user['User']['created'] ?></td>
