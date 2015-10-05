@@ -379,6 +379,7 @@ class SlidesControllerTest extends OssControllerTestCase
      */
     public function testAddFailBecauseOfNoLogin()
     {
+        $this->mockSlide();
         $this->testAction('/slides/add', array(
             'method' => 'GET',
             'return' => 'contents'
