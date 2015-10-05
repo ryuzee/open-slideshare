@@ -1,4 +1,4 @@
-        <h3><?php echo $title; ?></h3>
+        <h3><?php echo h($title); ?></h3>
 
         <?php echo $this->element('slide_thumbnail', array('slides' => $slides, 'column_class' => $column_class)); ?>
 
