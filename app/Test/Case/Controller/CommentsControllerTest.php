@@ -117,4 +117,27 @@ class CommentsControllerTest extends OssControllerTestCase
         );
         $this->assertContains('/sashimi', $this->headers['Location']);
     }
+
+    /**
+     * testDeleteOtherUserComment
+     *
+     */
+    public function testDeleteOtherUserComment()
+    {
+        $this->goIntoLoginStatus('Comments');
+        $result = $this->testAction(
+            '/comments/delete/4?return_url=/sashimi',
+            array(
+                'method' => 'POST',
+                'return' => 'contents'
+            )
+        );
+        $this->assertContains('/sashimi', $this->headers['Location']);
+        App::uses('Comment', 'Model');
+        $comment = new Comment();
+        $comment->useDbConfig = 'test';
+        $comment->recursive = -1;
+        $rec = $comment->read(null, 4);
+        $this->assertTrue(is_array($rec) && $rec["Comment"]["content"] === "てすと4");
+    }
 }

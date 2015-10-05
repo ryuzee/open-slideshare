@@ -373,6 +373,23 @@ class SlidesControllerTest extends OssControllerTestCase
         }
     }
 
+    /**
+     * testAddFailBecauseOfNoLogin
+     *
+     */
+    public function testAddFailBecauseOfNoLogin()
+    {
+        $this->testAction('/slides/add', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+        $this->assertContains('/users/login', $this->headers['Location']);
+    }
+
+    /**
+     * testAddWithPostData
+     *
+     */
     public function testAddWithPostData()
     {
         $this->goIntoLoginStatus('Slides');

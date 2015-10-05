@@ -42,5 +42,13 @@ class CommentFixture extends CakeTestFixture
             'created' => '2015-05-01 00:00:00',
             'modified' => '2015-05-01 01:00:00',
         ),
+        array(
+            'id' => '4',
+            'user_id' => '2',
+            'slide_id' => '1',
+            'content' => 'てすと4',
+            'created' => '2015-05-01 00:00:00',
+            'modified' => '2015-05-01 01:00:00',
+        ),
     );
 }
