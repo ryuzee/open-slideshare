@@ -144,7 +144,7 @@
                 <img width="120px" src="<?php echo $this->Common->thumbnail_url($other_slide["Slide"]["key"]); ?>" class="related_slide_thumbnail" />
             </a>
             <span class="h6"><?php echo h($other_slide['Slide']['name']); ?></span><br />
-            <span class="h6"><?php echo strftime("%Y/%m/%d", strtotime($other_slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $other_slide["User"]["id"]; ?>"><?php echo $other_slide["User"]["display_name"]; ?></a></span>
+            <span class="h6"><?php echo strftime("%Y/%m/%d", strtotime($other_slide['Slide']['created'])); ?> by <a href="/users/view/<?php echo $other_slide["User"]["id"]; ?>"><?php echo h($other_slide["User"]["display_name"]); ?></a></span>
         </div>
         <br clear="all" />
         <?php endforeach; ?>
