@@ -143,6 +143,12 @@ class UsersController extends AppController
     {
         $this->set('title_for_layout', __('Signup'));
         if ($this->request->is('post')) {
+            $save_fields = array('username', 'password', 'display_name', 'biography');
+            foreach($this->request->data["User"] as $k => $v) {
+                if (!in_array($k, $save_fields)) {
+                    unset($this->request->data["User"][$k]);
+                }
+            }
             $this->User->create();
             if ($this->User->save($this->request->data)) {
                 $this->Session->success(__('The user has been saved'));
