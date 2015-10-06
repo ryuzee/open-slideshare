@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('Sanitize', 'Utility');
 
 /**
  * ApiV1 Controller.
@@ -52,11 +53,11 @@ class ApiV1Controller extends AppController
 
         $val = isset($this->passedArgs['created_f']) ? $this->passedArgs['created_f'] : null;
         if (!empty($val)) {
-            $add_query[] = "Slide.created >= '" . $val . "'";
+            $add_query[] = "Slide.created >= '" . Sanitize::clean($val) . "'";
         }
         $val = isset($this->passedArgs['created_t']) ? $this->passedArgs['created_t'] : null;
         if (!empty($val)) {
-            $add_query[] = "Slide.created <= '" . $val . "'";
+            $add_query[] = "Slide.created <= '" . Sanitize::clean($val) . "'";
         }
         $this->Paginator->settings = array(
             'conditions' => array($this->Slide->parseCriteria($this->passedArgs), $add_query),
