@@ -42,10 +42,10 @@
 $1102(document).ready(function(){
     $1102(".datepicker_f").datepicker();
     $1102(".datepicker_f").datepicker("option", "dateFormat", 'yy-mm-dd');
-    $1102(".datepicker_f").datepicker("setDate", '<?php echo $date_f; ?>');
+    $1102(".datepicker_f").datepicker("setDate", '<?php echo h($date_f); ?>');
     $1102(".datepicker_t").datepicker();
     $1102(".datepicker_t").datepicker("option", "dateFormat", 'yy-mm-dd');
-    $1102(".datepicker_t").datepicker("setDate", '<?php echo $date_t; ?>');
+    $1102(".datepicker_t").datepicker("setDate", '<?php echo h($date_t); ?>');
 
     $1102("#search_slide_dialog_").dialog({
         autoOpen: false,
