@@ -69,6 +69,43 @@ class UsersControllerTest extends OssControllerTestCase
     }
 
     /**
+     * testSignupPostDataWithId
+     *
+     */
+    public function testSignupPostDataWithId() {
+        $data = array(
+            'User' => array(
+                'id' => 1,
+                'username' => 'sushi@example.com',
+                'password' => 'sushi12345',
+                'biography' => 'One of the sushi lover',
+                'display_name' => 'SUSHILOVER',
+            )
+        );
+        $result = $this->testAction('/users/signup', array(
+            'data' => $data,
+            'method' => 'post',
+            'return' => 'contents'
+        ));
+        $this->assertContains('/users', $this->headers['Location']);
+
+        // Delete this user.
+        App::uses('User', 'Model');
+        $s = new User();
+        $s->useDbConfig = 'test';
+        $s->id = 1;
+        $org_data = $s->read();
+
+        App::uses('UserFixture', 'Test/Fixture');
+        $fixture = new UserFixture();
+        $expected_record = $fixture->records[0];
+
+        foreach($org_data["User"] as $k => $v) {
+            $this->assertEqual($v, $expected_record[$k]);
+        }
+    }
+
+    /**
      * testView method
      *
      * @return void
