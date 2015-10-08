@@ -207,41 +207,51 @@ class SlidesControllerTest extends OssControllerTestCase
      */
     public function testSearch()
     {
-        $this->testAction('/slides/search/name:TestSlide1', array(
-            'method' => 'GET',
-            'return' => 'contents'
-        ));
+        $url = array(
+            '/slides/search/name:TestSlide1',
+            '/slides/search/created_f:20140101/created_t:20381231',
+            "/slides/search/created_f:');alert('1",
+        );
         $expected_strings = array(
             __('Search Result'),
             'TestSlide1',
             'TestUser',
         );
-        foreach ($expected_strings as $str) {
-            $this->assertRegExp("/" . preg_quote($str) . "/", $this->view);
+
+        foreach ($url as $u) {
+            $this->testAction($u, array(
+                'method' => 'GET',
+                'return' => 'contents'
+            ));
+            foreach ($expected_strings as $str) {
+                $this->assertRegExp("/" . preg_quote($str) . "/", $this->view);
+            }
         }
 
-        $this->testAction('/slides/search/created_f:20140101/created_t:20381231', array(
-            'method' => 'GET',
-            'return' => 'contents'
-        ));
-        $expected_strings = array(
-            __('Search Result'),
-            'TestSlide1',
-            'TestUser',
+        // unexpected check
+        $url = array(
+            '/slides/search/created_f:20381231',
+            "/slides/search/created_t:');alert('1",
         );
-        foreach ($expected_strings as $str) {
-            $this->assertRegExp("/" . preg_quote($str) . "/", $this->view);
-        }
-        $this->testAction('/slides/search/created_f:20381231', array(
-            'method' => 'GET',
-            'return' => 'contents'
-        ));
         $unexpected_strings = array(
             'TestSlide1',
             'TestUser',
         );
-        foreach ($unexpected_strings as $str) {
-            $this->assertNotContains($str, $this->view);
+        $expected_strings = array(
+            __('Search Result'),
+        );
+
+        foreach ($url as $u) {
+            $this->testAction($u, array(
+                'method' => 'GET',
+                'return' => 'contents'
+            ));
+            foreach ($unexpected_strings as $str) {
+                $this->assertNotContains($str, $this->view);
+            }
+            foreach ($expected_strings as $str) {
+                $this->assertRegExp("/" . preg_quote($str) . "/", $this->view);
+            }
         }
     }
 
