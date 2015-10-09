@@ -32,3 +32,7 @@ if (!defined('ERROR_NO_CONVERT_SOURCE')) {
 if (!defined('SUCCESS_CONVERT_COMPLETED')) {
     define('SUCCESS_CONVERT_COMPLETED', 100);
 }
+
+if (!defined('OSS_VERSION')) {
+    define('OSS_VERSION', '0.2.0');
+}
