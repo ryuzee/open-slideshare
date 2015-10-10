@@ -105,7 +105,20 @@ class UsersControllerTest extends OssControllerTestCase
         }
     }
 
-    public function testLogin()
+    public function loginUrlProvider()
+    {
+        return array(
+            array(array(), "/users/index"),
+            array(array("return_url" => "/slides/view/1"), "/slides/view/1")
+        );
+    }
+
+    /**
+     * testLogin
+     *
+     * @dataProvider loginUrlProvider
+     */
+    public function testLogin($a, $b)
     {
         $c = $this->generate("Users", array(
             'components' => array(
@@ -131,12 +144,14 @@ class UsersControllerTest extends OssControllerTestCase
                 'password' => 'password',
             )
         );
-        $result = $this->testAction('/users/login', array(
+        $data = array_merge($data, $a);
+
+        $result = $this->testAction("/users/login", array(
             'data' => $data,
             'method' => 'post',
             'return' => 'contents'
         ));
-        $this->assertContains('/users/index', $this->headers['Location']);
+        $this->assertContains($b, $this->headers['Location']);
     }
 
     /**
