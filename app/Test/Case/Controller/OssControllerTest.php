@@ -37,6 +37,7 @@ class OssControllerTestCase extends ControllerTestCase
             $this->stored_request_uri = $_SERVER['REQUEST_URI'];
         }
         $_SERVER['REQUEST_URI'] = '/example';
+        Configure::write('cdn_base_url', '');
         parent::setUp();
     }
 
