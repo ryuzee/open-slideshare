@@ -105,6 +105,40 @@ class UsersControllerTest extends OssControllerTestCase
         }
     }
 
+    public function testLogin()
+    {
+        $c = $this->generate("Users", array(
+            'components' => array(
+                'Auth',
+            )
+        ));
+        $c->Auth->expects($this->any())
+            ->method('login')
+            ->will($this->returnValue(true));
+        $c->Auth->expects($this->any())
+            ->method('loggedIn')
+            ->will($this->returnValue(true));
+        $c->Auth->staticExpects($this->any())
+            ->method('user')
+            ->with('id');
+        $c->Auth->expects($this->any())
+            ->method('redirectUrl')
+            ->will($this->returnValue("/users/index"));
+
+        $data = array(
+            'User' => array(
+                'username' => 'test@example.com',
+                'password' => 'password',
+            )
+        );
+        $result = $this->testAction('/users/login', array(
+            'data' => $data,
+            'method' => 'post',
+            'return' => 'contents'
+        ));
+        $this->assertContains('/users/index', $this->headers['Location']);
+    }
+
     /**
      * testView method
      *
