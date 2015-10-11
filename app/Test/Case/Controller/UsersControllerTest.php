@@ -520,4 +520,23 @@ class UsersControllerTest extends OssControllerTestCase
         $s->useDbConfig = 'test';
         $this->assertEqual($s->read(null, 1), array());
     }
+
+    /**
+     * testDeleteForNonExistentUser
+     *
+     * @expectedException NotFoundException
+     */
+    public function testDeleteForNonExistentUser()
+    {
+        $this->goIntoLoginStatus();
+        App::uses('User', 'Model');
+        $s = new User();
+        $s->useDbConfig = 'test';
+        $s->delete(1, false);
+
+        $this->testAction('/users/delete/1', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+    }
 }
