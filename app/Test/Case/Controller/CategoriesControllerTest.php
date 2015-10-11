@@ -45,6 +45,19 @@ class CategoriesControllerTest extends OssControllerTestCase
     }
 
     /**
+     * testViewNonExistentCategory
+     *
+     * @expectedException NotFoundException
+     */
+    public function testViewNonExistentCategory()
+    {
+        $this->testAction('/categories/view/9999', array(
+            'method' => 'GET',
+            'return' => 'contents'
+        ));
+    }
+
+    /**
      * testViewRss
      *
      */

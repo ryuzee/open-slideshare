@@ -20,7 +20,7 @@ class UsersControllerTest extends OssControllerTestCase
         'app.comment',
         'app.config',
         'plugin.tags.tag',
-        'plugin.tags.tagged',
+        'plugin.tags.tagged'
     );
 
     /**
