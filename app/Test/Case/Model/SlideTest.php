@@ -17,8 +17,8 @@ class SlideTest extends CakeTestCase
         'app.user',
         'app.category',
         'app.comment',
-        'plugin.tags.tag',
-        'plugin.tags.tagged',
+        'app.tag',
+        'app.tagged',
     );
 
     /**

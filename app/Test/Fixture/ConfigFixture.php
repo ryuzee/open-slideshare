@@ -5,20 +5,11 @@
 class ConfigFixture extends CakeTestFixture
 {
     /**
-     * Fields
+     * import
      *
      * @var array
      */
-    public $fields = array(
-        'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 32, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-        'value' => array('type' => 'string', 'null' => false, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-        'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
-        'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-        'indexes' => array(
-            'PRIMARY' => array('column' => 'name', 'unique' => 1)
-        ),
-        'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-    );
+    public $import = array('model' => 'Config');
 
     /**
      * Records

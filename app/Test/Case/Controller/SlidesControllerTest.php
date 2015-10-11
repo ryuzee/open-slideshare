@@ -19,8 +19,8 @@ class SlidesControllerTest extends OssControllerTestCase
         'app.category',
         'app.comment',
         'app.config',
-        'plugin.tags.tag',
-        'plugin.tags.tagged'
+        'app.tag',
+        'app.tagged'
     );
 
     /**
@@ -211,6 +211,7 @@ class SlidesControllerTest extends OssControllerTestCase
             '/slides/search/name:TestSlide1',
             '/slides/search/created_f:20140101/created_t:20381231',
             "/slides/search/created_f:');alert('1",
+            "/slides/search/tags:Tag1",
         );
         $expected_strings = array(
             __('Search Result'),
