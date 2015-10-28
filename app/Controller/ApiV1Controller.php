@@ -68,35 +68,11 @@ class ApiV1Controller extends AppController
         try {
             $records = $this->Paginator->paginate('Slide');
         } catch(Exception $e) {
-            $this->response->statusCode(400);
-            $result = array();
-            $result['error']['message'] = __('Failed to retrieve results');
-            $this->set('error', $result['error']);
-            return $this->render('slides');
+            return $this->send_error('slides', 400, __('Failed to retrieve results'));
         }
         $this->response->statusCode(200);
         $this->set('slides', $records);
         return $this->render('slides');
-    }
-
-    /**
-     * get_slide_id
-     *
-     * @param string $template_name
-     */
-    private function get_slide_id($template_name = 'slide')
-    {
-        $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
-        if (!$id || !$this->Slide->exists($id)) {
-            $this->response->statusCode(400);
-            $result = array();
-            $result['error']['message'] = __('Invalid slide');
-            $this->set('error', $result['error']);
-            $this->render($template_name);
-            return false;
-        } else {
-            return $id;
-        }
     }
 
     /**
@@ -105,14 +81,13 @@ class ApiV1Controller extends AppController
      */
     public function get_slide_by_id()
     {
-        $id = $this->get_slide_id();
-        if(!$id) {
-            return;
+        $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
+        if (!$id || !$this->Slide->exists($id)) {
+            return $this->send_error('slide', 400, __('Invalid slide'));
         }
 
         $this->response->statusCode(200);
         $slide = $this->Slide->get_slide($id);
-
         $this->set('slide', $slide);
         return $this->render('slide');
     }
@@ -123,13 +98,13 @@ class ApiV1Controller extends AppController
      */
     public function get_transcript_by_id()
     {
-        $id = $this->get_slide_id("transcript");
-        if(!$id) {
-            return;
+        $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
+        if (!$id || !$this->Slide->exists($id)) {
+            return $this->send_error('transcript', 400, __('Invalid slide'));
         }
+
         $this->response->statusCode(200);
         $slide = $this->Slide->get_slide($id);
-
         $transcripts = $this->SlideProcessing->get_transcript($slide['Slide']['key']);
         $this->set('transcripts', $transcripts);
         return $this->render('transcript');
@@ -143,11 +118,7 @@ class ApiV1Controller extends AppController
     {
         $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
         if (!$id || !$this->User->exists($id)) {
-            $this->response->statusCode(400);
-            $result = array();
-            $result['error']['message'] = __('Invalid user');
-            $this->set('error', $result['error']);
-            return $this->render('slides');
+            return $this->send_error('slides', 400, __('Invalid User'));
         }
         $this->response->statusCode(200);
         $conditions = $this->Slide->get_conditions_to_get_slides_by_user($id, false, false);
@@ -164,15 +135,28 @@ class ApiV1Controller extends AppController
     {
         $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
         if (!$id || !$this->User->exists($id)) {
-            $this->response->statusCode(400);
-            $result = array();
-            $result['error']['message'] = __('Invalid user');
-            $this->set('error', $result['error']);
-            return $this->render('user');
+            return $this->send_error('user', 400, __('Invalid User'));
         }
         $this->response->statusCode(200);
         $user = $this->User->read(null, $id);
         $this->set('user', $user);
         return $this->render('user');
     }
+
+    /**
+     * send_error
+     *
+     * @param mixed $template_name
+     * @param mixed $status_code
+     * @param mixed $message
+     */
+    private function send_error($template_name, $status_code, $message)
+    {
+        $this->response->statusCode($status_code);
+        $result = array();
+        $result['error']['message'] = $message;
+        $this->set('error', $result['error']);
+        return $this->render($template_name);
+    }
+
 }
