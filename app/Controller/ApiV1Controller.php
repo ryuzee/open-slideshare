@@ -69,6 +69,7 @@ class ApiV1Controller extends AppController
             $records = $this->Paginator->paginate('Slide');
         } catch(Exception $e) {
             $this->response->statusCode(400);
+            $result = array();
             $result['error']['message'] = __('Failed to retrieve results');
             $this->set('error', $result['error']);
             return $this->render('slides');
@@ -81,12 +82,14 @@ class ApiV1Controller extends AppController
     /**
      * get_slide_id
      *
+     * @param string $template_name
      */
     private function get_slide_id($template_name = 'slide')
     {
         $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
         if (!$id || !$this->Slide->exists($id)) {
             $this->response->statusCode(400);
+            $result = array();
             $result['error']['message'] = __('Invalid slide');
             $this->set('error', $result['error']);
             $this->render($template_name);
@@ -99,7 +102,6 @@ class ApiV1Controller extends AppController
     /**
      * get_slide
      *
-     * @param mixed $id
      */
     public function get_slide_by_id()
     {
@@ -136,15 +138,13 @@ class ApiV1Controller extends AppController
     /**
      * get_slides_by_user_id
      *
-     * This API can be accessed by "/api/v1/user/:id/slides". See route.php
-     *
-     * @param mixed $id
      */
     public function get_slides_by_user_id()
     {
         $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
         if (!$id || !$this->User->exists($id)) {
             $this->response->statusCode(400);
+            $result = array();
             $result['error']['message'] = __('Invalid user');
             $this->set('error', $result['error']);
             return $this->render('slides');
@@ -165,6 +165,7 @@ class ApiV1Controller extends AppController
         $id = isset($this->request->params['id']) ? $this->request->params['id'] : '';
         if (!$id || !$this->User->exists($id)) {
             $this->response->statusCode(400);
+            $result = array();
             $result['error']['message'] = __('Invalid user');
             $this->set('error', $result['error']);
             return $this->render('user');
