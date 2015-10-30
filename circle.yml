@@ -1,6 +1,10 @@
 machine:
   php:
     version: 5.5.11
+  ruby:
+    version: 2.0.0-p247
+  timezone: Asia/Tokyo
+
 general:
   artifacts:
       - "app/reports"
