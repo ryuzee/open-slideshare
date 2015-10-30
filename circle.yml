@@ -39,3 +39,9 @@ test:
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/phpunit/
     - find . -type f -regex "./app/reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/phpunit/ \;
+
+deployment:
+  production:
+    branch: production
+    commands:
+      - sh script/deploy_production.sh
