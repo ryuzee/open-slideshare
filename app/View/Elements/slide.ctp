@@ -10,9 +10,9 @@
     <?php echo $this->Html->link('<i id="slide_control_download_link" class="fa fa-download"></i>', array("controller" => "slides", "action" => "download", $slide["id"], "full_base" => true), array('escape' => false)); ?>&nbsp;
     <?php endif; ?>
     <a href="javascript:void(0);return false;"><i id="slide_control_fast_backward" class="fa fa-fast-backward"></i></a>&nbsp;
-    <span id="prev" class="slide_control_link" /></span>&nbsp;&nbsp;
+    <span class="slide_prev slide_control_link" /></span>&nbsp;&nbsp;
     <span id="pager" class="small"></span>&nbsp;&nbsp;
-    <span id="next" class="slide_control_link"></span>&nbsp;
+    <span class="slide_next slide_control_link"></span>&nbsp;
     <a href="javascript:void(0);return false;"><i id="slide_control_fast_forward" class="fa fa-fast-forward"></i></a>
     <div id="slide_progress"></div>
 </div>
@@ -54,8 +54,8 @@ $1102(document).ready(function(){
             pagerType:'short',
             prevText: '◀',
             nextText: '▶',
-            prevSelector: "#prev",
-            nextSelector: "#next",
+            prevSelector: ".slide_prev",
+            nextSelector: ".slide_next",
             pagerSelector: "#pager",
             adaptiveHeight: false,
             infiniteLoop: false,
@@ -74,11 +74,15 @@ $1102(document).ready(function(){
             }
         }
         myslider = $1102('.openslideshare_body .bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
+        // Add links to move backward or next.
+        $1102('.openslideshare_body .bx-wrapper').append($1102('<img src="/img/spacer.png" style="z-index:9999;width:128px;height:128px;position:absolute;top:50%;left:0%;margin-top:-64px;margin-left:0px;cursor:pointer;" onclick="javascript:myslider.goToPrevSlide();" />'));
+        $1102('.openslideshare_body .bx-wrapper').append($1102('<img src="/img/spacer.png" style="z-index:9999;width:128px;height:128px;position:absolute;top:50%;left:100%;margin-top:-64px;margin-left:-128px;display:inline;cursor:pointer;" onclick="javascript:myslider.goToNextSlide();" />'));
     }
     bxslider_init();
     $1102('#slide_progress').slider({
         change: function(e, ui) { myslider.goToSlide(ui.value -1); }
     });
+
 
     var viewport_attr = $1102('.openslideshare_body .bx-viewport').attr('style');
     var timer = setInterval( updateDiv, 10 * 1000);
