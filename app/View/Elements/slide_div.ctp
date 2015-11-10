@@ -11,8 +11,8 @@
     <?php $count++; ?>
     <?php endforeach; ?>
 <?php elseif($slide["convert_status"] < 0): ?>
-    <li><img class="image-0" src="/img/failed_to_convert.jpg" /></li>
+    <li><img class="image-0" src="<?php echo Router::url($this->Html->url("/img/failed_to_convert.jpg"), true); ?>" /></li>
 <?php else: ?>
-    <li><img class="image-0" src="/img/converting.jpg" /></li>
+    <li><img class="image-0" src="<?php echo Router::url($this->Html->url("/img/converting.jpg"), true); ?>" /></li>
 <?php endif; ?>
 </ul>
