@@ -7,6 +7,7 @@
 <?php echo $this->Html->css('openslideshare_embedded.css', array('fullBase' => true)); ?>
 <?php echo $this->Html->script('jquery.bxslider.js?20141218', array('fullBase' => true)); ?>
 <?php echo $this->Html->script('jquery.lazyload.js', array('fullBase' => true)); ?>
+<?php echo $this->Html->script('mousetrap.min.js', array('fullBase' => true)); ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <style type="text/css">
     .openslideshare_body { font-size: 0.8em;}
