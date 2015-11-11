@@ -4,15 +4,15 @@
     <?php foreach ($file_list as $file): ?>
     <?php $u = $this->Common->slide_page_url($file); ?>
     <?php if($count >= 2): ?>
-    <li><img class="lazy image-<?php echo $count; ?>" src="<?php echo Router::url($this->Html->url("/img/spacer.gif"), true); ?>" data-src="<?php echo $u; ?>" /></li>
+    <li><img style="border:0px !important" class="lazy image-<?php echo $count; ?>" src="<?php echo Router::url($this->Html->url("/img/spacer.gif"), true); ?>" data-src="<?php echo $u; ?>" /></li>
     <?php else: ?>
-    <li><img src="<?php echo $u; ?>" /></li>
+    <li><img style="border:0px !important" src="<?php echo $u; ?>" /></li>
     <?php endif; ?>
     <?php $count++; ?>
     <?php endforeach; ?>
 <?php elseif($slide["convert_status"] < 0): ?>
-    <li><img class="image-0" src="<?php echo Router::url($this->Html->url("/img/failed_to_convert.jpg"), true); ?>" /></li>
+    <li><img style="border:0px !important" class="image-0" src="<?php echo Router::url($this->Html->url("/img/failed_to_convert.jpg"), true); ?>" /></li>
 <?php else: ?>
-    <li><img class="image-0" src="<?php echo Router::url($this->Html->url("/img/converting.jpg"), true); ?>" /></li>
+    <li><img style="border:0px !important" class="image-0" src="<?php echo Router::url($this->Html->url("/img/converting.jpg"), true); ?>" /></li>
 <?php endif; ?>
 </ul>

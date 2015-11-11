@@ -3,7 +3,7 @@
 <?php echo $this->element("slide_div", array("slide" => $slide)); ?>
 </div>
 
-<div class="slide_control" style="display:none">
+<div class="slide_control" style="display:none;font-size:16px;">
     <i id="slide_control_fullscreen" class="fa fa-television"></i>
     <?php echo $this->Html->link('<i id="slide_control_home_link" class="fa fa-link"></i>', array("controller" => "slides", "action" => "view", $slide["id"], "full_base" => true), array('escape' => false)); ?>&nbsp;
     <?php if($slide["downloadable"]): ?>
@@ -75,8 +75,8 @@ $1102(document).ready(function(){
         }
         myslider = $1102('.openslideshare_body .bxslider_<?php echo $slide["key"]; ?>').bxSlider(slider_config);
         // Add links to move backward or next.
-        $1102('.openslideshare_body .bx-wrapper').append($1102('<img src="<?php echo Router::url($this->Html->url("/img/spacer.png"), true); ?>" style="z-index:9999;width:128px;height:128px;position:absolute;top:50%;left:0%;margin-top:-64px;margin-left:0px;cursor:pointer;border:0px" onclick="javascript:myslider.goToPrevSlide();" />'));
-        $1102('.openslideshare_body .bx-wrapper').append($1102('<img src="<?php echo Router::url($this->Html->url("/img/spacer.png"), true); ?>" style="z-index:9999;width:128px;height:128px;position:absolute;top:50%;left:100%;margin-top:-64px;margin-left:-128px;display:inline;cursor:pointer;border:0px" onclick="javascript:myslider.goToNextSlide();" />'));
+        $1102('.openslideshare_body .bx-wrapper').append($1102('<img src="<?php echo Router::url($this->Html->url("/img/spacer.png"), true); ?>" style="z-index:9999;width:128px;height:128px;position:absolute;top:50%;left:0%;margin-top:-64px;margin-left:0px;cursor:pointer;border:0px !important" onclick="javascript:myslider.goToPrevSlide();" />'));
+        $1102('.openslideshare_body .bx-wrapper').append($1102('<img src="<?php echo Router::url($this->Html->url("/img/spacer.png"), true); ?>" style="z-index:9999;width:128px;height:128px;position:absolute;top:50%;left:100%;margin-top:-64px;margin-left:-128px;display:inline;cursor:pointer;border:0px !important" onclick="javascript:myslider.goToNextSlide();" />'));
     }
     bxslider_init();
     $1102('#slide_progress').slider({
