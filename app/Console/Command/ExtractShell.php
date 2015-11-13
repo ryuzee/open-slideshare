@@ -2,6 +2,7 @@
 
 App::uses('ComponentCollection', 'Controller');
 App::uses('SlideProcessingComponent', 'Controller/Component');
+App::uses('SQSListener', 'Event');
 
 /**
  * Class: ExtractShell.
@@ -52,6 +53,7 @@ class ExtractShell extends AppShell
      */
     public function main()
     {
+        $this->QueueWorker->getEventManager()->attach(new SQSListener());
         $this->QueueWorker->addFunction('extract', $this, 'handleJob');
         $this->QueueWorker->work();
     }
