@@ -54,7 +54,7 @@ class AppController extends Controller
     /**
      * uses.
      */
-    public $uses = array('Comment', 'Category', 'Config');
+    public $uses = array('Comment', 'Category', 'Config', 'CustomContent');
 
     /**
      * beforeFilter.
@@ -89,8 +89,13 @@ class AppController extends Controller
             }
         }
 
+        // set category
         $this->set('category', $this->Category->find('all'));
 
+        // set site settings
         $this->set('config', $this->Config->get_all_configs());
+
+        // set site settings
+        $this->set('custom_contents', $this->CustomContent->get_all_custom_contents());
     }
 }

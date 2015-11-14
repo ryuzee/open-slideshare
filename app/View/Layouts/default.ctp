@@ -21,10 +21,10 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         <?php echo $this->Html->css('sticky-footer-navbar.css') . "\n"; ?>
         <?php echo $this->Html->css('jquery.bxslider.css') . "\n"; ?>
         <?php echo $this->Html->css('custom-theme/jquery-ui-1.10.0.custom.css') . "\n"; ?>
-        <?php echo $this->Html->css('openslideshare.css') . "\n"; ?>
+        <?php echo $this->Html->css('openslideshare.css?' . date('YmdHis')) . "\n"; ?>
         <?php echo $this->Html->script('jquery.elastic.js') . "\n"; ?>
         <?php echo $this->Html->script('jquery.events.input.js') . "\n"; ?>
-        <?php echo $this->Html->script('jquery.bxslider.js?20141218') . "\n"; ?>
+        <?php echo $this->Html->script('jquery.bxslider.js') . "\n"; ?>
         <?php echo $this->Html->script('jquery.lazyload.js') . "\n"; ?>
         <?php echo $this->Html->script('jquery.equalheights.min.js') . "\n"; ?>
         <?php echo $this->Html->script('jquery.sticky-kit.min.js') . "\n"; ?>
@@ -118,10 +118,20 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         </div>
         <a name="page_top"></a>
         <div class="container" id="main_container" role="main">
+            <?php if (isset($custom_contents["center_top"])): ?>
+                <div>
+                <?php echo $custom_contents["center_top"]; ?>
+                </div>
+            <?php endif; ?>
             <?php echo $this->Session->flash(); ?>
             <!-- start contents -->
             <?php echo $this->fetch('content'); ?>
             <!-- end contents -->
+            <?php if (isset($custom_contents["center_bottom"])): ?>
+                <div>
+                <?php echo $custom_contents["center_bottom"]; ?>
+                </div><br />
+            <?php endif; ?>
         </div>
 
         <div class="footer">

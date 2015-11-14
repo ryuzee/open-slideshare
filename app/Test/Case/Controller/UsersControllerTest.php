@@ -19,6 +19,7 @@ class UsersControllerTest extends OssControllerTestCase
         'app.category',
         'app.comment',
         'app.config',
+        'app.custom_content',
         'app.tag',
         'app.tagged'
     );
