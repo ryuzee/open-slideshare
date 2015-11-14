@@ -31,4 +31,5 @@
 <h2><?php echo __('Settings'); ?></h2>
 <ul>
     <li><?php echo $this->Html->link(__('Site Settings'), "/admin/managements/site_setting"); ?></li>
+    <li><?php echo $this->Html->link(__('Custom Contents Settings'), "/admin/managements/custom_contents_setting"); ?></li>
 </ul>

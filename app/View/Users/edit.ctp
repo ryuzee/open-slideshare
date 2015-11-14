@@ -1,3 +1,5 @@
+<h3><?php echo __('Edit User'); ?></h3>
+
 <div class="row">
 
 <div class="col-md-8">

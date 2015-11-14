@@ -132,4 +132,21 @@ class ManagementsController extends AppController
         $data = $this->Config->find('all');
         $this->set(compact('data'));
     }
+
+    /**
+     * admin_custom_contents_setting
+     *
+     */
+    public function admin_custom_contents_setting()
+    {
+        if($this->request->data) {
+            if ($this->CustomContent->saveAll($this->request->data['CustomContent'])) {
+                $this->Session->success(__("Completed to save contents..."));
+            } else {
+                $this->Session->error(__("Could not save contents..."));
+            }
+        }
+        $data = $this->CustomContent->find('all');
+        $this->set(compact('data'));
+    }
 }
