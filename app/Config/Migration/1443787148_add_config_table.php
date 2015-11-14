@@ -29,7 +29,7 @@ class AddConfigTable extends CakeMigration
         ),
         'down' => array(
             'drop_table' => array(
-                'users',
+                'configs',
             ),
         ),
     );
