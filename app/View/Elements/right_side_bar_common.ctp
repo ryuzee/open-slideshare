@@ -1,5 +1,5 @@
 <?php if (isset($custom_contents["right_top"])): ?>
-<div style="margin-top:16px">
+<div style="margin-top:20px">
 <?php echo $custom_contents["right_top"]; ?>
 </div>
 <?php endif; ?>
