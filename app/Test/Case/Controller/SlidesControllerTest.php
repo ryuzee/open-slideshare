@@ -195,6 +195,9 @@ class SlidesControllerTest extends OssControllerTestCase
                 'signature' => 'sig',
                 'success_action_status' => '201',
             )));
+        $c->getEventManager()->attach(function($event) {
+            return false;
+        }, 'Controller.Slide.afterAdd', array('priority' => 1));
     }
 
     /**
