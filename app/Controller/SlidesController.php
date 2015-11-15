@@ -2,6 +2,7 @@
 
 App::uses('AppController', 'Controller');
 App::uses('Sanitize', 'Utility');
+App::uses('CakeEvent', 'Event');
 
 /**
  * Slides Controller.
@@ -45,12 +46,11 @@ class SlidesController extends AppController
      */
     public $paginate;
 
-    public $SimpleQueue;
+
 
     public function __construct($request = null, $response = null)
     {
         parent::__construct($request, $response);
-        $this->SimpleQueue = ClassRegistry::init('SQS.SimpleQueue');
     }
 
     /**
@@ -301,7 +301,9 @@ class SlidesController extends AppController
                     $message = __('The slide has been saved.');
                 }
                 $this->Session->success($message);
-                $this->SimpleQueue->send('extract', array('id' => $last_insert_id, 'key' => $this->request->data['Slide']['key']));
+                // Send Event
+                $event = new CakeEvent('Controller.Slide.afterAdd', $this, array('id' => $last_insert_id, 'key' => $this->request->data['Slide']['key']));
+                $this->getEventManager()->dispatch($event);
 
                 return $this->redirect('/slides/view/' . $last_insert_id);
             } else {
@@ -346,7 +348,10 @@ class SlidesController extends AppController
             if ($this->Slide->save($this->request->data)) {
                 if ($this->request->data['Slide']['convert_status'] == '0') {
                     $this->SlideProcessing->delete_generated_files($this->S3->getClient(), $d['Slide']['key']);
-                    $this->SimpleQueue->send('extract', array('id' => $id, 'key' => $d['Slide']['key']));
+                    // Send Event
+                    $event = new CakeEvent('Controller.Slide.afterAdd', $this, array('id' => $id, 'key' => $d['Slide']['key']));
+                    $this->getEventManager()->dispatch($event);
+
                     $this->Session->success(__('The slide has been saved. File conversion has just started.'));
                 } else {
                     $this->Session->success(__('The slide has been saved.'));

@@ -127,6 +127,9 @@ Configure::write('Dispatcher.filters', array(
     'CacheDispatcher',
 ));
 
+// Load the global event listeners.
+require_once APP . 'Config' . DS . 'events.php';
+
 /*
  * Configures default file logging options
  */
