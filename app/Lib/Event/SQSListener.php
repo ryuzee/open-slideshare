@@ -27,5 +27,6 @@ class SQSListener implements CakeEventListener {
     public function before_procedure($event) {
         CakeLog::write('debug', 'waiting for 60 seconds...');
         sleep(60);
+        return true;
     }
 }

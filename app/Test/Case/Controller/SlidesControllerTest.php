@@ -195,10 +195,6 @@ class SlidesControllerTest extends OssControllerTestCase
                 'signature' => 'sig',
                 'success_action_status' => '201',
             )));
-        $c->SimpleQueue = $this->getMock('SimpleQueue', array('send'));
-        $c->SimpleQueue->expects($this->any())
-            ->method('send')
-            ->will($this->returnValue(true));
     }
 
     /**

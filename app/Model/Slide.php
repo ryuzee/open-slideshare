@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppModel', 'Model');
+App::uses('CakeEvent', 'Event');
 
 /**
  * Slide Model.
@@ -135,7 +136,8 @@ class Slide extends AppModel
         }
         $fields = array(sprintf('%s', $column) => sprintf('%s + 1', $column));
         $conditions = array('Slide.id' => $id);
-        return $this->updateAll($fields, $conditions);
+        $status = $this->updateAll($fields, $conditions);
+        return $status;
     }
 
     /**
