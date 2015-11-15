@@ -34,8 +34,10 @@ class SlideListener implements CakeEventListener {
     public function after_add($event) {
         CakeLog::write('info', sprintf("Slide added. id=%s key=%s", $event->data['id'], $event->data['key']));
 
-        $this->SimpleQueue = ClassRegistry::init('SQS.SimpleQueue');
-        $this->SimpleQueue->send('extract', array('id' => $event->data['id'], 'key' => $event->data['key']));
+        if(Configure::read("test_mode") !== "local") {
+            $this->SimpleQueue = ClassRegistry::init('SQS.SimpleQueue');
+            $this->SimpleQueue->send('extract', array('id' => $event->data['id'], 'key' => $event->data['key']));
+        }
         return true;
     }
 }
