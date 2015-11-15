@@ -215,6 +215,10 @@ body.openslideshare_body {
 .openslideshare_body #main_container {
     max-width:1024px; background-color:transparent; padding-top: 60px;; margin-top:1em; auto; border:none;
 }
+.openslideshare_body div.alert {
+    margin-top:20px !important;
+    margin-bottom:0px !important;
+}
 
 /** Embedded Player **/
 @media screen and (max-width: 400px) {
