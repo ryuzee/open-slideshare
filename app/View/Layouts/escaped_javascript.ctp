@@ -8,7 +8,7 @@ foreach($lines as $line) {
         $js_source .= $line;
     }
 }
-$packer = new Packer($js_source, 'Normal', true, false);
+$packer = new Tholu\Packer\Packer($js_source, 'Normal', true, false);
 $packed_js = $packer->pack();
 echo $packed_js;
 

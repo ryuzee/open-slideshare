@@ -29,7 +29,7 @@
         "slywalker/boost_cake": "*",
         "lorenzo/cakephp-sqs": "dev-master",
         "cakephp/debug_kit": "2.2.5",
-        "tholu/php-packer": "*",
+        "tholu/php-packer": "0.1.2",
         "monolog/monolog":"*"
     }
 }

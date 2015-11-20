@@ -290,6 +290,12 @@ class SlidesController extends AppController
         $this->set('title_for_layout', __('New Slide'));
         $user = $this->Auth->User();
         $user_id = $user['id'];
+
+        $config = $this->Config->get_all_configs();
+        if (isset($config["only_admin_can_upload"]) && $config["only_admin_can_upload"] == 1 && $user["admin"] == 0) {
+            throw new ForbiddenException(__('Only administrator can upload slides'));
+        }
+
         $form_values = $this->S3->createPolicy();
         $this->set('form_values', $form_values);
 
@@ -339,6 +345,12 @@ class SlidesController extends AppController
         // access check
         $user = $this->Auth->User();
         $user_id = $user['id'];
+
+        $config = $this->Config->get_all_configs();
+        if (isset($config["only_admin_can_upload"]) && $config["only_admin_can_upload"] == 1 && $user["admin"] == 0) {
+            throw new ForbiddenException(__('Only administrator can edit slides'));
+        }
+
         $d = $this->Slide->read(null, $id);
         $this->set('slide', $d);
         if ($user_id != $d['Slide']['user_id']) {
@@ -392,6 +404,12 @@ class SlidesController extends AppController
 
         // access check
         $user = $this->Auth->User();
+
+        $config = $this->Config->get_all_configs();
+        if (isset($config["only_admin_can_upload"]) && $config["only_admin_can_upload"] == 1 && $user["admin"] == 0) {
+            throw new ForbiddenException(__('Only administrator can delete slides'));
+        }
+
         $user_id = $user['id'];
         if ($user_id != $data['Slide']['user_id']) {
             $this->Session->warning(__('You do not have permission to delete the slide created by others.'));
