@@ -24,10 +24,11 @@ class Slide extends AppModel
      * @var array
      */
     public $actsAs = array(
+        'Like.Likeable',
         'Tags.Taggable' => array(
           'tagClass' => 'TagEx',
         ),
-        'Search.Searchable'
+        'Search.Searchable',
     );
 
     /**

@@ -13,9 +13,16 @@
     },
     "extra": {
         "installer-paths": {
-            "Plugin/SQS": ["lorenzo/cakephp-sqs"]
+            "Plugin/SQS": ["lorenzo/cakephp-sqs"],
+            "Plugin/Like": ["ryuzee/cakephp-like-plugin"]
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ryuzee/cakephp-like-plugin"
+        }
+    ],
     "require-dev": {
         "squizlabs/php_codesniffer": "2.*"
     },
@@ -29,7 +36,8 @@
         "slywalker/boost_cake": "*",
         "lorenzo/cakephp-sqs": "dev-master",
         "cakephp/debug_kit": "2.2.5",
-        "tholu/php-packer": "*",
-        "monolog/monolog":"*"
+        "tholu/php-packer": "0.1.2",
+        "monolog/monolog":"*",
+        "ryuzee/cakephp-like-plugin": "dev-master"
     }
 }

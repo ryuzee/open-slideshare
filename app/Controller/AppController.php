@@ -32,6 +32,7 @@ class AppController extends Controller
         'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
         'Common',
         'Tags.TagCloud',
+        'Like.Like'
     );
 
     /**

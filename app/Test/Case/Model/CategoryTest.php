@@ -15,7 +15,8 @@ class CategoryTest extends CakeTestCase
         'app.category',
         'app.slide',
         'app.user',
-        'app.comment'
+        'app.comment',
+        'app.like'
     );
 
     /**

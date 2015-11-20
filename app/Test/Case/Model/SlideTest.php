@@ -19,6 +19,7 @@ class SlideTest extends CakeTestCase
         'app.comment',
         'app.tag',
         'app.tagged',
+        'app.like'
     );
 
     /**

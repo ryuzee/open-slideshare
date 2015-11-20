@@ -86,6 +86,7 @@ CakePlugin::load('Search');
 CakePlugin::load('BoostCake');
 CakePlugin::load('SQS');
 CakePlugin::load('DebugKit');
+CakePlugin::load('Like');
 
 if (isset($_SERVER['OSS_AWS_ACCESS_ID']) && isset($_SERVER['OSS_AWS_SECRET_KEY'])) {
     $connection = array(

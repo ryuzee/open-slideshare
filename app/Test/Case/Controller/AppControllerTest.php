@@ -21,7 +21,8 @@ class AppControllerTest extends OssControllerTestCase
         'app.config',
         'app.custom_content',
         'app.tag',
-        'app.tagged'
+        'app.tagged',
+        'app.like'
     );
 
     /**
