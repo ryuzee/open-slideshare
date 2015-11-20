@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="col-md-3" style="text-align:right">
-            <strong><?php echo $slide["Slide"]["total_view"]; ?></strong> <small>views</small><br />
+            <strong><?php echo $slide["Slide"]["total_view"]; ?></strong> <small>total views</small><br />
             <strong><?php echo $slide["Slide"]["embedded_view"]; ?></strong> <small>embedded views</small><br />
             <?php if ($slide['Slide']['downloadable']): ?>
             <strong><?php echo $slide["Slide"]["download_count"]; ?></strong> <small>downloads</small>
