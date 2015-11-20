@@ -30,6 +30,7 @@ class SlideFixture extends CakeTestFixture
             'key' => '4ea2abecba74eda5521fff924d9e5062',
             'extension' => '.pdf',
             'convert_status' => '100',
+            'total_view' => '132',
             'page_view' => '99',
             'download_count' => '0',
             'embedded_view' => '33',
@@ -46,6 +47,7 @@ class SlideFixture extends CakeTestFixture
             'key' => '1cf9ff7657312d63072439632e6110bd',
             'extension' => '.pptx',
             'convert_status' => '100',
+            'total_view' => '132',
             'page_view' => '99',
             'download_count' => '11',
             'embedded_view' => '33',
@@ -62,6 +64,7 @@ class SlideFixture extends CakeTestFixture
             'key' => '1cf9ff7657312d63072439632e6110bd',
             'extension' => '.pptx',
             'convert_status' => '100',
+            'total_view' => '132',
             'page_view' => '88',
             'download_count' => '22',
             'embedded_view' => '44',
@@ -78,6 +81,7 @@ class SlideFixture extends CakeTestFixture
             'key' => '1cf9ff7657312d63072439632e6110bd',
             'extension' => '.pptx',
             'convert_status' => '100',
+            'total_view' => '13332',
             'page_view' => '9999',
             'download_count' => '1111',
             'embedded_view' => '3333',
@@ -94,10 +98,10 @@ class SlideFixture extends CakeTestFixture
             'key' => '1cf9ff7657312d63072439632e6110bd',
             'extension' => '.pptx',
             'convert_status' => '-40',
+            'total_view' => '2',
             'page_view' => '1',
             'download_count' => '1',
             'embedded_view' => '1',
         ),
-
     );
 }

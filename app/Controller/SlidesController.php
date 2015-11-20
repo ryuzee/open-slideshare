@@ -195,6 +195,7 @@ class SlidesController extends AppController
         $this->set('other_slides_in_category', $other_slides_in_category);
 
         $this->Slide->countup('page_view', $id);
+        $this->Slide->countup('total_view', $id);
     }
 
     /**
@@ -243,6 +244,7 @@ class SlidesController extends AppController
         $file_list = $this->SlideProcessing->get_slide_pages_list($slide['Slide']['key']);
         $this->set('file_list', $file_list);
         $this->Slide->countup('embedded_view', $id);
+        $this->Slide->countup('total_view', $id);
     }
 
     public function iframe($id = null)
@@ -258,6 +260,7 @@ class SlidesController extends AppController
         $file_list = $this->SlideProcessing->get_slide_pages_list($slide['Slide']['key']);
         $this->set('file_list', $file_list);
         $this->Slide->countup('embedded_view', $id);
+        $this->Slide->countup('total_view', $id);
         $this->render('embedded');
     }
 
