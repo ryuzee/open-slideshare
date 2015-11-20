@@ -245,7 +245,7 @@ class Slide extends AppModel
             'limit' => $count,
             'recursive' => 2,
             'conditions' => array('Slide.convert_status = ' . SUCCESS_CONVERT_COMPLETED),
-            'order' => array('Slide.page_view' => 'desc'),
+            'order' => array('Slide.total_view' => 'desc'),
         );
 
         return $conditions;
