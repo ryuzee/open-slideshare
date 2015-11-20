@@ -1,3 +1,5 @@
+<h3><?php echo __('Add User'); ?></h3>
+
 <div class="row">
 <div class="col-md-12">
     <?php echo $this->Form->create('User', array(
@@ -10,8 +12,7 @@
     )); ?>
     <div class="form-group">
         <fieldset>
-            <legend><?php echo __('Add User'); ?></legend>
-            <?php
+        <?php
          echo $this->Form->input('username', array('class' => 'form-control'));
          echo $this->Form->input('password', array('class' => 'form-control'));
          echo $this->Form->input('display_name', array('label' => __('Display Name'), 'class' => 'form-control'));

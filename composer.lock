@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "45145b48bd0beca35f3ddf8aa16d44f2",
+    "hash": "84573fc52a60eec66e69ac0f16e50ee6",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.8.21",
+            "version": "2.8.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "92642ca4906e6681a1301971cf41500d7c68581c"
+                "reference": "54b67f902bb2c5bbab481bc3c46537752a018830"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/92642ca4906e6681a1301971cf41500d7c68581c",
-                "reference": "92642ca4906e6681a1301971cf41500d7c68581c",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/54b67f902bb2c5bbab481bc3c46537752a018830",
+                "reference": "54b67f902bb2c5bbab481bc3c46537752a018830",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-09-17 00:17:24"
+            "time": "2015-11-16 22:34:08"
         },
         {
             "name": "cakedc/migrations",
@@ -153,16 +153,16 @@
         },
         {
             "name": "cakedc/tags",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CakeDC/tags.git",
-                "reference": "f0f1f735fbec8dd925c5925a9a4f69a3d5f6e2f8"
+                "reference": "292347f92eeadcd00824b42d87d6c2a531f00254"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/tags/zipball/f0f1f735fbec8dd925c5925a9a4f69a3d5f6e2f8",
-                "reference": "f0f1f735fbec8dd925c5925a9a4f69a3d5f6e2f8",
+                "url": "https://api.github.com/repos/CakeDC/tags/zipball/292347f92eeadcd00824b42d87d6c2a531f00254",
+                "reference": "292347f92eeadcd00824b42d87d6c2a531f00254",
                 "shasum": ""
             },
             "require": {
@@ -191,20 +191,20 @@
                 "plugin",
                 "tags"
             ],
-            "time": "2014-06-04 21:24:10"
+            "time": "2015-10-22 14:50:15"
         },
         {
             "name": "cakephp/cakephp",
-            "version": "2.7.4",
+            "version": "2.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "0502e0731a60769244e5c87b520e9e5e867a0e9a"
+                "reference": "df3c786f57844ee7ba39c74090989b575b589a2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/0502e0731a60769244e5c87b520e9e5e867a0e9a",
-                "reference": "0502e0731a60769244e5c87b520e9e5e867a0e9a",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/df3c786f57844ee7ba39c74090989b575b589a2b",
+                "reference": "df3c786f57844ee7ba39c74090989b575b589a2b",
                 "shasum": ""
             },
             "require": {
@@ -235,7 +235,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-09-29 01:13:09"
+            "time": "2015-11-06 03:30:43"
         },
         {
             "name": "cakephp/debug_kit",
@@ -288,17 +288,20 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.0.21",
+            "version": "v1.0.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
+                "reference": "bd9b14f094c89c8b5804a4e41edeb7853bb85046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
-                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "url": "https://api.github.com/repos/composer/installers/zipball/bd9b14f094c89c8b5804a4e41edeb7853bb85046",
+                "reference": "bd9b14f094c89c8b5804a4e41edeb7853bb85046",
                 "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "1.0.0"
             },
             "replace": {
                 "roundcube/plugin-installer": "*",
@@ -308,9 +311,9 @@
                 "composer/composer": "1.0.*@dev",
                 "phpunit/phpunit": "4.1.*"
             },
-            "type": "composer-installer",
+            "type": "composer-plugin",
             "extra": {
-                "class": "Composer\\Installers\\Installer",
+                "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
                     "dev-master": "1.0-dev"
                 }
@@ -379,7 +382,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2015-02-18 17:17:01"
+            "time": "2015-10-29 23:28:48"
         },
         {
             "name": "guzzle/guzzle",
@@ -517,16 +520,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.17.1",
+            "version": "1.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "0524c87587ab85bc4c2d6f5b41253ccb930a5422"
+                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/0524c87587ab85bc4c2d6f5b41253ccb930a5422",
-                "reference": "0524c87587ab85bc4c2d6f5b41253ccb930a5422",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
                 "shasum": ""
             },
             "require": {
@@ -540,10 +543,11 @@
                 "aws/aws-sdk-php": "^2.4.9",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
+                "jakub-onderka/php-parallel-lint": "0.9",
                 "php-console/php-console": "^3.1.3",
                 "phpunit/phpunit": "~4.5",
                 "phpunit/phpunit-mock-objects": "2.3.0",
-                "raven/raven": "~0.11",
+                "raven/raven": "^0.13",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
@@ -589,7 +593,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-08-31 09:17:37"
+            "time": "2015-10-14 12:51:02"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1034,16 +1038,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.7.5",
+            "version": "v2.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "ae4dcc2a8d3de98bd794167a3ccda1311597c5d9"
+                "reference": "87a5db5ea887763fa3a31a5471b512ff1596d9b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ae4dcc2a8d3de98bd794167a3ccda1311597c5d9",
-                "reference": "ae4dcc2a8d3de98bd794167a3ccda1311597c5d9",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/87a5db5ea887763fa3a31a5471b512ff1596d9b8",
+                "reference": "87a5db5ea887763fa3a31a5471b512ff1596d9b8",
                 "shasum": ""
             },
             "require": {
@@ -1054,7 +1058,6 @@
                 "symfony/config": "~2.0,>=2.0.5",
                 "symfony/dependency-injection": "~2.6",
                 "symfony/expression-language": "~2.6",
-                "symfony/phpunit-bridge": "~2.7",
                 "symfony/stopwatch": "~2.3"
             },
             "suggest": {
@@ -1088,27 +1091,24 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-22 13:49:29"
+            "time": "2015-10-11 09:39:48"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.7.5",
+            "version": "v2.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "31cb2ad0155c95b88ee55fe12bc7ff92232c1770"
+                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/31cb2ad0155c95b88ee55fe12bc7ff92232c1770",
-                "reference": "31cb2ad0155c95b88ee55fe12bc7ff92232c1770",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca9019c88fbe250164affd107bc8057771f3f4d",
+                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
             },
             "type": "library",
             "extra": {
@@ -1137,20 +1137,20 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-14 14:14:09"
+            "time": "2015-10-11 09:39:48"
         },
         {
             "name": "tholu/php-packer",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tholu/php-packer.git",
-                "reference": "ff1fed9bf6fa7176809b0a4fb39dc3fcb053d151"
+                "reference": "c205c9f471ffe93cb20e0b281ef49f55cc1a65a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tholu/php-packer/zipball/ff1fed9bf6fa7176809b0a4fb39dc3fcb053d151",
-                "reference": "ff1fed9bf6fa7176809b0a4fb39dc3fcb053d151",
+                "url": "https://api.github.com/repos/tholu/php-packer/zipball/c205c9f471ffe93cb20e0b281ef49f55cc1a65a4",
+                "reference": "c205c9f471ffe93cb20e0b281ef49f55cc1a65a4",
                 "shasum": ""
             },
             "require": {
@@ -1158,9 +1158,9 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "src/"
-                ]
+                "psr-4": {
+                    "Tholu\\Packer\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1188,7 +1188,7 @@
                 "obfuscate",
                 "uglify"
             ],
-            "time": "2015-01-05 11:44:53"
+            "time": "2015-11-18 12:40:36"
         }
     ],
     "packages-dev": [
