@@ -193,7 +193,7 @@ class Slide extends AppModel
             'limit' => 20,
             'recursive' => 2,
             'conditions' => 'Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.category_id = '.$id,
-            'order' => array('Slide.id' => 'desc'),
+            'order' => array('Slide.created' => 'desc'),
         );
 
         return $conditions;
@@ -226,7 +226,7 @@ class Slide extends AppModel
             'model' => 'Slide',
             'recursive' => 2,
             'limit' => 20,
-            'order' => array('Slide.id' => 'desc'),
+            'order' => array('Slide.created' => 'desc'),
         );
 
         return $conditions;
@@ -262,7 +262,7 @@ class Slide extends AppModel
             'model' => 'Slide',
             'recursive' => 2,
             'conditions' => array('Slide.user_id = ' . $user_id),
-            'order' => array('Slide.id' => 'desc'),
+            'order' => array('Slide.created' => 'desc'),
         );
 
         if ($limit !== false) {
