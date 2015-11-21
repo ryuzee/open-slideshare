@@ -24,9 +24,7 @@ class Slide extends AppModel
      * @var array
      */
     public $actsAs = array(
-        'Tags.Taggable' => array(
-          'tagClass' => 'TagEx',
-        ),
+        'Tags.Taggable',
         'Search.Searchable'
     );
 
