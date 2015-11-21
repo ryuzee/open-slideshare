@@ -24,7 +24,7 @@
         "phpunit/phpunit": "3.7.38",
         "aws/aws-sdk-php": "2.*",
         "cakedc/migrations": "~2.3",
-        "cakedc/tags": "~1.6",
+        "cakedc/tags": "1.6.1",
         "cakedc/search": "*",
         "slywalker/boost_cake": "*",
         "lorenzo/cakephp-sqs": "dev-master",
