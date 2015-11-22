@@ -89,9 +89,10 @@ $cakeDescription = __d('cake_dev', 'OpenSlideshare');
         <section class="sidebar">
 
           <!-- search form (Optional) -->
-          <form action="#" method="get" class="sidebar-form">
+          <form action="/admin/managements/slide_list" method="post" class="sidebar-form">
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <input type="hidden" name="_method" value="POST"/>
+              <input type="text" name="data[Slide][name]" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>

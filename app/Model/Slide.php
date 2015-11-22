@@ -180,6 +180,36 @@ class Slide extends AppModel
     }
 
     /**
+     * Retrieve recent slides
+     *
+     * @param int $count
+     *
+     * @return array
+     */
+    public function get_recent_slides($count = 20)
+    {
+        $conditions = $this->get_conditions_to_get_latest_slides($count);
+
+        $result = $this->find('all', $conditions);
+        return $result;
+    }
+
+    /**
+     * Retrieve popular slides
+     *
+     * @param int $count
+     *
+     * @return array
+     */
+    public function get_popular_slides($count = 20)
+    {
+        $conditions = $this->get_conditions_to_get_popular_slides($count);
+
+        $result = $this->find('all', $conditions);
+        return $result;
+    }
+
+    /**
      * Get paginate condition for retrieving slides in specific category.
      *
      * @param int $id category ID

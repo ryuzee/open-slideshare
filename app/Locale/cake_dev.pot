@@ -13,6 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
+#: View/Layouts/admin.ctp:2
 #: View/Layouts/default.ctp:8
 #: View/Layouts/error.ctp:8
 msgid "OpenSlideshare"
