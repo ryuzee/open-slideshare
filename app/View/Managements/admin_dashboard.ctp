@@ -84,7 +84,7 @@
               </tr>
             </thead>
             <tbody>
-            <?php foreach($recent_slides as $slide): ?>
+            <?php foreach($latest_slides as $slide): ?>
               <tr>
                 <td><a href="/slides/view/<?php echo $slide['Slide']['id']; ?>"><?php echo $slide['Slide']['id']; ?></a></td>
                 <td><?php echo h($slide['Slide']['name']); ?></td>
