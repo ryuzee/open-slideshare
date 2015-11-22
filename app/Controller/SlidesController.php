@@ -38,7 +38,6 @@ class SlidesController extends AppController
      */
     public $SlideProcessing;
 
-
     /**
      * paginate
      *
@@ -46,20 +45,12 @@ class SlidesController extends AppController
      */
     public $paginate;
 
-
-
-    public function __construct($request = null, $response = null)
-    {
-        parent::__construct($request, $response);
-    }
-
     /**
      * beforeFilter.
      */
     public function beforeFilter()
     {
         $this->Auth->allow('index', 'view', 'update_view', 'download', 'embedded', 'popular', 'latest', 'search', 'iframe');
-
         parent::beforeFilter();
     }
 
@@ -145,8 +136,8 @@ class SlidesController extends AppController
             Configure::write('debug', 0);
             $slides = $this->Slide->find('all', $conditions);
             $this->set(compact('slides'));
-            $this->set('title', __('Popular Slides'));
-            $this->set('description', __('Popular Slides'));
+            $this->set('title', $title);
+            $this->set('description', $description);
             return $this->render('slide_list');
         }
 
@@ -247,6 +238,11 @@ class SlidesController extends AppController
         $this->Slide->countup('total_view', $id);
     }
 
+    /**
+     * iframe
+     *
+     * @param mixed $id
+     */
     public function iframe($id = null)
     {
         if (!$this->Slide->exists($id)) {
@@ -352,7 +348,12 @@ class SlidesController extends AppController
         }
 
         $d = $this->Slide->read(null, $id);
-        $this->set('slide', $d);
+        if ($d === false) {
+            throw new NotFoundException(__('Invalid slide'));
+        } else {
+            $this->set('slide', $d);
+        }
+
         if ($user_id != $d['Slide']['user_id']) {
             $this->Session->warning(__('You do not have permission to edit the slide created by others.'));
 
