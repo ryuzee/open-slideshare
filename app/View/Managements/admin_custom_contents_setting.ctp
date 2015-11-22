@@ -1,4 +1,4 @@
-<h2><?php echo __('Custom Contents Settings'); ?></h2>
+<h3><?php echo __('Custom Contents Settings'); ?></h3>
 
 <div class="panel panel-default">
     <!-- Table -->

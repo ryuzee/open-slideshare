@@ -1,4 +1,4 @@
-<h2><?php echo __('Site Settings'); ?></h2>
+<h3><?php echo __('Site Settings'); ?></h3>
 
 <div class="panel panel-default">
     <!-- Table -->
