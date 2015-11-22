@@ -156,11 +156,11 @@ class Slide extends AppModel
      * Retrieve slides in the specific category.
      *
      * @param int $category_id
-     *                         integer $exclude_slide_id
+     *        int $exclude_slide_id
      *
      * @return array
      */
-    public function get_recent_slides_in_category($category_id, $exclude_slide_id = null)
+    public function get_latest_slides_in_category($category_id, $exclude_slide_id = null)
     {
         $conditions = array('Slide.convert_status = '.SUCCESS_CONVERT_COMPLETED.' and Slide.category_id ='.$category_id);
         if ($exclude_slide_id) {
@@ -180,13 +180,13 @@ class Slide extends AppModel
     }
 
     /**
-     * Retrieve recent slides
+     * Retrieve latest slides
      *
      * @param int $count
      *
      * @return array
      */
-    public function get_recent_slides($count = 20)
+    public function get_latest_slides($count = 20)
     {
         $conditions = $this->get_conditions_to_get_latest_slides($count);
 

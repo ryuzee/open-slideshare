@@ -191,7 +191,7 @@ class SlidesController extends AppController
         }
         $this->set('start_position', $start_position);
 
-        $other_slides_in_category = $this->Slide->get_recent_slides_in_category($slide['Slide']['category_id'], $id);
+        $other_slides_in_category = $this->Slide->get_latest_slides_in_category($slide['Slide']['category_id'], $id);
         $this->set('other_slides_in_category', $other_slides_in_category);
 
         $this->Slide->countup('page_view', $id);

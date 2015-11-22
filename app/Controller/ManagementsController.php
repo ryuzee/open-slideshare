@@ -49,8 +49,8 @@ class ManagementsController extends AppController
         $this->set('download_count', $pv[0]['slide_download_count']);
         $this->set('embedded_view', $pv[0]['slide_embedded_view']);
 
-        $recent_slides = $this->Slide->get_recent_slides(10);
-        $this->set('recent_slides', $recent_slides);
+        $latest_slides = $this->Slide->get_latest_slides(10);
+        $this->set('latest_slides', $latest_slides);
         $popular_slides = $this->Slide->get_popular_slides(10);
         $this->set('popular_slides', $popular_slides);
     }

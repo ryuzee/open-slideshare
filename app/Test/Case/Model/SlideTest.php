@@ -117,13 +117,13 @@ class SlideTest extends CakeTestCase
     }
 
     /**
-     * testGetRecentSlidesInCategory method.
+     * testGetLatestSlidesInCategory method.
      */
-    public function testGetRecentSlidesInCategory()
+    public function testGetLatestSlidesInCategory()
     {
         $slide_id = 1;
         $category_id = 1;
-        $data = $this->Slide->get_recent_slides_in_category($category_id, $slide_id);
+        $data = $this->Slide->get_latest_slides_in_category($category_id, $slide_id);
 
         App::uses('SlideFixture', 'Test/Fixture');
         $fixture = new SlideFixture();
