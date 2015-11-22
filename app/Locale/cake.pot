@@ -13,16 +13,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: View/Errors/error400.ctp:10
-#: View/Errors/error500.ctp:10
+#: View/Errors/error500.ctp:9
 msgid "Error"
 msgstr ""
 
-#: View/Errors/error400.ctp:12
-msgid "The requested address %s was not found on this server."
-msgstr ""
-
-#: View/Errors/error500.ctp:11
+#: View/Errors/error500.ctp:10
 msgid "An Internal Error Has Occurred."
 msgstr ""
 

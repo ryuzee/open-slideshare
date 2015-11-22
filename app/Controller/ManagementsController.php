@@ -13,7 +13,12 @@ class ManagementsController extends AppController
     /**
      * uses.
      */
-    public $uses = array('User', 'Slide', 'Comment', 'Category');
+    public $uses = array('Slide', 'User', 'Comment', 'Category');
+
+
+    public $presetVars = array(
+        array('field' => 'name', 'type' => 'value')
+    );
 
     /**
      * beforeFilter.
@@ -43,6 +48,11 @@ class ManagementsController extends AppController
         $this->set('page_view', $pv[0]['slide_page_view']);
         $this->set('download_count', $pv[0]['slide_download_count']);
         $this->set('embedded_view', $pv[0]['slide_embedded_view']);
+
+        $recent_slides = $this->Slide->get_recent_slides(10);
+        $this->set('recent_slides', $recent_slides);
+        $popular_slides = $this->Slide->get_popular_slides(10);
+        $this->set('popular_slides', $popular_slides);
     }
 
     /**
@@ -61,7 +71,16 @@ class ManagementsController extends AppController
      */
     public function admin_slide_list()
     {
-        $this->paginate = $this->Slide->get_conditions_to_get_all_slides();
+        $this->Prg->commonProcess();
+        $this->Paginator->settings = array(
+            'Slide' => array(
+                'conditions' => array($this->Slide->parseCriteria($this->passedArgs)),
+                'limit' => 20,
+                'recursive' => 2,
+                'order' => array('Slide.created' => 'desc'),
+            ),
+        );
+        // $this->paginate = $this->Slide->get_conditions_to_get_all_slides();
         $this->set('slides', $this->Paginator->paginate('Slide'));
         Configure::write('cdn_base_url', '');
     }
