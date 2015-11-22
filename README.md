@@ -2,6 +2,10 @@
 
 *This is simple open source slidesharing application.*
 
+You can see the working demo at http://slide.meguro.ryuzee.com/
+
+![Public Site](screenshot1.png)
+
 ## Feature
 
 - Uploading slides (pptx, pdf)
@@ -18,9 +22,7 @@
 - Transcript
 - Admin Dashboard to overview statistics and edit slides
 
-You can see the working demo at http://slide.meguro.ryuzee.com/
-
-![Sample1](screenshot1.png)
+![AdminDashboard](screenshot2.png)
 
 ## Requirements
 
@@ -36,7 +38,7 @@ It includes Vagrantfile and Chef cookbooks to build dev environment.
 
 ## Install For AWS User
 
-If you want to run this app on AWS, You can use a simple CloudFormation Template [here](https://raw.githubusercontent.com/ryuzee/open-slideshare-environment/master/aws_cfn_single.template). This template will create a VPC, 4 subnets for both provate and public, required S3 buckets, SQS queue, IAM Role and so on. When you run this template, only you need to do is to wait around 15 minutes with coffee.
+If you want to run this app on AWS, You can use a simple CloudFormation Template [here](https://raw.githubusercontent.com/ryuzee/open-slideshare-environment/master/aws_cfn_single.template). This template will create a VPC, 4 subnets for both private and public, required S3 buckets, SQS queue, IAM Role and so on. When you run this template, only you need to do is to wait around 15 minutes with coffee.
 
 This template is only for Tokyo region (ap-northeast-1). If you want to run the app in other region, you need to customize both this CFn template and install.sh.
 
