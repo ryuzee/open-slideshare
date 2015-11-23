@@ -195,8 +195,13 @@ class UsersController extends AppController
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
+
         $userinfo = $this->User->read(null, $id);
-        $this->set('user', $userinfo);
+        if ($userinfo === false) {
+            throw new NotFoundException(__('Invalid user'));
+        } else {
+            $this->set('user', $userinfo);
+        }
     }
 
     /**
