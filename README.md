@@ -2,6 +2,8 @@
 
 *This is simple open source slidesharing application.*
 
+** The newest version of OpenSlideshare had released. Please [visit the new project!!](https://github.com/ryuzee/open-slideshare-v2)
+
 You can see the working demo at http://slide.meguro.ryuzee.com/
 
 ![Public Site](screenshot1.png)
