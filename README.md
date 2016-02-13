@@ -2,7 +2,8 @@
 
 *This is simple open source slidesharing application.*
 
-** The newest version of OpenSlideshare had released. Please [visit the new project!!](https://github.com/ryuzee/open-slideshare-v2)
+*The newest version of OpenSlideshare (renamed to SlideHub) had released. Please [visit the new project!!](https://github.com/ryuzee/SlideHub)*
+*I do NOT have a plan to add new features to this PHP application. (I'm going to handle with bugs and security issues)*
 
 You can see the working demo at http://slide.meguro.ryuzee.com/
 
